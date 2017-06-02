@@ -1,5 +1,5 @@
 import React from 'react';
-import style from 'components/Mantra/Mantra.style.js';
+import style from 'components/Mantra/Mantra.style';
 
 class MantraLoop extends React.Component {
   constructor(props) {
@@ -8,18 +8,30 @@ class MantraLoop extends React.Component {
     this.state = {
       title: props.title,
       description: props.description,
-    }
+    };
 
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    this.saveMantra = this.saveMantra.bind(this);
   }
 
   onTitleChange(event) {
-    this.setState({ title: event.target.value});
+    this.setState({ title: event.target.value });
   }
 
   onDescriptionChange(event) {
-    this.setState({ description: event.target.value});
+    this.setState({ description: event.target.value });
+  }
+
+  saveMantra() {
+    this.props.saveMantra(this.state.title, this.state.description);
+
+    if (this.props.temp) {
+      this.setState({
+        title: '',
+        description: '',
+      });
+    }
   }
 
   isEdited() {
@@ -39,7 +51,7 @@ class MantraLoop extends React.Component {
     let deleteButton;
 
     if (this.isEdited()) {
-      save = <button onClick={() => this.props.saveMantra(this.state.title, this.state.description)}>Save</button>;
+      save = <button onClick={this.saveMantra}>Save</button>;
     }
 
     if (!this.props.temp) {
@@ -53,11 +65,13 @@ class MantraLoop extends React.Component {
           type="text"
           value={this.state.title}
           onChange={this.onTitleChange}
+          placeholder="Add mantra title here"
         />
         <textarea
           style={style.description}
           value={this.state.description}
           onChange={this.onDescriptionChange}
+          placeholder="Add mantra description here"
         />
         <footer style={style.footer}>
           {save}
@@ -65,7 +79,7 @@ class MantraLoop extends React.Component {
         </footer>
       </article>
     );
-  };
+  }
 }
 
 export default MantraLoop;

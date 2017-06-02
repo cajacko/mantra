@@ -34,8 +34,8 @@ class MantraLoopContainer extends React.Component {
 }
 
 function mapStateToProps(state, { id }) {
-  let title = 'Add new mantra here';
-  let description = 'Add new mantra description here';
+  let title = '';
+  let description = '';
   const mantra = state.mantra.mantra[id];
 
   if (mantra) {
