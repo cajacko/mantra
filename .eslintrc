@@ -20,6 +20,12 @@
         "ignoreRegExpLiterals": true
       }
     ],
+    "no-underscore-dangle": [ "error", { "allow": [
+      "_thumbnail_id",
+      "_wp_attachment_image_alt",
+      "_wp_attachment_metadata",
+      "_wp_attached_file"
+    ]}],
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -28,13 +34,7 @@
         "peerDependencies": true
       }
     ],
-    "react/forbid-prop-types": "off",
-    "no-underscore-dangle": [
-      "error",
-      {
-        "allow": ["__REDUX_DEVTOOLS_EXTENSION_COMPOSE__"]
-      }
-    ]
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
   },
   "parser": "babel-eslint",
   "settings": {
@@ -44,7 +44,6 @@
   },
   "globals": {
     "document": false,
-    "window": false,
-    "fetch": false,
+    "window": false
   }
 }
