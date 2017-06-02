@@ -1,0 +1,73 @@
+{
+  "name": "idox-group-website",
+  "version": "0.0.1",
+  "description": "A node/express website for IDOX Group, running react on the front end and using Kentico Cloud as a headless CMS.",
+  "scripts": {
+    "start": "webpack-dev-server --open",
+    "test": "eslint **/*.{js,jsx}"
+  },
+  "author": {
+    "name": "Reading Room",
+    "email": "info.uk@readingroom.com",
+    "url": "https://www.readingroom.com"
+  },
+  "license": "UNLICENSED",
+  "keywords": "node, nodejs, javascript, kentico, kentico cloud, headless, express, expressjs, react, reactjs, eslint, jest, redux",
+  "repository": {
+    "type": "git",
+    "url": "http://lon1git001.int.rroom.net/git/idoxgroup_build.git"
+  },
+  "homepage": "http://lon1svn002.int.rroom.net/trac/idoxgroup",
+  "engine": {
+    "node": ">=6.9.1"
+  },
+  "private": true,
+  "devDependencies": {
+    "babel-eslint": "7.2.2",
+    "babel-loader": "6.4.1",
+    "babel-plugin-module-resolver": "2.7.0",
+    "babel-preset-es2015": "6.24.1",
+    "babel-preset-react": "6.24.1",
+    "babel-preset-stage-2": "6.24.1",
+    "browser-sync": "2.18.8",
+    "eslint": "3.19.0",
+    "eslint-config-airbnb": "14.1.0",
+    "eslint-import-resolver-babel-module": "3.0.0",
+    "eslint-import-resolver-webpack": "0.8.1",
+    "eslint-plugin-flowtype": "2.31.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "4.0.0",
+    "eslint-plugin-react": "6.10.3",
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
+    "react-hot-loader": "3.0.0-beta.7",
+    "webpack": "2.4.1",
+    "webpack-bundle-analyzer": "2.4.0",
+    "webpack-chunk-hash": "0.4.0",
+    "webpack-manifest-plugin": "1.1.0"
+  },
+  "dependencies": {
+    "babel-cli": "6.24.1",
+    "babel-plugin-transform-flow-strip-types": "6.22.0",
+    "compression": "1.6.2",
+    "dotenv": "4.0.0",
+    "ejs": "2.5.6",
+    "express": "4.15.2",
+    "express-minify-html": "0.11.3",
+    "flow-check": "0.2.2",
+    "html-webpack-plugin": "2.28.0",
+    "htmlparser": "1.7.7",
+    "memory-cache": "0.1.6",
+    "node-fetch": "1.6.3",
+    "nodemon": "1.11.0",
+    "prop-types": "15.5.8",
+    "radium": "0.19.1",
+    "react-redux": "5.0.4",
+    "react-router-dom": "4.1.1",
+    "redux": "3.6.0",
+    "redux-logger": "3.0.1",
+    "redux-thunk": "2.2.0",
+    "rimraf": "2.6.1",
+    "webpack-dev-server": "2.4.5"
+  }
+}
