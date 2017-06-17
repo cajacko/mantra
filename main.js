@@ -201,13 +201,13 @@ class Mantra extends Component {
           </View>
           <View style={styles.editFooter}>
             <TouchableWithoutFeedback onPress={this.editOnPress} onPressIn={this.editTouchOn} onPressOut={this.editTouchOff}>
-              <View>
+              <View style={styles.editButtonView}>
                 <Text style={editButtonStyle}>Edit</Text>
               </View>
             </TouchableWithoutFeedback>
             <Text style={styles.editDivider}>|</Text>
             <TouchableWithoutFeedback onPress={this.removeOnPress} onPressIn={this.removeTouchOn} onPressOut={this.removeTouchOff}>
-              <View>
+              <View style={styles.removeButtonView}>
                 <Text style={removeButtonStyle}>Remove</Text>
               </View>
             </TouchableWithoutFeedback>
@@ -339,7 +339,9 @@ class ExpandingText extends Component {
       titleHeight: event.nativeEvent.contentSize.height,
     });
 
-    this.props.onChange(this.state.text);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.state.text);
+    }
   }
 
   render() {
@@ -364,6 +366,7 @@ class LinkInput extends Component {
     };
 
     this.onTitleChange = this.onTitleChange.bind(this);
+    this.onUrlChange = this.onUrlChange.bind(this);
   }
 
   onTitleChange(event) {
@@ -371,7 +374,9 @@ class LinkInput extends Component {
       title: event.nativeEvent.text,
     });
 
-    this.props.onChange(this.state);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.state);
+    }
   }
 
   onUrlChange(event) {
@@ -379,7 +384,9 @@ class LinkInput extends Component {
       url: event.nativeEvent.text,
     });
 
-    this.props.onChange(this.state);
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(this.state);
+    }
   }
 
   render() {
@@ -710,8 +717,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
 
-  editButton: {
+  editButtonView: {
     flex: 1,
+  },
+
+  editButton: {
     textAlign: 'center',
     fontSize: 20,
     color: '#8e8e8e',
@@ -721,8 +731,11 @@ const styles = StyleSheet.create({
     color: 'black',
   },
 
-  removeButton: {
+  removeButtonView: {
     flex: 1,
+  },
+
+  removeButton: {
     textAlign: 'center',
     fontSize: 20,
     color: '#8e8e8e',
