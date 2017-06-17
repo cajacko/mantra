@@ -1,0 +1,49 @@
+{
+  "extends": [
+    "airbnb"
+  ],
+  "rules": {
+    "max-lines": [
+      "error",
+      {
+        "max": 100,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 80,
+        "ignoreStrings": true,
+        "ignoreUrls": true,
+        "ignoreRegExpLiterals": true
+      }
+    ],
+    "no-underscore-dangle": [ "error", { "allow": [
+      "_thumbnail_id",
+      "_wp_attachment_image_alt",
+      "_wp_attachment_metadata",
+      "_wp_attached_file"
+    ]}],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true
+      }
+    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
+  },
+  "parser": "babel-eslint",
+  "settings": {
+    "import/resolver": {
+      "babel-module": {}
+    }
+  },
+  "globals": {
+    "document": false,
+    "window": false
+  }
+}
