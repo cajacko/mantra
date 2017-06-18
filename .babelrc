@@ -1,8 +1,26 @@
 {
-  "presets": ["babel-preset-expo"],
-  "env": {
-    "development": {
-      "plugins": ["transform-react-jsx-source"]
-    }
-  }
+  "presets": [
+    "es2015",
+    "stage-2",
+    "react",
+    "babel-preset-expo"
+  ],
+  "plugins": [
+    "transform-react-jsx-source",
+    ["module-resolver", {
+      "root": ["./src"],
+      "alias": {
+        "components": "./src/components",
+        "actions": "./src/actions",
+        "containers": "./src/containers",
+        "constants": "./src/constants",
+        "helpers": "./src/helpers",
+        "views": "./src",
+        "store": "./src/store",
+        "reducers": "./src/reducers"
+      },
+      "extensions": [".js", ".jsx"]
+      }
+    ]
+  ]
 }
