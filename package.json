@@ -4,7 +4,7 @@
   "description": "Hello Expo!",
   "author": null,
   "private": true,
-  "main": "main.js",
+  "main": "src/index.js",
   "dependencies": {
     "expo": "17.0.0",
     "react": "16.0.0-alpha.6",
