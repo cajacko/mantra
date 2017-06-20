@@ -10,8 +10,8 @@ class EditMantra extends Component {
     this.state = {
       text: 'Listen to my \nwords you fool of a took',
       links: [
-        { title: 'I am a link', url: 'http://wikipedia.com'},
-        { title: 'I am a link', url: 'http://wikipedia.com'},
+        { title: 'I am a link', url: 'http://wikipedia.com' },
+        { title: 'I am a link', url: 'http://wikipedia.com' },
       ],
     };
 

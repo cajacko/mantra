@@ -9,7 +9,7 @@ class EditView extends Component {
     return (
       <View style={styles.edit}>
         <EditNav switchView={this.props.switchView} />
-        <EditMantra />
+        <EditMantra switchView={this.props.switchView} />
       </View>
     )
   }
