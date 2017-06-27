@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from 'constants/styles';
 
 class Link extends Component {
@@ -53,5 +54,12 @@ class Link extends Component {
     );
   }
 }
+
+Link.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  last: PropTypes.bool.isRequired,
+  onPress: PropTypes.func.isRequired,
+};
 
 export default Link;

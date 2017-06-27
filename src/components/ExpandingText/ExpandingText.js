@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 
 class ExpandingText extends Component {
   constructor(props) {
@@ -12,16 +13,6 @@ class ExpandingText extends Component {
     this.onTitleChange = this.onTitleChange.bind(this);
   }
 
-  transformText(input) {
-    let text = input;
-
-    if (!this.props.multiline) {
-      text = text.replace('\n', '');
-    }
-
-    return text;
-  }
-
   onTitleChange(event) {
     this.setState({
       text: this.transformText(event.nativeEvent.text),
@@ -31,6 +22,16 @@ class ExpandingText extends Component {
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(this.state.text);
     }
+  }
+
+  transformText(input) {
+    let text = input;
+
+    if (!this.props.multiline) {
+      text = text.replace('\n', '');
+    }
+
+    return text;
   }
 
   render() {
@@ -45,5 +46,15 @@ class ExpandingText extends Component {
     );
   }
 }
+
+ExpandingText.propTypes = {
+  text: PropTypes.string.isRequired,
+  minHeight: PropTypes.number.isRequired,
+  onChange: PropTypes.func.isRequired,
+  multiline: PropTypes.bool.isRequired,
+  // eslint-disable-next-line
+  style: PropTypes.object.isRequired,
+  placeholder: PropTypes.string.isRequired,
+};
 
 export default ExpandingText;

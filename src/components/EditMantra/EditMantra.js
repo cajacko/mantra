@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from 'constants/styles';
 import LinkInput from 'components/LinkInput/LinkInput';
 import ExpandingText from 'components/ExpandingText/ExpandingText';
@@ -46,7 +47,12 @@ class EditMantra extends Component {
             this.state.links.map(({ title, url }) => {
               linkKey += 1;
               return (
-                <LinkInput key={linkKey} title={title} url={url} delete={() => this.deleteLink(linkKey)}/>
+                <LinkInput
+                  key={linkKey}
+                  title={title}
+                  url={url}
+                  delete={() => this.deleteLink(linkKey)}
+                />
               );
             })
           }
@@ -68,7 +74,7 @@ class EditMantra extends Component {
             style={styles.contentInput}
             text={this.state.text}
             placeholder="Add a description in here"
-            multiline={true}
+            multiline
             minHeight={200}
           />
 
@@ -76,13 +82,21 @@ class EditMantra extends Component {
 
           {links}
 
-          <TouchableWithoutFeedback onPress={this.addLink} onPressIn={this.addOn} onPressOut={this.addOff}>
+          <TouchableWithoutFeedback
+            onPress={this.addLink}
+            onPressIn={this.addOn}
+            onPressOut={this.addOff}
+          >
             <View>
               <Text style={styles.addLinkButton}>Add Link</Text>
             </View>
           </TouchableWithoutFeedback>
 
-          <TouchableWithoutFeedback onPress={() => this.props.switchView('loop')} onPressIn={this.addOn} onPressOut={this.addOff}>
+          <TouchableWithoutFeedback
+            onPress={() => this.props.switchView('loop')}
+            onPressIn={this.addOn}
+            onPressOut={this.addOff}
+          >
             <View>
               <Text style={styles.deleteMantra}>Delete Mantra</Text>
             </View>
@@ -92,5 +106,9 @@ class EditMantra extends Component {
     );
   }
 }
+
+EditMantra.propTypes = {
+  switchView: PropTypes.func.isRequired,
+};
 
 export default EditMantra;

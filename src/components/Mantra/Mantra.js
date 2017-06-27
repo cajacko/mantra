@@ -1,5 +1,8 @@
+/* eslint max-lines: 0 */
+
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
+import PropTypes from 'prop-types';
 import Link from 'components/Link/Link';
 import styles from 'constants/styles';
 import { lastID } from 'constants/data';
@@ -27,12 +30,14 @@ class Mantra extends Component {
     this.goToUrl = this.goToUrl.bind(this);
   }
 
-  goToUrl(url) {
-    console.log('GO TO URL', url);
-  }
-
   onPress() {
     this.setState({ showContent: !this.state.showContent });
+  }
+
+  // eslint-disable-next-line
+  goToUrl(url) {
+    // eslint-disable-next-line
+    console.log('GO TO URL', url);
   }
 
   touchOn() {
@@ -44,6 +49,7 @@ class Mantra extends Component {
   }
 
   editOnPress() {
+    // eslint-disable-next-line
     console.log('EDIT MANTRA');
     this.props.switchView('edit', { mantra: this.props.id });
   }
@@ -56,7 +62,9 @@ class Mantra extends Component {
     this.setState({ editHighlight: false });
   }
 
+  // eslint-disable-next-line
   removeOnPress() {
+    // eslint-disable-next-line
     console.log('REMOVE MANTRA');
   }
 
@@ -79,7 +87,7 @@ class Mantra extends Component {
       mantraStyles.push(styles.mantraLast);
     }
 
-    let containerStyles = [styles.mantraContainer];
+    const containerStyles = [styles.mantraContainer];
 
     if (this.state.highlight && !this.props.showContent) {
       containerStyles.push(styles.mantraContainerHighlight);
@@ -97,7 +105,7 @@ class Mantra extends Component {
       removeButtonStyle.push(styles.removeButtonHighlight);
     }
 
-    let contentContainerStyle = [styles.contentContainer];
+    const contentContainerStyle = [styles.contentContainer];
 
     let content;
 
@@ -129,18 +137,34 @@ class Mantra extends Component {
                   last = true;
                 }
 
-                return <Link key={title} title={title} url={url} last={last} onPress={this.goToUrl} />;
+                return (
+                  <Link
+                    key={title}
+                    title={title}
+                    url={url}
+                    last={last}
+                    onPress={this.goToUrl}
+                  />
+                );
               })
             }
           </View>
           <View style={styles.editFooter}>
-            <TouchableWithoutFeedback onPress={this.editOnPress} onPressIn={this.editTouchOn} onPressOut={this.editTouchOff}>
+            <TouchableWithoutFeedback
+              onPress={this.editOnPress}
+              onPressIn={this.editTouchOn}
+              onPressOut={this.editTouchOff}
+            >
               <View style={styles.editButtonView}>
                 <Text style={editButtonStyle}>Edit</Text>
               </View>
             </TouchableWithoutFeedback>
             <Text style={styles.editDivider}>|</Text>
-            <TouchableWithoutFeedback onPress={this.removeOnPress} onPressIn={this.removeTouchOn} onPressOut={this.removeTouchOff}>
+            <TouchableWithoutFeedback
+              onPress={this.removeOnPress}
+              onPressIn={this.removeTouchOn}
+              onPressOut={this.removeTouchOff}
+            >
               <View style={styles.removeButtonView}>
                 <Text style={removeButtonStyle}>Remove</Text>
               </View>
@@ -150,11 +174,14 @@ class Mantra extends Component {
       );
     }
 
-    let links = 0;
-
     return (
       <View style={mantraStyles}>
-        <TouchableWithoutFeedback onPress={this.onPress} onPressIn={this.touchOn} onPressOut={this.touchOff} delayPressIn={100}>
+        <TouchableWithoutFeedback
+          onPress={this.onPress}
+          onPressIn={this.touchOn}
+          onPressOut={this.touchOff}
+          delayPressIn={100}
+        >
           <View style={containerStyles}>
             <Text style={styles.mantraTitle}>{this.props.title}</Text>
           </View>
@@ -164,5 +191,17 @@ class Mantra extends Component {
     );
   }
 }
+
+Mantra.propTypes = {
+  title: PropTypes.string.isRequired,
+  links: PropTypes.arrayOf({
+    title: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
+  description: PropTypes.string.isRequired,
+  showContent: PropTypes.bool.isRequired,
+  switchView: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+};
 
 export default Mantra;

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, TextInput } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from 'constants/styles';
 
 class LinkInput extends Component {
@@ -55,7 +56,11 @@ class LinkInput extends Component {
           />
         </View>
 
-        <TouchableWithoutFeedback onPress={this.props.delete} onPressIn={this.addOn} onPressOut={this.addOff}>
+        <TouchableWithoutFeedback
+          onPress={this.props.delete}
+          onPressIn={this.addOn}
+          onPressOut={this.addOff}
+        >
           <View>
             <Text style={styles.deleteLinkButton}>Delete Link</Text>
           </View>
@@ -64,5 +69,12 @@ class LinkInput extends Component {
     );
   }
 }
+
+LinkInput.propTypes = {
+  title: PropTypes.string.isRequired,
+  url: PropTypes.string.isRequired,
+  delete: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
 
 export default LinkInput;

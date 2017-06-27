@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, ListView } from 'react-native';
+import PropTypes from 'prop-types';
 import styles from 'constants/styles';
 import Mantra from 'components/Mantra/Mantra';
 import { mantra } from 'constants/data';
@@ -56,7 +57,11 @@ class LoopView extends Component {
             />
           )}
         />
-        <TouchableWithoutFeedback onPress={this.add} onPressIn={this.addOn} onPressOut={this.addOff}>
+        <TouchableWithoutFeedback
+          onPress={this.add}
+          onPressIn={this.addOn}
+          onPressOut={this.addOff}
+        >
           <View style={addButtonStyles}>
             <Text style={styles.addButtonText}>+</Text>
           </View>
@@ -65,5 +70,9 @@ class LoopView extends Component {
     );
   }
 }
+
+LoopView.propTypes = {
+  switchView: PropTypes.func.isRequired,
+};
 
 export default LoopView;

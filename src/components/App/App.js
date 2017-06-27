@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
     if (this.state.view === 'edit') {
-      return <EditView switchView={this.switchView} {...this.state.props} />
+      return <EditView switchView={this.switchView} {...this.state.props} />;
     }
 
     return <LoopView switchView={this.switchView} {...this.state.props} />;

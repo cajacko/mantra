@@ -1,3 +1,5 @@
+/* eslint max-lines: 0 */
+
 import { StyleSheet } from 'react-native';
 import { Constants } from 'expo';
 
@@ -226,7 +228,7 @@ export default StyleSheet.create({
     borderWidth: 2,
     borderColor: '#fde400',
     borderRadius: 60,
-    shadowOffset: { width: -2, height: 2},
+    shadowOffset: { width: -2, height: 2 },
     shadowColor: 'black',
     shadowOpacity: 0.3,
     shadowRadius: 5,
