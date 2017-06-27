@@ -51,10 +51,15 @@ ExpandingText.propTypes = {
   text: PropTypes.string.isRequired,
   minHeight: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
-  multiline: PropTypes.bool.isRequired,
-  // eslint-disable-next-line
-  style: PropTypes.object.isRequired,
+  multiline: PropTypes.bool,
+  style: PropTypes.number,
   placeholder: PropTypes.string.isRequired,
+};
+
+ExpandingText.defaultProps = {
+  onChange: () => {},
+  multiline: false,
+  style: null,
 };
 
 export default ExpandingText;

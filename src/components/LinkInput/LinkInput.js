@@ -74,7 +74,11 @@ LinkInput.propTypes = {
   title: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   delete: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChange: PropTypes.func,
+};
+
+LinkInput.defaultProps = {
+  onChange: () => {},
 };
 
 export default LinkInput;

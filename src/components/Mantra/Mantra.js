@@ -194,14 +194,18 @@ class Mantra extends Component {
 
 Mantra.propTypes = {
   title: PropTypes.string.isRequired,
-  links: PropTypes.arrayOf({
+  links: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     url: PropTypes.string,
-  }).isRequired,
+  })).isRequired,
   description: PropTypes.string.isRequired,
-  showContent: PropTypes.bool.isRequired,
+  showContent: PropTypes.bool,
   switchView: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
+};
+
+Mantra.defaultProps = {
+  showContent: false,
 };
 
 export default Mantra;
