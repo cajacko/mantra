@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from 'constants/styles';
+import styles from 'components/EditNav/EditNav.style';
 
 class EditNav extends Component {
   render() {

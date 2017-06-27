@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, ScrollView } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from 'constants/styles';
+import styles from 'components/EditMantra/EditMantra.style';
 import LinkInput from 'components/LinkInput/LinkInput';
 import ExpandingText from 'components/ExpandingText/ExpandingText';
 

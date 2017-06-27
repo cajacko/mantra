@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from 'constants/styles';
+import styles from 'components/LinkInput/LinkInput.style';
 
 class LinkInput extends Component {
   constructor(props) {

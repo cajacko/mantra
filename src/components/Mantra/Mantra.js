@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback } from 'react-native';
 import PropTypes from 'prop-types';
 import Link from 'components/Link/Link';
-import styles from 'constants/styles';
+import styles from 'components/Mantra/Mantra.style';
 import { lastID } from 'constants/data';
 
 class Mantra extends Component {

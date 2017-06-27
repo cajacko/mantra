@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Text, View, TouchableWithoutFeedback, ListView } from 'react-native';
 import PropTypes from 'prop-types';
-import styles from 'constants/styles';
+import styles from 'components/LoopView/LoopView.style';
 import Mantra from 'components/Mantra/Mantra';
 import { mantra } from 'constants/data';
 
