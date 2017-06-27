@@ -11,8 +11,8 @@ class EditMantra extends Component {
     this.state = {
       text: 'Listen to my \nwords you fool of a took',
       links: [
-        { title: 'I am a link', url: 'http://wikipedia.com' },
-        { title: 'I am a link', url: 'http://wikipedia.com' },
+        { id: 0, title: 'I am a link 0', url: 'http://wikipedia.com' },
+        { id: 1, title: 'I am a link 1', url: 'http://wikipedia.com' },
       ],
     };
 
@@ -30,31 +30,33 @@ class EditMantra extends Component {
     this.setState({ links });
   }
 
-  deleteLink(id) {
-    const links = this.state.links;
-    links.splice(id, 1);
+  deleteLink(linkId) {
+    const links = Object.assign([], this.state.links);
+
+    links.forEach(({ id }, i) => {
+      if (linkId === id) {
+        links.splice(i, 1);
+      }
+    });
+
     this.setState({ links });
   }
 
   render() {
     let links;
-    let linkKey = -1;
 
     if (this.state.links.length) {
       links = (
         <View>
           {
-            this.state.links.map(({ title, url }) => {
-              linkKey += 1;
-              return (
-                <LinkInput
-                  key={linkKey}
-                  title={title}
-                  url={url}
-                  delete={() => this.deleteLink(linkKey)}
-                />
-              );
-            })
+            this.state.links.map(({ id, title, url }) => (
+              <LinkInput
+                key={id}
+                title={title}
+                url={url}
+                delete={() => this.deleteLink(id)}
+              />
+            ))
           }
         </View>
       );
