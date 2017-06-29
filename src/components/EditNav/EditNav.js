@@ -8,7 +8,7 @@ class EditNav extends Component {
     return (
       <View style={styles.editNav}>
         <TouchableWithoutFeedback
-          onPress={() => this.props.switchView('loop')}
+          onPress={this.props.back}
           onPressIn={this.addOn}
           onPressOut={this.addOff}
         >
@@ -17,7 +17,7 @@ class EditNav extends Component {
           </View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback
-          onPress={() => this.props.switchView('loop')}
+          onPress={this.props.back}
           onPressIn={this.addOn}
           onPressOut={this.addOff}
         >
@@ -31,7 +31,7 @@ class EditNav extends Component {
 }
 
 EditNav.propTypes = {
-  switchView: PropTypes.func.isRequired,
+  back: PropTypes.func.isRequired,
 };
 
 export default EditNav;
