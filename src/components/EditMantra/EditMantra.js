@@ -95,7 +95,7 @@ class EditMantra extends Component {
           </TouchableWithoutFeedback>
 
           <TouchableWithoutFeedback
-            onPress={() => this.props.switchView('loop')}
+            onPress={this.props.delete}
             onPressIn={this.addOn}
             onPressOut={this.addOff}
           >
@@ -110,7 +110,7 @@ class EditMantra extends Component {
 }
 
 EditMantra.propTypes = {
-  switchView: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired,
 };
 
 export default EditMantra;

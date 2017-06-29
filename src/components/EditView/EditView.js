@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from 'components/EditView/EditView.style';
-import EditMantra from 'components/EditMantra/EditMantra';
+import EditMantra from 'containers/EditMantra/EditMantra';
 import EditNav from 'containers/EditNav/EditNav';
 
 const EditView = props => (

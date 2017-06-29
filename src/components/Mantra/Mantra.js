@@ -25,7 +25,6 @@ class Mantra extends Component {
     this.editTouchOff = this.editTouchOff.bind(this);
     this.removeTouchOn = this.removeTouchOn.bind(this);
     this.removeTouchOff = this.removeTouchOff.bind(this);
-    this.removeOnPress = this.removeOnPress.bind(this);
     this.goToUrl = this.goToUrl.bind(this);
   }
 
@@ -53,12 +52,6 @@ class Mantra extends Component {
 
   editTouchOff() {
     this.setState({ editHighlight: false });
-  }
-
-  // eslint-disable-next-line
-  removeOnPress() {
-    // eslint-disable-next-line
-    console.log('REMOVE MANTRA');
   }
 
   removeTouchOn() {
@@ -154,7 +147,7 @@ class Mantra extends Component {
             </TouchableWithoutFeedback>
             <Text style={styles.editDivider}>|</Text>
             <TouchableWithoutFeedback
-              onPress={this.removeOnPress}
+              onPress={this.props.delete}
               onPressIn={this.removeTouchOn}
               onPressOut={this.removeTouchOff}
             >
@@ -194,6 +187,7 @@ Mantra.propTypes = {
   description: PropTypes.string.isRequired,
   showContent: PropTypes.bool.isRequired,
   edit: PropTypes.func.isRequired,
+  delete: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
 };
 
