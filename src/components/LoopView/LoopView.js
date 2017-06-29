@@ -3,17 +3,17 @@ import { Text, View, TouchableWithoutFeedback, ListView } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from 'components/LoopView/LoopView.style';
 import Mantra from 'components/Mantra/Mantra';
-import { mantra } from 'constants/data';
+import Item from 'containers/Item/Item';
 
 class LoopView extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
 
     this.state = {
-      dataSource: ds.cloneWithRows(mantra),
+      dataSource: ds.cloneWithRows(this.props.mantra),
       addHighlight: false,
     };
 
@@ -46,13 +46,11 @@ class LoopView extends Component {
         <ListView
           style={styles.list}
           dataSource={this.state.dataSource}
-          renderRow={({ id, title, description, links }) => (
-            <Mantra
+          renderRow={id => (
+            <Item
               key={id}
-              id={id}
-              title={title}
-              description={description}
-              links={links}
+              itemId={id}
+              element={Mantra}
               switchView={this.props.switchView}
             />
           )}
@@ -73,6 +71,11 @@ class LoopView extends Component {
 
 LoopView.propTypes = {
   switchView: PropTypes.func.isRequired,
+  mantra: PropTypes.arrayOf(PropTypes.number),
+};
+
+LoopView.defaultProps = {
+  mantra: [],
 };
 
 export default LoopView;

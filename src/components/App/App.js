@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoopView from 'components/LoopView/LoopView';
+import LoopView from 'containers/LoopView/LoopView';
 import EditView from 'components/EditView/EditView';
 
 class App extends Component {
