@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, ListView } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from 'components/LoopView/LoopView.style';
-import Mantra from 'components/Mantra/Mantra';
+import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 import AddButton from 'containers/AddButton/AddButton';
 

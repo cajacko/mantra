@@ -23,7 +23,6 @@ class Mantra extends Component {
     this.onPress = this.onPress.bind(this);
     this.editTouchOn = this.editTouchOn.bind(this);
     this.editTouchOff = this.editTouchOff.bind(this);
-    this.editOnPress = this.editOnPress.bind(this);
     this.removeTouchOn = this.removeTouchOn.bind(this);
     this.removeTouchOff = this.removeTouchOff.bind(this);
     this.removeOnPress = this.removeOnPress.bind(this);
@@ -46,12 +45,6 @@ class Mantra extends Component {
 
   touchOff() {
     this.setState({ highlight: false });
-  }
-
-  editOnPress() {
-    // eslint-disable-next-line
-    console.log('EDIT MANTRA');
-    this.props.switchView('edit', { mantra: this.props.id });
   }
 
   editTouchOn() {
@@ -151,7 +144,7 @@ class Mantra extends Component {
           </View>
           <View style={styles.editFooter}>
             <TouchableWithoutFeedback
-              onPress={this.editOnPress}
+              onPress={this.props.edit}
               onPressIn={this.editTouchOn}
               onPressOut={this.editTouchOff}
             >
@@ -199,13 +192,9 @@ Mantra.propTypes = {
     url: PropTypes.string,
   })).isRequired,
   description: PropTypes.string.isRequired,
-  showContent: PropTypes.bool,
-  switchView: PropTypes.func.isRequired,
+  showContent: PropTypes.bool.isRequired,
+  edit: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
-};
-
-Mantra.defaultProps = {
-  showContent: false,
 };
 
 export default Mantra;
