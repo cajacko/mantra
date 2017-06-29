@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableWithoutFeedback, ListView } from 'react-native';
+import { View, ListView } from 'react-native';
 import PropTypes from 'prop-types';
 import styles from 'components/LoopView/LoopView.style';
 import Mantra from 'components/Mantra/Mantra';
 import Item from 'containers/Item/Item';
+import AddButton from 'containers/AddButton/AddButton';
 
 class LoopView extends Component {
   constructor(props) {
@@ -12,35 +13,10 @@ class LoopView extends Component {
       rowHasChanged: (r1, r2) => r1 !== r2,
     });
 
-    this.state = {
-      dataSource: ds.cloneWithRows(this.props.mantra),
-      addHighlight: false,
-    };
-
-    this.add = this.add.bind(this);
-    this.addOn = this.addOn.bind(this);
-    this.addOff = this.addOff.bind(this);
-  }
-
-  add() {
-    this.props.switchView('edit', { add: true });
-  }
-
-  addOn() {
-    this.setState({ addHighlight: true });
-  }
-
-  addOff() {
-    this.setState({ addHighlight: false });
+    this.state = { dataSource: ds.cloneWithRows(this.props.mantra) };
   }
 
   render() {
-    const addButtonStyles = [styles.addButton];
-
-    if (this.state.addHighlight) {
-      addButtonStyles.push(styles.addButtonHighlight);
-    }
-
     return (
       <View style={styles.container}>
         <ListView
@@ -55,15 +31,7 @@ class LoopView extends Component {
             />
           )}
         />
-        <TouchableWithoutFeedback
-          onPress={this.add}
-          onPressIn={this.addOn}
-          onPressOut={this.addOff}
-        >
-          <View style={addButtonStyles}>
-            <Text style={styles.addButtonText}>+</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <AddButton />
       </View>
     );
   }
