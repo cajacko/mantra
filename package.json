@@ -16,6 +16,7 @@
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-2": "6.24.1",
+    "deep-equal": "^1.0.1",
     "eslint": "3.19.0",
     "eslint-config-airbnb": "14.1.0",
     "eslint-import-resolver-babel-module": "3.0.0",
@@ -25,12 +26,15 @@
     "eslint-plugin-react": "6.10.3",
     "expo": "17.0.0",
     "flow-check": "0.2.2",
+    "moment": "^2.18.1",
     "prop-types": "15.5.8",
     "react": "16.0.0-alpha.6",
     "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
     "react-redux": "5.0.4",
     "redux": "3.6.0",
     "redux-logger": "3.0.1",
-    "redux-thunk": "2.2.0"
+    "redux-persist": "^4.8.2",
+    "redux-thunk": "2.2.0",
+    "uuid": "^3.1.0"
   }
 }

@@ -1,15 +1,14 @@
 import Expo from 'expo';
 import React from 'react';
 import { Provider } from 'react-redux';
-import App from 'containers/App/App';
+import Views from 'containers/Views/Views';
 import configureStore from 'store/configureStore';
 
-const preloadedState = {};
-const store = configureStore()(preloadedState);
+const store = configureStore();
 
 const Root = () => (
   <Provider store={store}>
-    <App />
+    <Views />
   </Provider>
 );
 

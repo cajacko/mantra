@@ -7,15 +7,15 @@ import switchView from 'actions/switchView';
 class AddButtonContainer extends Component {
   constructor(props) {
     super(props);
-    this.add = this.add.bind(this);
+    this.switchView = this.switchView.bind(this);
   }
 
-  add() {
-    this.props.dispatch(switchView('edit'));
+  switchView() {
+    this.props.dispatch(switchView('AddView'));
   }
 
   render() {
-    return <AddButton add={this.add} />;
+    return <AddButton onPress={this.switchView} />;
   }
 }
 

@@ -1,16 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import equal from 'deep-equal';
 
-const Item = (properties) => {
-  const Element = properties.element;
-  const props = Object.assign({}, properties);
-  const item = props.item;
-  delete props.itemId;
-  delete props.item;
+function getItemProps(items, itemId) {
+  if (!items[itemId]) {
+    // eslint-disable-next-line
+    console.error(`No item with ID: ${itemId}`, items, itemId);
+  }
 
-  return <Element {...item} {...props} />;
-};
+  return items[itemId];
+}
+
+function getPassedProps(props) {
+  const passedProps = Object.assign({}, props);
+  delete passedProps.itemId;
+  delete passedProps.items;
+  delete passedProps.element;
+  return passedProps;
+}
+
+class Item extends Component {
+  shouldComponentUpdate(nextProps) {
+    const nextItemProps = getItemProps(nextProps.items, nextProps.itemId);
+    const itemProps = getItemProps(this.props.items, this.props.itemId);
+
+    if (!equal(nextItemProps, itemProps)) {
+      return true;
+    }
+
+    const nextPassedProps = getPassedProps(nextProps);
+    const passedProps = getPassedProps(this.props);
+
+    if (!equal(nextPassedProps, passedProps)) {
+      return true;
+    }
+
+    return false;
+  }
+
+  render() {
+    const itemProps = getItemProps(this.props.items, this.props.itemId);
+    const passedProps = getPassedProps(this.props);
+    const Element = this.props.element;
+    return <Element {...itemProps} {...passedProps} />;
+  }
+}
 
 Item.propTypes = {
   // eslint-disable-next-line
@@ -19,20 +54,12 @@ Item.propTypes = {
     PropTypes.func,
   ]).isRequired,
   // eslint-disable-next-line
-  item: PropTypes.object.isRequired,
-  itemId: PropTypes.number.isRequired,
+  items: PropTypes.object.isRequired,
+  itemId: PropTypes.string.isRequired,
 };
 
-function mapStateToProps(state, props) {
-  let item = {};
-
-  // Can't do this as uses shallow comparison for updates
-
-  if (state.items[props.itemId]) {
-    item = state.items[props.itemId];
-  }
-
-  return { item };
+function mapStateToProps({ items }) {
+  return { items };
 }
 
 export default connect(mapStateToProps)(Item);
