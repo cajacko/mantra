@@ -1,9 +1,10 @@
 import { StyleSheet } from 'react-native';
+import { TEXT_SIZES } from 'constants/text';
+import { BLACK, YELLOW, YELLOW_HIGHLIGHT } from 'constants/colours';
 
-const size = 60;
+const fontSize = TEXT_SIZES.LARGE;
+const size = fontSize * 2;
 const offset = 20;
-const fontSize = 30;
-
 
 export const BOTTOM_OFFSET = size + (offset * 2);
 
@@ -14,12 +15,12 @@ export default StyleSheet.create({
     right: offset,
     height: size,
     width: size,
-    backgroundColor: '#FFEB3B',
+    backgroundColor: YELLOW,
     borderWidth: 2,
-    borderColor: '#fde400',
+    borderColor: YELLOW_HIGHLIGHT,
     borderRadius: size,
     shadowOffset: { width: -2, height: 2 },
-    shadowColor: 'black',
+    shadowColor: BLACK,
     shadowOpacity: 0.3,
     shadowRadius: 5,
     flex: 1,

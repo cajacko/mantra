@@ -1,17 +1,20 @@
+import { TEXT_SIZES } from 'constants/text';
+import { GREY_LIGHTER, GREY_LIGHT, RED_LIGHT } from 'constants/colours';
+
 export default {
   container: {
-    backgroundColor: '#fafafa',
+    backgroundColor: GREY_LIGHTER,
     alignItems: 'center',
-    borderColor: '#e2e2e2',
+    borderColor: GREY_LIGHT,
     borderBottomWidth: 1,
   },
 
   containerNegative: {
-    backgroundColor: '#ffecec',
+    backgroundColor: RED_LIGHT,
   },
 
   text: {
     padding: 10,
-    fontSize: 16,
+    fontSize: TEXT_SIZES.SMALL,
   },
 };

@@ -1,6 +1,8 @@
 import { BOTTOM_OFFSET } from 'components/AddButton/AddButton.style';
+import { TEXT_SIZES } from 'constants/text';
+import SPACING from 'constants/spacing';
 
-const horizontalSpacing = 10;
+const horizontalSpacing = SPACING;
 const verticalSpacing = 20;
 
 export default {
@@ -14,7 +16,7 @@ export default {
   },
 
   text: {
-    fontSize: 20,
+    fontSize: TEXT_SIZES.MEDIUM,
   },
 
   last: {

@@ -1,6 +1,9 @@
+import SPACING from 'constants/spacing';
+import { TEXT_SIZES } from 'constants/text';
+
 export default {
   text: {
-    fontSize: 20,
-    padding: 10,
+    fontSize: TEXT_SIZES.MEDIUM,
+    padding: SPACING,
   },
 };

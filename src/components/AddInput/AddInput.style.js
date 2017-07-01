@@ -1,5 +1,8 @@
+import { TEXT_SIZES, TEXT_COLOURS } from 'constants/text';
+import SPACING from 'constants/spacing';
+
 const verticalSpacing = 20;
-const horizontalSpacing = 10;
+const horizontalSpacing = SPACING;
 
 export default {
   container: {
@@ -10,8 +13,8 @@ export default {
   },
 
   text: {
-    fontSize: 20,
+    fontSize: TEXT_SIZES.MEDIUM,
   },
 
-  placeholderColor: '#828282',
+  placeholderColor: TEXT_COLOURS.GREY,
 };

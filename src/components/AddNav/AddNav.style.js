@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
+import { TEXT_SIZES } from 'constants/text';
+import { GREY, GREY_LIGHT } from 'constants/colours';
 
 export default StyleSheet.create({
   container: {
-    backgroundColor: '#e2e2e2',
+    backgroundColor: GREY_LIGHT,
     borderBottomWidth: 1,
-    borderColor: '#b7b7b7',
+    borderColor: GREY,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -24,6 +26,6 @@ export default StyleSheet.create({
   },
 
   text: {
-    fontSize: 16,
+    fontSize: TEXT_SIZES.SMALL,
   },
 });
