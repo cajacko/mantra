@@ -1,4 +1,3 @@
-import Expo from 'expo';
 import React from 'react';
 import { Provider } from 'react-redux';
 import Views from 'containers/Views/Views';
