@@ -1,8 +1,8 @@
 {
   "name": "mantra-app",
-  "version": "0.0.0",
-  "description": "Hello Expo!",
-  "author": null,
+  "version": "0.0.1",
+  "description": "Record Mantra",
+  "author": "Charlie Jackson",
   "private": true,
   "main": "src/index.js",
   "scripts": {
