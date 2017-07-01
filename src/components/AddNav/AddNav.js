@@ -2,10 +2,11 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import TextButton from 'components/TextButton/TextButton';
+import style from 'components/AddNav/AddNav.style';
 
 const CharacterCount = ({ enableSave, save, back }) => {
   let saveComponent = (
-    <View>
+    <View style={style.button}>
       <TextButton action={save} text="Save" />
     </View>
   );
@@ -15,12 +16,14 @@ const CharacterCount = ({ enableSave, save, back }) => {
   }
 
   return (
-    <View>
-      <View>
+    <View style={style.container}>
+      <View style={style.button}>
         <TextButton action={back} text="Back" />
       </View>
-      <Text>Add Mantra</Text>
       {saveComponent}
+      <View style={style.textContainer}>
+        <Text style={style.text}>Add Mantra</Text>
+      </View>
     </View>
   );
 };

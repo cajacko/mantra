@@ -11,16 +11,27 @@ const Mantraloop = ({ mantraLoop }) => {
 
   const dataSource = ds.cloneWithRows(mantraLoop);
 
+  const lastId = mantraLoop[mantraLoop.length - 1];
+
   return (
     <ListView
       dataSource={dataSource}
-      renderRow={id => (
-        <Item
-          key={id}
-          itemId={id}
-          element={Mantra}
-        />
-      )}
+      renderRow={(id) => {
+        let last = false;
+
+        if (lastId === id) {
+          last = true;
+        }
+
+        return (
+          <Item
+            key={id}
+            itemId={id}
+            element={Mantra}
+            last={last}
+          />
+        );
+      }}
     />
   );
 };

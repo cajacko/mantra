@@ -26,7 +26,7 @@ class AddViewContainer extends Component {
     let enableSave = true;
     const charactersLeft = characterCount - title.length;
 
-    if (title.length <= 3) {
+    if (title.length <= 3 || charactersLeft < 0) {
       enableSave = false;
     }
 

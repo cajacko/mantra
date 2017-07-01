@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { TextInput } from 'react-native';
+import { View, TextInput } from 'react-native';
 import PropTypes from 'prop-types';
+import style from 'components/AddInput/AddInput.style';
 
 class AddInput extends Component {
   constructor(props) {
@@ -14,12 +15,16 @@ class AddInput extends Component {
 
   render() {
     return (
-      <TextInput
-        onChange={this.onChange}
-        value={this.props.value}
-        placeholder="Mantra Title"
-        multiline
-      />
+      <View style={style.container}>
+        <TextInput
+          style={style.text}
+          onChange={this.onChange}
+          value={this.props.value}
+          placeholder="Mantra Title"
+          placeholderTextColor={style.placeholderColor}
+          multiline
+        />
+      </View>
     );
   }
 }
