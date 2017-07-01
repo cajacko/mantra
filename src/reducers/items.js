@@ -8,7 +8,7 @@ mantra.forEach((item) => {
 
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
-    case 'ADD_MANTRA': {
+    case 'SAVE_MANTRA': {
       const modifiedState = Object.assign({}, state);
 
       modifiedState[payload.id] = payload;
