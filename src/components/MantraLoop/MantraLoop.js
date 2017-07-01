@@ -5,10 +5,6 @@ import Mantra from 'components/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 
 const Mantraloop = ({ mantraLoop }) => {
-  if (mantraLoop.length === 0) {
-    return null;
-  }
-
   const ds = new ListView.DataSource({
     rowHasChanged: (r1, r2) => r1 !== r2,
   });
@@ -20,6 +16,7 @@ const Mantraloop = ({ mantraLoop }) => {
   return (
     <ListView
       dataSource={dataSource}
+      enableEmptySections
       renderRow={(id) => {
         let last = false;
 
