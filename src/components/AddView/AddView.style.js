@@ -1,8 +1,8 @@
-import { Constants } from 'expo';
+import statusBarHeight from 'helpers/statusBarHeight';
 
 export default {
   container: {
     flex: 1,
-    paddingTop: Constants.statusBarHeight,
+    paddingTop: statusBarHeight(),
   },
 };
