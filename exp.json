@@ -1,7 +1,7 @@
 {
-  "name": "mantra-app",
-  "description": "An empty new project",
-  "slug": "mantra-app",
+  "name": "mantra",
+  "description": "Mantra",
+  "slug": "mantra",
   "privacy": "public",
   "sdkVersion": "17.0.0",
   "version": "1.0.0",
@@ -16,6 +16,10 @@
     "assetExts": ["ttf", "mp4"]
   },
   "ios": {
+    "bundleIdentifier": "com.charliejackson.mantra",
     "supportsTablet": true
+  },
+  "android": {
+    "package": "com.charliejackson.mantra"
   }
 }
