@@ -1,10 +1,4 @@
-import mantra from 'constants/data';
-
-const defaultState = [];
-
-mantra.forEach(item => defaultState.push(item.id));
-
-export default (state = defaultState, { type, payload }) => {
+export default (state = [], { type, payload }) => {
   switch (type) {
     case 'SAVE_MANTRA': {
       const modifiedState = Object.assign([], state);
