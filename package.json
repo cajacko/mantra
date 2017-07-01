@@ -14,7 +14,6 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "lint": "eslint src"
     "lint": "eslint src",
     "build": "ejects project and builds the standalone package files, that can then attach to local device",
   },
