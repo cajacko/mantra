@@ -23,6 +23,7 @@ class AddInput extends Component {
           placeholder="Mantra Title"
           placeholderTextColor={style.placeholderColor}
           multiline
+          autoFocus
         />
       </View>
     );
