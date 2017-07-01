@@ -1,14 +1,28 @@
 {
-  "name": "mantra-app",
+  "name": "mantra",
   "version": "0.0.1",
-  "description": "Record Mantra",
-  "author": "Charlie Jackson",
   "private": true,
-  "main": "src/index.js",
+  "devDependencies": {
+    "react-native-scripts": "0.0.40",
+    "jest-expo": "~18.0.0",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "test": "eslint src"
+    "start": "react-native-scripts start",
+    "eject": "react-native-scripts eject",
+    "android": "react-native-scripts android",
+    "ios": "react-native-scripts ios",
+    "test": "node node_modules/jest/bin/jest.js --watch",
+    "lint": "eslint src"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "dependencies": {
+    "expo": "^18.0.3",
+    "react": "16.0.0-alpha.12",
+    "react-native": "^0.45.1",
     "babel-cli": "6.24.1",
     "babel-eslint": "7.2.2",
     "babel-plugin-module-resolver": "2.7.0",
@@ -24,12 +38,9 @@
     "eslint-plugin-import": "2.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
-    "expo": "17.0.0",
     "flow-check": "0.2.2",
     "moment": "^2.18.1",
     "prop-types": "15.5.8",
-    "react": "16.0.0-alpha.6",
-    "react-native": "https://github.com/expo/react-native/archive/sdk-17.0.0.tar.gz",
     "react-redux": "5.0.4",
     "redux": "3.6.0",
     "redux-logger": "3.0.1",

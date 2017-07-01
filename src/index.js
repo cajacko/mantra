@@ -12,4 +12,4 @@ const Root = () => (
   </Provider>
 );
 
-Expo.registerRootComponent(Root);
+export default Root;
