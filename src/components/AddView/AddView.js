@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
@@ -15,6 +15,7 @@ const AddView = ({
   title,
 }) => (
   <View style={style.container}>
+    <StatusBar barStyle="dark-content" />
     <AddNav enableSave={enableSave} save={saveMantra} back={back} />
     <CharacterCount count={charactersLeft} />
     <AddInput onChange={onChange} value={title} />
