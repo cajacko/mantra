@@ -8,6 +8,18 @@ export default (state = [], { type, payload }) => {
       return modifiedState;
     }
 
+    case 'DELETE_MANTRA': {
+      const modifiedState = Object.assign([], state);
+
+      const index = modifiedState.indexOf(payload);
+
+      if (index > -1) {
+        modifiedState.splice(index, 1);
+      }
+
+      return modifiedState;
+    }
+
     default:
       return state;
   }

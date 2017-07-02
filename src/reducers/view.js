@@ -24,6 +24,7 @@ export default (state = defaultState, { type, payload }) => {
     }
 
     case 'SAVE_MANTRA':
+    case 'DELETE_MANTRA':
       return 'LoopView';
 
     default:

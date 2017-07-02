@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListView } from 'react-native';
 import PropTypes from 'prop-types';
-import Mantra from 'components/Mantra/Mantra';
+import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 
 const Mantraloop = ({ mantraLoop }) => {
