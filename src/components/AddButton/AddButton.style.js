@@ -1,10 +1,11 @@
 import { StyleSheet } from 'react-native';
 import { TEXT_SIZES } from 'constants/text';
 import { BLACK, YELLOW, YELLOW_HIGHLIGHT } from 'constants/colours';
+import { FIXED_OFFSET } from 'constants/spacing';
 
 const fontSize = TEXT_SIZES.LARGE;
 const size = fontSize * 2;
-const offset = 20;
+const offset = FIXED_OFFSET;
 
 export const BOTTOM_OFFSET = size + (offset * 2);
 

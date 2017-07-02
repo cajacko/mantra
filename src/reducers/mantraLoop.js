@@ -20,6 +20,9 @@ export default (state = [], { type, payload }) => {
       return modifiedState;
     }
 
+    case 'DOWNLOAD_SUCESS':
+      return payload.mantraLoop;
+
     default:
       return state;
   }

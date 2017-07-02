@@ -1,8 +1,8 @@
 import { TEXT_SIZES, TEXT_COLOURS } from 'constants/text';
-import SPACING from 'constants/spacing';
+import { HORIZONTAL_VIEW_SPACING } from 'constants/spacing';
 
 const verticalSpacing = 20;
-const horizontalSpacing = SPACING;
+const horizontalSpacing = HORIZONTAL_VIEW_SPACING;
 
 export default {
   container: {

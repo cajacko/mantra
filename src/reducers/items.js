@@ -16,6 +16,9 @@ export default (state = {}, { type, payload }) => {
       return modifiedState;
     }
 
+    case 'DOWNLOAD_SUCESS':
+      return payload.items;
+
     default:
       return state;
   }

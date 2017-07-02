@@ -1,9 +1,9 @@
 import { BOTTOM_OFFSET } from 'components/AddButton/AddButton.style';
 import { TEXT_SIZES } from 'constants/text';
-import SPACING from 'constants/spacing';
+import { HORIZONTAL_VIEW_SPACING } from 'constants/spacing';
 import { WHITE, GREY_LIGHT } from 'constants/colours';
 
-const horizontalSpacing = SPACING;
+const horizontalSpacing = HORIZONTAL_VIEW_SPACING;
 const verticalSpacing = 20;
 
 export default {
