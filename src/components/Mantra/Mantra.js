@@ -20,6 +20,7 @@ const Mantra = ({ title, last, deleteMantra }) => {
       right={swipeoutBtns(deleteMantra)}
       style={containerStyles}
       autoClose
+      sensitivity={50}
     >
       <View style={style.wrapper}>
         <Text style={style.text}>{title}</Text>
