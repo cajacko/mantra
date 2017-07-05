@@ -84,7 +84,7 @@ class LoginContainer extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ items: {} }),
+      body: JSON.stringify({ items: {}, mantraLoop: [] }),
     })
       .then(response => response.json())
       .then((payload) => {
@@ -92,7 +92,7 @@ class LoginContainer extends Component {
           this.setState({ modal: 'Could not create account, try again later', registerActivity });
         } else {
           this.setState({ modal: null, registerActivity });
-          this.props.dispatch(register(payload));
+          this.props.dispatch(register(payload.uri));
         }
       })
       .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', registerActivity }));

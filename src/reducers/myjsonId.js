@@ -1,9 +1,9 @@
 export default (state = null, { type, payload }) => {
-  // return null;
-
   switch (type) {
-    case 'REGISTER':
-      return payload;
+    case 'REGISTER': {
+      const parts = payload.split('/');
+      return parts[parts.length - 1];
+    }
 
     case 'LOGIN':
       return payload.myjsonId;

@@ -1,6 +1,4 @@
-import { myjsonId } from 'root/env.json';
-
-export default function () {
+export default function (myjsonId) {
   return (dispatch) => {
     dispatch({ type: 'DOWNLOAD_INIT' });
 

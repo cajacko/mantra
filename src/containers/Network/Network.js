@@ -13,11 +13,11 @@ class NetworkContainer extends Component {
   }
 
   download() {
-    this.props.dispatch(download());
+    this.props.dispatch(download(this.props.myjsonId));
   }
 
   upload() {
-    this.props.dispatch(upload(this.props.localData));
+    this.props.dispatch(upload(this.props.localData, this.props.myjsonId));
   }
 
   render() {
@@ -31,10 +31,11 @@ NetworkContainer.propTypes = {
     items: PropTypes.object,
     mantraLoop: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
+  myjsonId: PropTypes.string.isRequired,
 };
 
-function mapStateToProps({ items, mantraLoop }) {
-  return { localData: { items, mantraLoop } };
+function mapStateToProps({ items, mantraLoop, myjsonId }) {
+  return { localData: { items, mantraLoop }, myjsonId };
 }
 
 export default connect(mapStateToProps)(NetworkContainer);

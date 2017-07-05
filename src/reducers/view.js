@@ -27,6 +27,9 @@ export default (state = defaultState, { type, payload }) => {
     case 'DELETE_MANTRA':
       return 'LoopView';
 
+    case 'REGISTER':
+      return 'ProfileView'
+
     default:
       return state;
   }

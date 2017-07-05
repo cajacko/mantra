@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 import statusBarHeight from 'helpers/statusBarHeight';
 import { WHITE, YELLOW, YELLOW_HIGHLIGHT, BLACK, GREY_LIGHTER, GREY_LIGHT, GREY } from 'constants/colours';
-
 import { TEXT_SIZES, TEXT_COLOURS } from 'constants/text';
 
 export default StyleSheet.create({

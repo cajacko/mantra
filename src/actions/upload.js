@@ -1,6 +1,4 @@
-import { myjsonId } from 'root/env.json';
-
-export default function (localData) {
+export default function (localData, myjsonId) {
   return (dispatch) => {
     dispatch({ type: 'UPLOAD_INIT', payload: localData });
 
