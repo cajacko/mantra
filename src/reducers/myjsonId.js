@@ -1,9 +1,11 @@
 export default (state = null, { type, payload }) => {
+  // return null;
+
   switch (type) {
-    case 'REGISTER_SUCCESS':
+    case 'REGISTER':
       return payload;
 
-    case 'LOGIN_SUCCESS':
+    case 'LOGIN':
       return payload.myjsonId;
 
     default:

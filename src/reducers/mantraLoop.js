@@ -23,6 +23,9 @@ export default (state = [], { type, payload }) => {
     case 'DOWNLOAD_SUCESS':
       return payload.mantraLoop;
 
+    case 'LOGIN':
+      return payload.data.mantraLoop;
+
     default:
       return state;
   }
