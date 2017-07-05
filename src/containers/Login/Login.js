@@ -36,6 +36,7 @@ class LoginContainer extends Component {
     this.login = this.login.bind(this);
     this.register = this.register.bind(this);
     this.onChange = this.onChange.bind(this);
+    this.modalClose = this.modalClose.bind(this);
   }
 
   onChange(event) {
@@ -67,6 +68,10 @@ class LoginContainer extends Component {
         })
         .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', loginActivity }));
     }
+  }
+
+  modalClose() {
+    this.setState({ modal: null });
   }
 
   register() {
@@ -103,6 +108,8 @@ class LoginContainer extends Component {
         goEnabled={this.state.goEnabled}
         loginActivity={this.state.loginActivity}
         registerActivity={this.state.registerActivity}
+        modal={this.state.modal}
+        modalClose={this.modalClose}
       />
     );
   }

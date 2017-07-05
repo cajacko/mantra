@@ -3,12 +3,23 @@ import PropTypes from 'prop-types';
 import { View, Text, StatusBar, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
 import style from 'components/Login/Login.style';
 
-const Login = ({ onChange, login, register, id, goEnabled, loginActivity, registerActivity }) => {
+const Login = ({
+  onChange,
+  login,
+  register,
+  id,
+  goEnabled,
+  loginActivity,
+  registerActivity,
+  modal,
+  modalClose,
+}) => {
   let goStyles = style.button;
   let goTextStyles = style.buttonText;
   let go;
   let goActivityElement;
   let registerActivityElement;
+  let modalElement;
 
   if (!goEnabled) {
     goStyles = [goStyles, style.buttonDisabled];
@@ -33,9 +44,26 @@ const Login = ({ onChange, login, register, id, goEnabled, loginActivity, regist
     registerActivityElement = <ActivityIndicator style={style.activity} />;
   }
 
+  if (modal) {
+    modalElement = (
+      <View style={style.modal}>
+        <View style={style.modalBackground} />
+        <View style={style.modalWrapper}>
+          <Text style={style.modalText}>{modal}</Text>
+          <TouchableOpacity onPress={modalClose}>
+            <View style={style.modalButton}>
+              <Text style={style.modalButtonText}>Dismiss</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+    );
+  }
+
   return (
     <View style={style.container}>
       <StatusBar barStyle="dark-content" />
+      {modalElement}
       <View style={style.header}>
         <Text style={style.title}>Mantra</Text>
         <Text style={style.description}>
@@ -77,6 +105,8 @@ Login.propTypes = {
   goEnabled: PropTypes.bool.isRequired,
   loginActivity: PropTypes.bool.isRequired,
   registerActivity: PropTypes.bool.isRequired,
+  modal: PropTypes.string.isRequired,
+  modalClose: PropTypes.func.isRequired,
 };
 
 export default Login;
