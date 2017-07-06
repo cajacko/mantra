@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MantraLoop from 'components/MantraLoop/MantraLoop';
+import sync from 'actions/sync';
 
 function returnMantraLoop(items) {
   const mantraLoop = [];
@@ -25,11 +26,31 @@ class MantraLoopContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { mantraLoop: returnMantraLoop(props.items) };
+    this.state = {
+      mantraLoop: returnMantraLoop(props.items),
+      refreshing: false,
+    };
+
+    this.onRefresh = this.onRefresh.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ mantraLoop: returnMantraLoop(nextProps.items) });
+    let refreshing;
+
+    switch (nextProps.lastAction) {
+      case 'SYNC_SUCCESS':
+      case 'SYNC_ERROR':
+        refreshing = false;
+        break;
+      default:
+        refreshing = this.state.refreshing;
+        break;
+    }
+
+    this.setState({
+      mantraLoop: returnMantraLoop(nextProps.items),
+      refreshing,
+    });
   }
 
   shouldComponentUpdate(nextProps) {
@@ -52,18 +73,33 @@ class MantraLoopContainer extends Component {
     return returnValue;
   }
 
+  onRefresh() {
+    this.props.dispatch(sync(this.props.items, this.props.myjsonId));
+    this.setState({ refreshing: true });
+  }
+
   render() {
-    return <MantraLoop mantraLoop={this.state.mantraLoop} />;
+    return (
+      <MantraLoop
+        mantraLoop={this.state.mantraLoop}
+        refreshing={this.state.refreshing}
+        onRefresh={this.onRefresh}
+      />
+    );
   }
 }
 
 MantraLoopContainer.propTypes = {
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
+  myjsonId: PropTypes.string.isRequired,
+  dispatch: PropTypes.func.isRequired,
+  // eslint-disable-next-line
+  lastAction: PropTypes.string.isRequired,
 };
 
-function mapStateToProps({ items }) {
-  return { items };
+function mapStateToProps({ items, myjsonId, lastAction }) {
+  return { items, myjsonId, lastAction };
 }
 
 export default connect(mapStateToProps)(MantraLoopContainer);

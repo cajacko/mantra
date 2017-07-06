@@ -5,11 +5,13 @@ import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 
 
-const Mantraloop = ({ mantraLoop }) => {
+const Mantraloop = ({ mantraLoop, onRefresh, refreshing }) => {
   const lastId = mantraLoop[mantraLoop.length - 1];
   return (
     <FlatList
       data={mantraLoop}
+      onRefresh={onRefresh}
+      refreshing={refreshing}
       renderItem={({ item }) => {
         let last = false;
 
@@ -34,6 +36,8 @@ Mantraloop.propTypes = {
   mantraLoop: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
   })).isRequired,
+  refreshing: PropTypes.bool.isRequired,
+  onRefresh: PropTypes.func.isRequired,
 };
 
 export default Mantraloop;
