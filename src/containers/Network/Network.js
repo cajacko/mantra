@@ -11,7 +11,7 @@ class NetworkContainer extends Component {
   }
 
   sync() {
-    this.props.dispatch(sync(this.props.items, this.props.myjsonId));
+    this.props.dispatch(sync(this.props.items, this.props.myjsonId, true));
   }
 
   render() {

@@ -1,13 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import Views from 'containers/Views/Views';
+import PostActions from 'containers/PostActions/PostActions';
 import configureStore from 'store/configureStore';
 
 const store = configureStore();
 
 const Root = () => (
   <Provider store={store}>
-    <Views />
+    <PostActions />
   </Provider>
 );
 

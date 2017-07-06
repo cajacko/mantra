@@ -65,16 +65,42 @@ function setServerData(myjsonId, items) {
   });
 }
 
-export default function (localItems, myjsonId) {
+let activeSync = null;
+let id = 0;
+
+export default function (localItems, myjsonId, cancelOtherCalls) {
+  const syncId = id;
+  id += 1;
+
   return (dispatch) => {
+    if (!cancelOtherCalls && activeSync !== null) {
+      return;
+    }
+
+    activeSync = syncId;
+
     dispatch({ type: 'SYNC_INIT' });
 
     getServerData(myjsonId)
       .then((serverItems) => {
+        if (activeSync !== syncId) {
+          return;
+        }
+
         const items = mergeItems(localItems, serverItems);
         return setServerData(myjsonId, items);
       })
-      .then(items => dispatch({ type: 'SYNC_SUCCESS', payload: items }))
-      .catch(err => dispatch({ type: 'SYNC_ERROR', payload: err }))
+      .then((items) => {
+        if (activeSync === syncId) {
+          dispatch({ type: 'SYNC_SUCCESS', payload: items });
+          activeSync = null;
+        }
+      })
+      .catch((err) => {
+        if (activeSync === syncId) {
+          dispatch({ type: 'SYNC_ERROR', payload: err });
+          activeSync = null;
+        }
+      });
   };
 }
