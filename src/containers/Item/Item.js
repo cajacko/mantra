@@ -17,22 +17,31 @@ function getPassedProps(props) {
   delete passedProps.itemId;
   delete passedProps.items;
   delete passedProps.element;
+  delete passedProps.dispatch;
   return passedProps;
 }
 
+function getProps(props) {
+  return {
+    ...getItemProps(props.items, props.itemId),
+    ...getPassedProps(props),
+  };
+}
+
 class Item extends Component {
+  constructor(props) {
+    super(props);
+    this.state = getProps(props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(getProps(nextProps));
+  }
+
   shouldComponentUpdate(nextProps) {
-    const nextItemProps = getItemProps(nextProps.items, nextProps.itemId);
-    const itemProps = getItemProps(this.props.items, this.props.itemId);
+    const props = getProps(nextProps);
 
-    if (!equal(nextItemProps, itemProps)) {
-      return true;
-    }
-
-    const nextPassedProps = getPassedProps(nextProps);
-    const passedProps = getPassedProps(this.props);
-
-    if (!equal(nextPassedProps, passedProps)) {
+    if (!equal(this.state, props)) {
       return true;
     }
 

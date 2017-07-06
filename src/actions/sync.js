@@ -30,6 +30,10 @@ function mergeItems(localItems, serverItems) {
     }
   });
 
+  Object.keys(items).forEach((id) => {
+    items[id].online = true;
+  });
+
   return items;
 }
 

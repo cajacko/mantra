@@ -20,6 +20,7 @@ class MantraContainer extends Component {
         deleteMantra={this.deleteMantra}
         title={this.props.title}
         last={this.props.last}
+        online={this.props.online}
       />
     );
   }
@@ -30,6 +31,7 @@ MantraContainer.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   last: PropTypes.bool,
+  online: PropTypes.bool.isRequired,
 };
 
 MantraContainer.defaultProps = {

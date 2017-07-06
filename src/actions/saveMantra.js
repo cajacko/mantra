@@ -7,6 +7,13 @@ export default function (title) {
   const dateModified = dateAdded;
   return {
     type: 'SAVE_MANTRA',
-    payload: { id, title, dateAdded, dateModified, deleted: false },
+    payload: {
+      id,
+      title,
+      dateAdded,
+      dateModified,
+      deleted: false,
+      online: false,
+    },
   };
 }

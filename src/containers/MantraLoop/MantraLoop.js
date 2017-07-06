@@ -16,7 +16,7 @@ function returnMantraLoop(items) {
   mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);
 
   const idLoop = [];
-  mantraLoop.forEach(({ id }) => idLoop.push(id));
+  mantraLoop.forEach(({ id }) => idLoop.push({ key: id }));
 
   return idLoop;
 }

@@ -13,14 +13,14 @@ const Mantraloop = ({ mantraLoop }) => {
       renderItem={({ item }) => {
         let last = false;
 
-        if (lastId === item) {
+        if (lastId === item.key) {
           last = true;
         }
 
         return (
           <Item
-            key={item}
-            itemId={item}
+            key={item.key}
+            itemId={item.key}
             element={Mantra}
             last={last}
           />
@@ -31,7 +31,9 @@ const Mantraloop = ({ mantraLoop }) => {
 };
 
 Mantraloop.propTypes = {
-  mantraLoop: PropTypes.arrayOf(PropTypes.string).isRequired,
+  mantraLoop: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string,
+  })).isRequired,
 };
 
 export default Mantraloop;
