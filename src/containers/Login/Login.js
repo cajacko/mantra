@@ -84,7 +84,7 @@ class LoginContainer extends Component {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ items: {}, mantraLoop: [] }),
+      body: JSON.stringify({ items: {} }),
     })
       .then(response => response.json())
       .then((payload) => {

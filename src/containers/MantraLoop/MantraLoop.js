@@ -1,18 +1,64 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MantraLoop from 'components/MantraLoop/MantraLoop';
 
-const MantraLoopContainer = ({ mantraLoop }) => (
-  <MantraLoop mantraLoop={mantraLoop} />
-);
+function returnMantraLoop(items) {
+  const mantraLoop = [];
+  const ids = Object.keys(items);
+  ids.forEach(id => mantraLoop.push(items[id]));
+
+  mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);
+
+  const idLoop = [];
+  mantraLoop.forEach(({ id }) => idLoop.push(id));
+
+  return idLoop;
+}
+
+class MantraLoopContainer extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { mantraLoop: returnMantraLoop(props.items) };
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.items.length !== this.props.items.length) {
+      return true;
+    }
+
+    if (Object.keys(nextProps.items) !== Object.keys(this.props.items)) {
+      return true;
+    }
+
+    let returnValue = false;
+
+    Object.keys(nextProps.items).forEach((id) => {
+      if (nextProps.items[id].dateAdded !== this.props.items[id].dateAdded) {
+        returnValue = true;
+      }
+    });
+
+    return returnValue;
+  }
+
+  componentWillUpdate(nextProps) {
+    this.setState({ mantraLoop: returnMantraLoop(nextProps.items) });
+  }
+
+  render() {
+    return <MantraLoop mantraLoop={this.state.mantraLoop} />;
+  }
+}
 
 MantraLoopContainer.propTypes = {
-  mantraLoop: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // eslint-disable-next-line
+  items: PropTypes.object.isRequired,
 };
 
-function mapStateToProps({ mantraLoop }) {
-  return { mantraLoop };
+function mapStateToProps({ items }) {
+  return { items };
 }
 
 export default connect(mapStateToProps)(MantraLoopContainer);

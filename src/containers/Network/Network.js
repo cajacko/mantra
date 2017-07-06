@@ -29,13 +29,12 @@ NetworkContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   localData: PropTypes.shape({
     items: PropTypes.object,
-    mantraLoop: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   myjsonId: PropTypes.string.isRequired,
 };
 
-function mapStateToProps({ items, mantraLoop, myjsonId }) {
-  return { localData: { items, mantraLoop }, myjsonId };
+function mapStateToProps({ items, myjsonId }) {
+  return { localData: { items }, myjsonId };
 }
 
 export default connect(mapStateToProps)(NetworkContainer);
