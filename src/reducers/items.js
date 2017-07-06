@@ -10,14 +10,13 @@ export default (state = {}, { type, payload }) => {
 
     case 'DELETE_MANTRA': {
       const modifiedState = Object.assign({}, state);
-
-      delete modifiedState[payload];
-
+      modifiedState[payload.id].deleted = true;
+      modifiedState[payload.id].dateModified = payload.dateModified;
       return modifiedState;
     }
 
-    case 'DOWNLOAD_SUCESS':
-      return payload.items;
+    case 'SYNC_SUCCESS':
+      return payload;
 
     case 'LOGIN':
       return payload.data.items;

@@ -2,39 +2,32 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Network from 'components/Network/Network';
-import upload from 'actions/upload';
-import download from 'actions/download';
+import sync from 'actions/sync';
 
 class NetworkContainer extends Component {
   constructor(props) {
     super(props);
-    this.download = this.download.bind(this);
-    this.upload = this.upload.bind(this);
+    this.sync = this.sync.bind(this);
   }
 
-  download() {
-    this.props.dispatch(download(this.props.myjsonId));
-  }
-
-  upload() {
-    this.props.dispatch(upload(this.props.localData, this.props.myjsonId));
+  sync() {
+    this.props.dispatch(sync(this.props.items, this.props.myjsonId));
   }
 
   render() {
-    return <Network upload={this.upload} download={this.download} />;
+    return <Network sync={this.sync} />;
   }
 }
 
 NetworkContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  localData: PropTypes.shape({
-    items: PropTypes.object,
-  }).isRequired,
+  // eslint-disable-next-line
+  items: PropTypes.object.isRequired,
   myjsonId: PropTypes.string.isRequired,
 };
 
 function mapStateToProps({ items, myjsonId }) {
-  return { localData: { items }, myjsonId };
+  return { items, myjsonId };
 }
 
 export default connect(mapStateToProps)(NetworkContainer);

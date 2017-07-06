@@ -4,16 +4,14 @@ import PropTypes from 'prop-types';
 import NetworkButton from 'components/NetworkButton/NetworkButton';
 import style from 'components/Network/Network.style';
 
-const Network = ({ upload, download }) => (
+const Network = ({ sync }) => (
   <View style={style.container}>
-    <NetworkButton action={upload} text="Upload" />
-    <NetworkButton action={download} text="Download" />
+    <NetworkButton action={sync} text="Sync" />
   </View>
 );
 
 Network.propTypes = {
-  upload: PropTypes.func.isRequired,
-  download: PropTypes.func.isRequired,
+  sync: PropTypes.func.isRequired,
 };
 
 export default Network;

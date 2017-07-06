@@ -6,7 +6,12 @@ import MantraLoop from 'components/MantraLoop/MantraLoop';
 function returnMantraLoop(items) {
   const mantraLoop = [];
   const ids = Object.keys(items);
-  ids.forEach(id => mantraLoop.push(items[id]));
+
+  ids.forEach((id) => {
+    if (items[id].deleted === false) {
+      mantraLoop.push(items[id]);
+    }
+  });
 
   mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);
 
@@ -21,6 +26,10 @@ class MantraLoopContainer extends Component {
     super(props);
 
     this.state = { mantraLoop: returnMantraLoop(props.items) };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({ mantraLoop: returnMantraLoop(nextProps.items) });
   }
 
   shouldComponentUpdate(nextProps) {
@@ -41,10 +50,6 @@ class MantraLoopContainer extends Component {
     });
 
     return returnValue;
-  }
-
-  componentWillUpdate(nextProps) {
-    this.setState({ mantraLoop: returnMantraLoop(nextProps.items) });
   }
 
   render() {
