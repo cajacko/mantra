@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Alert } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import NavView from 'components/NavView/NavView';
@@ -18,7 +19,13 @@ class NavViewContainer extends Component {
   }
 
   logout() {
-    this.props.dispatch(logout());
+    Alert.alert('Logout', 'Any unsynced data will be lost', [
+      { text: 'Cancel' },
+      {
+        text: 'Continue',
+        onPress: () => this.props.dispatch(logout()),
+      },
+    ]);
   }
 
   render() {
