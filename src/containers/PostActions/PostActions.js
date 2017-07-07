@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Views from 'containers/Views/Views';
 import sync from 'actions/sync';
-import { version } from 'root/package.json';
+import config from 'root/package.json';
 import updateVersion from 'actions/updateVersion';
 
 class PostActions extends Component {
@@ -20,7 +20,7 @@ class PostActions extends Component {
         this.props.dispatch(sync());
         break;
       case 'persist/REHYDRATE': {
-        if (version !== this.props.version) {
+        if (config.version !== this.props.version) {
           this.props.dispatch(updateVersion());
         }
         break;
@@ -42,11 +42,15 @@ class PostActions extends Component {
 
 PostActions.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  version: PropTypes.string.isRequired,
+  version: PropTypes.string,
 };
 
-function mapStateToProps({ lastAction, items, myjsonId }) {
-  return { lastAction, items, myjsonId };
+PostActions.defaultProps = {
+  version: null,
+};
+
+function mapStateToProps({ lastAction, items, myjsonId, version }) {
+  return { lastAction, items, myjsonId, version };
 }
 
 export default connect(mapStateToProps)(PostActions);

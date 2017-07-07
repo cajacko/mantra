@@ -105,8 +105,12 @@ Login.propTypes = {
   goEnabled: PropTypes.bool.isRequired,
   loginActivity: PropTypes.bool.isRequired,
   registerActivity: PropTypes.bool.isRequired,
-  modal: PropTypes.string.isRequired,
+  modal: PropTypes.string,
   modalClose: PropTypes.func.isRequired,
+};
+
+Login.defaultProps = {
+  modal: null,
 };
 
 export default Login;
