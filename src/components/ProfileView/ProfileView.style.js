@@ -8,7 +8,13 @@ export default StyleSheet.create({
     flex: 1,
     paddingTop: statusBarHeight(),
     backgroundColor: WHITE,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  wrapper: {
+    flex: 1,
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
