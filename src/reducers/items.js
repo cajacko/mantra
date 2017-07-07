@@ -25,10 +25,37 @@ export default (state = {}, { type, payload }) => {
       const modifiedState = Object.assign({}, state);
 
       Object.keys(modifiedState).forEach((id) => {
-        const item = modifiedState[id];
+        const item = {
+          title: 'No title',
+          id,
+          dateAddded: payload.timestamp,
+          dateModified: payload.timestamp,
+          online: false,
+          deleted: false,
+        };
 
-        if (!item.dateModified) {
-          item.dateModified = item.dateAdded;
+        const oldItem = modifiedState[id];
+
+        if (oldItem.title !== undefined) {
+          item.title = oldItem.title;
+        }
+
+        if (oldItem.dateAdded !== undefined) {
+          item.dateAdded = oldItem.dateAdded;
+        }
+
+        if (oldItem.dateModified !== undefined) {
+          item.dateModified = oldItem.dateModified;
+        } else if (oldItem.dateAdded !== undefined) {
+          item.dateModified = oldItem.dateAdded;
+        }
+
+        if (oldItem.online !== undefined) {
+          item.online = oldItem.online;
+        }
+
+        if (oldItem.deleted !== undefined) {
+          item.deleted = oldItem.deleted;
         }
 
         modifiedState[id] = item;
