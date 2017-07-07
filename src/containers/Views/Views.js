@@ -8,12 +8,13 @@ const ViewsContainer = ({ view, myjsonId }) => (
 );
 
 ViewsContainer.propTypes = {
-  view: PropTypes.string.isRequired,
+  view: PropTypes.string,
   myjsonId: PropTypes.string,
 };
 
 ViewsContainer.defaultProps = {
   myjsonId: null,
+  view: null,
 };
 
 function mapStateToProps({ view, myjsonId }) {

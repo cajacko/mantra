@@ -1,4 +1,3 @@
-import { BOTTOM_OFFSET } from 'components/AddButton/AddButton.style';
 import { TEXT_SIZES } from 'constants/text';
 import { HORIZONTAL_VIEW_SPACING } from 'constants/spacing';
 import { WHITE, GREY_LIGHT, GREY } from 'constants/colours';
@@ -28,7 +27,6 @@ export default {
   },
 
   last: {
-    marginBottom: BOTTOM_OFFSET,
     borderBottomWidth: 1,
   },
 

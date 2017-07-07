@@ -2,8 +2,12 @@ import views from 'constants/views';
 
 const defaultState = 'LoopView';
 
-export default (state = defaultState, { type, payload }) => {
+export default (state = null, { type, payload }) => {
   switch (type) {
+    case 'persist/REHYDRATE':
+    case 'LOGOUT':
+      return defaultState;
+
     case 'SWITCH_VIEW': {
       let validView = false;
 
@@ -18,7 +22,7 @@ export default (state = defaultState, { type, payload }) => {
       }
 
       // eslint-disable-next-line
-      console.error(`View does no exist: ${payload}`, payload);
+      console.error(`View does not exist: ${payload}`, payload);
 
       return state;
     }

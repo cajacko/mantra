@@ -1,5 +1,10 @@
-export default (state = {}, { type, payload }) => {
+const defaultState = {};
+
+export default (state = defaultState, { type, payload }) => {
   switch (type) {
+    case 'LOGOUT':
+      return defaultState;
+
     case 'SAVE_MANTRA': {
       const modifiedState = Object.assign({}, state);
 
