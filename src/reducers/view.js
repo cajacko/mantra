@@ -1,6 +1,6 @@
 import views from 'constants/views';
 
-const defaultState = 'LoopView';
+const defaultState = 'DisplayView';
 
 export default (state = null, { type, payload }) => {
   switch (type) {

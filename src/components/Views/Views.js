@@ -5,7 +5,7 @@ import AddView from 'containers/AddView/AddView';
 import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
-import DisplayView from 'components/DisplayView/DisplayView';
+import DisplayView from 'containers/DisplayView/DisplayView';
 
 const Views = ({ view, myjsonId }) => {
   if (!view) {
