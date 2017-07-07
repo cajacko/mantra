@@ -74,7 +74,7 @@ class MantraLoopContainer extends Component {
   }
 
   onRefresh() {
-    this.props.dispatch(sync(this.props.items, this.props.myjsonId));
+    this.props.dispatch(sync());
     this.setState({ refreshing: true });
   }
 
@@ -92,7 +92,6 @@ class MantraLoopContainer extends Component {
 MantraLoopContainer.propTypes = {
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
-  myjsonId: PropTypes.string.isRequired,
   dispatch: PropTypes.func.isRequired,
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,

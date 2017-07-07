@@ -6,7 +6,12 @@ import Item from 'containers/Item/Item';
 
 
 const Mantraloop = ({ mantraLoop, onRefresh, refreshing }) => {
-  const lastId = mantraLoop[mantraLoop.length - 1].key;
+  let lastId;
+
+  if (mantraLoop.length) {
+    lastId = mantraLoop[mantraLoop.length - 1].key;
+  }
+
   return (
     <FlatList
       data={mantraLoop}

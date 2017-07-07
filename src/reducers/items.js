@@ -21,6 +21,22 @@ export default (state = {}, { type, payload }) => {
     case 'LOGIN':
       return payload.data.items;
 
+    case 'UPDATE_VERSION': {
+      const modifiedState = Object.assign({}, state);
+
+      Object.keys(modifiedState).forEach((id) => {
+        const item = modifiedState[id];
+
+        if (!item.dateModified) {
+          item.dateModified = item.dateAdded;
+        }
+
+        modifiedState[id] = item;
+      });
+
+      return modifiedState;
+    }
+
     default:
       return state;
   }

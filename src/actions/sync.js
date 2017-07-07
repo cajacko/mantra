@@ -68,14 +68,16 @@ function setServerData(myjsonId, items) {
 let activeSync = null;
 let id = 0;
 
-export default function (localItems, myjsonId, cancelOtherCalls) {
+export default function (cancelOtherCalls) {
   const syncId = id;
   id += 1;
 
-  return (dispatch) => {
+  return (dispatch, getState) => {
     if (!cancelOtherCalls && activeSync !== null) {
       return;
     }
+
+    const { items, myjsonId } = getState();
 
     activeSync = syncId;
 
@@ -87,12 +89,12 @@ export default function (localItems, myjsonId, cancelOtherCalls) {
           return;
         }
 
-        const items = mergeItems(localItems, serverItems);
-        return setServerData(myjsonId, items);
+        const mergedItems = mergeItems(items, serverItems);
+        return setServerData(myjsonId, mergedItems);
       })
-      .then((items) => {
+      .then((serverItems) => {
         if (activeSync === syncId) {
-          dispatch({ type: 'SYNC_SUCCESS', payload: items });
+          dispatch({ type: 'SYNC_SUCCESS', payload: serverItems });
           activeSync = null;
         }
       })
