@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StatusBar, Text, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import DisplayNav from 'components/DisplayNav/DisplayNav';
-import DisplayMantra from 'components/DisplayMantra/DisplayMantra';
+import DisplayMantra from 'containers/DisplayMantra/DisplayMantra';
 import Item from 'containers/Item/Item';
 import style from 'components/DisplayView/DisplayView.style';
 

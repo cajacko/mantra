@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import style from 'components/DisplayMantra/DisplayMantra.style';
 
-const DisplayMantra = ({ title }) => {
+const DisplayMantra = ({ title, edit }) => {
   const textStyle = Object.assign({}, style.text);
 
   if (title.length > 60) {
@@ -18,13 +18,16 @@ const DisplayMantra = ({ title }) => {
 
   return (
     <View style={style.container}>
-      <Text style={textStyle}>{title}</Text>
+      <TouchableOpacity onPress={edit}>
+        <Text style={textStyle}>{title}</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 DisplayMantra.propTypes = {
   title: PropTypes.string.isRequired,
+  edit: PropTypes.func.isRequired,
 };
 
 export default DisplayMantra;
