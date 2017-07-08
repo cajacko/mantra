@@ -1,24 +1,29 @@
 import views from 'constants/views';
 
-const defaultState = 'DisplayView';
+const defaultState = { view: 'DisplayView', props: {} };
 
-export default (state = null, { type, payload }) => {
+export default (state = { view: null, props: {} }, { type, payload }) => {
   switch (type) {
     case 'persist/REHYDRATE':
     case 'LOGOUT':
       return defaultState;
 
     case 'SWITCH_VIEW': {
-      let validView = false;
+      let isValidView = false;
+      const newState = Object.assign({}, payload);
 
-      views.forEach((view) => {
-        if (view === payload) {
-          validView = true;
+      views.forEach((validView) => {
+        if (validView === newState.view) {
+          isValidView = true;
         }
       });
 
-      if (validView) {
-        return payload;
+      if (!newState.props) {
+        newState.props = {};
+      }
+
+      if (isValidView) {
+        return newState;
       }
 
       // eslint-disable-next-line
@@ -29,10 +34,10 @@ export default (state = null, { type, payload }) => {
 
     case 'SAVE_MANTRA':
     case 'DELETE_MANTRA':
-      return 'LoopView';
+      return { view: 'LoopView', props: {} };
 
     case 'REGISTER':
-      return 'ProfileView'
+      return { view: 'ProfileView', props: {} };
 
     default:
       return state;

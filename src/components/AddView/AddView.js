@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View, StatusBar, TouchableOpacity, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
@@ -13,14 +13,33 @@ const AddView = ({
   charactersLeft,
   onChange,
   title,
-}) => (
-  <View style={style.container}>
-    <StatusBar barStyle="dark-content" />
-    <AddNav enableSave={enableSave} save={saveMantra} back={back} />
-    <CharacterCount count={charactersLeft} />
-    <AddInput onChange={onChange} value={title} />
-  </View>
-);
+  deleteMantra,
+  showDelete,
+}) => {
+  let deleteElement;
+
+  if (showDelete) {
+    deleteElement = (
+      <View style={style.delete}>
+        <TouchableOpacity onPress={deleteMantra}>
+          <View style={style.deleteButton}>
+            <Text style={style.deleteText}>Delete</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+  }
+
+  return (
+    <View style={style.container}>
+      <StatusBar barStyle="dark-content" />
+      <AddNav enableSave={enableSave} save={saveMantra} back={back} />
+      <CharacterCount count={charactersLeft} />
+      <AddInput onChange={onChange} value={title} />
+      {deleteElement}
+    </View>
+  );
+};
 
 AddView.propTypes = {
   saveMantra: PropTypes.func.isRequired,
@@ -29,6 +48,8 @@ AddView.propTypes = {
   charactersLeft: PropTypes.number.isRequired,
   onChange: PropTypes.func.isRequired,
   title: PropTypes.string.isRequired,
+  deleteMantra: PropTypes.func.isRequired,
+  showDelete: PropTypes.bool.isRequired,
 };
 
 export default AddView;

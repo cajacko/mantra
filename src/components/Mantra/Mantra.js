@@ -5,11 +5,14 @@ import { Ionicons } from '@expo/vector-icons';
 import Swipeout from 'react-native-swipeout';
 import style from 'components/Mantra/Mantra.style';
 
-function swipeoutBtns(onPress) {
-  return [{ text: 'Delete', onPress }];
+function swipeoutBtns(deleteAction, edit) {
+  return [
+    { text: 'Delete', onPress: deleteAction, backgroundColor: style.deleteBackground, color: style.buttonColour },
+    { text: 'Edit', onPress: edit, backgroundColor: style.editBackground, color: style.buttonColour },
+  ];
 }
 
-const Mantra = ({ title, last, deleteMantra, online }) => {
+const Mantra = ({ title, last, deleteMantra, editMantra, online }) => {
   const containerStyles = [style.container];
   let syncIcon;
 
@@ -27,7 +30,7 @@ const Mantra = ({ title, last, deleteMantra, online }) => {
 
   return (
     <Swipeout
-      right={swipeoutBtns(deleteMantra)}
+      right={swipeoutBtns(deleteMantra, editMantra)}
       style={containerStyles}
       autoClose
       sensitivity={50}
@@ -45,6 +48,7 @@ Mantra.propTypes = {
   last: PropTypes.bool.isRequired,
   deleteMantra: PropTypes.func.isRequired,
   online: PropTypes.bool.isRequired,
+  editMantra: PropTypes.func.isRequired,
 };
 
 export default Mantra;

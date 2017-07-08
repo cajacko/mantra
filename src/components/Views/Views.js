@@ -7,7 +7,7 @@ import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
 
-const Views = ({ view, myjsonId }) => {
+const Views = ({ view, myjsonId, viewProps }) => {
   if (!view) {
     return null;
   }
@@ -16,8 +16,10 @@ const Views = ({ view, myjsonId }) => {
     return <Login />;
   }
 
+  console.log(viewProps);
+
   if (view === 'AddView') {
-    return <AddView />;
+    return <AddView id={viewProps.id} title={viewProps.title} />;
   }
 
   let viewElement;
@@ -48,6 +50,8 @@ const Views = ({ view, myjsonId }) => {
 Views.propTypes = {
   view: PropTypes.string,
   myjsonId: PropTypes.string,
+  // eslint-disable-next-line
+  viewProps: PropTypes.object.isRequired,
 };
 
 Views.defaultProps = {

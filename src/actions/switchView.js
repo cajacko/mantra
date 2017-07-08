@@ -1,6 +1,6 @@
-export default function (view) {
+export default function (view, props) {
   return {
     type: 'SWITCH_VIEW',
-    payload: view,
+    payload: { view, props },
   };
 }

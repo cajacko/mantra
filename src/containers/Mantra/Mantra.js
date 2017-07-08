@@ -3,15 +3,24 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Mantra from 'components/Mantra/Mantra';
 import deleteMantra from 'actions/deleteMantra';
+import switchView from 'actions/switchView';
 
 class MantraContainer extends Component {
   constructor(props) {
     super(props);
     this.deleteMantra = this.deleteMantra.bind(this);
+    this.editMantra = this.editMantra.bind(this);
   }
 
   deleteMantra() {
     this.props.dispatch(deleteMantra(this.props.id));
+  }
+
+  editMantra() {
+    this.props.dispatch(switchView('AddView', {
+      id: this.props.id,
+      title: this.props.title,
+    }));
   }
 
   render() {
@@ -21,6 +30,7 @@ class MantraContainer extends Component {
         title={this.props.title}
         last={this.props.last}
         online={this.props.online}
+        editMantra={this.editMantra}
       />
     );
   }

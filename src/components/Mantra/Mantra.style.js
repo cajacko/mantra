@@ -1,6 +1,6 @@
 import { TEXT_SIZES } from 'constants/text';
 import { HORIZONTAL_VIEW_SPACING } from 'constants/spacing';
-import { WHITE, GREY_LIGHT, GREY } from 'constants/colours';
+import { WHITE, GREY_LIGHT, GREY, GREY_LIGHTER, BLACK } from 'constants/colours';
 
 const horizontalSpacing = HORIZONTAL_VIEW_SPACING;
 const verticalSpacing = 20;
@@ -33,4 +33,7 @@ export default {
   icon: {},
   iconSize: 20,
   iconColour: GREY,
+  deleteBackground: GREY_LIGHT,
+  editBackground: GREY_LIGHTER,
+  buttonColour: BLACK,
 };

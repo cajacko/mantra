@@ -33,7 +33,7 @@ class NavViewContainer extends Component {
       <NavView
         switchView={this.switchView}
         logout={this.logout}
-        activeItem={this.props.view}
+        activeItem={this.props.view.view}
       >
         {this.props.children}
       </NavView>
@@ -43,7 +43,10 @@ class NavViewContainer extends Component {
 
 NavViewContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  view: PropTypes.string.isRequired,
+  view: PropTypes.shape({
+    view: PropTypes.string,
+    props: PropTypes.object,
+  }).isRequired,
   children: PropTypes.oneOfType([
     PropTypes.element,
     PropTypes.func,

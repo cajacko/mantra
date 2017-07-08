@@ -4,17 +4,19 @@ import PropTypes from 'prop-types';
 import Views from 'components/Views/Views';
 
 const ViewsContainer = ({ view, myjsonId }) => (
-  <Views view={view} myjsonId={myjsonId} />
+  <Views view={view.view} myjsonId={myjsonId} viewProps={view.props} />
 );
 
 ViewsContainer.propTypes = {
-  view: PropTypes.string,
+  view: PropTypes.shape({
+    view: PropTypes.string,
+    props: PropTypes.object,
+  }).isRequired,
   myjsonId: PropTypes.string,
 };
 
 ViewsContainer.defaultProps = {
   myjsonId: null,
-  view: null,
 };
 
 function mapStateToProps({ view, myjsonId }) {
