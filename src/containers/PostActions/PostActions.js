@@ -5,24 +5,38 @@ import Views from 'containers/Views/Views';
 import sync from 'actions/sync';
 import config from 'root/package.json';
 import updateVersion from 'actions/updateVersion';
+import { setPermissionsIfChanged } from 'actions/permissions';
+
+let hydrated = false;
 
 class PostActions extends Component {
   componentDidMount() {
     setInterval(() => {
-      this.props.dispatch(sync());
+      if (hydrated) {
+        this.props.dispatch(sync());
+      }
     }, 10000);
+
+    setInterval(() => {
+      if (hydrated) {
+        this.props.dispatch(setPermissionsIfChanged());
+      }
+    }, 3000);
   }
 
-  componentWillReceiveProps({ lastAction }) {
+  componentWillReceiveProps({ lastAction, version }) {
     switch (lastAction) {
       case 'SAVE_MANTRA':
       case 'DELETE_MANTRA':
         this.props.dispatch(sync());
         break;
       case 'persist/REHYDRATE': {
-        if (config.version !== this.props.version) {
+        hydrated = true;
+
+        if (config.version !== version) {
           this.props.dispatch(updateVersion());
         }
+
         break;
       }
 
@@ -49,8 +63,14 @@ PostActions.defaultProps = {
   version: null,
 };
 
-function mapStateToProps({ lastAction, items, myjsonId, version }) {
-  return { lastAction, items, myjsonId, version };
+function mapStateToProps({
+  lastAction,
+  items,
+  myjsonId,
+  version,
+  dateAskedForPermission,
+}) {
+  return { lastAction, items, myjsonId, version, dateAskedForPermission };
 }
 
 export default connect(mapStateToProps)(PostActions);

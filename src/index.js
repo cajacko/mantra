@@ -1,12 +1,13 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import PostActions from 'containers/PostActions/PostActions';
-import configureStore from 'store/configureStore';
+import getStore from 'store/getStore';
+import cron from 'views/workers/notifications';
 
-const store = configureStore();
+cron();
 
 const Root = () => (
-  <Provider store={store}>
+  <Provider store={getStore()}>
     <PostActions />
   </Provider>
 );

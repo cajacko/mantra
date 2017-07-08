@@ -14,7 +14,7 @@ export default StyleSheet.create({
 
   wrapper: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
 
@@ -69,5 +69,15 @@ export default StyleSheet.create({
 
   buttonText: {
     fontSize: TEXT_SIZES.MEDIUM,
+  },
+
+  reminders: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  reminderText: {
+    fontSize: TEXT_SIZES.MEDIUM,
+    marginBottom: 20,
   },
 });
