@@ -1,6 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, StatusBar, TextInput, TouchableOpacity, ActivityIndicator } from 'react-native';
+import {
+  Keyboard,
+  View,
+  ScrollView,
+  Text,
+  StatusBar,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import style from 'components/Login/Login.style';
 
 const Login = ({
@@ -8,33 +17,14 @@ const Login = ({
   login,
   register,
   id,
-  goEnabled,
   loginActivity,
   registerActivity,
   modal,
   modalClose,
 }) => {
-  let goStyles = style.button;
-  let goTextStyles = style.buttonText;
-  let go;
   let goActivityElement;
   let registerActivityElement;
   let modalElement;
-
-  if (!goEnabled) {
-    goStyles = [goStyles, style.buttonDisabled];
-    goTextStyles = [goTextStyles, style.buttonTextDisabled];
-  }
-
-  go = (
-    <View style={goStyles}>
-      <Text style={goTextStyles}>Go</Text>
-    </View>
-  );
-
-  if (goEnabled) {
-    go = <TouchableOpacity onPress={login}>{go}</TouchableOpacity>;
-  }
 
   if (loginActivity) {
     goActivityElement = <ActivityIndicator style={style.activity} />;
@@ -61,7 +51,12 @@ const Login = ({
   }
 
   return (
-    <View style={style.container}>
+    <ScrollView
+      contentContainerStyle={style.container}
+      onPress={Keyboard.dismiss}
+      keyboardShouldPersistTaps="never"
+      scrollEnabled={false}
+    >
       <StatusBar barStyle="dark-content" />
       {modalElement}
       <View style={style.header}>
@@ -80,8 +75,15 @@ const Login = ({
           placeholder="Account ID"
           placeholderTextColor={style.placeholderColor}
           autoCapitalize="none"
+          blurOnSubmit
+          onSubmitEditing={login}
+          returnKeyType="go"
         />
-        {go}
+        <TouchableOpacity onPress={login}>
+          <View style={style.button}>
+            <Text style={style.buttonText}>Go</Text>
+          </View>
+        </TouchableOpacity>
         {goActivityElement}
       </View>
 
@@ -93,7 +95,7 @@ const Login = ({
         </TouchableOpacity>
         {registerActivityElement}
       </View>
-    </View>
+    </ScrollView>
   );
 };
 
@@ -102,7 +104,6 @@ Login.propTypes = {
   login: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
   id: PropTypes.string.isRequired,
-  goEnabled: PropTypes.bool.isRequired,
   loginActivity: PropTypes.bool.isRequired,
   registerActivity: PropTypes.bool.isRequired,
   modal: PropTypes.string,

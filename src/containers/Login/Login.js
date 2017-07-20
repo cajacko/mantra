@@ -27,7 +27,6 @@ class LoginContainer extends Component {
 
     this.state = {
       id: '',
-      goEnabled: false,
       loginActivity: false,
       registerActivity: false,
       modal: null,
@@ -40,34 +39,26 @@ class LoginContainer extends Component {
   }
 
   onChange(event) {
-    let goEnabled = false;
-
-    if (event.nativeEvent.text.length) {
-      goEnabled = true;
-    }
-
-    this.setState({ id: event.nativeEvent.text, goEnabled });
+    this.setState({ id: event.nativeEvent.text });
   }
 
   login() {
-    if (this.state.goEnabled) {
-      this.setState({ loginActivity: true });
-      const loginActivity = false;
+    this.setState({ loginActivity: true });
+    const loginActivity = false;
 
-      fetch(`https://api.myjson.com/bins/${this.state.id}`)
-        .then(response => response.json())
-        .then((payload) => {
-          const err = returnResponseError(payload);
+    fetch(`https://api.myjson.com/bins/${this.state.id}`)
+      .then(response => response.json())
+      .then((payload) => {
+        const err = returnResponseError(payload);
 
-          if (err) {
-            this.setState({ modal: 'Incorrect ID', loginActivity });
-          } else {
-            this.setState({ modal: null, loginActivity });
-            this.props.dispatch(login(this.state.id, payload));
-          }
-        })
-        .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', loginActivity }));
-    }
+        if (err) {
+          this.setState({ modal: 'Incorrect ID', loginActivity });
+        } else {
+          this.setState({ modal: null, loginActivity });
+          this.props.dispatch(login(this.state.id, payload));
+        }
+      })
+      .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', loginActivity }));
   }
 
   modalClose() {
@@ -105,7 +96,6 @@ class LoginContainer extends Component {
         register={this.register}
         onChange={this.onChange}
         id={this.state.id}
-        goEnabled={this.state.goEnabled}
         loginActivity={this.state.loginActivity}
         registerActivity={this.state.registerActivity}
         modal={this.state.modal}
