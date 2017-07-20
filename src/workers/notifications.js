@@ -1,8 +1,7 @@
 import moment from 'moment';
 import { Notifications } from 'expo';
-import { AppState } from 'react-native';
 import getStore from 'store/getStore';
-import { setLastSetBadge, setLastSetNotifications } from 'actions/notifications';
+import { setLastSetNotifications } from 'actions/notifications';
 import shuffle from 'helpers/shuffle';
 
 const store = getStore();
@@ -68,33 +67,6 @@ function hasSetNotificationsToday(now) {
   return false;
 }
 
-function shouldSetBadgeNumber(now) {
-  // Fail if hour is not equal or greater than 7
-  if (now.hour() < 7) {
-    return false;
-  }
-
-  const { lastSetBadge } = store.getState();
-  const lastSetBadgeMoment = moment.unix(lastSetBadge);
-
-  // Fail if badge has been set today already
-  if (lastSetBadge && lastSetBadgeMoment.isSame(now, 'day')) {
-    return false;
-  }
-
-  if (AppState.currentState === 'active') {
-    return false;
-  }
-
-  return true;
-}
-
-AppState.addEventListener('change', (state) => {
-  if (state === 'active') {
-    Notifications.setBadgeNumberAsync(0);
-  }
-});
-
 export default function () {
   if (cronInterval) {
     cronInterval.clearInterval();
@@ -106,19 +78,10 @@ export default function () {
     const { permissions, notifications } = store.getState();
 
     if (permissions === 'granted' && notifications) {
-      if (shouldSetBadgeNumber(now)) {
-        Notifications.setBadgeNumberAsync(1);
-        store.dispatch(setLastSetBadge(now.unix()));
-      }
-
       if (!hasSetNotificationsToday(now)) {
         setNotifications();
         store.dispatch(setLastSetNotifications(now.unix()));
       }
-
-      if (AppState.currentState === 'active') {
-        Notifications.setBadgeNumberAsync(0);
-      }
     }
-  }, 3000);
+  }, 20000);
 }
