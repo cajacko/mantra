@@ -6,7 +6,6 @@ import style from 'components/NavButton/NavButton.style';
 
 const NavButton = ({ action, icon, active }) => {
   let buttonColour = style.iconColour;
-  let element;
 
   if (active) {
     buttonColour = style.iconColourActive;
@@ -14,10 +13,8 @@ const NavButton = ({ action, icon, active }) => {
 
   return (
     <View style={style.icon}>
-      <TouchableOpacity onPress={action}>
-        <View style={style.iconWrapper}>
-          <Ionicons name={icon} size={style.iconSize} color={buttonColour} />
-        </View>
+      <TouchableOpacity onPress={action} style={style.iconWrapper}>
+        <Ionicons name={icon} size={style.iconSize} color={buttonColour} />
       </TouchableOpacity>
     </View>
   );

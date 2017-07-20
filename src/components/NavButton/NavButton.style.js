@@ -5,6 +5,10 @@ export const ICON_SIZE = 40;
 export default {
   icon: {
     flex: 1,
+  },
+
+  iconWrapper: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
