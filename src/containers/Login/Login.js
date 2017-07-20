@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Alert } from 'react-native';
 import PropTypes from 'prop-types';
 import Login from 'components/Login/Login';
 import login from 'actions/login';
@@ -21,6 +22,10 @@ function returnResponseError(response) {
   return false;
 }
 
+function error(message) {
+  Alert.alert('Error', message, [{ text: 'Cancel' }]);
+}
+
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
@@ -35,7 +40,6 @@ class LoginContainer extends Component {
     this.login = this.login.bind(this);
     this.register = this.register.bind(this);
     this.onChange = this.onChange.bind(this);
-    this.modalClose = this.modalClose.bind(this);
   }
 
   onChange(event) {
@@ -52,17 +56,17 @@ class LoginContainer extends Component {
         const err = returnResponseError(payload);
 
         if (err) {
-          this.setState({ modal: 'Incorrect ID', loginActivity });
+          this.setState({ loginActivity });
+          error('Incorrect ID');
         } else {
-          this.setState({ modal: null, loginActivity });
+          this.setState({ loginActivity });
           this.props.dispatch(login(this.state.id, payload));
         }
       })
-      .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', loginActivity }));
-  }
-
-  modalClose() {
-    this.setState({ modal: null });
+      .catch(() => {
+        error('Sorry we could not connect to our service, try again later');
+        this.setState({ loginActivity });
+      });
   }
 
   register() {
@@ -80,16 +84,27 @@ class LoginContainer extends Component {
       .then(response => response.json())
       .then((payload) => {
         if (!payload || !payload.uri) {
-          this.setState({ modal: 'Could not create account, try again later', registerActivity });
+          error('Could not create account, try again later');
+          this.setState({ registerActivity });
         } else {
-          this.setState({ modal: null, registerActivity });
+          this.setState({ registerActivity });
           this.props.dispatch(register(payload.uri));
         }
       })
-      .catch(() => this.setState({ modal: 'Sorry we could not connect to our service, try again later', registerActivity }));
+      .catch(() => {
+        error('Sorry we could not connect to our service, try again later');
+        this.setState({ registerActivity });
+      });
   }
 
   render() {
+    if (this.state.modal) {
+      Alert.alert('Error', this.state.modal, [{
+        text: 'Cancel',
+        onPress: () => this.setState({ modal: null }),
+      }]);
+    }
+
     return (
       <Login
         login={this.login}
@@ -98,8 +113,6 @@ class LoginContainer extends Component {
         id={this.state.id}
         loginActivity={this.state.loginActivity}
         registerActivity={this.state.registerActivity}
-        modal={this.state.modal}
-        modalClose={this.modalClose}
       />
     );
   }

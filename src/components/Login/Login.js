@@ -19,8 +19,6 @@ const Login = ({
   id,
   loginActivity,
   registerActivity,
-  modal,
-  modalClose,
 }) => {
   let goActivityElement;
   let registerActivityElement;
@@ -32,22 +30,6 @@ const Login = ({
 
   if (registerActivity) {
     registerActivityElement = <ActivityIndicator style={style.activity} />;
-  }
-
-  if (modal) {
-    modalElement = (
-      <View style={style.modal}>
-        <View style={style.modalBackground} />
-        <View style={style.modalWrapper}>
-          <Text style={style.modalText}>{modal}</Text>
-          <TouchableOpacity onPress={modalClose}>
-            <View style={style.modalButton}>
-              <Text style={style.modalButtonText}>Dismiss</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
   }
 
   return (
@@ -106,12 +88,6 @@ Login.propTypes = {
   id: PropTypes.string.isRequired,
   loginActivity: PropTypes.bool.isRequired,
   registerActivity: PropTypes.bool.isRequired,
-  modal: PropTypes.string,
-  modalClose: PropTypes.func.isRequired,
-};
-
-Login.defaultProps = {
-  modal: null,
 };
 
 export default Login;
