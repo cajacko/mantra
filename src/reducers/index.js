@@ -8,6 +8,7 @@ import notifications from 'reducers/notifications';
 import permissions from 'reducers/permissions';
 import lastSetBadge from 'reducers/lastSetBadge';
 import lastSetNotifications from 'reducers/lastSetNotifications';
+import syncLoading from 'reducers/syncLoading';
 
 export default combineReducers({
   items,
@@ -19,4 +20,5 @@ export default combineReducers({
   permissions,
   lastSetBadge,
   lastSetNotifications,
+  syncLoading,
 });

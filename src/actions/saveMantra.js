@@ -3,7 +3,7 @@ import uuidv4 from 'uuid/v4';
 
 export default function (title, item) {
   const now = moment().unix();
-  let payload;
+  let payload = {};
 
   if (item) {
     payload = Object.assign({}, item);

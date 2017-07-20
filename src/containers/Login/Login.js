@@ -51,11 +51,7 @@ class LoginContainer extends Component {
     const loginActivity = false;
 
     fetch(`https://api.myjson.com/bins/${this.state.id}`)
-      .then((response) => {
-        // For some reason this call was hangin without
-        // this comment line in place. VBery confusing
-        response.json();
-      })
+      .then(response => response.json())
       .then((payload) => {
         const err = returnResponseError(payload);
 

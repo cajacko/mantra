@@ -1,41 +1,72 @@
-import React from 'react';
-import { FlatList } from 'react-native';
+import React, { Component } from 'react';
+import { FlatList, Animated, Easing } from 'react-native';
 import PropTypes from 'prop-types';
 import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 
+class Mantraloop extends Component {
+  constructor(props) {
+    super(props);
 
-const Mantraloop = ({ mantraLoop, onRefresh, refreshing }) => {
-  let lastId;
+    this.state = {
+      rotation: new Animated.Value(0),
+    };
 
-  if (mantraLoop.length) {
-    lastId = mantraLoop[mantraLoop.length - 1].key;
+    this.runAnimation = this.runAnimation.bind(this);
   }
 
-  return (
-    <FlatList
-      data={mantraLoop}
-      onRefresh={onRefresh}
-      refreshing={refreshing}
-      renderItem={({ item }) => {
-        let last = false;
+  componentDidMount() {
+    this.runAnimation();
+  }
 
-        if (lastId === item.key) {
-          last = true;
-        }
+  runAnimation() {
+    this.state.rotation.setValue(0);
 
-        return (
-          <Item
-            key={item.key}
-            itemId={item.key}
-            element={Mantra}
-            last={last}
-          />
-        );
-      }}
-    />
-  );
-};
+    Animated.timing(this.state.rotation, {
+      toValue: 1,
+      duration: 1500,
+      easing: Easing.linear,
+    }).start(() => this.runAnimation());
+  }
+
+  render() {
+    let lastId;
+
+    if (this.props.mantraLoop.length) {
+      lastId = this.props.mantraLoop[this.props.mantraLoop.length - 1].key;
+    }
+
+    const spin = this.state.rotation.interpolate({
+      inputRange: [0, 1],
+      outputRange: ['0deg', '360deg'],
+    });
+
+    return (
+      <FlatList
+        data={this.props.mantraLoop}
+        onRefresh={this.props.onRefresh}
+        refreshing={this.props.refreshing}
+        renderItem={({ item }) => {
+          let last = false;
+
+          if (lastId === item.key) {
+            last = true;
+          }
+
+          return (
+            <Item
+              key={item.key}
+              itemId={item.key}
+              element={Mantra}
+              last={last}
+              rotation={spin}
+            />
+          );
+        }}
+      />
+    );
+  }
+}
 
 Mantraloop.propTypes = {
   mantraLoop: PropTypes.arrayOf(PropTypes.shape({

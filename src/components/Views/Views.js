@@ -16,8 +16,6 @@ const Views = ({ view, myjsonId, viewProps }) => {
     return <Login />;
   }
 
-  console.log(viewProps);
-
   if (view === 'AddView') {
     return <AddView id={viewProps.id} title={viewProps.title} />;
   }

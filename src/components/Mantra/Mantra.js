@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 import Swipeout from 'react-native-swipeout';
@@ -12,7 +12,15 @@ function swipeoutBtns(deleteAction, edit) {
   ];
 }
 
-const Mantra = ({ title, last, deleteMantra, editMantra, online }) => {
+const Mantra = ({
+  last,
+  online,
+  rotation,
+  deleteMantra,
+  editMantra,
+  title,
+  syncing,
+}) => {
   const containerStyles = [style.container];
   let syncIcon;
 
@@ -21,10 +29,16 @@ const Mantra = ({ title, last, deleteMantra, editMantra, online }) => {
   }
 
   if (!online) {
+    let viewStyle = style.icon;
+
+    if (syncing) {
+      viewStyle = { ...viewStyle, transform: [{ rotate: rotation }] };
+    }
+
     syncIcon = (
-      <View style={style.icon}>
+      <Animated.View style={viewStyle}>
         <Ionicons name="ios-sync" size={style.iconSize} color={style.iconColour} />
-      </View>
+      </Animated.View>
     );
   }
 
@@ -49,6 +63,13 @@ Mantra.propTypes = {
   deleteMantra: PropTypes.func.isRequired,
   online: PropTypes.bool.isRequired,
   editMantra: PropTypes.func.isRequired,
+  syncing: PropTypes.bool.isRequired,
+  // eslint-disable-next-line
+  rotation: PropTypes.object,
+};
+
+Mantra.defaultProps = {
+  rotation: null,
 };
 
 export default Mantra;

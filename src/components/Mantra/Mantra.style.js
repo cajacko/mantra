@@ -4,6 +4,7 @@ import { WHITE, GREY_LIGHT, GREY, GREY_LIGHTER, BLACK } from 'constants/colours'
 
 const horizontalSpacing = HORIZONTAL_VIEW_SPACING;
 const verticalSpacing = 20;
+const iconSize = 20;
 
 export default {
   container: {
@@ -30,8 +31,12 @@ export default {
     borderBottomWidth: 1,
   },
 
-  icon: {},
-  iconSize: 20,
+  icon: {
+    height: iconSize,
+    overflow: 'hidden',
+  },
+
+  iconSize: iconSize,
   iconColour: GREY,
   deleteBackground: GREY_LIGHT,
   editBackground: GREY_LIGHTER,

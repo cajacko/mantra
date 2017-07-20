@@ -31,6 +31,8 @@ class MantraContainer extends Component {
         last={this.props.last}
         online={this.props.online}
         editMantra={this.editMantra}
+        rotation={this.props.rotation}
+        syncing={this.props.syncLoading}
       />
     );
   }
@@ -42,10 +44,18 @@ MantraContainer.propTypes = {
   title: PropTypes.string.isRequired,
   last: PropTypes.bool,
   online: PropTypes.bool.isRequired,
+  // eslint-disable-next-line
+  rotation: PropTypes.object,
+  syncLoading: PropTypes.bool.isRequired,
 };
 
 MantraContainer.defaultProps = {
   last: false,
+  rotation: null,
 };
 
-export default connect()(MantraContainer);
+function mapStateToProps({ syncLoading }) {
+  return { syncLoading };
+}
+
+export default connect(mapStateToProps)(MantraContainer);
