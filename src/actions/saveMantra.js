@@ -1,19 +1,20 @@
 import moment from 'moment';
 import uuidv4 from 'uuid/v4';
 
-export default function (title, existingId) {
+export default function (title, item) {
   const now = moment().unix();
+  let payload;
 
-  const payload = {
-    title,
-    dateModified: now,
-    deleted: false,
-    online: false,
-  };
+  if (item) {
+    payload = Object.assign({}, item);
+  }
 
-  if (existingId) {
-    payload.id = existingId;
-  } else {
+  payload.title = title;
+  payload.dateModified = now;
+  payload.deleted = false;
+  payload.online = false;
+
+  if (!item) {
     payload.id = uuidv4();
     payload.dateAdded = now;
   }

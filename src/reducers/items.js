@@ -33,7 +33,7 @@ export default (state = defaultState, { type, payload }) => {
         const item = {
           title: 'No title',
           id,
-          dateAddded: payload.timestamp,
+          dateAdded: payload.timestamp,
           dateModified: payload.timestamp,
           online: false,
           deleted: false,

@@ -17,9 +17,18 @@ class AddViewContainer extends Component {
     let charactersLeft = characterCount;
     let id;
     let showDelete = false;
+    let item;
 
-    if (this.props.title) {
-      title = this.props.title;
+    if (this.props.id) {
+      item = this.props.items[this.props.id];
+
+      if (!item) {
+        // eslint-disable-next-line
+        console.error('Could not find item with given id', this.props);
+        item = { id: this.props.id };
+      }
+
+      title = item.title;
       enableSave = true;
       charactersLeft = characterCount - title.length;
     }
@@ -30,6 +39,7 @@ class AddViewContainer extends Component {
     }
 
     this.state = {
+      item,
       title,
       enableSave,
       charactersLeft,
@@ -65,7 +75,7 @@ class AddViewContainer extends Component {
   }
 
   saveMantra() {
-    this.props.dispatch(saveMantra(this.state.title, this.props.id));
+    this.props.dispatch(saveMantra(this.state.title, this.state.item));
   }
 
   render() {
@@ -86,13 +96,17 @@ class AddViewContainer extends Component {
 
 AddViewContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  title: PropTypes.string,
   id: PropTypes.string,
+  // eslint-disable-next-line
+  items: PropTypes.object.isRequired,
 };
 
 AddViewContainer.defaultProps = {
-  title: null,
   id: null,
 };
 
-export default connect()(AddViewContainer);
+function mapStateToProps({ items }) {
+  return { items };
+}
+
+export default connect(mapStateToProps)(AddViewContainer);
