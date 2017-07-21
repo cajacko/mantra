@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Mantra from 'components/Mantra/Mantra';
-import deleteMantra from 'actions/deleteMantra';
+import deleteWithAlert from 'helpers/deleteWithAlert';
 import switchView from 'actions/switchView';
 
 class MantraContainer extends Component {
@@ -13,7 +13,7 @@ class MantraContainer extends Component {
   }
 
   deleteMantra() {
-    this.props.dispatch(deleteMantra(this.props.id));
+    deleteWithAlert(this.props.dispatch, this.props.id);
   }
 
   editMantra() {

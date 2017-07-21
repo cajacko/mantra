@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import AddView from 'components/AddView/AddView';
 import saveMantra from 'actions/saveMantra';
 import switchView from 'actions/switchView';
-import deleteMantra from 'actions/deleteMantra';
+import deleteWithAlert from 'helpers/deleteWithAlert';
 
 const characterCount = 120;
 
@@ -66,7 +66,7 @@ class AddViewContainer extends Component {
 
   deleteMantra() {
     if (this.props.id) {
-      this.props.dispatch(deleteMantra(this.props.id));
+      deleteWithAlert(this.props.dispatch, this.props.id);
     }
   }
 
