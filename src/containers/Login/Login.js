@@ -1,3 +1,4 @@
+/* eslint max-lines: 0 */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Alert } from 'react-native';
@@ -5,6 +6,10 @@ import PropTypes from 'prop-types';
 import Login from 'components/Login/Login';
 import login from 'actions/login';
 import register from 'actions/register';
+
+const timeoutLength = 10000;
+let loginCallId = 0;
+let registerCallId = 0;
 
 function returnResponseError(response) {
   if (!response) {
@@ -35,6 +40,7 @@ class LoginContainer extends Component {
       loginActivity: false,
       registerActivity: false,
       modal: null,
+      loginLastId: null,
     };
 
     this.login = this.login.bind(this);
@@ -47,12 +53,49 @@ class LoginContainer extends Component {
   }
 
   login() {
-    this.setState({ loginActivity: true });
+    if (this.state.loginActivity && this.state.loginLastId === this.state.id) {
+      return;
+    }
+
+    this.setState({
+      loginActivity: true,
+      loginLastId: this.state.id,
+      registerActivity: false,
+    });
+
+    registerCallId += 1;
+
     const loginActivity = false;
+    const loginId = this.state.id;
+
+    let timeout = false;
+
+    setTimeout(() => {
+      if (this.state.loginActivity) {
+        this.setState({ loginActivity });
+        error('Login timed out, try again with faster internet');
+        timeout = true;
+      }
+    }, timeoutLength);
+
+    loginCallId += 1;
+    const localLoginId = loginCallId;
 
     fetch(`https://api.myjson.com/bins/${this.state.id}`)
       .then(response => response.json())
       .then((payload) => {
+        if (localLoginId !== loginCallId) {
+          return;
+        }
+
+        if (timeout) {
+          return;
+        }
+
+        if (loginId !== this.state.loginLastId) {
+          return;
+        }
+
         const err = returnResponseError(payload);
 
         if (err) {
@@ -70,8 +113,26 @@ class LoginContainer extends Component {
   }
 
   register() {
-    this.setState({ registerActivity: true });
+    if (this.state.registerActivity) {
+      return;
+    }
+
+    this.setState({ registerActivity: true, loginActivity: false });
     const registerActivity = false;
+    loginCallId += 1;
+
+    let timeout = false;
+
+    setTimeout(() => {
+      if (this.state.registerActivity) {
+        this.setState({ registerActivity });
+        error('Register timed out, try again with faster internet');
+        timeout = true;
+      }
+    }, timeoutLength);
+
+    registerCallId += 1;
+    const registerId = registerCallId;
 
     fetch('https://api.myjson.com/bins', {
       method: 'POST',
@@ -83,6 +144,14 @@ class LoginContainer extends Component {
     })
       .then(response => response.json())
       .then((payload) => {
+        if (registerId !== registerCallId) {
+          return;
+        }
+
+        if (timeout) {
+          return;
+        }
+
         if (!payload || !payload.uri) {
           error('Could not create account, try again later');
           this.setState({ registerActivity });
