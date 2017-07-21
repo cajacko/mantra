@@ -101,35 +101,6 @@ export default {
 
   placeholderColor: TEXT_COLOURS.GREY,
 
-  button: {
-    backgroundColor: YELLOW,
-    borderColor: YELLOW_HIGHLIGHT,
-    borderWidth: 2,
-    alignItems: 'center',
-    paddingLeft: 30,
-    paddingRight: 30,
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderRadius: 20,
-    shadowOffset: { width: -2, height: 2 },
-    shadowColor: BLACK,
-    shadowOpacity: 0.3,
-    shadowRadius: 5,
-  },
-
-  buttonDisabled: {
-    backgroundColor: GREY_LIGHTER,
-    borderColor: GREY_LIGHT,
-  },
-
-  buttonText: {
-    fontSize: TEXT_SIZES.MEDIUM,
-  },
-
-  buttonTextDisabled: {
-    color: GREY,
-  },
-
   register: {
     marginBottom: 50,
     alignItems: 'center',

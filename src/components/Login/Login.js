@@ -7,9 +7,9 @@ import {
   Text,
   StatusBar,
   TextInput,
-  TouchableOpacity,
   ActivityIndicator,
 } from 'react-native';
+import Button from 'components/Button/Button';
 import style from 'components/Login/Login.style';
 
 const Login = ({
@@ -61,20 +61,12 @@ const Login = ({
           onSubmitEditing={login}
           returnKeyType="go"
         />
-        <TouchableOpacity onPress={login}>
-          <View style={style.button}>
-            <Text style={style.buttonText}>Go</Text>
-          </View>
-        </TouchableOpacity>
+        <Button onPress={login} text="Go" theme="default" />
         {goActivityElement}
       </View>
 
       <View style={style.register}>
-        <TouchableOpacity onPress={register}>
-          <View style={style.button}>
-            <Text style={style.buttonText}>Register</Text>
-          </View>
-        </TouchableOpacity>
+        <Button onPress={register} text="Register" theme="default" />
         {registerActivityElement}
       </View>
     </ScrollView>
