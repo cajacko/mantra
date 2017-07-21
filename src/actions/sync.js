@@ -86,14 +86,14 @@ export default function (cancelOtherCalls) {
     getServerData(myjsonId)
       .then((serverItems) => {
         if (activeSync !== syncId) {
-          return;
+          return null;
         }
 
         const mergedItems = mergeItems(items, serverItems);
         return setServerData(myjsonId, mergedItems);
       })
       .then((serverItems) => {
-        if (activeSync === syncId) {
+        if (activeSync === syncId && serverItems) {
           dispatch({ type: 'SYNC_SUCCESS', payload: serverItems });
           activeSync = null;
         }
