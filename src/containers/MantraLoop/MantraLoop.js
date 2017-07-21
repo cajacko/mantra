@@ -29,6 +29,7 @@ class MantraLoopContainer extends Component {
     this.state = {
       mantraLoop: returnMantraLoop(props.items),
       refreshing: false,
+      initialItems: Object.keys(props.items),
     };
 
     this.onRefresh = this.onRefresh.bind(this);
@@ -84,6 +85,7 @@ class MantraLoopContainer extends Component {
         mantraLoop={this.state.mantraLoop}
         refreshing={this.state.refreshing}
         onRefresh={this.onRefresh}
+        initialItems={this.state.initialItems}
       />
     );
   }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Animated } from 'react-native';
+import React, { Component } from 'react';
+import { Alert, View, Text, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 import Swipeout from 'react-native-swipeout';
@@ -12,50 +12,126 @@ function swipeoutBtns(deleteAction, edit) {
   ];
 }
 
-const Mantra = ({
-  last,
-  online,
-  rotation,
-  deleteMantra,
-  editMantra,
-  title,
-  syncing,
-}) => {
-  const containerStyles = [style.container];
-  let syncIcon;
+const outAnimationTiming = 300;
+const animationTimeout = 100;
 
-  if (last) {
-    containerStyles.push(style.last);
+class Mantra extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { height: null };
+    this.height = null;
+
+    this.deleteMantra = this.deleteMantra.bind(this);
+    this.animateIn = this.animateIn.bind(this);
   }
 
-  if (!online) {
-    let viewStyle = style.icon;
+  animateIn() {
+    if (this.state.height === null) {
+      const height = this.height;
 
-    if (syncing) {
-      viewStyle = { ...viewStyle, transform: [{ rotate: rotation }] };
+      this.setState({
+        height: new Animated.Value(0),
+      });
+
+      setTimeout(() => {
+        Animated.timing(this.state.height, {
+          toValue: height,
+          duration: outAnimationTiming,
+        }).start();
+      }, animationTimeout);
+    }
+  }
+
+  deleteMantra() {
+    Alert.alert('Delete Post', 'Are you sure you want to delete this post?', [
+      {
+        text: 'Delete',
+        onPress: () => {
+          this.setState({
+            height: new Animated.Value(this.height),
+          });
+
+          setTimeout(() => {
+            Animated.timing(this.state.height, {
+              toValue: 0,
+              duration: outAnimationTiming,
+            }).start(this.props.deleteMantra);
+          }, animationTimeout);
+        },
+      },
+      { text: 'Back' },
+    ]);
+  }
+
+  render() {
+    const containerStyles = [style.container];
+    let syncIcon;
+
+    if (this.props.last) {
+      containerStyles.push(style.last);
     }
 
-    syncIcon = (
-      <Animated.View style={viewStyle}>
-        <Ionicons name="ios-sync" size={style.iconSize} color={style.iconColour} />
-      </Animated.View>
+    if (!this.props.online) {
+      let viewStyle = style.icon;
+
+      if (this.props.syncing) {
+        viewStyle = {
+          ...viewStyle,
+          transform: [{ rotate: this.props.rotation }],
+        };
+      }
+
+      syncIcon = (
+        <Animated.View style={viewStyle}>
+          <Ionicons name="ios-sync" size={style.iconSize} color={style.iconColour} />
+        </Animated.View>
+      );
+    }
+
+    let heightStyle = {};
+
+    if (this.state.height !== null) {
+      heightStyle = { height: this.state.height };
+    }
+
+    let viewStyle = {};
+
+    if (!this.props.initial && this.state.height === null) {
+      viewStyle = {
+        position: 'absolute',
+        opacity: 0,
+      };
+    }
+
+    return (
+      <View
+        onLayout={(event) => {
+          this.height = event.nativeEvent.layout.height;
+
+          if (this.height !== null && !this.props.initial) {
+            this.animateIn();
+          }
+        }}
+        style={viewStyle}
+      >
+        <Animated.View style={{ overflow: 'hidden', ...heightStyle }} >
+          <Swipeout
+            right={swipeoutBtns(this.deleteMantra, this.props.editMantra)}
+            style={containerStyles}
+            autoClose
+            sensitivity={50}
+          >
+            <View style={style.wrapper}>
+              <Text style={style.text}>{this.props.title}</Text>
+              {syncIcon}
+            </View>
+          </Swipeout>
+        </Animated.View>
+      </View>
     );
   }
-
-  return (
-    <Swipeout
-      right={swipeoutBtns(deleteMantra, editMantra)}
-      style={containerStyles}
-      autoClose
-      sensitivity={50}
-    >
-      <View style={style.wrapper}>
-        <Text style={style.text}>{title}</Text>
-        {syncIcon}
-      </View>
-    </Swipeout>
-  );
-};
+}
 
 Mantra.propTypes = {
   title: PropTypes.string.isRequired,
@@ -66,6 +142,7 @@ Mantra.propTypes = {
   syncing: PropTypes.bool.isRequired,
   // eslint-disable-next-line
   rotation: PropTypes.object,
+  initial: PropTypes.bool.isRequired,
 };
 
 Mantra.defaultProps = {

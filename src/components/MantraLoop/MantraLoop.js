@@ -48,9 +48,14 @@ class Mantraloop extends Component {
         refreshing={this.props.refreshing}
         renderItem={({ item }) => {
           let last = false;
+          let initial = false;
 
           if (lastId === item.key) {
             last = true;
+          }
+
+          if (this.props.initialItems.includes(item.key)) {
+            initial = true;
           }
 
           return (
@@ -60,6 +65,7 @@ class Mantraloop extends Component {
               element={Mantra}
               last={last}
               rotation={spin}
+              initial={initial}
             />
           );
         }}
@@ -74,6 +80,7 @@ Mantraloop.propTypes = {
   })).isRequired,
   refreshing: PropTypes.bool.isRequired,
   onRefresh: PropTypes.func.isRequired,
+  initialItems: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default Mantraloop;

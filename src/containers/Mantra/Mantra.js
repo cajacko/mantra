@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Mantra from 'components/Mantra/Mantra';
-import deleteWithAlert from 'helpers/deleteWithAlert';
 import switchView from 'actions/switchView';
+import deleteMantra from 'actions/deleteMantra';
 
 class MantraContainer extends Component {
   constructor(props) {
@@ -13,7 +13,7 @@ class MantraContainer extends Component {
   }
 
   deleteMantra() {
-    deleteWithAlert(this.props.dispatch, this.props.id);
+    this.props.dispatch(deleteMantra(this.props.id));
   }
 
   editMantra() {
@@ -33,6 +33,7 @@ class MantraContainer extends Component {
         editMantra={this.editMantra}
         rotation={this.props.rotation}
         syncing={this.props.syncLoading}
+        initial={this.props.initial}
       />
     );
   }
@@ -47,6 +48,7 @@ MantraContainer.propTypes = {
   // eslint-disable-next-line
   rotation: PropTypes.object,
   syncLoading: PropTypes.bool.isRequired,
+  initial: PropTypes.bool.isRequired,
 };
 
 MantraContainer.defaultProps = {
