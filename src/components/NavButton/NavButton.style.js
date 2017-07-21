@@ -1,6 +1,10 @@
 import { GREY, BLUE } from 'constants/colours';
+import { TEXT_SIZES } from 'constants/text';
 
-export const ICON_SIZE = 40;
+const iconSize = 30;
+const textSize = TEXT_SIZES.MICRO;
+const textSpacing = 3;
+export const CONTENT_HEIGHT = iconSize + textSize + textSpacing;
 
 export default {
   icon: {
@@ -9,11 +13,21 @@ export default {
 
   iconWrapper: {
     flex: 1,
+    paddingTop: 5,
+  },
+
+  touchWrap: {
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  iconSize: ICON_SIZE,
+  text: {
+    color: GREY,
+    fontSize: textSize,
+    marginTop: textSpacing,
+  },
+
+  iconSize,
   iconColour: GREY,
   iconColourActive: BLUE,
 };

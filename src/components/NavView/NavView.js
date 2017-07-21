@@ -29,11 +29,11 @@ const NavView = ({ children, switchView, logout, activeItem }) => {
         {children}
       </View>
       <View style={style.nav}>
-        <NavButton action={() => switchView('DisplayView')} icon="ios-albums-outline" active={displayActive} />
-        <NavButton action={() => switchView('LoopView')} icon="ios-list-outline" active={loopActive} />
-        <NavButton action={() => switchView('AddView')} icon="ios-add" />
-        <NavButton action={() => switchView('ProfileView')} icon="ios-contact-outline" active={profileActive} />
-        <NavButton action={logout} icon="ios-exit-outline" />
+        <NavButton action={() => switchView('DisplayView')} icon="ios-albums-outline" active={displayActive} title="Slides" />
+        <NavButton action={() => switchView('LoopView')} icon="ios-list-outline" active={loopActive} title="List" />
+        <NavButton action={() => switchView('AddView')} icon="ios-add" title="Add" />
+        <NavButton action={() => switchView('ProfileView')} icon="ios-contact-outline" active={profileActive} title="Profile" />
+        <NavButton action={logout} icon="ios-exit-outline" title="Logout" />
       </View>
     </View>
   );

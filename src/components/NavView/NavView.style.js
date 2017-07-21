@@ -1,5 +1,5 @@
 import { GREY_LIGHT, GREY_LIGHTER } from 'constants/colours';
-import { ICON_SIZE } from 'components/NavButton/NavButton.style';
+import { CONTENT_HEIGHT } from 'components/NavButton/NavButton.style';
 
 export default {
   container: {
@@ -11,7 +11,7 @@ export default {
   },
 
   nav: {
-    height: ICON_SIZE + (ICON_SIZE * 0.4),
+    height: CONTENT_HEIGHT + (CONTENT_HEIGHT * 0.4),
     flexDirection: 'row',
     backgroundColor: GREY_LIGHTER,
     borderColor: GREY_LIGHT,
