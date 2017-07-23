@@ -18,7 +18,7 @@ class Cache extends Component {
   }
 
   async loadAssetsAsync() {
-    const fontAssets = cacheFonts([Ionicons]);
+    const fontAssets = cacheFonts([Ionicons.font]);
     await Promise.all([...fontAssets]);
 
     this.setState({ appIsReady: true });
