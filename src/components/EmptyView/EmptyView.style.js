@@ -1,5 +1,6 @@
 import statusBarHeight from 'helpers/statusBarHeight';
 import { WHITE } from 'constants/colours';
+import { TEXT_SIZES } from 'constants/text';
 
 export default {
   container: {
@@ -10,8 +11,15 @@ export default {
 
   wrapper: {
     flex: 1,
-    justifyContent: 'space-between',
+    justifyContent: 'center',
     alignItems: 'center',
-    flexDirection: 'row',
+  },
+
+  noneMessage: {
+    fontSize: TEXT_SIZES.MEDIUM,
+  },
+
+  addButton: {
+    marginTop: 20,
   },
 };

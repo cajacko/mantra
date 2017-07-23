@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import DisplayView from 'components/DisplayView/DisplayView';
-import switchView from 'actions/switchView';
 import shuffle from 'helpers/shuffle';
 
 function getVisibleItems(items) {
@@ -38,11 +37,6 @@ class DisplayViewContainer extends Component {
 
     this.prev = this.prev.bind(this);
     this.next = this.next.bind(this);
-    this.add = this.add.bind(this);
-  }
-
-  add() {
-    this.props.dispatch(switchView('AddView'));
   }
 
   prev() {
@@ -89,14 +83,12 @@ class DisplayViewContainer extends Component {
         next={this.next}
         mantraId={this.state.mantraId}
         showNav={this.state.showNav}
-        add={this.add}
       />
     );
   }
 }
 
 DisplayViewContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
 };
