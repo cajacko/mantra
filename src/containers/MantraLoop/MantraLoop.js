@@ -9,9 +9,7 @@ function returnMantraLoop(items) {
   const ids = Object.keys(items);
 
   ids.forEach((id) => {
-    if (items[id].deleted === false) {
-      mantraLoop.push(items[id]);
-    }
+    mantraLoop.push(items[id]);
   });
 
   mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);

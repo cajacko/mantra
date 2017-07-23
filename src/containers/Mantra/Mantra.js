@@ -8,12 +8,18 @@ import deleteMantra from 'actions/deleteMantra';
 class MantraContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = { deleted: props.deleted };
     this.deleteMantra = this.deleteMantra.bind(this);
     this.editMantra = this.editMantra.bind(this);
   }
 
   deleteMantra() {
     this.props.dispatch(deleteMantra(this.props.id));
+    this.setState({ deleted: true });
+  }
+
+  finishedProgramaticDeleteAnimation() {
+    this.setState({ deleted: true });
   }
 
   editMantra() {
@@ -24,6 +30,10 @@ class MantraContainer extends Component {
   }
 
   render() {
+    if (this.state.deleted) {
+      return null;
+    }
+
     return (
       <Mantra
         deleteMantra={this.deleteMantra}
@@ -34,6 +44,8 @@ class MantraContainer extends Component {
         rotation={this.props.rotation}
         syncing={this.props.syncLoading}
         initial={this.props.initial}
+        deletedProp={this.props.deleted}
+        deletedState={this.state.deleted}
       />
     );
   }
@@ -49,6 +61,7 @@ MantraContainer.propTypes = {
   rotation: PropTypes.object,
   syncLoading: PropTypes.bool.isRequired,
   initial: PropTypes.bool.isRequired,
+  deleted: PropTypes.bool.isRequired,
 };
 
 MantraContainer.defaultProps = {

@@ -8,10 +8,7 @@ class Mantraloop extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      rotation: new Animated.Value(0),
-    };
-
+    this.state = { rotation: new Animated.Value(0) };
     this.runAnimation = this.runAnimation.bind(this);
   }
 
@@ -30,12 +27,6 @@ class Mantraloop extends Component {
   }
 
   render() {
-    let lastId;
-
-    if (this.props.mantraLoop.length) {
-      lastId = this.props.mantraLoop[this.props.mantraLoop.length - 1].key;
-    }
-
     const spin = this.state.rotation.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg'],
@@ -47,12 +38,7 @@ class Mantraloop extends Component {
         onRefresh={this.props.onRefresh}
         refreshing={this.props.refreshing}
         renderItem={({ item }) => {
-          let last = false;
           let initial = false;
-
-          if (lastId === item.key) {
-            last = true;
-          }
 
           if (this.props.initialItems.includes(item.key)) {
             initial = true;
@@ -63,7 +49,6 @@ class Mantraloop extends Component {
               key={item.key}
               itemId={item.key}
               element={Mantra}
-              last={last}
               rotation={spin}
               initial={initial}
             />

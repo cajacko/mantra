@@ -8,7 +8,7 @@ const iconSize = 20;
 
 export default {
   container: {
-    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: GREY_LIGHT,
     backgroundColor: WHITE,
   },
@@ -27,16 +27,12 @@ export default {
     flex: 1,
   },
 
-  last: {
-    borderBottomWidth: 1,
-  },
-
   icon: {
     height: iconSize,
     overflow: 'hidden',
   },
 
-  iconSize: iconSize,
+  iconSize,
   iconColour: GREY,
   deleteBackground: GREY_LIGHT,
   editBackground: GREY_LIGHTER,
