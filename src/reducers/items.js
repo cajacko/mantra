@@ -1,3 +1,5 @@
+import mergeItems from 'helpers/mergeItems';
+
 const defaultState = {};
 
 export default (state = defaultState, { type, payload }) => {
@@ -20,8 +22,10 @@ export default (state = defaultState, { type, payload }) => {
       return modifiedState;
     }
 
-    case 'SYNC_SUCCESS':
-      return payload;
+    case 'SYNC_SUCCESS': {
+      const modifiedState = Object.assign({}, state);
+      return mergeItems(modifiedState, payload);
+    }
 
     case 'LOGIN':
       return payload.data.items;

@@ -1,3 +1,5 @@
+import mergeItems from 'helpers/mergeItems';
+
 function getServerData(myjsonId) {
   return new Promise((resolve, reject) => {
     fetch(`https://api.myjson.com/bins/${myjsonId}`)
@@ -17,24 +19,6 @@ function getServerData(myjsonId) {
         }
       });
   });
-}
-
-function mergeItems(localItems, serverItems) {
-  const items = Object.assign({}, localItems);
-
-  Object.keys(serverItems).forEach((id) => {
-    if (!items[id]) {
-      items[id] = serverItems[id];
-    } else if (serverItems[id].dateUpdated > items[id].dateUpdated) {
-      items[id] = serverItems[id];
-    }
-  });
-
-  Object.keys(items).forEach((id) => {
-    items[id].online = true;
-  });
-
-  return items;
 }
 
 function setServerData(myjsonId, items) {
@@ -89,7 +73,7 @@ export default function (cancelOtherCalls) {
           return null;
         }
 
-        const mergedItems = mergeItems(items, serverItems);
+        const mergedItems = mergeItems(items, serverItems, true);
         return setServerData(myjsonId, mergedItems);
       })
       .then((serverItems) => {
