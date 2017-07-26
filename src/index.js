@@ -1,16 +1,21 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import PostActions from 'containers/PostActions/PostActions';
+import Views from 'containers/Views/Views';
 import getStore from 'store/getStore';
 import cron from 'views/workers/notifications';
 import Cache from 'containers/Cache/Cache';
+import sync from 'views/workers/sync';
+import permissions from 'views/workers/permissions';
+import 'views/workers/update';
 
 cron();
+sync();
+permissions();
 
 const Root = () => (
   <Cache>
     <Provider store={getStore()}>
-      <PostActions />
+      <Views />
     </Provider>
   </Cache>
 );
