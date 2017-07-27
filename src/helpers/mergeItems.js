@@ -4,7 +4,7 @@ export default function (localItems, serverItems, markOnline) {
   Object.keys(serverItems).forEach((id) => {
     if (!items[id]) {
       items[id] = serverItems[id];
-    } else if (serverItems[id].dateUpdated > items[id].dateUpdated) {
+    } else if (serverItems[id].dateModified >= items[id].dateModified) {
       items[id] = serverItems[id];
     }
   });

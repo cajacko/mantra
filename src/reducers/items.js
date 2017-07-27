@@ -23,8 +23,7 @@ export default (state = defaultState, { type, payload }) => {
     }
 
     case 'SYNC_SUCCESS': {
-      const modifiedState = Object.assign({}, state);
-      return mergeItems(modifiedState, payload);
+      return mergeItems(state, payload);
     }
 
     case 'LOGIN':
