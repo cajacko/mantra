@@ -22,67 +22,21 @@ class DisplayViewContainer extends Component {
 
     const orderedItems = getVisibleItems(props.items);
     const mantraLoop = shuffle(orderedItems);
-    let mantraId;
-    let showNav = false;
 
-    if (mantraLoop.length !== 0) {
-      mantraId = mantraLoop[0];
+    let showsButtons = false;
 
-      if (mantraLoop.length > 1) {
-        showNav = true;
-      }
+    if (mantraLoop.length > 1) {
+      showsButtons = true;
     }
 
-    this.state = { mantraId, showNav, mantraLoop, iterator: 0, orderedItems };
-
-    this.prev = this.prev.bind(this);
-    this.next = this.next.bind(this);
-  }
-
-  prev() {
-    let iterator = this.state.iterator;
-
-    if (iterator <= 0 && this.state.mantraLoop.length > 0) {
-      iterator = this.state.mantraLoop.length - 1;
-    } else if (this.state.mantraLoop.length > 0) {
-      iterator -= 1;
-    } else {
-      return;
-    }
-
-    const mantraId = this.state.mantraLoop[iterator];
-
-    if (mantraId) {
-      this.setState({ iterator, mantraId });
-    }
-  }
-
-  next() {
-    let iterator = this.state.iterator;
-    const length = this.state.mantraLoop.length;
-
-    if (iterator >= (length - 1) && length > 0) {
-      iterator = 0;
-    } else if (this.state.mantraLoop.length > 0) {
-      iterator += 1;
-    } else {
-      return;
-    }
-
-    const mantraId = this.state.mantraLoop[iterator];
-
-    if (mantraId) {
-      this.setState({ iterator, mantraId });
-    }
+    this.state = { showsButtons, mantraLoop };
   }
 
   render() {
     return (
       <DisplayView
-        prev={this.prev}
-        next={this.next}
-        mantraId={this.state.mantraId}
-        showNav={this.state.showNav}
+        mantraLoop={this.state.mantraLoop}
+        showsButtons={this.state.showsButtons}
       />
     );
   }

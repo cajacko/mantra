@@ -1,12 +1,8 @@
 import { GREY_LIGHT } from 'constants/colours';
 
-export default {
-  iconWrapper: {
-    padding: 15,
-    flex: 1,
-    justifyContent: 'center',
-  },
+export const ICON_SIZE = 40;
 
-  iconSize: 40,
+export default {
+  iconSize: ICON_SIZE,
   iconColour: GREY_LIGHT,
 };
