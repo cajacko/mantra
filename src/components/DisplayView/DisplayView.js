@@ -7,6 +7,7 @@ import DisplayMantra from 'containers/DisplayMantra/DisplayMantra';
 import Item from 'containers/Item/Item';
 import style from 'components/DisplayView/DisplayView.style';
 import EmptyView from 'containers/EmptyView/EmptyView';
+import displayNavStyle from 'components/DisplayNav/DisplayNav.style';
 
 const DisplayView = ({ mantraLoop, showsButtons }) => (
   <EmptyView>
@@ -17,6 +18,7 @@ const DisplayView = ({ mantraLoop, showsButtons }) => (
         loadMinimal
         nextButton={<DisplayNav icon="ios-arrow-forward-outline" />}
         prevButton={<DisplayNav icon="ios-arrow-back-outline" />}
+        buttonWrapperStyle={displayNavStyle.wrapper}
       >
         {
           mantraLoop.map(id => (
