@@ -20,7 +20,12 @@ class Mantra extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { height: null, deletedManually: false };
+    this.state = {
+      height: null,
+      deletedManually: false,
+      offlineInit: !this.props.online,
+    };
+
     this.height = null;
 
     this.deleteMantra = this.deleteMantra.bind(this);
@@ -86,10 +91,15 @@ class Mantra extends Component {
     const containerStyles = [style.container];
     let syncIcon;
 
-    if (!this.props.online) {
+    if (!this.props.online || this.state.offlineInit) {
       let viewStyle = style.icon;
 
-      if (this.props.syncing) {
+      if (this.state.offlineInit && this.props.online) {
+        viewStyle = {
+          ...viewStyle,
+          ...style.iconHide,
+        };
+      } else if (this.props.syncing) {
         viewStyle = {
           ...viewStyle,
           transform: [{ rotate: this.props.rotation }],

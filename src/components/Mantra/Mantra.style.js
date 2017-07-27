@@ -32,6 +32,10 @@ export default {
     overflow: 'hidden',
   },
 
+  iconHide: {
+    opacity: 0,
+  },
+
   iconSize,
   iconColour: GREY,
   deleteBackground: GREY_LIGHT,
