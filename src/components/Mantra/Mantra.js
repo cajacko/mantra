@@ -93,6 +93,7 @@ class Mantra extends Component {
 
     if (!this.props.online || this.state.offlineInit) {
       let viewStyle = style.icon;
+      let iconColour = style.iconColour;
 
       if (this.state.offlineInit && this.props.online) {
         viewStyle = {
@@ -100,6 +101,7 @@ class Mantra extends Component {
           ...style.iconHide,
         };
       } else if (this.props.syncing) {
+        iconColour = style.iconColourSyncing;
         viewStyle = {
           ...viewStyle,
           transform: [{ rotate: this.props.rotation }],
@@ -108,7 +110,7 @@ class Mantra extends Component {
 
       syncIcon = (
         <Animated.View style={viewStyle}>
-          <Ionicons name="ios-sync" size={style.iconSize} color={style.iconColour} />
+          <Ionicons name="ios-sync" size={style.iconSize} color={iconColour} />
         </Animated.View>
       );
     }
