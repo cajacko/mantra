@@ -1,7 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunkMiddleware from 'redux-thunk';
-import { persistStore, autoRehydrate } from 'redux-persist';
-import { AsyncStorage } from 'react-native';
+import { autoRehydrate } from 'redux-persist';
 import reducers from 'reducers/index';
 
 const store = createStore(
@@ -14,7 +13,5 @@ const store = createStore(
     autoRehydrate(),
   ),
 );
-
-persistStore(store, { storage: AsyncStorage });
 
 export default store;

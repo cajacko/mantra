@@ -9,11 +9,19 @@ export default function (localItems, serverItems, markOnline) {
     }
   });
 
+  let newItems = items;
+
   if (markOnline) {
+    // Setup as new object, as was somehow editing the original items
+    // Even through we use Object.assign above
+    newItems = {};
+
     Object.keys(items).forEach((id) => {
-      items[id].online = true;
+      const item = Object.assign({}, items[id]);
+      item.online = true;
+      newItems[id] = item;
     });
   }
 
-  return items;
+  return newItems;
 }

@@ -49,6 +49,18 @@ function setServerData(myjsonId, items) {
   });
 }
 
+function offLinePostsSyncing(items) {
+  const offlinePosts = [];
+
+  Object.keys(items).forEach((id) => {
+    if (items[id].online === false) {
+      offlinePosts.push(id);
+    }
+  });
+
+  return offlinePosts;
+}
+
 let activeSync = null;
 let id = 0;
 
@@ -65,7 +77,7 @@ export default function (cancelOtherCalls) {
 
     activeSync = syncId;
 
-    dispatch({ type: 'SYNC_INIT' });
+    dispatch({ type: 'SYNC_INIT', payload: offLinePostsSyncing(items) });
 
     getServerData(myjsonId)
       .then((serverItems) => {

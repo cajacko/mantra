@@ -34,6 +34,14 @@ class MantraContainer extends Component {
       return null;
     }
 
+    let syncing = false;
+
+    if (this.props.syncLoading) {
+      if (this.props.offlineItemsSyncing.includes(this.props.id)) {
+        syncing = true;
+      }
+    }
+
     return (
       <Mantra
         deleteMantra={this.deleteMantra}
@@ -42,7 +50,7 @@ class MantraContainer extends Component {
         online={this.props.online}
         editMantra={this.editMantra}
         rotation={this.props.rotation}
-        syncing={this.props.syncLoading}
+        syncing={syncing}
         initial={this.props.initial}
         deletedProp={this.props.deleted}
         deletedState={this.state.deleted}
@@ -62,6 +70,7 @@ MantraContainer.propTypes = {
   syncLoading: PropTypes.bool.isRequired,
   initial: PropTypes.bool.isRequired,
   deleted: PropTypes.bool.isRequired,
+  offlineItemsSyncing: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 MantraContainer.defaultProps = {
@@ -69,8 +78,8 @@ MantraContainer.defaultProps = {
   rotation: null,
 };
 
-function mapStateToProps({ syncLoading }) {
-  return { syncLoading };
+function mapStateToProps({ syncLoading, offlineItemsSyncing }) {
+  return { syncLoading, offlineItemsSyncing };
 }
 
 export default connect(mapStateToProps)(MantraContainer);
