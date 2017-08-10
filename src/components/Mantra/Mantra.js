@@ -23,7 +23,9 @@ class Mantra extends Component {
     this.state = {
       height: null,
       deletedManually: false,
-      offlineInit: !this.props.online,
+      offlineInit: !props.online,
+      syncOpacity: new Animated.Value(1),
+      syncing: props.syncing,
     };
 
     this.height = null;
@@ -32,7 +34,7 @@ class Mantra extends Component {
     this.animateIn = this.animateIn.bind(this);
   }
 
-  componentWillReceiveProps({ deletedProp, deletedState }) {
+  componentWillReceiveProps({ deletedProp, deletedState, online, syncing }) {
     if (this.state.deletedManually) {
       return;
     }
@@ -40,6 +42,23 @@ class Mantra extends Component {
     if (deletedProp && deletedState === false) {
       this.animateOut();
     }
+
+    if (online && !this.props.online) {
+      this.hideSyncIcon();
+    }
+
+    if (this.state.syncing && !syncing && !online) {
+      this.setState({ syncing: false });
+    } else if (syncing && !this.state.syncing) {
+      this.setState({ syncing });
+    }
+  }
+
+  hideSyncIcon() {
+    Animated.timing(this.state.syncOpacity, {
+      toValue: 0,
+      duration: outAnimationTiming,
+    }).start();
   }
 
   animateIn() {
@@ -91,16 +110,11 @@ class Mantra extends Component {
     const containerStyles = [style.container];
     let syncIcon;
 
-    if (!this.props.online || this.state.offlineInit) {
-      let viewStyle = style.icon;
+    if (this.state.offlineInit) {
+      let viewStyle = { ...style.icon, opacity: this.state.syncOpacity };
       let iconColour = style.iconColour;
 
-      if (this.state.offlineInit && this.props.online) {
-        viewStyle = {
-          ...viewStyle,
-          ...style.iconHide,
-        };
-      } else if (this.props.syncing) {
+      if (this.state.syncing) {
         iconColour = style.iconColourSyncing;
         viewStyle = {
           ...viewStyle,
