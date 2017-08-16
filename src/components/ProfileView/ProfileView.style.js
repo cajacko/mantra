@@ -71,13 +71,19 @@ export default StyleSheet.create({
     fontSize: TEXT_SIZES.MEDIUM,
   },
 
-  reminders: {
+  disabledText: {
+    marginTop: 20,
+    maxWidth: 500,
+    padding: 20,
+  },
+
+  remindersContainer: {
     justifyContent: 'center',
     alignItems: 'center',
   },
 
-  reminderText: {
+  remindersDescription: {
     fontSize: TEXT_SIZES.MEDIUM,
-    marginBottom: 20,
+    marginBottom: 10,
   },
 });

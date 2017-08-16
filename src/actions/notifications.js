@@ -1,7 +1,7 @@
-export function setNotifications(payload) {
+export function setNotifications(value, time) {
   return {
     type: 'SET_NOTIFICATIONS',
-    payload,
+    payload: { value, time },
   };
 }
 

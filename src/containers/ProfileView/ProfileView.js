@@ -11,15 +11,15 @@ class ProfileViewContainer extends Component {
     this.notificationChange = this.notificationChange.bind(this);
   }
 
-  notificationChange(useNotifications) {
+  notificationChange(useNotifications, value) {
     if (useNotifications) {
       if (this.props.permissions === 'granted') {
-        this.props.dispatch(setNotifications(true));
+        this.props.dispatch(setNotifications(true, value));
       } else if (this.props.permissions !== 'declined') {
-        this.props.dispatch(askForPermission());
+        this.props.dispatch(askForPermission(value));
       }
     } else {
-      this.props.dispatch(setNotifications(false));
+      this.props.dispatch(setNotifications(false, value));
     }
   }
 
@@ -27,7 +27,7 @@ class ProfileViewContainer extends Component {
     return (
       <ProfileView
         myjsonId={this.props.myjsonId}
-        notificationsOn={this.props.notifications}
+        notifications={this.props.notifications}
         notificationChange={this.notificationChange}
         permissions={this.props.permissions}
       />
@@ -39,7 +39,8 @@ ProfileViewContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   myjsonId: PropTypes.string.isRequired,
   permissions: PropTypes.string,
-  notifications: PropTypes.bool.isRequired,
+  // eslint-disable-next-line
+  notifications: PropTypes.object.isRequired,
 };
 
 ProfileViewContainer.defaultProps = {

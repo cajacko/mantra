@@ -8,11 +8,6 @@ const store = getStore();
 
 let cronInterval;
 
-Notifications.addListener((notification) => {
-  // eslint-disable-next-line
-  console.log('Notification', notification);
-});
-
 function getShuffledItems() {
   const { items } = store.getState();
   const shuffledIds = shuffle(Object.keys(items));
@@ -29,30 +24,50 @@ function getShuffledItems() {
   return shuffledVisibleItemsArray;
 }
 
-function setNotifications() {
-  Notifications.cancelAllScheduledNotificationsAsync()
-    .then(() => {
-      const shuffledVisibleItemsArray = getShuffledItems();
+function setNotification(mantra, date) {
+  Notifications.scheduleLocalNotificationAsync(
+    { title: 'Mantra', data: mantra.id, body: mantra.title },
+    { time: date.toDate() },
+  );
+}
 
-      if (shuffledVisibleItemsArray.length === 0) {
-        return;
+function setNotifications(notifications) {
+  const shuffledVisibleItemsArray = getShuffledItems();
+
+  if (shuffledVisibleItemsArray.length === 0) {
+    return;
+  }
+
+  const notificationTimes = [];
+
+  let date;
+  const now = moment();
+
+  for (let i = 0; i < 30; i += 1) {
+    date = moment().add(i, 'days').minute(0);
+
+    const notificationsArr = Object.keys(notifications);
+
+    for (let j = 0; j < notificationsArr.length; j += 1) {
+      const notification = notificationsArr[j];
+
+      if (notifications[notification]) {
+        date = moment().add(i, 'days').hour(notification).minute(0);
+        if (date.utc() > now.utc()) {
+          notificationTimes.push(date);
+        }
       }
+    }
+  }
 
-      let mantra;
-      let date;
-      let index;
+  let index;
+  let mantra;
 
-      for (let i = 1; i < 30; i += 1) {
-        index = (i - 1) % shuffledVisibleItemsArray.length;
-        mantra = shuffledVisibleItemsArray[index];
-        date = moment().add(i, 'days').hour(7).minute(0);
-
-        Notifications.scheduleLocalNotificationAsync(
-          { title: 'Mantra', data: mantra.id, body: mantra.title },
-          { time: date.toDate() },
-        );
-      }
-    });
+  notificationTimes.forEach((notificationTime, i) => {
+    index = i % shuffledVisibleItemsArray.length;
+    mantra = shuffledVisibleItemsArray[index];
+    setNotification(mantra, notificationTime);
+  });
 }
 
 function hasSetNotificationsToday(now) {
@@ -79,7 +94,9 @@ export default function () {
 
     if (permissions === 'granted' && notifications) {
       if (!hasSetNotificationsToday(now)) {
-        setNotifications();
+        Notifications.cancelAllScheduledNotificationsAsync()
+          .then(() => setNotifications(notifications));
+
         store.dispatch(setLastSetNotifications(now.unix()));
       }
     }

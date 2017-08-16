@@ -1,19 +1,22 @@
 import { hasPermissions, setPermissions } from 'helpers/permissions';
 
-export function askForPermission() {
+export function askForPermission(time) {
   return (dispatch) => {
     setPermissions((granted) => {
       let permissions;
+      let value;
 
       if (granted) {
         permissions = 'granted';
+        value = true;
       } else {
         permissions = 'declined';
+        value = false;
       }
 
       dispatch({
         type: 'SET_PERMISSIONS',
-        payload: permissions,
+        payload: { permissions, time, value },
       });
     });
   };
@@ -27,12 +30,12 @@ export function setPermissionsIfChanged() {
       if (granted && permissions !== 'granted') {
         dispatch({
           type: 'SET_PERMISSIONS',
-          payload: 'granted',
+          payload: { permissions: 'granted' },
         });
       } else if (!granted && permissions === 'granted') {
         dispatch({
           type: 'SET_PERMISSIONS',
-          payload: 'declined',
+          payload: { permissions: 'declined' },
         });
       }
     });
