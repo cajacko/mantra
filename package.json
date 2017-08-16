@@ -1,6 +1,6 @@
 {
   "name": "mantra",
-  "version": "0.3.6",
+  "version": "0.3.7",
   "private": true,
   "devDependencies": {
     "react-native-scripts": "0.0.40",
