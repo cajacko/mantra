@@ -19,14 +19,13 @@ const DisplayView = ({ mantraLoop, showsButtons }) => (
         nextButton={<DisplayNav icon="ios-arrow-forward-outline" />}
         prevButton={<DisplayNav icon="ios-arrow-back-outline" />}
         buttonWrapperStyle={displayNavStyle.wrapper}
+        showsPagination={mantraLoop.length < 5}
       >
-        {
-          mantraLoop.map(id => (
-            <View key={id} style={style.wrapper}>
-              <Item itemId={id} element={DisplayMantra} />
-            </View>
-          ))
-        }
+        {mantraLoop.map(id => (
+          <View key={id} style={style.wrapper}>
+            <Item itemId={id} element={DisplayMantra} />
+          </View>
+        ))}
       </Swiper>
     </View>
   </EmptyView>
