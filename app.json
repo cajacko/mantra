@@ -11,14 +11,25 @@
     "icon": "./assets/icons/app.png",
     "loading": {
       "icon": "./assets/icons/loading.png",
-      "hideExponentText": false
+      "hideExponentText": false,
+      "backgroundColor": "#ff3334",
+      "hideExponentText": false,
+      "splash": {
+        "backgroundColor": "#ff3334",
+        "image": {
+          "ios": {
+            "backgroundImage": "./assets/icons/splash.png"
+          }
+        }
+      }
     },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
       "bundleIdentifier": "com.charliejackson.mantra",
-      "supportsTablet": true
+      "supportsTablet": true,
+      "isRemoteJSEnabled": false
     },
     "android": {
       "package": "com.charliejackson.mantra"
