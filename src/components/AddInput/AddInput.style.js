@@ -6,6 +6,7 @@ const horizontalSpacing = HORIZONTAL_VIEW_SPACING;
 
 export default {
   container: {
+    backgroundColor: 'red',
     paddingLeft: horizontalSpacing,
     paddingRight: horizontalSpacing,
     paddingTop: verticalSpacing,

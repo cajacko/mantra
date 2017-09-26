@@ -23,7 +23,7 @@ class DescriptionInput extends Component {
           placeholder="Description..."
           placeholderTextColor={style.placeholderColor}
           multiline
-          autoFocus
+          editable
         />
       </View>
     );
