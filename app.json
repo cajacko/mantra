@@ -11,17 +11,7 @@
     "icon": "./assets/icons/app.png",
     "loading": {
       "icon": "./assets/icons/loading.png",
-      "hideExponentText": false,
-      "backgroundColor": "#ff3334",
-      "hideExponentText": false,
-      "splash": {
-        "backgroundColor": "#ff3334",
-        "image": {
-          "ios": {
-            "backgroundImage": "./assets/icons/splash.png"
-          }
-        }
-      }
+      "hideExponentText": false
     },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]
