@@ -16,7 +16,7 @@ const Views = ({ view, myjsonId, viewProps }) => {
     return <Login />;
   }
 
-  if (view === 'AddView' || true) {
+  if (view === 'AddView') {
     return <AddView id={viewProps.id} title={viewProps.title} />;
   }
 
@@ -34,14 +34,15 @@ const Views = ({ view, myjsonId, viewProps }) => {
       break;
     default:
       // eslint-disable-next-line
-      console.error(
-        `View does not have a corresponding component/container: ${view}`,
-        view,
-      );
+      console.error(`View does not have a corresponding component/container: ${view}`, view);
       return null;
   }
 
-  return <NavView>{viewElement}</NavView>;
+  return (
+    <NavView>
+      {viewElement}
+    </NavView>
+  );
 };
 
 Views.propTypes = {
