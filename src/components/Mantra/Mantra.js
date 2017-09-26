@@ -1,17 +1,9 @@
 /* eslint max-lines: 0 */
 import React, { Component } from 'react';
-import { Alert, View, Text, Animated } from 'react-native';
+import { Alert, View, Text, Animated, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
-import Swipeout from 'react-native-swipeout';
 import style from 'components/Mantra/Mantra.style';
-
-function swipeoutBtns(deleteAction, edit) {
-  return [
-    { text: 'Delete', onPress: deleteAction, backgroundColor: style.deleteBackground, color: style.buttonColour },
-    { text: 'Edit', onPress: edit, backgroundColor: style.editBackground, color: style.buttonColour },
-  ];
-}
 
 const outAnimationTiming = 300;
 const animationTimeout = 100;
@@ -155,18 +147,15 @@ class Mantra extends Component {
         }}
         style={viewStyle}
       >
-        <Animated.View style={{ overflow: 'hidden', ...heightStyle }} >
-          <Swipeout
-            right={swipeoutBtns(this.deleteMantra, this.props.editMantra)}
-            style={containerStyles}
-            autoClose
-            sensitivity={50}
-          >
-            <View style={style.wrapper}>
-              <Text style={style.text}>{this.props.title}</Text>
-              {syncIcon}
+        <Animated.View style={{ overflow: 'hidden', ...heightStyle }}>
+          <TouchableOpacity onPress={this.props.editMantra}>
+            <View style={containerStyles}>
+              <View style={style.wrapper}>
+                <Text style={style.text}>{this.props.title}</Text>
+                {syncIcon}
+              </View>
             </View>
-          </Swipeout>
+          </TouchableOpacity>
         </Animated.View>
       </View>
     );

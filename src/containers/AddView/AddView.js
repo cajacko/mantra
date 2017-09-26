@@ -13,7 +13,6 @@ class AddViewContainer extends Component {
     super(props);
 
     let title = '';
-    let description = '';
     let enableSave = false;
     let charactersLeft = characterCount;
     let id;
@@ -30,7 +29,6 @@ class AddViewContainer extends Component {
       }
 
       title = item.title;
-      description = item.description || description;
       enableSave = true;
       charactersLeft = characterCount - title.length;
     }
@@ -47,17 +45,15 @@ class AddViewContainer extends Component {
       charactersLeft,
       id,
       showDelete,
-      description,
     };
 
-    this.onTitleChange = this.onTitleChange.bind(this);
-    this.onDescriptionChange = this.onDescriptionChange.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.saveMantra = this.saveMantra.bind(this);
     this.back = this.back.bind(this);
     this.deleteMantra = this.deleteMantra.bind(this);
   }
 
-  onTitleChange(title) {
+  onChange(title) {
     let enableSave = true;
     const charactersLeft = characterCount - title.length;
 
@@ -66,10 +62,6 @@ class AddViewContainer extends Component {
     }
 
     this.setState({ title, enableSave, charactersLeft });
-  }
-
-  onDescriptionChange(description) {
-    this.setState({ description });
   }
 
   deleteMantra() {
@@ -92,9 +84,7 @@ class AddViewContainer extends Component {
         showDelete={this.state.showDelete}
         saveMantra={this.saveMantra}
         title={this.state.title}
-        description={this.state.description}
-        onTitleChange={this.onTitleChange}
-        onDescriptionChange={this.onDescriptionChange}
+        onChange={this.onChange}
         charactersLeft={this.state.charactersLeft}
         enableSave={this.state.enableSave}
         back={this.back}
