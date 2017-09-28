@@ -3,8 +3,9 @@
   "version": "0.3.9",
   "private": true,
   "devDependencies": {
-    "react-native-scripts": "0.0.40",
+    "fs-extra": "4.0.2",
     "jest-expo": "~18.0.0",
+    "react-native-scripts": "0.0.40",
     "react-test-renderer": "16.0.0-alpha.12"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -15,7 +16,8 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "lint": "eslint src",
-    "build": "ejects project and builds the standalone package files, that can then attach to local device"
+    "deploy:test": "babel-node scripts/deploy.js type=test && npm run ios",
+    "deploy:live": "babel-node scripts/deploy.js type=live && npm run ios"
   },
   "jest": {
     "preset": "jest-expo"
