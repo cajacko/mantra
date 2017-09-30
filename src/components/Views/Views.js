@@ -6,7 +6,6 @@ import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
-import Menu from 'components/Menu/Menu.container';
 
 const Views = ({ view, myjsonId, viewProps }) => {
   if (!view) {
@@ -42,11 +41,7 @@ const Views = ({ view, myjsonId, viewProps }) => {
       return null;
   }
 
-  return (
-    <Menu>
-      <NavView>{viewElement}</NavView>
-    </Menu>
-  );
+  return <NavView>{viewElement}</NavView>;
 };
 
 Views.propTypes = {

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import NavButton from 'components/NavButton/NavButton';
+import Menu from 'components/Menu/Menu.container';
 import style from 'components/NavView/NavView.style';
 
 const NavView = ({ children, switchView, openMenu, activeItem }) => {
@@ -24,39 +25,41 @@ const NavView = ({ children, switchView, openMenu, activeItem }) => {
   }
 
   return (
-    <View style={style.container}>
-      <View style={style.children}>{children}</View>
-      <View style={style.nav}>
-        <NavButton
-          action={() => switchView('DisplayView')}
-          icon="ios-albums-outline"
-          active={displayActive}
-          title="Home"
-        />
-        <NavButton
-          action={() => switchView('LoopView')}
-          icon="ios-list-outline"
-          active={loopActive}
-          title="List"
-        />
-        <NavButton
-          action={() => switchView('AddView')}
-          icon="ios-add"
-          title="Add"
-        />
-        <NavButton
-          action={() => switchView('ProfileView')}
-          icon="ios-contact-outline"
-          active={profileActive}
-          title="Profile"
-        />
-        <NavButton
-          action={() => openMenu()}
-          icon="ios-menu-outline"
-          title="More"
-        />
+    <Menu>
+      <View style={style.container}>
+        <View style={style.children}>{children}</View>
+        <View style={style.nav}>
+          <NavButton
+            action={() => switchView('DisplayView')}
+            icon="ios-albums-outline"
+            active={displayActive}
+            title="Home"
+          />
+          <NavButton
+            action={() => switchView('LoopView')}
+            icon="ios-list-outline"
+            active={loopActive}
+            title="List"
+          />
+          <NavButton
+            action={() => switchView('AddView')}
+            icon="ios-add"
+            title="Add"
+          />
+          <NavButton
+            action={() => switchView('ProfileView')}
+            icon="ios-contact-outline"
+            active={profileActive}
+            title="Profile"
+          />
+          <NavButton
+            action={() => openMenu()}
+            icon="ios-menu-outline"
+            title="More"
+          />
+        </View>
       </View>
-    </View>
+    </Menu>
   );
 };
 
