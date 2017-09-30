@@ -6,6 +6,7 @@ import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
+import Menu from 'components/Menu/Menu.container';
 
 const Views = ({ view, myjsonId, viewProps }) => {
   if (!view) {
@@ -34,14 +35,17 @@ const Views = ({ view, myjsonId, viewProps }) => {
       break;
     default:
       // eslint-disable-next-line
-      console.error(`View does not have a corresponding component/container: ${view}`, view);
+      console.error(
+        `View does not have a corresponding component/container: ${view}`,
+        view,
+      );
       return null;
   }
 
   return (
-    <NavView>
-      {viewElement}
-    </NavView>
+    <Menu>
+      <NavView>{viewElement}</NavView>
+    </Menu>
   );
 };
 

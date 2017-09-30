@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import NavButton from 'components/NavButton/NavButton';
 import style from 'components/NavView/NavView.style';
 
-const NavView = ({ children, switchView, logout, activeItem }) => {
+const NavView = ({ children, switchView, openMenu, activeItem }) => {
   let displayActive = false;
   let loopActive = false;
   let profileActive = false;
@@ -25,27 +25,45 @@ const NavView = ({ children, switchView, logout, activeItem }) => {
 
   return (
     <View style={style.container}>
-      <View style={style.children}>
-        {children}
-      </View>
+      <View style={style.children}>{children}</View>
       <View style={style.nav}>
-        <NavButton action={() => switchView('DisplayView')} icon="ios-albums-outline" active={displayActive} title="Home" />
-        <NavButton action={() => switchView('LoopView')} icon="ios-list-outline" active={loopActive} title="List" />
-        <NavButton action={() => switchView('AddView')} icon="ios-add" title="Add" />
-        <NavButton action={() => switchView('ProfileView')} icon="ios-contact-outline" active={profileActive} title="Profile" />
-        <NavButton action={logout} icon="ios-exit-outline" title="Logout" />
+        <NavButton
+          action={() => switchView('DisplayView')}
+          icon="ios-albums-outline"
+          active={displayActive}
+          title="Home"
+        />
+        <NavButton
+          action={() => switchView('LoopView')}
+          icon="ios-list-outline"
+          active={loopActive}
+          title="List"
+        />
+        <NavButton
+          action={() => switchView('AddView')}
+          icon="ios-add"
+          title="Add"
+        />
+        <NavButton
+          action={() => switchView('ProfileView')}
+          icon="ios-contact-outline"
+          active={profileActive}
+          title="Profile"
+        />
+        <NavButton
+          action={() => openMenu()}
+          icon="ios-exit-outline"
+          title="Menu"
+        />
       </View>
     </View>
   );
 };
 
 NavView.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
   switchView: PropTypes.func.isRequired,
-  logout: PropTypes.func.isRequired,
+  openMenu: PropTypes.func.isRequired,
   activeItem: PropTypes.string,
 };
 
