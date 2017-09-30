@@ -52,8 +52,8 @@ const NavView = ({ children, switchView, openMenu, activeItem }) => {
         />
         <NavButton
           action={() => openMenu()}
-          icon="ios-exit-outline"
-          title="Menu"
+          icon="ios-menu-outline"
+          title="More"
         />
       </View>
     </View>
