@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
 import { View, Text, StatusBar } from 'react-native';
+import style from 'components/Menu/Menu.style';
 
 const Menu = ({ open, children, onChange }) => {
   const menu = (
-    <View>
+    <View style={style.container}>
       <StatusBar barStyle="dark-content" />
       <Text>Hello</Text>
     </View>
@@ -15,7 +16,6 @@ const Menu = ({ open, children, onChange }) => {
     <SideMenu
       menu={menu}
       isOpen={open}
-      disableGestures
       menuPosition="right"
       autoClosing={false}
       onChange={isOpen => onChange(isOpen, open)}
