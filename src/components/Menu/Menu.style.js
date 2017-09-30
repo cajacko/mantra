@@ -2,6 +2,8 @@ import { GREY_DARKER, WHITE, GREY_DARKEST } from 'constants/colours';
 import { TEXT_SIZES } from 'constants/text';
 import statusBarHeight from 'helpers/statusBarHeight';
 
+const headerTop = statusBarHeight();
+
 export default {
   container: {
     flex: 1,
@@ -9,7 +11,7 @@ export default {
   },
 
   header: {
-    paddingTop: statusBarHeight(),
+    paddingTop: headerTop,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: GREY_DARKEST,
@@ -24,4 +26,16 @@ export default {
   menuItems: {
     flex: 1,
   },
+
+  closeWrapper: {
+    position: 'absolute',
+    right: 10,
+    bottom: 0,
+    top: headerTop,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  closeColour: WHITE,
+  closeSize: 30,
 };
