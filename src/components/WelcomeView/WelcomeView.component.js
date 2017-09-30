@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text, View, StatusBar } from 'react-native';
+import { View, StatusBar } from 'react-native';
 import Swiper from 'react-native-swiper';
 import displayNavStyle from 'components/DisplayNav/DisplayNav.style';
 import style from 'components/WelcomeView/WelcomeView.style';
+import WelcomePanel from 'components/WelcomePanel/WelcomePanel.component';
+
+const dummyImage = require('components/WelcomeView/app.png');
 
 const welcomeScreens = [
-  { title: 'Welcome to mantra', description: 'Here we are' },
-  { title: 'Page 2', description: 'Yeah boi' },
-  { title: 'Page 3', description: 'Woo woo' },
+  { title: 'Welcome to mantra', description: 'Here we are', image: dummyImage },
+  { title: 'Page 2', description: 'Yeah boi', image: dummyImage },
+  { title: 'Page 3', description: 'Woo woo', image: dummyImage },
 ];
 
 const WelcomeView = () => (
@@ -21,10 +24,12 @@ const WelcomeView = () => (
       loop={false}
     >
       {welcomeScreens.map(({ title, description, image }) => (
-        <View key={title}>
-          <Text>{title}</Text>
-          <Text>{description}</Text>
-        </View>
+        <WelcomePanel
+          key={title}
+          title={title}
+          description={description}
+          image={image}
+        />
       ))}
     </Swiper>
   </View>
