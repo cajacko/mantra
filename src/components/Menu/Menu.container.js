@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 import Menu from 'components/Menu/Menu.component';
-import { closeMenu } from 'actions/menu';
+import { closeMenu, openMenu } from 'actions/menu';
 import logout from 'actions/logout';
 
 const mapStateToProps = (state) => {
@@ -22,6 +22,10 @@ const mapDispatchToProps = dispatch => ({
     // when the state still thinks it is open
     if (isOpen === false && isOpenProp === true) {
       dispatch(closeMenu());
+      // When you drag the menu open from the side, it doesn't update the redux
+      // state, so fire this action when that happens
+    } else if (isOpen === true && isOpenProp === false) {
+      dispatch(openMenu());
     }
   },
 });
