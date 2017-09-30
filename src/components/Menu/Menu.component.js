@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import SideMenu from 'react-native-side-menu';
 import { View, Text, StatusBar } from 'react-native';
 
-const Menu = ({ open, closeMenu, children, onChange }) => {
+const Menu = ({ open, children, onChange }) => {
   const menu = (
     <View>
       <StatusBar barStyle="dark-content" />
@@ -22,6 +23,13 @@ const Menu = ({ open, closeMenu, children, onChange }) => {
       {children}
     </SideMenu>
   );
+};
+
+Menu.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
+  open: PropTypes.bool.isRequired,
+  // closeMenu: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
 };
 
 export default Menu;
