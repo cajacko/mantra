@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import NavView from 'components/NavView/NavView';
 import switchView from 'actions/switchView';
 import logout from 'actions/logout';
+import { openMenu } from 'actions/menu';
 
 class NavViewContainer extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class NavViewContainer extends Component {
 
     this.switchView = this.switchView.bind(this);
     this.logout = this.logout.bind(this);
+    this.openMenu = this.openMenu.bind(this);
   }
 
   switchView(view) {
@@ -28,11 +30,15 @@ class NavViewContainer extends Component {
     ]);
   }
 
+  openMenu() {
+    this.props.dispatch(openMenu());
+  }
+
   render() {
     return (
       <NavView
         switchView={this.switchView}
-        logout={this.logout}
+        openMenu={this.openMenu}
         activeItem={this.props.view.view}
       >
         {this.props.children}
@@ -47,10 +53,7 @@ NavViewContainer.propTypes = {
     view: PropTypes.string,
     props: PropTypes.object,
   }).isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.func,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
 };
 
 function mapStateToProps({ view }) {
