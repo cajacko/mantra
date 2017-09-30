@@ -8,7 +8,15 @@ const Menu = ({ open, children, onChange }) => {
   const menu = (
     <View style={style.container}>
       <StatusBar barStyle="dark-content" />
-      <Text>Hello</Text>
+      <View style={style.header}>
+        <Text style={style.title}>Menu</Text>
+      </View>
+      <View style={style.menuItems}>
+        <Text>Item 1</Text>
+        <Text>Item 2</Text>
+        <Text>Item 3</Text>
+        <Text>Item 4</Text>
+      </View>
     </View>
   );
 
