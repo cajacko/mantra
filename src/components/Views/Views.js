@@ -6,8 +6,11 @@ import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
+import WelcomeView from 'components/WelcomeView/WelcomeView.component';
 
 const Views = ({ view, myjsonId, viewProps }) => {
+  return <WelcomeView />;
+
   if (!view) {
     return null;
   }
