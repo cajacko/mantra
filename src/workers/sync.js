@@ -6,17 +6,25 @@ const store = getStore();
 let hydrated = false;
 let myjsonIdExists = false;
 
+function syncIfCan() {
+  if (hydrated && myjsonIdExists) {
+    store.dispatch(sync());
+  }
+}
+
 store.subscribe(() => {
   const { lastAction, myjsonId } = store.getState();
 
   if (myjsonId) {
     myjsonIdExists = true;
+  } else {
+    myjsonIdExists = false;
   }
 
   switch (lastAction) {
     case 'SAVE_MANTRA':
     case 'DELETE_MANTRA':
-      store.dispatch(sync());
+      syncIfCan();
       break;
 
     case 'persist/REHYDRATE':
@@ -31,7 +39,7 @@ store.subscribe(() => {
 export default function () {
   setInterval(() => {
     if (hydrated && myjsonIdExists) {
-      store.dispatch(sync());
+      syncIfCan();
     }
   }, 10000);
 }

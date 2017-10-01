@@ -1,11 +1,9 @@
-import statusBarHeight from 'helpers/statusBarHeight';
 import { WHITE } from 'constants/colours';
 import { ICON_SIZE } from 'components/DisplayNav/DisplayNav.style';
 
 export default {
   container: {
     flex: 1,
-    paddingTop: statusBarHeight(),
     backgroundColor: WHITE,
   },
 

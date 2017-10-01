@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'components/SideMenu/SideMenu';
 import { View, Text, StatusBar, TouchableOpacity, Alert } from 'react-native';
+// eslint-disable-next-line  import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
@@ -11,7 +12,6 @@ class Menu extends Component {
     super(props);
 
     this.logout = this.logout.bind(this);
-    this.help = this.help.bind(this);
   }
 
   logout() {
@@ -22,10 +22,6 @@ class Menu extends Component {
         onPress: () => this.props.logout(),
       },
     ]);
-  }
-
-  help() {
-    this.props.switchView('WelcomeView');
   }
 
   render() {
@@ -46,12 +42,24 @@ class Menu extends Component {
           </TouchableOpacity>
         </View>
         <View style={style.menuItems}>
-          <MenuItem title="Help" icon="ios-help-outline" action={this.help} />
           <MenuItem
-            title="Logout"
-            icon="ios-exit-outline"
-            action={this.logout}
+            title="Help"
+            icon="ios-help-outline"
+            action={() => this.props.switchView('WelcomeView')}
           />
+          {this.props.isLoggedIn === true ? (
+            <MenuItem
+              title="Logout"
+              icon="ios-exit-outline"
+              action={this.logout}
+            />
+          ) : (
+            <MenuItem
+              title="Login/Register"
+              icon="ios-contact-outline"
+              action={() => this.props.switchView('LoginRegisterView')}
+            />
+          )}
         </View>
       </View>
     );
@@ -76,6 +84,8 @@ Menu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  switchView: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Menu;

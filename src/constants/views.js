@@ -5,4 +5,5 @@ export default [
   'LoginView',
   'DisplayView',
   'WelcomeView',
+  'LoginRegisterView',
 ];

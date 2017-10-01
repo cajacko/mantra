@@ -17,10 +17,6 @@ const Views = ({ view, myjsonId, viewProps, firstTime }) => {
     return <WelcomeView />;
   }
 
-  if (!myjsonId) {
-    return <Login />;
-  }
-
   if (view === 'AddView') {
     return <AddView id={viewProps.id} title={viewProps.title} />;
   }
@@ -28,6 +24,9 @@ const Views = ({ view, myjsonId, viewProps, firstTime }) => {
   let viewElement;
 
   switch (view) {
+    case 'LoginRegisterView':
+      viewElement = <Login />;
+      break;
     case 'LoopView':
       viewElement = <LoopView />;
       break;

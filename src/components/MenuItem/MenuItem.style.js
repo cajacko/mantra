@@ -27,7 +27,7 @@ export default {
 
   icon: {
     alignItems: 'center',
-    justfyContent: 'center',
+    justifyContent: 'center',
     width: iconSize,
   },
 

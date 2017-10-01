@@ -6,12 +6,10 @@ import { closeMenu, openMenu } from 'actions/menu';
 import logout from 'actions/logout';
 import switchView from 'actions/switchView';
 
-const mapStateToProps = (state) => {
-  const { menuOpen } = state;
-  return {
-    open: menuOpen,
-  };
-};
+const mapStateToProps = ({ menuOpen, myjsonId }) => ({
+  open: menuOpen,
+  isLoggedIn: myjsonId !== null,
+});
 
 const mapDispatchToProps = dispatch => ({
   closeMenu: () => dispatch(closeMenu()),

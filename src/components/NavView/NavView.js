@@ -1,16 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 import NavButton from 'components/NavButton/NavButton';
 import Menu from 'components/Menu/Menu.container';
 import style from 'components/NavView/NavView.style';
 
-const NavView = ({ children, switchView, openMenu, activeItem }) => {
+const NavView = ({ children, switchView, openMenu, activeItem, myjsonId }) => {
   let displayActive = false;
   let loopActive = false;
   let profileActive = false;
+  let loginActive = false;
 
   switch (activeItem) {
+    case 'LoginRegisterView':
+      loginActive = true;
+      break;
     case 'DisplayView':
       displayActive = true;
       break;
@@ -24,10 +28,27 @@ const NavView = ({ children, switchView, openMenu, activeItem }) => {
       break;
   }
 
+  const showBanner = myjsonId === null && activeItem !== 'LoginRegisterView';
+
   return (
     <Menu>
       <View style={style.container}>
-        <View style={style.children}>{children}</View>
+        {showBanner && (
+          <View style={style.bannerContainer}>
+            <TouchableOpacity
+              onPress={() => switchView('LoginRegisterView')}
+              style={style.banner}
+            >
+              <View style={style.bannerButton}>
+                <Text style={style.bannerButtonText}>Login/Register</Text>
+              </View>
+              <Text style={style.bannerText}>To backup and sync mantra</Text>
+            </TouchableOpacity>
+          </View>
+        )}
+        <View style={showBanner ? style.children : style.childrenWithPadding}>
+          {children}
+        </View>
         <View style={style.nav}>
           <NavButton
             action={() => switchView('DisplayView')}
@@ -47,10 +68,11 @@ const NavView = ({ children, switchView, openMenu, activeItem }) => {
             title="Add"
           />
           <NavButton
-            action={() => switchView('ProfileView')}
+            action={() =>
+              switchView(myjsonId ? 'ProfileView' : 'LoginRegisterView')}
             icon="ios-contact-outline"
-            active={profileActive}
-            title="Profile"
+            active={myjsonId ? profileActive : loginActive}
+            title="Account"
           />
           <NavButton
             action={() => openMenu()}
@@ -68,10 +90,12 @@ NavView.propTypes = {
   switchView: PropTypes.func.isRequired,
   openMenu: PropTypes.func.isRequired,
   activeItem: PropTypes.string,
+  myjsonId: PropTypes.string,
 };
 
 NavView.defaultProps = {
   activeItem: null,
+  myjsonId: null,
 };
 
 export default NavView;

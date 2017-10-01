@@ -4,6 +4,11 @@ const defaultState = { view: 'DisplayView', props: {} };
 
 export default (state = { view: null, props: {} }, { type, payload }) => {
   switch (type) {
+    // Even though is same as default, don't use default as is misleading. And
+    // if change default later, might forget that we want this to go here
+    case 'LOGIN':
+      return { view: 'DisplayView', props: {} };
+
     case 'persist/REHYDRATE':
     case 'LOGOUT':
       return defaultState;
