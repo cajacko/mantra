@@ -1,4 +1,5 @@
 {
   "production": true,
-  "feedbackEmail": "test@example.com"
+  "feedbackEmail": "test@example.com",
+  "contactEmail": "test@example.com"
 }
