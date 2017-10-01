@@ -20,7 +20,13 @@ function feedback() {
   const subject = 'Mantra App: Feedback';
   const body = "Hi Mantra folk, here's some feedback:";
 
-  Linking.openURL(`mailto:${feedbackEmail}?subject=${subject}&body=${body}`);
+  Linking.openURL(
+    `mailto:${feedbackEmail}?subject=${subject}&body=${body}`,
+  ).catch(() => {
+    Alert.alert('Feedback', `Please email ${feedbackEmail} to give feedback`, [
+      { text: 'Close' },
+    ]);
+  });
 }
 
 class Menu extends Component {
