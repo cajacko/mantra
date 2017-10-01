@@ -33,7 +33,7 @@ const WelcomeView = () => (
             <View style={style.textContent}>
               <Text style={style.title}>{title}</Text>
               <View style={style.button}>
-                {index === welcomeScreens.length ? (
+                {index === welcomeScreens.length - 1 ? (
                   <Button text="Done" size="small" />
                 ) : (
                   <Button text="Next" theme="dull" size="small" />
