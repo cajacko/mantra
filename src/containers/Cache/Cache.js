@@ -32,6 +32,8 @@ class Cache extends Component {
   }
 
   async loadAssetsAsync() {
+    // Couldn't map these images into a file, so the paths could be in one
+    // place. Just wouldn't load or render the images :(
     const imageAssets = cacheImages([
       require('components/WelcomeView/home.jpg'),
       require('components/WelcomeView/list.jpg'),
