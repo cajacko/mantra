@@ -10,9 +10,9 @@ const list = require('components/WelcomeView/list.jpg');
 const add = require('components/WelcomeView/add.jpg');
 
 const welcomeScreens = [
-  { title: 'Welcome to mantra', image: home },
-  { title: 'Page 2', image: list },
-  { title: 'Page 3', image: add },
+  { title: 'Write down short lessons and quotes', image: add },
+  { title: 'Remember your mantra in the random slideshow', image: home },
+  { title: 'Manage all your mantra from the list view', image: list },
 ];
 
 // Cannot seem to have a custom Component as a child of react-native-swiper.
