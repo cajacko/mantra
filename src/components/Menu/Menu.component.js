@@ -12,6 +12,11 @@ class Menu extends Component {
     super(props);
 
     this.logout = this.logout.bind(this);
+    this.feedback = this.feedback.bind(this);
+  }
+
+  feedback() {
+    console.log('feedback');
   }
 
   logout() {
@@ -42,22 +47,28 @@ class Menu extends Component {
           </TouchableOpacity>
         </View>
         <View style={style.menuItems}>
+          {!this.props.isLoggedIn && (
+            <MenuItem
+              title="Login/Register"
+              icon="ios-contact-outline"
+              action={() => this.props.switchView('LoginRegisterView')}
+            />
+          )}
+          <MenuItem
+            title="Feedback"
+            icon="ios-chatboxes-outline"
+            action={this.feedback}
+          />
           <MenuItem
             title="Help"
             icon="ios-help-outline"
             action={() => this.props.switchView('WelcomeView')}
           />
-          {this.props.isLoggedIn === true ? (
+          {this.props.isLoggedIn && (
             <MenuItem
               title="Logout"
               icon="ios-exit-outline"
               action={this.logout}
-            />
-          ) : (
-            <MenuItem
-              title="Login/Register"
-              icon="ios-contact-outline"
-              action={() => this.props.switchView('LoginRegisterView')}
             />
           )}
         </View>
