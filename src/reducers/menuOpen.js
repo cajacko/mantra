@@ -5,6 +5,7 @@ export default (state = false, { type }) => {
 
     case 'SWITCH_VIEW':
     case 'CLOSE_MENU':
+    case 'LOGOUT':
       return false;
 
     default:
