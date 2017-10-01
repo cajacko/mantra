@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 import MantraLoop from 'containers/MantraLoop/MantraLoop';
 import style from 'components/LoopView/LoopView.style';
 import EmptyView from 'containers/EmptyView/EmptyView';
