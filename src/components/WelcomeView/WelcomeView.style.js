@@ -41,4 +41,16 @@ export default {
     marginTop: 20,
     width: 100,
   },
+
+  loginContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  loginSkipContainer: {
+    paddingTop: 30,
+    marginBottom: 60,
+    width: 100,
+  },
 };

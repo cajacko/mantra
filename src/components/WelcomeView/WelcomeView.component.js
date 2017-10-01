@@ -4,6 +4,7 @@ import Swiper from 'react-native-swiper';
 import displayNavStyle from 'components/DisplayNav/DisplayNav.style';
 import style from 'components/WelcomeView/WelcomeView.style';
 import Button from 'components/Button/Button';
+import Login from 'containers/Login/Login';
 
 const home = require('components/WelcomeView/home.jpg');
 const list = require('components/WelcomeView/list.jpg');
@@ -36,6 +37,8 @@ class WelcomeView extends Component {
   }
 
   render() {
+    welcomeScreens.push({ login: true });
+
     return (
       <View style={style.container}>
         <StatusBar barStyle="dark-content" />
@@ -49,30 +52,54 @@ class WelcomeView extends Component {
           }}
         >
           {welcomeScreens &&
-            welcomeScreens.map(({ title, description, image }, index) => (
-              <View key={title} style={style.screen}>
-                <Image
-                  resizeMode="contain"
-                  source={image}
-                  style={style.image}
-                />
-                <View style={style.textContent}>
-                  <Text style={style.title}>{title}</Text>
-                  <View style={style.button}>
-                    {index === welcomeScreens.length - 1 ? (
-                      <Button text="Done" size="small" onPress={this.finish} />
-                    ) : (
-                      <Button
-                        text="Next"
-                        theme="dull"
-                        size="small"
-                        onPress={this.next}
-                      />
-                    )}
+            welcomeScreens.map(
+              ({ title, description, image, login }, index) => {
+                if (login) {
+                  return (
+                    <View key="login" style={style.loginContainer}>
+                      <Login />
+                      <View style={style.loginSkipContainer}>
+                        <Button
+                          text="Skip"
+                          size="small"
+                          theme="dull"
+                          onPress={this.finish}
+                        />
+                      </View>
+                    </View>
+                  );
+                }
+
+                return (
+                  <View key={title} style={style.screen}>
+                    <Image
+                      resizeMode="contain"
+                      source={image}
+                      style={style.image}
+                    />
+                    <View style={style.textContent}>
+                      <Text style={style.title}>{title}</Text>
+                      <View style={style.button}>
+                        {index === welcomeScreens.length - 1 ? (
+                          <Button
+                            text="Done"
+                            size="small"
+                            onPress={this.finish}
+                          />
+                        ) : (
+                          <Button
+                            text="Next"
+                            theme="dull"
+                            size="small"
+                            onPress={this.next}
+                          />
+                        )}
+                      </View>
+                    </View>
                   </View>
-                </View>
-              </View>
-            ))}
+                );
+              },
+            )}
         </Swiper>
       </View>
     );
