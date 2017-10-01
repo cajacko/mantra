@@ -12,7 +12,6 @@ import displayNavStyle from 'components/DisplayNav/DisplayNav.style';
 const DisplayView = ({ mantraLoop, showsButtons }) => (
   <EmptyView>
     <View style={style.container}>
-      <StatusBar barStyle="dark-content" />
       <Swiper
         showsButtons={showsButtons}
         loadMinimal

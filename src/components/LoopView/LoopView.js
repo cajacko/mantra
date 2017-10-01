@@ -7,7 +7,6 @@ import EmptyView from 'containers/EmptyView/EmptyView';
 const LoopView = () => (
   <EmptyView>
     <View style={style.container}>
-      <StatusBar barStyle="dark-content" />
       <MantraLoop />
     </View>
   </EmptyView>

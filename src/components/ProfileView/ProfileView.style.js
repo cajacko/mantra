@@ -1,12 +1,10 @@
 import { StyleSheet } from 'react-native';
-import statusBarHeight from 'helpers/statusBarHeight';
 import { WHITE, YELLOW, YELLOW_HIGHLIGHT, BLACK, GREY_LIGHTER, GREY_LIGHT } from 'constants/colours';
 import { TEXT_SIZES } from 'constants/text';
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: statusBarHeight(),
     backgroundColor: WHITE,
     justifyContent: 'center',
     alignItems: 'center',
