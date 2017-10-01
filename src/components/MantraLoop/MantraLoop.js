@@ -35,8 +35,8 @@ class Mantraloop extends Component {
     return (
       <FlatList
         data={this.props.mantraLoop}
-        onRefresh={this.props.onRefresh}
-        refreshing={this.props.refreshing}
+        onRefresh={this.props.hasRefresh && this.props.onRefresh}
+        refreshing={this.props.hasRefresh && this.props.refreshing}
         renderItem={({ item }) => {
           let initial = false;
 
@@ -66,6 +66,7 @@ Mantraloop.propTypes = {
   refreshing: PropTypes.bool.isRequired,
   onRefresh: PropTypes.func.isRequired,
   initialItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+  hasRefresh: PropTypes.bool.isRequired,
 };
 
 export default Mantraloop;

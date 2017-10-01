@@ -87,6 +87,7 @@ class MantraLoopContainer extends Component {
         refreshing={this.state.refreshing}
         onRefresh={this.onRefresh}
         initialItems={this.state.initialItems}
+        hasRefresh={this.props.myjsonId !== null}
       />
     );
   }
