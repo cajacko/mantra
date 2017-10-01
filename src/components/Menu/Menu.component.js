@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'components/SideMenu/SideMenu';
 import { View, Text, StatusBar, TouchableOpacity, Alert } from 'react-native';
+// eslint-disable-next-line  import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
@@ -47,11 +48,13 @@ class Menu extends Component {
         </View>
         <View style={style.menuItems}>
           <MenuItem title="Help" icon="ios-help-outline" action={this.help} />
-          <MenuItem
-            title="Logout"
-            icon="ios-exit-outline"
-            action={this.logout}
-          />
+          {this.props.isLoggedIn === true && (
+            <MenuItem
+              title="Logout"
+              icon="ios-exit-outline"
+              action={this.logout}
+            />
+          )}
         </View>
       </View>
     );
@@ -76,6 +79,8 @@ Menu.propTypes = {
   closeMenu: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  switchView: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
 };
 
 export default Menu;
