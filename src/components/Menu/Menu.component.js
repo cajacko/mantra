@@ -2,32 +2,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'components/SideMenu/SideMenu';
-import {
-  Linking,
-  View,
-  Text,
-  StatusBar,
-  TouchableOpacity,
-  Alert,
-} from 'react-native';
+import { View, Text, StatusBar, TouchableOpacity, Alert } from 'react-native';
 // eslint-disable-next-line  import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
-import { feedbackEmail } from 'root/env.json';
-
-function feedback() {
-  const subject = 'Mantra App: Feedback';
-  const body = "Hi Mantra folk, here's some feedback:";
-
-  Linking.openURL(
-    `mailto:${feedbackEmail}?subject=${subject}&body=${body}`,
-  ).catch(() => {
-    Alert.alert('Feedback', `Please email ${feedbackEmail} to give feedback`, [
-      { text: 'Close' },
-    ]);
-  });
-}
+import email from 'helpers/email';
 
 class Menu extends Component {
   constructor(props) {
@@ -74,7 +54,12 @@ class Menu extends Component {
           <MenuItem
             title="Feedback"
             icon="ios-chatboxes-outline"
-            action={feedback}
+            action={() => email('feedback')}
+          />
+          <MenuItem
+            title="Contact"
+            icon="ios-mail-outline"
+            action={() => email('contact')}
           />
           <MenuItem
             title="Help"
