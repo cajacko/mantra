@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Menu from 'components/Menu/Menu.component';
 import { closeMenu, openMenu } from 'actions/menu';
 import logout from 'actions/logout';
+import switchView from 'actions/switchView';
 
 const mapStateToProps = (state) => {
   const { menuOpen } = state;
@@ -15,6 +16,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => ({
   closeMenu: () => dispatch(closeMenu()),
   logout: () => dispatch(logout()),
+  switchView: view => dispatch(switchView(view)),
   onChange: (isOpen, isOpenProp) => {
     // react-native-side-menu can emit a close event, under some conditions, as
     // this doesn't update the state, we need to manually update it even though
