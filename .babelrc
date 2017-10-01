@@ -1,23 +1,23 @@
 {
-  "presets": [
-    "babel-preset-expo"
-  ],
+  "presets": ["babel-preset-expo"],
   "plugins": [
     "transform-react-jsx-source",
-    ["module-resolver", {
-      "root": ["./src"],
-      "alias": {
-        "components": "./src/components",
-        "actions": "./src/actions",
-        "containers": "./src/containers",
-        "constants": "./src/constants",
-        "helpers": "./src/helpers",
-        "views": "./src",
-        "store": "./src/store",
-        "reducers": "./src/reducers",
-        "root": "./"
-      },
-      "extensions": [".js", ".jsx"]
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "alias": {
+          "components": "./src/components",
+          "actions": "./src/actions",
+          "containers": "./src/containers",
+          "constants": "./src/constants",
+          "helpers": "./src/helpers",
+          "views": "./src",
+          "store": "./src/store",
+          "reducers": "./src/reducers",
+          "root": "./"
+        },
+        "extensions": [".js", ".jsx"]
       }
     ]
   ]
