@@ -73,7 +73,7 @@ class MantraLoopContainer extends Component {
   }
 
   onRefresh() {
-    if (this.props.myjsonId) {
+    if (this.props.myjsonId !== null) {
       this.props.dispatch(sync());
     }
 
