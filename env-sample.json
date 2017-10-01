@@ -1,4 +1,4 @@
 {
   "production": true,
-  "myjsonId": "testId"
+  "feedbackEmail": "test@example.com"
 }
