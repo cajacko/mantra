@@ -11,6 +11,8 @@ store.subscribe(() => {
 
   if (myjsonId) {
     myjsonIdExists = true;
+  } else {
+    myjsonIdExists = false;
   }
 
   switch (lastAction) {
