@@ -28,6 +28,7 @@ export default {
 
   title: {
     fontSize: TEXT_SIZES.MEDIUM,
+    textAlign: 'center',
   },
 
   textContent: {
