@@ -40,6 +40,7 @@ class NavViewContainer extends Component {
         switchView={this.switchView}
         openMenu={this.openMenu}
         activeItem={this.props.view.view}
+        myjsonId={this.props.myjsonId}
       >
         {this.props.children}
       </NavView>
@@ -54,10 +55,15 @@ NavViewContainer.propTypes = {
     props: PropTypes.object,
   }).isRequired,
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
+  myjsonId: PropTypes.string,
 };
 
-function mapStateToProps({ view }) {
-  return { view };
+NavViewContainer.defaultProps = {
+  myjsonId: null,
+};
+
+function mapStateToProps({ view, myjsonId }) {
+  return { view, myjsonId };
 }
 
 export default connect(mapStateToProps)(NavViewContainer);

@@ -5,12 +5,16 @@ import NavButton from 'components/NavButton/NavButton';
 import Menu from 'components/Menu/Menu.container';
 import style from 'components/NavView/NavView.style';
 
-const NavView = ({ children, switchView, openMenu, activeItem }) => {
+const NavView = ({ children, switchView, openMenu, activeItem, myjsonId }) => {
   let displayActive = false;
   let loopActive = false;
   let profileActive = false;
+  let loginActive = false;
 
   switch (activeItem) {
+    case 'LoginRegisterView':
+      loginActive = true;
+      break;
     case 'DisplayView':
       displayActive = true;
       break;
@@ -47,10 +51,11 @@ const NavView = ({ children, switchView, openMenu, activeItem }) => {
             title="Add"
           />
           <NavButton
-            action={() => switchView('ProfileView')}
+            action={() =>
+              switchView(myjsonId ? 'ProfileView' : 'LoginRegisterView')}
             icon="ios-contact-outline"
-            active={profileActive}
-            title="Profile"
+            active={myjsonId ? profileActive : loginActive}
+            title="Account"
           />
           <NavButton
             action={() => openMenu()}
@@ -68,10 +73,12 @@ NavView.propTypes = {
   switchView: PropTypes.func.isRequired,
   openMenu: PropTypes.func.isRequired,
   activeItem: PropTypes.string,
+  myjsonId: PropTypes.string,
 };
 
 NavView.defaultProps = {
   activeItem: null,
+  myjsonId: null,
 };
 
 export default NavView;
