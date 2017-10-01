@@ -32,7 +32,7 @@ class WelcomeView extends Component {
   }
 
   finish() {
-    console.log('FINISH');
+    this.props.finish();
   }
 
   render() {

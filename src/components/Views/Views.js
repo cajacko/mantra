@@ -6,13 +6,15 @@ import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
-import WelcomeView from 'components/WelcomeView/WelcomeView.component';
+import WelcomeView from 'components/WelcomeView/WelcomeView.container';
 
-const Views = ({ view, myjsonId, viewProps }) => {
-  return <WelcomeView />;
-
+const Views = ({ view, myjsonId, viewProps, firstTime }) => {
   if (!view) {
     return null;
+  }
+
+  if (view === 'WelcomeView' || firstTime) {
+    return <WelcomeView />;
   }
 
   if (!myjsonId) {
@@ -52,6 +54,7 @@ Views.propTypes = {
   myjsonId: PropTypes.string,
   // eslint-disable-next-line
   viewProps: PropTypes.object.isRequired,
+  firstTime: PropTypes.bool.isRequired,
 };
 
 Views.defaultProps = {

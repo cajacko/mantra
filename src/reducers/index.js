@@ -11,6 +11,7 @@ import lastSetNotifications from 'reducers/lastSetNotifications';
 import syncLoading from 'reducers/syncLoading';
 import offlineItemsSyncing from 'reducers/offlineItemsSyncing';
 import menuOpen from 'reducers/menuOpen';
+import firstTime from 'reducers/firstTime';
 
 export default combineReducers({
   items,
@@ -25,4 +26,5 @@ export default combineReducers({
   syncLoading,
   offlineItemsSyncing,
   menuOpen,
+  firstTime,
 });
