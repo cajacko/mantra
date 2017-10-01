@@ -5,7 +5,7 @@
     "description": "Mantra",
     "slug": "mantra",
     "privacy": "public",
-    "version": "0.3.9",
+    "version": "0.4.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/app.png",
