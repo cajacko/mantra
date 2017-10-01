@@ -1,4 +1,6 @@
+/* eslint max-lines: 0 */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, StatusBar, Text, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
 import displayNavStyle from 'components/DisplayNav/DisplayNav.style';
@@ -37,7 +39,9 @@ class WelcomeView extends Component {
   }
 
   render() {
-    welcomeScreens.push({ login: true });
+    if (this.props.isLoggedIn === false) {
+      welcomeScreens.push({ login: true });
+    }
 
     return (
       <View style={style.container}>
@@ -105,5 +109,10 @@ class WelcomeView extends Component {
     );
   }
 }
+
+WelcomeView.propTypes = {
+  finish: PropTypes.func.isRequired,
+  isLoggedIn: PropTypes.bool.isRequired,
+};
 
 export default WelcomeView;
