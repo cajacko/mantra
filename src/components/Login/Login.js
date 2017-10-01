@@ -42,9 +42,9 @@ const Login = ({
       <StatusBar barStyle="dark-content" />
       {modalElement}
       <View style={style.header}>
-        <Text style={style.title}>Mantra</Text>
         <Text style={style.description}>
-          Remember the lessons you have learnt
+          Create an account, or login to backup and sync your mantra accross
+          devices
         </Text>
       </View>
 
