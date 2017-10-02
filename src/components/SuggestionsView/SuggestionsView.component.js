@@ -9,7 +9,9 @@ import style from 'components/SuggestionsView/SuggestionsView.style';
 const SuggestionsView = () => (
   <View style={style.container}>
     <StatusBar barStyle="dark-content" />
-    <Text style={style.title}>SuggestionsView</Text>
+    <Text style={style.description}>
+      Here are some suggested mantra to add!
+    </Text>
   </View>
 );
 

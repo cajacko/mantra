@@ -1,10 +1,16 @@
-import { WHITE } from 'constants/colours';
+import { WHITE, GREY_LIGHT } from 'constants/colours';
+import { TEXT_SIZES } from 'constants/text';
 
 export default {
   container: {
     flex: 1,
     backgroundColor: WHITE,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+
+  description: {
+    backgroundColor: GREY_LIGHT,
+    padding: 10,
+    textAlign: 'center',
+    fontSize: TEXT_SIZES.SMALL,
   },
 };
