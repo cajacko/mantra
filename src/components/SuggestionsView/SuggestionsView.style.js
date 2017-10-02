@@ -13,4 +13,20 @@ export default {
     textAlign: 'center',
     fontSize: TEXT_SIZES.SMALL,
   },
+
+  content: {
+    flex: 1,
+  },
+
+  noMoreContainer: {
+    flex: 1,
+    padding: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  noMoreText: {
+    fontSize: TEXT_SIZES.MEDIUM,
+    textAlign: 'center',
+  },
 };
