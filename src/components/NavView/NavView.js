@@ -5,24 +5,32 @@ import NavButton from 'components/NavButton/NavButton';
 import Menu from 'components/Menu/Menu.container';
 import style from 'components/NavView/NavView.style';
 
+/**
+ * Main app navigation, handles bottom and top banners
+ * @param {elements} children   the view to render inbetween the header and
+ * footer
+ * @param {function} switchView function to change views
+ * @param {boolean} openMenu   Is the side menu open
+ * @param {string} activeItem The current view which is open, used to show
+ * active view
+ * @param {?string} myjsonId   The id of the user, used to know if we are
+ * logged in
+ * @returns {JSX} Returns jsx template
+ */
 const NavView = ({ children, switchView, openMenu, activeItem, myjsonId }) => {
   let displayActive = false;
   let loopActive = false;
-  let profileActive = false;
-  let loginActive = false;
+  let suggestedActive = false;
 
   switch (activeItem) {
-    case 'LoginRegisterView':
-      loginActive = true;
+    case 'SuggestedView':
+      suggestedActive = true;
       break;
     case 'DisplayView':
       displayActive = true;
       break;
     case 'LoopView':
       loopActive = true;
-      break;
-    case 'ProfileView':
-      profileActive = true;
       break;
     default:
       break;
@@ -68,11 +76,10 @@ const NavView = ({ children, switchView, openMenu, activeItem, myjsonId }) => {
             title="Add"
           />
           <NavButton
-            action={() =>
-              switchView(myjsonId ? 'ProfileView' : 'LoginRegisterView')}
-            icon="ios-contact-outline"
-            active={myjsonId ? profileActive : loginActive}
-            title="Account"
+            action={() => switchView('SuggestedView')}
+            icon="ios-contacts-outline"
+            active={suggestedActive}
+            title="Suggested"
           />
           <NavButton
             action={() => openMenu()}
