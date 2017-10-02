@@ -7,8 +7,16 @@ import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
 import WelcomeView from 'components/WelcomeView/WelcomeView.container';
+import SuggestionsView from 'components/SuggestionsView/SuggestionsView.component';
 
-const Views = ({ view, myjsonId, viewProps, firstTime }) => {
+/**
+ * Switch between the different Views
+ * @param {string} view      The current view to display
+ * @param {?object} viewProps An object of properties to pass to the viewProps
+ * @param {boolean} firstTime Is this the first time the user has opened the app
+ * @return {jsx}             The jsx markup to render
+ */
+const Views = ({ view, viewProps, firstTime }) => {
   if (!view) {
     return null;
   }
@@ -24,6 +32,9 @@ const Views = ({ view, myjsonId, viewProps, firstTime }) => {
   let viewElement;
 
   switch (view) {
+    case 'SuggestedView':
+      viewElement = <SuggestionsView />;
+      break;
     case 'LoginRegisterView':
       viewElement = <Login />;
       break;
@@ -50,7 +61,6 @@ const Views = ({ view, myjsonId, viewProps, firstTime }) => {
 
 Views.propTypes = {
   view: PropTypes.string,
-  myjsonId: PropTypes.string,
   // eslint-disable-next-line
   viewProps: PropTypes.object.isRequired,
   firstTime: PropTypes.bool.isRequired,
