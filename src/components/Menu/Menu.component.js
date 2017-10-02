@@ -9,13 +9,27 @@ import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
 import email from 'helpers/email';
 
+/**
+ * The menu component, comes out from the side and allows navigation for second
+ * level nav items
+ * @type {class}
+ */
 class Menu extends Component {
+  /**
+   * Setup menu class, bind this to methods
+   * @param  {object} props Passed React props
+   * @return {void}       No return
+   */
   constructor(props) {
     super(props);
 
     this.logout = this.logout.bind(this);
   }
 
+  /**
+   * Log the user out, give an alert so they have the choice to decline first
+   * @return {void} No return
+   */
   logout() {
     Alert.alert('Logout', 'Any unsynced data will be lost', [
       { text: 'Cancel' },
@@ -26,6 +40,10 @@ class Menu extends Component {
     ]);
   }
 
+  /**
+   * Render the menu
+   * @return {JSX} Return the markup
+   */
   render() {
     const menu = (
       <View style={style.container}>
@@ -44,13 +62,14 @@ class Menu extends Component {
           </TouchableOpacity>
         </View>
         <View style={style.menuItems}>
-          {!this.props.isLoggedIn && (
-            <MenuItem
-              title="Login/Register"
-              icon="ios-contact-outline"
-              action={() => this.props.switchView('LoginRegisterView')}
-            />
-          )}
+          <MenuItem
+            title={this.props.isLoggedIn ? 'Account' : 'Login/Register'}
+            icon="ios-contact-outline"
+            action={() =>
+              this.props.switchView(
+                this.props.isLoggedIn ? 'ProfileView' : 'LoginRegisterView',
+              )}
+          />
           <MenuItem
             title="Feedback"
             icon="ios-chatboxes-outline"
