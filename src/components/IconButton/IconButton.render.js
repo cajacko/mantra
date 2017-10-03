@@ -20,7 +20,13 @@ class IconButton extends PureComponent {
   render() {
     return (
       <TouchableOpacity onPress={this.props.onPress}>
-        <View style={style.container}>
+        <View
+          style={
+            this.props.hasBackground
+              ? style.containerBackground
+              : style.container
+          }
+        >
           <View style={style.icon}>
             <Ionicons
               name={this.props.icon}
@@ -37,6 +43,11 @@ class IconButton extends PureComponent {
 IconButton.propTypes = {
   icon: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  hasBackground: PropTypes.bool,
+};
+
+IconButton.defaultProps = {
+  hasBackground: true,
 };
 
 export default IconButton;

@@ -82,7 +82,11 @@ class Mantra extends PureComponent {
             <View style={style.container}>
               {this.props.add && (
                 <View style={style.add}>
-                  <IconButton icon="ios-add-outline" onPress={this.props.add} />
+                  <IconButton
+                    icon="ios-add-outline"
+                    onPress={this.props.add}
+                    hasBackground
+                  />
                 </View>
               )}
               <View style={style.wrapper}>
@@ -102,6 +106,7 @@ class Mantra extends PureComponent {
                   <IconButton
                     icon="ios-close-outline"
                     onPress={this.props.discard}
+                    hasBackground={false}
                   />
                 </View>
               )}

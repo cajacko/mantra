@@ -3,14 +3,19 @@ import { GREY_LIGHT } from 'constants/colours';
 const size = 36;
 const iconSize = 26;
 
+const container = {
+  height: size,
+  width: size,
+};
+
 export default {
   iconSize,
+  container,
 
-  container: {
+  containerBackground: {
     backgroundColor: GREY_LIGHT,
     borderRadius: size / 2,
-    height: size,
-    width: size,
+    ...container,
   },
 
   icon: {
