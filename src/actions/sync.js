@@ -1,6 +1,13 @@
+/* eslint max-lines: 0 */
 import mergeItems from 'helpers/mergeItems';
 import combineArrays from 'helpers/combineArrays';
 
+/**
+ * Get data from the online JSON store, by a given ID
+ *
+ * @param  {string} myjsonId The myjsonID to get online
+ * @return {Promise}          A promise that resolves to the data or errors
+ */
 function getServerData(myjsonId) {
   return new Promise((resolve, reject) => {
     fetch(`https://api.myjson.com/bins/${myjsonId}`)
@@ -22,6 +29,14 @@ function getServerData(myjsonId) {
   });
 }
 
+/**
+ * Given some data save it online at the given myjsonId
+ *
+ * @param {string} myjsonId The myjsonId to save to
+ * @param {Object} data     The data to save
+ * @return {Promise}        A promise that resolves with the all the data that's
+ * saved for this user
+ */
 function setServerData(myjsonId, data) {
   return new Promise((resolve, reject) => {
     fetch(`https://api.myjson.com/bins/${myjsonId}`, {
@@ -50,6 +65,12 @@ function setServerData(myjsonId, data) {
   });
 }
 
+/**
+ * Get a list of the posts that were offline that are now syncing
+ *
+ * @param  {Object} items The object of mantra items
+ * @return {array}       Array of mantra ID's
+ */
 function offLinePostsSyncing(items) {
   const offlinePosts = [];
 
@@ -65,6 +86,14 @@ function offLinePostsSyncing(items) {
 let activeSync = null;
 let id = 0;
 
+/**
+ * Sync the data with the online json store
+ *
+ * @param  {boolean} cancelOtherCalls A flag to cancel the response from any
+ * outstanding calls
+ * @return {function}                 A thunk function that redux-thunk will use
+ * to dispathc multiple actions
+ */
 export default function (cancelOtherCalls) {
   const syncId = id;
   id += 1;
