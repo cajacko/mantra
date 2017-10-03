@@ -1,7 +1,7 @@
 /* @flow */
 
 import { connect } from 'react-redux';
-import MantraLoop from 'containers/MantraLoop/MantraLoop';
+import MantraLoop from 'components/MantraLoop/MantraLoop.component';
 import sync from 'actions/sync';
 
 const mapStateToProps = (

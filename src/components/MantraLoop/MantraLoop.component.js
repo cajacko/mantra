@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import MantraLoop from 'components/MantraLoop/MantraLoop';
+import MantraLoop from 'components/MantraLoop/MantraLoop.render';
 
 function returnMantraLoop(items) {
   const mantraLoop = [];
