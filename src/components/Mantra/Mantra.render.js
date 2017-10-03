@@ -72,10 +72,12 @@ class Mantra extends PureComponent {
       };
     }
 
+    const PressView = this.props.onPress ? TouchableOpacity : View;
+
     return (
       <View onLayout={this.props.onLayout} style={viewStyle}>
         <Animated.View style={{ overflow: 'hidden', ...heightStyle }}>
-          <TouchableOpacity onPress={this.props.onPress}>
+          <PressView onPress={this.props.onPress && this.props.onPress}>
             <View style={style.container}>
               <View style={style.wrapper}>
                 <Text style={style.text}>{this.props.title}</Text>
@@ -90,7 +92,7 @@ class Mantra extends PureComponent {
                 )}
               </View>
             </View>
-          </TouchableOpacity>
+          </PressView>
         </Animated.View>
       </View>
     );

@@ -20,6 +20,21 @@ describe('Mantra.render', () => {
     expect(result).toMatchSnapshot();
   });
 
+  test('No onPress renders View instead of TouchOpacity', () => {
+    const props = {
+      title: 'Hello I am Mantra',
+      initial: false,
+      onLayout: () => {},
+      rotation: { AnimatedMockRotation: true },
+    };
+
+    const renderer = new ShallowRenderer();
+    renderer.render(<Mantra {...props} />);
+    const result = renderer.getRenderOutput();
+
+    expect(result).toMatchSnapshot();
+  });
+
   test('With a specific height', () => {
     const props = {
       title: 'Hello I am Mantra',
