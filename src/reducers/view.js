@@ -1,6 +1,6 @@
 import views from 'constants/views';
 
-const defaultState = { view: 'DisplayView', props: {} };
+const defaultState = { view: 'SuggestedView', props: {} };
 
 export default (state = { view: null, props: {} }, { type, payload }) => {
   switch (type) {

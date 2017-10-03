@@ -13,7 +13,14 @@ const SuggestionsLoop = ({ suggestions }) => (
   <FlatList
     data={suggestions}
     renderItem={({ item }) => (
-      <Mantra key={item.id} title={item.title} isSuggestion initial />
+      <Mantra
+        key={item.id}
+        title={item.title}
+        isSuggestion
+        initial
+        discard={() => {}}
+        add={() => {}}
+      />
     )}
   />
 );

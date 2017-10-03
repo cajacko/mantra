@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Mantra/Mantra.style';
+import IconButton from 'components/IconButton/IconButton.render';
 
 /**
  * Mantra render component. Purely responsible to markup, styles and
@@ -79,6 +80,11 @@ class Mantra extends PureComponent {
         <Animated.View style={{ overflow: 'hidden', ...heightStyle }}>
           <PressView onPress={this.props.onPress && this.props.onPress}>
             <View style={style.container}>
+              {this.props.add && (
+                <View style={style.add}>
+                  <IconButton icon="ios-add-outline" onPress={this.props.add} />
+                </View>
+              )}
               <View style={style.wrapper}>
                 <Text style={style.text}>{this.props.title}</Text>
                 {this.props.showSyncIcon && (
@@ -91,6 +97,14 @@ class Mantra extends PureComponent {
                   </Animated.View>
                 )}
               </View>
+              {this.props.discard && (
+                <View style={style.discard}>
+                  <IconButton
+                    icon="ios-close-outline"
+                    onPress={this.props.discard}
+                  />
+                </View>
+              )}
             </View>
           </PressView>
         </Animated.View>
@@ -111,19 +125,21 @@ Mantra.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   rotation: PropTypes.object,
   initial: PropTypes.bool,
-  isSuggestion: PropTypes.bool,
+  discard: PropTypes.func,
+  add: PropTypes.func,
 };
 
 Mantra.defaultProps = {
   rotation: null,
   height: null,
   syncOpacity: null,
-  isSuggestion: false,
   showSyncIcon: false,
   onLayout: null,
   syncing: false,
   initial: false,
   onPress: null,
+  add: null,
+  discard: null,
 };
 
 export default Mantra;

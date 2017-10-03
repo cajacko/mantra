@@ -19,9 +19,12 @@ exports[`Mantra.render Initial and no height still shows 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -29,6 +32,7 @@ exports[`Mantra.render Initial and no height still shows 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
@@ -81,9 +85,12 @@ exports[`Mantra.render No onPress renders View instead of TouchOpacity 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -91,6 +98,7 @@ exports[`Mantra.render No onPress renders View instead of TouchOpacity 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
@@ -144,9 +152,12 @@ exports[`Mantra.render Renders correctly with default params 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -154,6 +165,7 @@ exports[`Mantra.render Renders correctly with default params 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
@@ -202,9 +214,12 @@ exports[`Mantra.render Show default sync icon 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -212,6 +227,7 @@ exports[`Mantra.render Show default sync icon 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
@@ -278,9 +294,12 @@ exports[`Mantra.render Show sync icon syncing 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -288,6 +307,7 @@ exports[`Mantra.render Show sync icon syncing 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
@@ -362,9 +382,12 @@ exports[`Mantra.render With a specific height 1`] = `
       <View
         style={
           Object {
+            "alignItems": "center",
             "backgroundColor": "white",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
+            "flex": 1,
+            "flexDirection": "row",
           }
         }
       >
@@ -372,6 +395,7 @@ exports[`Mantra.render With a specific height 1`] = `
           style={
             Object {
               "alignItems": "center",
+              "flex": 1,
               "flexDirection": "row",
               "paddingBottom": 20,
               "paddingLeft": 10,
