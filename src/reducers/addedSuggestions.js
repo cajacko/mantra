@@ -1,4 +1,6 @@
-export default (state = [], { type, payload }) => {
+const defaultState = [];
+
+export default (state = defaultState, { type, payload }) => {
   switch (type) {
     case 'SAVE_MANTRA': {
       // Only updated added suggestion if the mantra being saved is a suggestion
@@ -14,6 +16,9 @@ export default (state = [], { type, payload }) => {
 
       return newState;
     }
+
+    case 'LOGOUT':
+      return defaultState;
 
     default:
       return state;

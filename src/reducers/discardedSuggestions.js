@@ -1,4 +1,6 @@
-export default (state = [], { type, payload }) => {
+const defaultState = [];
+
+export default (state = defaultState, { type, payload }) => {
   switch (type) {
     case 'DISCARD_SUGGESTION': {
       const newState = Object.assign([], state);
@@ -9,6 +11,9 @@ export default (state = [], { type, payload }) => {
 
       return newState;
     }
+
+    case 'LOGOUT':
+      return defaultState;
 
     default:
       return state;

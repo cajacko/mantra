@@ -1,16 +1,14 @@
 import views from 'constants/views';
 
-const defaultState = { view: 'SuggestedView', props: {} };
+const defaultState = { view: 'DisplayView', props: {} };
 
 export default (state = { view: null, props: {} }, { type, payload }) => {
   switch (type) {
-    // Even though is same as default, don't use default as is misleading. And
-    // if change default later, might forget that we want this to go here
     case 'LOGIN':
-      return { view: 'DisplayView', props: {} };
+    case 'REGISTER':
+      return { view: 'SuggestedView', props: {} };
 
     case 'persist/REHYDRATE':
-    case 'LOGOUT':
       return defaultState;
 
     case 'SWITCH_VIEW': {
@@ -46,11 +44,11 @@ export default (state = { view: null, props: {} }, { type, payload }) => {
       return { view: 'LoopView', props: {} };
     }
 
+    case 'LOGOUT':
+      return { view: 'LoginRegisterView', props: {} };
+
     case 'DELETE_MANTRA':
       return { view: 'LoopView', props: {} };
-
-    case 'REGISTER':
-      return { view: 'ProfileView', props: {} };
 
     default:
       return state;
