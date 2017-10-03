@@ -3,6 +3,7 @@
 import { connect } from 'react-redux';
 import WelcomeView from 'components/WelcomeView/WelcomeView.component';
 import switchView from 'actions/switchView';
+import getVisibleItemsCount from 'helpers/getVisibleItemsCount';
 
 /**
  * Get data from the store and pass it to the component
@@ -12,7 +13,7 @@ import switchView from 'actions/switchView';
  * @return {object}          Props to pass to component
  */
 const mapStateToProps = ({ items }) => ({
-  itemsCount: Object.keys(items).length,
+  itemsCount: getVisibleItemsCount(items),
 });
 
 /**

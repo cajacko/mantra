@@ -2,6 +2,7 @@
 
 import { connect } from 'react-redux';
 import SuggestionsView from 'components/SuggestionsView/SuggestionsView.component';
+import getAvailableSuggestions from 'helpers/getAvailableSuggestions';
 
 /**
  * Map store state to component props. Filter the suggestions by which ones are
@@ -14,22 +15,12 @@ const mapStateToProps = ({
   suggestions,
   addedSuggestions,
   discardedSuggestions,
-}) => {
-  const items = suggestions.filter(({ id }) => {
-    if (addedSuggestions.includes(id)) {
-      return false;
-    }
-
-    if (discardedSuggestions.includes(id)) {
-      return false;
-    }
-
-    return true;
-  });
-
-  return {
-    suggestions: items,
-  };
-};
+}) => ({
+  suggestions: getAvailableSuggestions(
+    suggestions,
+    addedSuggestions,
+    discardedSuggestions,
+  ),
+});
 
 export default connect(mapStateToProps, undefined)(SuggestionsView);

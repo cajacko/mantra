@@ -2,18 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import EmptyView from 'components/EmptyView/EmptyView';
-import switchView from 'actions/switchView';
+import getAvailableSuggestions from 'helpers/getAvailableSuggestions';
+import getVisibleItemsCount from 'helpers/getVisibleItemsCount';
 
 function hasVisibleItems(items) {
-  let visibleItems = false;
-
-  Object.keys(items).forEach((id) => {
-    if (items[id].deleted === false) {
-      visibleItems = true;
-    }
-  });
-
-  return visibleItems;
+  return getVisibleItemsCount(items) > 0;
 }
 
 class EmptyViewContainer extends Component {
@@ -21,7 +14,6 @@ class EmptyViewContainer extends Component {
     super(props);
 
     this.state = { hasVisibleMantra: hasVisibleItems(props.items) };
-    this.add = this.add.bind(this);
   }
 
   componentWillReceiveProps({ items }) {
@@ -32,15 +24,11 @@ class EmptyViewContainer extends Component {
     }
   }
 
-  add() {
-    this.props.dispatch(switchView('AddView'));
-  }
-
   render() {
     return (
       <EmptyView
         hasVisibleMantra={this.state.hasVisibleMantra}
-        add={this.add}
+        suggestions={this.props.suggestions}
       >
         {this.props.children}
       </EmptyView>
@@ -49,17 +37,31 @@ class EmptyViewContainer extends Component {
 }
 
 EmptyViewContainer.propTypes = {
-  dispatch: PropTypes.func.isRequired,
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.element,
-  ]).isRequired,
+  children: PropTypes.oneOfType([PropTypes.func, PropTypes.element]).isRequired,
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
 };
 
-function mapStateToProps({ items }) {
-  return { items };
+function mapStateToProps({
+  items,
+  suggestions,
+  addedSuggestions,
+  discardedSuggestions,
+}) {
+  return {
+    items,
+    suggestions: getAvailableSuggestions(
+      suggestions,
+      addedSuggestions,
+      discardedSuggestions,
+    ),
+  };
 }
 
 export default connect(mapStateToProps)(EmptyViewContainer);

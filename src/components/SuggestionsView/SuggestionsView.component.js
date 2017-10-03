@@ -3,6 +3,7 @@ import { View, StatusBar, Text } from 'react-native';
 import PropTypes from 'prop-types';
 import style from 'components/SuggestionsView/SuggestionsView.style';
 import SuggestionsLoop from 'components/SuggestionsLoop/SuggestionsLoop.component';
+import SuggestionsHeader from 'components/SuggestionsHeader/SuggestionsHeader.render';
 
 /**
  * View for mantra suggestions
@@ -12,9 +13,7 @@ import SuggestionsLoop from 'components/SuggestionsLoop/SuggestionsLoop.componen
 const SuggestionsView = ({ suggestions }) => (
   <View style={style.container}>
     <StatusBar barStyle="dark-content" />
-    <Text style={style.description}>
-      Here are some suggested mantra to add!
-    </Text>
+    <SuggestionsHeader text="Here are some suggested mantra to add!" />
     <View style={style.content}>
       {suggestions.length === 0 ? (
         <View style={style.noMoreContainer}>
