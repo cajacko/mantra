@@ -4,7 +4,20 @@ import PropTypes from 'prop-types';
 import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
 
+/**
+ * The markup, styling and animation for a Mantra items
+ *
+ * @type {Class}
+ */
 class Mantraloop extends Component {
+  /**
+   * Initialise the class, setting up rotation for all the sync icon on the
+   * Mantra items, so that they all have the same rotation, rather than
+   * managing it all themselves and getting out of sync
+   *
+   * @param  {Object} props Props passed to the component
+   * @return {void}       No return type
+   */
   constructor(props) {
     super(props);
 
@@ -12,10 +25,20 @@ class Mantraloop extends Component {
     this.runAnimation = this.runAnimation.bind(this);
   }
 
+  /**
+   * Run the sync icon animation when the component mounts
+   *
+   * @return {void} No return value
+   */
   componentDidMount() {
     this.runAnimation();
   }
 
+  /**
+   * Run the sync icon rotation animation
+   *
+   * @return {void} No return value
+   */
   runAnimation() {
     this.state.rotation.setValue(0);
 
@@ -26,6 +49,11 @@ class Mantraloop extends Component {
     }).start(() => this.runAnimation());
   }
 
+  /**
+   * Render the list of mantra items
+   *
+   * @return {component} JSX component to display
+   */
   render() {
     const spin = this.state.rotation.interpolate({
       inputRange: [0, 1],
@@ -60,9 +88,11 @@ class Mantraloop extends Component {
 }
 
 Mantraloop.propTypes = {
-  mantraLoop: PropTypes.arrayOf(PropTypes.shape({
-    key: PropTypes.string,
-  })).isRequired,
+  mantraLoop: PropTypes.arrayOf(
+    PropTypes.shape({
+      key: PropTypes.string,
+    }),
+  ).isRequired,
   refreshing: PropTypes.bool.isRequired,
   onRefresh: PropTypes.func.isRequired,
   initialItems: PropTypes.arrayOf(PropTypes.string).isRequired,
