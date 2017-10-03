@@ -13,10 +13,24 @@ import style from 'components/Mantra/Mantra.style';
  */
 class Mantra extends PureComponent {
   /**
-   * Render method to decide on markup and style
-   * @return {jsx} Return jsx markup
+   * Initialise the component and bind the methods
+   *
+   * @param  {Object} props Props passed ot the component
+   * @return {void}       No return value
    */
-  render() {
+  constructor(props) {
+    super(props);
+
+    this.syncStyles = this.syncStyles.bind(this);
+  }
+
+  /**
+   * Logic to decide on the styles for the sync icon, with highlight and
+   * rotation if syncing
+   *
+   * @return {Object} Object mapping the styles for the icon
+   */
+  syncStyles() {
     let iconColour;
     let syncStyle;
 
@@ -32,6 +46,16 @@ class Mantra extends PureComponent {
         };
       }
     }
+
+    return { iconColour, syncStyle };
+  }
+
+  /**
+   * Render method to decide on markup and style
+   * @return {jsx} Return jsx markup
+   */
+  render() {
+    const { iconColour, syncStyle } = this.syncStyles();
 
     let heightStyle = {};
 
@@ -76,21 +100,28 @@ class Mantra extends PureComponent {
 Mantra.propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   syncOpacity: PropTypes.object,
-  showSyncIcon: PropTypes.bool.isRequired,
+  showSyncIcon: PropTypes.bool,
   height: PropTypes.number,
   title: PropTypes.string.isRequired,
-  onLayout: PropTypes.func.isRequired,
-  onPress: PropTypes.func.isRequired,
-  syncing: PropTypes.bool.isRequired,
+  onLayout: PropTypes.func,
+  onPress: PropTypes.func,
+  syncing: PropTypes.bool,
   // eslint-disable-next-line react/forbid-prop-types
   rotation: PropTypes.object,
-  initial: PropTypes.bool.isRequired,
+  initial: PropTypes.bool,
+  isSuggestion: PropTypes.bool,
 };
 
 Mantra.defaultProps = {
   rotation: null,
   height: null,
   syncOpacity: null,
+  isSuggestion: false,
+  showSyncIcon: false,
+  onLayout: null,
+  syncing: false,
+  initial: false,
+  onPress: null,
 };
 
 export default Mantra;

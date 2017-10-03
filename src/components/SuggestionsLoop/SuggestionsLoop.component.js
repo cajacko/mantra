@@ -1,13 +1,13 @@
 import React from 'react';
 import { FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import Suggestion from 'components/Suggestion/Suggestion.container';
+import Mantra from 'components/Mantra/Mantra.render';
 
 const SuggestionsLoop = ({ suggestions }) => (
   <FlatList
     data={suggestions}
-    renderItem={({ id, title }) => (
-      <Suggestion key={id} title={title} isSuggestion />
+    renderItem={({ item }) => (
+      <Mantra key={item.id} title={item.title} isSuggestion />
     )}
   />
 );
