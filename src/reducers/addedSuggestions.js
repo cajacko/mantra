@@ -1,3 +1,5 @@
+import combineArrays from 'helpers/combineArrays';
+
 const defaultState = [];
 
 export default (state = defaultState, { type, payload }) => {
@@ -16,6 +18,9 @@ export default (state = defaultState, { type, payload }) => {
 
       return newState;
     }
+
+    case 'SYNC_SUCCESS':
+      return combineArrays(state, payload.addedSuggestions);
 
     case 'LOGOUT':
       return defaultState;

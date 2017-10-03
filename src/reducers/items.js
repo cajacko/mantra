@@ -23,7 +23,7 @@ export default (state = defaultState, { type, payload }) => {
     }
 
     case 'SYNC_SUCCESS': {
-      return mergeItems(state, payload);
+      return mergeItems(state, payload.items);
     }
 
     case 'LOGIN':

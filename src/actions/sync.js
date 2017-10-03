@@ -1,4 +1,5 @@
 import mergeItems from 'helpers/mergeItems';
+import combineArrays from 'helpers/combineArrays';
 
 function getServerData(myjsonId) {
   return new Promise((resolve, reject) => {
@@ -8,7 +9,7 @@ function getServerData(myjsonId) {
         if (!payload || !payload.items) {
           reject('BAD_RESPONSE');
         } else {
-          resolve(payload.items);
+          resolve(payload);
         }
       })
       .catch((payload) => {
@@ -21,7 +22,7 @@ function getServerData(myjsonId) {
   });
 }
 
-function setServerData(myjsonId, items) {
+function setServerData(myjsonId, data) {
   return new Promise((resolve, reject) => {
     fetch(`https://api.myjson.com/bins/${myjsonId}`, {
       method: 'PUT',
@@ -29,12 +30,12 @@ function setServerData(myjsonId, items) {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify(data),
     })
       .then(response => response.json())
       .then((payload) => {
         if (payload && payload.items) {
-          resolve(payload.items);
+          resolve(payload);
         } else {
           reject(payload);
         }
@@ -73,27 +74,45 @@ export default function (cancelOtherCalls) {
       return;
     }
 
-    const { items, myjsonId } = getState();
+    const {
+      items,
+      myjsonId,
+      addedSuggestions,
+      discardedSuggestions,
+    } = getState();
 
     activeSync = syncId;
 
     dispatch({ type: 'SYNC_INIT', payload: offLinePostsSyncing(items) });
 
     getServerData(myjsonId)
-      .then((serverItems) => {
+      .then((response) => {
         if (activeSync !== syncId) {
           return null;
         }
 
-        const mergedItems = mergeItems(items, serverItems, true);
-        return setServerData(myjsonId, mergedItems);
+        const mergedItems = mergeItems(items, response.items, true);
+
+        const data = {
+          items: mergedItems,
+          addedSuggestions: combineArrays(
+            addedSuggestions,
+            response.addedSuggestions,
+          ),
+          discardedSuggestions: combineArrays(
+            discardedSuggestions,
+            response.discardedSuggestions,
+          ),
+        };
+
+        return setServerData(myjsonId, data);
       })
-      .then((serverItems) => {
+      .then((data) => {
         if (activeSync === syncId) {
           activeSync = null;
 
-          if (serverItems) {
-            dispatch({ type: 'SYNC_SUCCESS', payload: serverItems });
+          if (data) {
+            dispatch({ type: 'SYNC_SUCCESS', payload: data });
           } else {
             dispatch({ type: 'SYNC_ERROR', payload: 'No serverItems' });
           }
