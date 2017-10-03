@@ -7,7 +7,7 @@ import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
 import WelcomeView from 'components/WelcomeView/WelcomeView.container';
-import SuggestionsView from 'components/SuggestionsView/SuggestionsView.component';
+import SuggestionsView from 'components/SuggestionsView/SuggestionsView.container';
 
 /**
  * Switch between the different Views

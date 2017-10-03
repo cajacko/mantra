@@ -1,11 +1,12 @@
-const defaultState = {};
+const defaultState = [];
 
 for (let i = 0; i < 20; i += 1) {
-  defaultState[i] = {
+  defaultState.push({
     title: `Suggestion ${i}`,
-    id: i,
-    order: 1,
-  };
+    id: `${i}`,
+    // Key prop needed for flat list
+    key: `${i}`,
+  });
 }
 
 export default () => defaultState;
