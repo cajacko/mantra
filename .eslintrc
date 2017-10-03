@@ -46,6 +46,12 @@
       "babel-module": {}
     }
   },
+  "plugins": [
+    "jest",
+  ],
+  "env": {
+    "jest/globals": true
+  },
   "globals": {
     "fetch": false
   }
