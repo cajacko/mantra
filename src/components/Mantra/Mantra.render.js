@@ -119,14 +119,18 @@ class Mantra extends PureComponent {
 }
 
 Mantra.propTypes = {
+  // eslint ignore as animation
   // eslint-disable-next-line react/forbid-prop-types
   syncOpacity: PropTypes.object,
   showSyncIcon: PropTypes.bool,
-  height: PropTypes.number,
+  // eslint ignore as animation
+  // eslint-disable-next-line react/forbid-prop-types
+  height: PropTypes.object,
   title: PropTypes.string.isRequired,
   onLayout: PropTypes.func,
   onPress: PropTypes.func,
   syncing: PropTypes.bool,
+  // eslint ignore as animation
   // eslint-disable-next-line react/forbid-prop-types
   rotation: PropTypes.object,
   initial: PropTypes.bool,
