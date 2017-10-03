@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Mantra from 'components/Mantra/Mantra';
+import Mantra from 'components/Mantra/Mantra.component';
 import switchView from 'actions/switchView';
 import deleteMantra from 'actions/deleteMantra';
 
@@ -23,10 +23,12 @@ class MantraContainer extends Component {
   }
 
   editMantra() {
-    this.props.dispatch(switchView('AddView', {
-      id: this.props.id,
-      title: this.props.title,
-    }));
+    this.props.dispatch(
+      switchView('AddView', {
+        id: this.props.id,
+        title: this.props.title,
+      }),
+    );
   }
 
   render() {
