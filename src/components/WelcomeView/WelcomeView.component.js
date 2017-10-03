@@ -1,5 +1,5 @@
 /* eslint max-lines: 0 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { View, StatusBar, Text, Image } from 'react-native';
 import Swiper from 'react-native-swiper';
@@ -18,9 +18,22 @@ const welcomeScreens = [
   { title: 'Manage all your mantra from the list view', image: list },
 ];
 
-// Cannot seem to have a custom Component as a child of react-native-swiper.
-// Kept on breaking. So have put the actual markup in this file
-class WelcomeView extends Component {
+/**
+ * Display the welcome view, navigate between screens and dispatch action when
+ * finished.
+ *
+ * Cannot seem to have a custom Component as a child of react-native-swiper.
+ * Kept on breaking. So have put the actual markup in this file
+ *
+ * @type {class}
+ */
+class WelcomeView extends PureComponent {
+  /**
+   * Initialise the class and bind the methods
+   *
+   * @param  {object} props Props passed to the component
+   * @return {void}       No return value
+   */
   constructor(props) {
     super(props);
 
@@ -28,16 +41,31 @@ class WelcomeView extends Component {
     this.finish = this.finish.bind(this);
   }
 
+  /**
+   * Go to the next swiper screen
+   *
+   * @return {void} No return value
+   */
   next() {
     if (this.swiper && typeof this.swiper.scrollBy === 'function') {
       this.swiper.scrollBy(1, true);
     }
   }
 
+  /**
+   * Dispatch action when finished the welcome screens
+   *
+   * @return {void} No return value
+   */
   finish() {
-    this.props.finish();
+    this.props.finish(this.props.itemsCount);
   }
 
+  /**
+   * Render the markup and styles for the welcome screens
+   *
+   * @return {Coomponent} JSX component
+   */
   render() {
     if (this.props.isLoggedIn === false) {
       welcomeScreens.push({ login: true });
@@ -113,6 +141,7 @@ class WelcomeView extends Component {
 WelcomeView.propTypes = {
   finish: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  itemsCount: PropTypes.number.isRequired,
 };
 
 export default WelcomeView;
