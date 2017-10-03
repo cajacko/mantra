@@ -37,7 +37,15 @@ export default (state = { view: null, props: {} }, { type, payload }) => {
       return state;
     }
 
-    case 'SAVE_MANTRA':
+    case 'SAVE_MANTRA': {
+      // Do not redirect is we are saving a suggestion
+      if (payload.suggestionId) {
+        return state;
+      }
+
+      return { view: 'LoopView', props: {} };
+    }
+
     case 'DELETE_MANTRA':
       return { view: 'LoopView', props: {} };
 
