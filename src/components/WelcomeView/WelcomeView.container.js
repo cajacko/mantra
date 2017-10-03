@@ -11,8 +11,7 @@ import switchView from 'actions/switchView';
  * @param  {object} items    Mantra items, keyed by ID
  * @return {object}          Props to pass to component
  */
-const mapStateToProps = ({ myjsonId, items }) => ({
-  isLoggedIn: myjsonId !== null,
+const mapStateToProps = ({ items }) => ({
   itemsCount: Object.keys(items).length,
 });
 
