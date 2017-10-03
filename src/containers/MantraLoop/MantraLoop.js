@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MantraLoop from 'components/MantraLoop/MantraLoop';
-import sync from 'actions/sync';
 
 function returnMantraLoop(items) {
   const mantraLoop = [];
@@ -74,7 +72,7 @@ class MantraLoopContainer extends Component {
 
   onRefresh() {
     if (this.props.myjsonId !== null) {
-      this.props.dispatch(sync());
+      this.props.sync();
     }
 
     this.setState({ refreshing: true });
@@ -96,7 +94,7 @@ class MantraLoopContainer extends Component {
 MantraLoopContainer.propTypes = {
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  sync: PropTypes.func.isRequired,
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,
   myjsonId: PropTypes.string,
@@ -106,8 +104,4 @@ MantraLoopContainer.defaultProps = {
   myjsonId: null,
 };
 
-function mapStateToProps({ items, myjsonId, lastAction }) {
-  return { items, myjsonId, lastAction };
-}
-
-export default connect(mapStateToProps)(MantraLoopContainer);
+export default MantraLoopContainer;
