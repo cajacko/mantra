@@ -28,12 +28,14 @@ const SuggestionsLoopItem = ({ noMantra, id, title }) => {
 
 SuggestionsLoopItem.propTypes = {
   noMantra: PropTypes.bool,
-  id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  id: PropTypes.string,
+  title: PropTypes.string,
 };
 
 SuggestionsLoopItem.defaultProps = {
   noMantra: false,
+  id: null,
+  title: null,
 };
 
 export default SuggestionsLoopItem;
