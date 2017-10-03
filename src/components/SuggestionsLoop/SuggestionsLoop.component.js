@@ -23,7 +23,12 @@ const SuggestionsLoop = ({ suggestions, noMantra }) => {
     <FlatList
       data={data}
       renderItem={({ item }) => (
-        <SuggestionsLoopItem key={item.id} id={item.id} title={item.title} />
+        <SuggestionsLoopItem
+          key={item.id}
+          id={item.id}
+          title={item.title}
+          noMantra={item.noMantra}
+        />
       )}
     />
   );
