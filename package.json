@@ -10,11 +10,8 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts start",
+    "start": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch --coverage",
-    "eject": "react-native-scripts eject",
-    "android": "react-native-scripts android",
-    "ios": "react-native-scripts ios",
     "lint": "eslint src",
     "deploy:test": "babel-node scripts/deploy.js type=test && npm run ios",
     "deploy:live": "babel-node scripts/deploy.js type=live && npm run ios"
