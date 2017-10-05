@@ -19,7 +19,8 @@
     "ios": {
       "bundleIdentifier": "com.charliejackson.mantra",
       "supportsTablet": true,
-      "isRemoteJSEnabled": false
+      "isRemoteJSEnabled": true,
+      "icon": "./assets/icons/app-store-image.png"
     },
     "android": {
       "package": "com.charliejackson.mantra"

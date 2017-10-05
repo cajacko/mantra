@@ -13,8 +13,10 @@
     "start": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch --coverage",
     "lint": "eslint src",
-    "deploy:test": "babel-node scripts/deploy.js type=test && npm run ios",
-    "deploy:live": "babel-node scripts/deploy.js type=live && npm run ios"
+    "publish:dev": "npm run deploy:dev && exp publish",
+    "publish:live": "npm run deploy:live && exp publish",
+    "deploy:dev": "babel-node scripts/deploy.js type=dev",
+    "deploy:live": "babel-node scripts/deploy.js type=live"
   },
   "jest": {
     "preset": "jest-expo"
