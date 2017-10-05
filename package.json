@@ -14,9 +14,10 @@
     "test": "node node_modules/jest/bin/jest.js --watch --coverage",
     "lint": "eslint src",
     "publish:dev": "npm run deploy:dev && exp publish",
-    "publish:live": "npm run deploy:live && exp publish",
+    "publish:live": "npm run git:master && npm run deploy:live && exp publish",
     "deploy:dev": "babel-node scripts/deploy.js type=dev",
-    "deploy:live": "babel-node scripts/deploy.js type=live"
+    "deploy:live": "babel-node scripts/deploy.js type=live",
+    "git:master": "git checkout master && git reset --hard && git clean -f -d"
   },
   "jest": {
     "preset": "jest-expo"
