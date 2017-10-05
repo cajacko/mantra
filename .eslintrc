@@ -3,6 +3,7 @@
     "airbnb"
   ],
   "rules": {
+    "react/prefer-stateless-function": "off",
     "valid-jsdoc": "error",
     "require-jsdoc": ["error", {
       "require": {
@@ -44,6 +45,12 @@
     "import/resolver": {
       "babel-module": {}
     }
+  },
+  "plugins": [
+    "jest",
+  ],
+  "env": {
+    "jest/globals": true
   },
   "globals": {
     "fetch": false

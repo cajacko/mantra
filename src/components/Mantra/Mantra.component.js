@@ -1,14 +1,25 @@
 /* eslint max-lines: 0 */
 import React, { Component } from 'react';
-import { Alert, View, Text, Animated, TouchableOpacity } from 'react-native';
+import { Alert, Animated } from 'react-native';
 import PropTypes from 'prop-types';
-import { Ionicons } from '@expo/vector-icons';
-import style from 'components/Mantra/Mantra.style';
+import MantraRender from 'components/Mantra/Mantra.render';
 
 const outAnimationTiming = 300;
 const animationTimeout = 100;
 
+/**
+ * Mantra Component, handles logic, state and animations when rendering a
+ * users mantra in a list
+ *
+ * @type {class}
+ */
 class Mantra extends Component {
+  /**
+   * Initialise class
+   *
+   * @param  {object} props Props passed to component
+   * @return {void}       No return
+   */
   constructor(props) {
     super(props);
 
@@ -24,8 +35,20 @@ class Mantra extends Component {
 
     this.deleteMantra = this.deleteMantra.bind(this);
     this.animateIn = this.animateIn.bind(this);
+    this.onLayout = this.onLayout.bind(this);
   }
 
+  /**
+   * Runs when component recieves new props. Use to start animating out if
+   * deleted, start fading the sync icon if online and whether to rotate the
+   * sync icon
+   *
+   * @param  {boolean} deletedProp  Is the mantra deletedProp
+   * @param  {boolean} deletedState Was the mantra previosuly deleted
+   * @param  {boolean} online       Is the mantra saved online
+   * @param  {boolean} syncing      Is the mantra currently syncing
+   * @return {void}              No return value
+   */
   componentWillReceiveProps({ deletedProp, deletedState, online, syncing }) {
     if (this.state.deletedManually) {
       return;
@@ -46,6 +69,26 @@ class Mantra extends Component {
     }
   }
 
+  /**
+   * Set the height of the mantra item when it is laid out. For use later when
+   * animating the collapsing
+   *
+   * @param  {event} event The layout event object, used to get height
+   * @return {void}       No return
+   */
+  onLayout(event) {
+    this.height = event.nativeEvent.layout.height;
+
+    if (this.height !== null && !this.props.initial) {
+      this.animateIn();
+    }
+  }
+
+  /**
+   * Start animating the sync icons opacity to 0
+   *
+   * @return {void} No return value
+   */
   hideSyncIcon() {
     Animated.timing(this.state.syncOpacity, {
       toValue: 0,
@@ -53,6 +96,12 @@ class Mantra extends Component {
     }).start();
   }
 
+  /**
+   * Animate in a Mantra, whose height was not originally set. Animate heihgt
+   * from 0 to where it should be
+   *
+   * @return {void} No return value
+   */
   animateIn() {
     if (this.state.height === null) {
       const height = this.height;
@@ -70,6 +119,12 @@ class Mantra extends Component {
     }
   }
 
+  /**
+   * Animate a Mantra's height from full to 0
+   * @param  {FunctionDeclaration} callback What to do when the animation is
+   * complete
+   * @return {void}              No return value
+   */
   animateOut(callback = () => {}) {
     this.setState({
       height: new Animated.Value(this.height),
@@ -83,6 +138,11 @@ class Mantra extends Component {
     }, animationTimeout);
   }
 
+  /**
+   * Show an alert when deleting a Mantra item
+   *
+   * @return {void} No return value
+   */
   deleteMantra() {
     Alert.alert('Delete Post', 'Are you sure you want to delete this post?', [
       {
@@ -98,66 +158,24 @@ class Mantra extends Component {
     ]);
   }
 
+  /**
+   * Pass the props and state needed for the render component to do its thing
+   *
+   * @return {component} JSX component
+   */
   render() {
-    const containerStyles = [style.container];
-    let syncIcon;
-
-    if (this.state.offlineInit) {
-      let viewStyle = { ...style.icon, opacity: this.state.syncOpacity };
-      let iconColour = style.iconColour;
-
-      if (this.state.syncing) {
-        iconColour = style.iconColourSyncing;
-        viewStyle = {
-          ...viewStyle,
-          transform: [{ rotate: this.props.rotation }],
-        };
-      }
-
-      syncIcon = (
-        <Animated.View style={viewStyle}>
-          <Ionicons name="ios-sync" size={style.iconSize} color={iconColour} />
-        </Animated.View>
-      );
-    }
-
-    let heightStyle = {};
-
-    if (this.state.height !== null) {
-      heightStyle = { height: this.state.height };
-    }
-
-    let viewStyle = {};
-
-    if (!this.props.initial && this.state.height === null) {
-      viewStyle = {
-        position: 'absolute',
-        opacity: 0,
-      };
-    }
-
     return (
-      <View
-        onLayout={(event) => {
-          this.height = event.nativeEvent.layout.height;
-
-          if (this.height !== null && !this.props.initial) {
-            this.animateIn();
-          }
-        }}
-        style={viewStyle}
-      >
-        <Animated.View style={{ overflow: 'hidden', ...heightStyle }}>
-          <TouchableOpacity onPress={this.props.editMantra}>
-            <View style={containerStyles}>
-              <View style={style.wrapper}>
-                <Text style={style.text}>{this.props.title}</Text>
-                {syncIcon}
-              </View>
-            </View>
-          </TouchableOpacity>
-        </Animated.View>
-      </View>
+      <MantraRender
+        showSyncIcon={this.state.offlineInit}
+        syncOpacity={this.state.syncOpacity}
+        height={this.state.height}
+        title={this.props.title}
+        onLayout={this.onLayout}
+        onPress={this.props.editMantra}
+        syncing={this.state.syncing}
+        rotation={this.props.rotation}
+        initial={this.props.initial}
+      />
     );
   }
 }

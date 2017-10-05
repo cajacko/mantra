@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import MantraLoop from 'components/MantraLoop/MantraLoop';
-import sync from 'actions/sync';
+import MantraLoopRender from 'components/MantraLoop/MantraLoop.render';
 
+/**
+ * Transform the items from the store into and array of ordered mantra ID's
+ *
+ * @param  {Object} items The items object from the store. Keyed object of
+ * mantra
+ * @return {array}       Array of strings, representing Mantra ID's
+ */
 function returnMantraLoop(items) {
   const mantraLoop = [];
   const ids = Object.keys(items);
@@ -20,7 +25,20 @@ function returnMantraLoop(items) {
   return idLoop;
 }
 
-class MantraLoopContainer extends Component {
+/**
+ * MantraLoop component, handle refreshes, sync errors and whether to update
+ * list
+ *
+ * @type {Class}
+ * @return {void} No return value
+ */
+class MantraLoop extends Component {
+  /**
+   * Initialise the class, setting init state and binding methods
+   *
+   * @param  {Object} props Props passed to component
+   * @return {void}       No return
+   */
   constructor(props) {
     super(props);
 
@@ -33,6 +51,13 @@ class MantraLoopContainer extends Component {
     this.onRefresh = this.onRefresh.bind(this);
   }
 
+  /**
+   * Handle refresh state based on sync succes/error and update loop items
+   * based on the store
+   *
+   * @param  {Object} nextProps New props passed to component
+   * @return {void}           No return
+   */
   componentWillReceiveProps(nextProps) {
     let refreshing;
 
@@ -52,6 +77,12 @@ class MantraLoopContainer extends Component {
     });
   }
 
+  /**
+   * Don't trigger a rerender if imformation we care about doesn't change
+   *
+   * @param  {Object} nextProps Props being passed to the component
+   * @return {boolean}           Whether to rerender or not
+   */
   shouldComponentUpdate(nextProps) {
     if (nextProps.items.length !== this.props.items.length) {
       return true;
@@ -72,17 +103,26 @@ class MantraLoopContainer extends Component {
     return returnValue;
   }
 
+  /**
+   * When the refresh trigger is made, handle syncing
+   *
+   * @return {void} No return
+   */
   onRefresh() {
     if (this.props.myjsonId !== null) {
-      this.props.dispatch(sync());
-    }
+      this.props.sync();
 
-    this.setState({ refreshing: true });
+      this.setState({ refreshing: true });
+    }
   }
 
+  /**
+   * Pass the props and state to the render component
+   * @return {component} JSX component to render
+   */
   render() {
     return (
-      <MantraLoop
+      <MantraLoopRender
         mantraLoop={this.state.mantraLoop}
         refreshing={this.state.refreshing}
         onRefresh={this.onRefresh}
@@ -93,21 +133,17 @@ class MantraLoopContainer extends Component {
   }
 }
 
-MantraLoopContainer.propTypes = {
+MantraLoop.propTypes = {
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  sync: PropTypes.func.isRequired,
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,
   myjsonId: PropTypes.string,
 };
 
-MantraLoopContainer.defaultProps = {
+MantraLoop.defaultProps = {
   myjsonId: null,
 };
 
-function mapStateToProps({ items, myjsonId, lastAction }) {
-  return { items, myjsonId, lastAction };
-}
-
-export default connect(mapStateToProps)(MantraLoopContainer);
+export default MantraLoop;

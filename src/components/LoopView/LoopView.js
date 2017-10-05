@@ -1,6 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
-import MantraLoop from 'containers/MantraLoop/MantraLoop';
+import MantraLoop from 'components/MantraLoop/MantraLoop.container';
 import style from 'components/LoopView/LoopView.style';
 import EmptyView from 'containers/EmptyView/EmptyView';
 
