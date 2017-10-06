@@ -1,40 +1,65 @@
 /* eslint no-console: 0 */
-import { execSync } from 'child_process';
+import { spawn } from 'child_process';
 import download from 'download-file';
+require('dotenv').config('../.env');
+
+const directory = './tmp/';
+const filename = 'build.ipa';
+const buildpath = `${directory}${filename}`;
+
+function runCommand(command, dataCallback) {
+  return new Promise((resolve, reject) => {
+    const commands = command.split(' ');
+    const ls = spawn(commands.splice(0, 1)[0], commands);
+
+    ls.stdout.on('data', (data) => {
+      console.log(`${data}`);
+      if (dataCallback) dataCallback(`${data}`);
+    });
+
+    ls.stderr.on('data', (data) => {
+      console.log(`${data}`);
+      if (dataCallback) dataCallback(`${data}`);
+    });
+
+    ls.on('close', (code) => {
+      if (code) {
+        reject();
+      } else {
+        resolve(`Process exited with code ${code}`);
+      }
+    });
+  });
+}
 
 function build() {
   return new Promise((resolve, reject) => {
-    resolve();
-
-    // const output = execSync('npm run build:ios', { encoding: 'utf8' });
-    //
-    // if (output.includes("What's your Apple ID")) {
-    //   reject(
-    //     'No apple credentials, run "npm run build:ios" to enter credentials',
-    //   );
-    //   return;
-    // }
-    //
-    // resolve();
+    runCommand('npm run build:ios', (output) => {
+      if (output.includes("What's your Apple ID")) {
+        reject(
+          'No apple credentials, run "npm run build:ios" to enter credentials',
+        );
+      }
+    })
+      .then(resolve)
+      .catch(reject);
   });
 }
 
 function checkStatus() {
   return new Promise((resolve, reject) => {
-    // stream so is nicer output
-    const output = execSync('npm run build:status', { encoding: 'utf8' });
-    console.log(output);
+    runCommand('npm run build:status', (output) => {
+      const matches = output.match(/\bhttps?:\/\/\S+/gi);
+      const buildUrl = matches && matches[0] ? matches[0] : null;
 
-    const matches = output.match(/\bhttps?:\/\/\S+/gi);
-    const buildUrl = matches && matches[0] ? matches[0] : null;
-
-    if (buildUrl) {
-      resolve(buildUrl);
-    } else if (output.includes('Build in progress')) {
-      resolve();
-    } else {
-      reject();
-    }
+      if (buildUrl) {
+        resolve(buildUrl);
+      } else if (output.includes('Build in progress')) {
+        resolve();
+      }
+    })
+      .then(() => reject('Unexpected response, check it and add to build'))
+      .catch(reject);
   });
 }
 
@@ -67,25 +92,26 @@ function waitForStatus(index) {
 
 function downloadBuild(url) {
   return new Promise((resolve, reject) => {
-    const directory = './tmp/';
-    const filename = 'build.ipa';
-
     console.log(`Downloading build: ${url}`);
 
     download(url, { directory, filename }, (err) => {
       if (err) reject(err);
-      const filepath = `${directory}${filename}`;
-      console.log(`Build downloaded at: ${filepath}`);
-      resolve(filepath);
+      console.log(`Build downloaded at: ${buildpath}`);
+      resolve(buildpath);
     });
 
     resolve();
   });
 }
 
-function uploadBuild() {
+function uploadBuild(filepath) {
   return new Promise((resolve, reject) => {
-    resolve();
+    const command = `fastlane pilot upload -u ${process.env
+      .APPLE_ID} -q ${process.env.FASTLANE_TEAM_ID} -i ${filepath}`;
+
+    runCommand(command)
+      .then(resolve)
+      .catch(reject);
   });
 }
 
@@ -93,6 +119,7 @@ build()
   .then(waitForStatus)
   .then(downloadBuild)
   .then(uploadBuild)
+  .then(() => console.log('SUCCESS'))
   .catch((err) => {
     throw new Error(err || 'Undefined application error');
   });

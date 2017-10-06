@@ -6,3 +6,4 @@ ios/
 /app.json
 /coverage
 /tmp
+.env
