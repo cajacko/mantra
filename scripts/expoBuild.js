@@ -83,10 +83,16 @@ function downloadBuild(url) {
   });
 }
 
+function uploadBuild() {
+  return new Promise((resolve, reject) => {
+    resolve();
+  });
+}
+
 build()
   .then(waitForStatus)
   .then(downloadBuild)
-  .then(console.log)
+  .then(uploadBuild)
   .catch((err) => {
     throw new Error(err || 'Undefined application error');
   });
