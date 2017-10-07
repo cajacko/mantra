@@ -1,11 +1,13 @@
 /* eslint no-console: 0 */
 import fetch from 'node-fetch';
 import { execSync } from 'child_process';
-import { readJsonSync, writeJsonSync } from 'fs-extra';
-import { join } from 'path';
+import {
+  getTrelloIdBranchMap,
+  setTrelloIdBranchMap,
+} from 'scripts/helpers/getSetTrelloIdBranchMap';
+import { getTrello } from 'scripts/helpers/trello';
 
 const listName = 'Doing';
-const idBranchMapFile = join(__dirname, '../tmp/trelloIdBranchNameMap.json');
 
 function getList(lists) {
   let listId;
@@ -56,9 +58,7 @@ function createBranch(name) {
 }
 
 function mapIdToBranchName(branchName, id) {
-  let idBranchMap = readJsonSync(idBranchMapFile, {
-    throws: false,
-  });
+  let idBranchMap = getTrelloIdBranchMap();
 
   if (!idBranchMap) {
     idBranchMap = {};
@@ -66,11 +66,10 @@ function mapIdToBranchName(branchName, id) {
 
   idBranchMap[id] = branchName;
 
-  writeJsonSync(idBranchMapFile, idBranchMap, { spaces: 2 });
+  setTrelloIdBranchMap(idBranchMap);
 }
 
-fetch(process.env.npm_package_config_trelloboardjson)
-  .then(res => res.json())
+getTrello()
   .then((json) => {
     const list = getList(json.lists);
     const card = getCard(json.cards, list);
