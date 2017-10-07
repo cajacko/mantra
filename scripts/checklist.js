@@ -66,6 +66,53 @@ function add(callback) {
     });
 }
 
+function run() {
+  const questions = getChecklist().checklist.map(
+    ({ title, description }, i) => {
+      if (!title) {
+        return null;
+      }
+
+      let message = `\n${title}`;
+
+      if (description) {
+        message += `\n - ${description}`;
+      }
+
+      message += '\n\n';
+
+      return {
+        type: 'confirm',
+        name: `${i}`,
+        message,
+        title,
+      };
+    },
+  );
+
+  return inquirer.prompt(questions).then((answers) => {
+    const failed = [];
+
+    Object.keys(answers).forEach((key) => {
+      if (answers[key] === false) {
+        failed.push(questions[parseInt(key, 10)].title);
+      }
+    });
+
+    if (failed.length) {
+      let error = '\n\n\n1 or more checklist items were declined:';
+
+      failed.forEach((title) => {
+        error += `\n - ${title}`;
+      });
+
+      error += '\n\n';
+
+      throw new Error(error);
+    }
+  });
+}
+
 function init() {
   return inquirer
     .prompt([
@@ -78,9 +125,11 @@ function init() {
     ])
     .then(({ action }) => {
       switch (action) {
-        case 'Add': {
+        case 'Add':
           return add(init);
-        }
+
+        case 'Run':
+          return run();
 
         default:
           throw new Error('Unexpected action given');
