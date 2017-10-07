@@ -5,3 +5,17 @@ export function getBranchName() {
     encoding: 'utf8',
   });
 }
+
+export function getBranchId() {
+  const branchname = getBranchName();
+
+  if (branchname.includes('feature')) {
+    const parts = branchname.replace('feature/', '').split('_');
+
+    if (parts.length > 1) {
+      return parts[0];
+    }
+  }
+
+  return null;
+}

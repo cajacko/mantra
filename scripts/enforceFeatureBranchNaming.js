@@ -1,11 +1,10 @@
 /* eslint no-console: 0 */
-import { execSync } from 'child_process';
 import {
   getTrelloIdBranchMap,
   setTrelloIdBranchMap,
 } from 'scripts/helpers/getSetTrelloIdBranchMap';
 import { getTrello } from 'scripts/helpers/trello';
-import { getBranchName } from 'scripts/helpers/git';
+import { getBranchName, getBranchId } from 'scripts/helpers/git';
 
 let idBranchMap;
 
@@ -53,7 +52,7 @@ function cardIsInTrello(id) {
 
 function isBranchValid(branchname) {
   return new Promise((resolve, reject) => {
-    const id = branchname.replace('feature/', '').split('_')[0];
+    const id = getBranchId();
 
     if (isBranchInMap(id)) {
       resolve();
