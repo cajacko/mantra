@@ -1,2 +1,1 @@
-require('babel-polyfill');
-require('./enforceFeatureBranchNaming');
+import 'scripts/enforceFeatureBranchNaming';
