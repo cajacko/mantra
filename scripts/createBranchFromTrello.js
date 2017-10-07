@@ -1,5 +1,4 @@
 /* eslint no-console: 0 */
-import fetch from 'node-fetch';
 import { execSync } from 'child_process';
 import {
   getTrelloIdBranchMap,

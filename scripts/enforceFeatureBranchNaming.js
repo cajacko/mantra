@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import { execSync } from 'child_process';
 import {
   getTrelloIdBranchMap,
@@ -8,14 +9,18 @@ import { getTrello } from 'scripts/helpers/trello';
 let idBranchMap;
 
 function isBranchInMap(id) {
-  return false;
-
   idBranchMap = getTrelloIdBranchMap();
+
+  if (!idBranchMap) {
+    idBranchMap = {};
+    return false;
+  }
 
   if (idBranchMap[id]) {
     return true;
   }
 
+  console.error(`${id} is not in idBranchMap`);
   return false;
 }
 
@@ -25,23 +30,29 @@ function writeBranchInMap(branchname, id) {
 }
 
 function cardIsInTrello(id) {
-  getTrello().then(
+  return getTrello().then(
     ({ cards }) =>
       new Promise((resolve, reject) => {
+        let isIn = false;
+
         cards.forEach(({ shortLink }) => {
           if (shortLink === id) {
-            resolve();
+            isIn = true;
           }
         });
 
-        reject(false);
+        if (isIn === false) {
+          reject(`${id} is not in trello board`);
+        } else {
+          resolve();
+        }
       }),
   );
 }
 
 function isBranchValid(branchname) {
   return new Promise((resolve, reject) => {
-    const id = branchname.split('_')[0];
+    const id = branchname.replace('feature/', '').split('_')[0];
 
     if (isBranchInMap(id)) {
       resolve();
@@ -49,7 +60,7 @@ function isBranchValid(branchname) {
     }
 
     cardIsInTrello(id)
-      .then((inTrello) => {
+      .then(() => {
         writeBranchInMap(branchname, id);
         resolve();
       })
@@ -63,22 +74,21 @@ function init() {
   });
 
   if (branchname.includes('feature')) {
-    isBranchValid(branchname)
-      .then(() => {
-        throw new Error('SUCCESS');
-      })
-      .catch(() => {
+    isBranchValid(branchname).catch((e) => {
+      console.error(e);
+      // Set timeout is needed as a trick to stop the promise, turning the
+      // exception into a reject()
+      setTimeout(() => {
         throw new Error(`
-        Feature branch name is not valid!
-        The feature branch name must be based off a trello card.
-        e.g. feature/ohdDJHfoi_new_feature_from_trello
+            Feature branch name is not valid!
+            The feature branch name must be based off a trello card.
+            e.g. feature/ohdDJHfoi_new_feature_from_trello
 
-        Stash your changes, create a valid branch and pop stash.
-        Initialise a valid feature branch with "npm run newbranch"
-      `);
+            Stash your changes, create a valid branch and pop stash.
+            Initialise a valid feature branch with "npm run newbranch"
+          `);
       });
-  } else {
-    throw new Error('SUCCESS');
+    });
   }
 }
 
