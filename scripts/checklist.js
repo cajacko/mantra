@@ -1,4 +1,22 @@
+import { readJsonSync, writeJsonSync } from 'fs-extra';
+import { join } from 'path';
 import inquirer from 'inquirer';
+
+const checklistFile = join(__dirname, '../checklist.json');
+
+function getChecklist() {
+  return readJsonSync(checklistFile);
+}
+
+function setChecklist(json) {
+  return writeJsonSync(checklistFile, json, { spaces: 2 });
+}
+
+function addToChecklist(item) {
+  const checklist = getChecklist();
+  checklist.checklist.push(item);
+  setChecklist(checklist);
+}
 
 function reorder(callback) {
   return inquirer
@@ -32,6 +50,14 @@ function add(callback) {
       },
     ])
     .then((answers) => {
+      const item = { title: answers.title };
+
+      if (answers.description && answers.description.length) {
+        item.description = answers.description;
+      }
+
+      addToChecklist(item);
+
       if (answers.reorder) {
         return reorder(callback);
       }
