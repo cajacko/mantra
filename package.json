@@ -17,7 +17,8 @@
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
-    "start": "react-native-scripts ios",
+    "start": "react-native-scripts start",
+    "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch --coverage",
     "lint": "eslint src",
     "publish:dev": "npm run deploy:dev && exp publish",
