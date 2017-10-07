@@ -31,7 +31,8 @@
     "build:status": "exp build:status",
     "login:expo": "exp login",
     "newbranch": "babel-node scripts/createBranchFromTrello.js",
-    "precommit": "babel-node scripts/precommit.js"
+    "precommit": "babel-node scripts/precommit.js",
+    "commitmsg": "babel-node scripts/commitmsg.js"
   },
   "jest": {
     "preset": "jest-expo"
