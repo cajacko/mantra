@@ -23,7 +23,8 @@
     "deploy:live": "babel-node scripts/deploy.js type=live",
     "git:master": "git checkout master && git reset --hard && git clean -f -d",
     "build:ios": "exp build:ios",
-    "build:status": "exp build:status"
+    "build:status": "exp build:status",
+    "login:expo": "exp login"
   },
   "jest": {
     "preset": "jest-expo"
