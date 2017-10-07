@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 import fetch from 'node-fetch';
 import { execSync } from 'child_process';
 
@@ -47,7 +48,8 @@ function getBranchName(card) {
 
 function createBranch(name) {
   const command = `git checkout -b feature/${name} develop`;
-  console.log(execSync(command));
+  const output = execSync(command, { encoding: 'utf8' });
+  console.log(output);
 }
 
 fetch(process.env.npm_package_config_trelloboardjson)
