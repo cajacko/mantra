@@ -5,6 +5,7 @@ import {
   setTrelloIdBranchMap,
 } from 'scripts/helpers/getSetTrelloIdBranchMap';
 import { getTrello } from 'scripts/helpers/trello';
+import { getBranchName } from 'scripts/helpers/git';
 
 let idBranchMap;
 
@@ -69,9 +70,7 @@ function isBranchValid(branchname) {
 }
 
 function init() {
-  const branchname = execSync('git rev-parse --abbrev-ref HEAD', {
-    encoding: 'utf8',
-  });
+  const branchname = getBranchName();
 
   if (branchname.includes('feature')) {
     isBranchValid(branchname).catch((e) => {
