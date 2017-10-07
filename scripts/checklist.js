@@ -18,6 +18,23 @@ function addToChecklist(item) {
   setChecklist(checklist);
 }
 
+function removeFromChecklist(title) {
+  const checklist = getChecklist();
+  let index = null;
+
+  checklist.checklist.forEach((item, i) => {
+    if (item.title === title) {
+      index = i;
+    }
+  });
+
+  if (index !== null) {
+    checklist.checklist = checklist.checklist.slice(index, -1);
+  }
+
+  setChecklist(checklist);
+}
+
 function reorder(callback) {
   return inquirer
     .prompt([
@@ -113,6 +130,30 @@ function run() {
   });
 }
 
+function remove(callback) {
+  const items = getChecklist().checklist.map(({ title }) => title);
+  const choices = ['Back'].concat(items);
+
+  return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'item',
+        message: 'Select an item to delete',
+        choices,
+      },
+    ])
+    .then(({ item }) => {
+      if (item === 'Back') {
+        return callback();
+      }
+
+      removeFromChecklist(item);
+
+      return remove(callback);
+    });
+}
+
 function init() {
   return inquirer
     .prompt([
@@ -130,6 +171,9 @@ function init() {
 
         case 'Run':
           return run();
+
+        case 'Remove':
+          return remove(init);
 
         default:
           throw new Error('Unexpected action given');
