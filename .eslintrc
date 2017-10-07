@@ -3,6 +3,7 @@
     "airbnb"
   ],
   "rules": {
+    "import/prefer-default-export": "off",
     "react/prefer-stateless-function": "off",
     "valid-jsdoc": "error",
     "require-jsdoc": ["error", {

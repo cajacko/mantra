@@ -121,5 +121,9 @@ build()
   .then(uploadBuild)
   .then(() => console.log('SUCCESS'))
   .catch((err) => {
-    throw new Error(err || 'Undefined application error');
+    // Set timeout is needed as a trick to stop the promise, turning the
+    // exception into a reject()
+    setTimeout(() => {
+      throw new Error(err || 'Undefined application error');
+    });
   });

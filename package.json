@@ -6,9 +6,14 @@
     "dotenv": "4.0.0",
     "download-file": "0.1.5",
     "fs-extra": "4.0.2",
+    "husky": "0.14.3",
     "jest-expo": "~18.0.0",
+    "node-fetch": "1.7.3",
     "react-native-scripts": "0.0.40",
     "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "config": {
+    "trelloboardjson": "https://trello.com/b/Klg6BFuQ/enspire.json"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
   "scripts": {
@@ -24,7 +29,9 @@
     "git:master": "git checkout master && git reset --hard && git clean -f -d",
     "build:ios": "exp build:ios",
     "build:status": "exp build:status",
-    "login:expo": "exp login"
+    "login:expo": "exp login",
+    "newbranch": "babel-node scripts/createBranchFromTrello.js",
+    "precommit": "babel-node scripts/precommit.js"
   },
   "jest": {
     "preset": "jest-expo"

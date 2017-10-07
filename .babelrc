@@ -15,7 +15,8 @@
           "views": "./src",
           "store": "./src/store",
           "reducers": "./src/reducers",
-          "root": "./"
+          "root": "./",
+          "scripts": "./scripts"
         },
         "extensions": [".js", ".jsx"]
       }
