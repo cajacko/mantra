@@ -20,17 +20,17 @@ function addToChecklist(item) {
 
 function removeFromChecklist(title) {
   const checklist = getChecklist();
-  let index = null;
+  const items = [];
 
   checklist.checklist.forEach((item, i) => {
     if (item.title === title) {
-      index = i;
+      return;
     }
+
+    items.push(item);
   });
 
-  if (index !== null) {
-    checklist.checklist = checklist.checklist.slice(index, -1);
-  }
+  checklist.checklist = items;
 
   setChecklist(checklist);
 }
