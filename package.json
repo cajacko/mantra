@@ -3,6 +3,8 @@
   "version": "0.4.0",
   "private": true,
   "devDependencies": {
+    "dotenv": "4.0.0",
+    "download-file": "0.1.5",
     "fs-extra": "4.0.2",
     "jest-expo": "~18.0.0",
     "react-native-scripts": "0.0.40",
@@ -14,9 +16,15 @@
     "test": "node node_modules/jest/bin/jest.js --watch --coverage",
     "lint": "eslint src",
     "publish:dev": "npm run deploy:dev && exp publish",
-    "publish:live": "npm run deploy:live && exp publish",
+    "publish:live": "npm run git:master && npm run deploy:live && npm i && exp publish",
+    "publish:appstore:dev": "npm run deploy:dev && babel-node scripts/expoBuild.js",
+    "publish:appstore:live": "npm run git:master && npm run deploy:live && babel-node scripts/expoBuild.js",
     "deploy:dev": "babel-node scripts/deploy.js type=dev",
-    "deploy:live": "babel-node scripts/deploy.js type=live"
+    "deploy:live": "babel-node scripts/deploy.js type=live",
+    "git:master": "git checkout master && git reset --hard && git clean -f -d",
+    "build:ios": "exp build:ios",
+    "build:status": "exp build:status",
+    "login:expo": "exp login"
   },
   "jest": {
     "preset": "jest-expo"
