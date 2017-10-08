@@ -16,8 +16,6 @@ export default function (command, dataCallback) {
       if (dataCallback) dataCallback(`${data}`);
     });
 
-    ls.stdin.write('1 + 0\n');
-
     ls.on('close', (code) => {
       if (code) {
         reject();

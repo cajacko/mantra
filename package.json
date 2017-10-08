@@ -37,7 +37,7 @@
     "precommit": "babel-node scripts/precommit.js",
     "commitmsg": "babel-node scripts/commitmsg.js",
     "checklist": "babel-node scripts/checklist.js",
-    "git": "babel-node scripts/checklist.js"
+    "git": "babel-node scripts/git.js"
   },
   "jest": {
     "preset": "jest-expo"
