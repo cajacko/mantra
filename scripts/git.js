@@ -52,12 +52,12 @@ function chooseReleaseType() {
         message: 'Which feature do you want to finish?',
       },
     ])
-    .then(({ type }) => checkoutDevelop().then(() => {
-      console.log(1);
-      const version = getNewVersion(type.toLowerCase());
-      console.log(version);
-      return createReleaseBranch(version);
-    }));
+    .then(({ type }) =>
+      checkoutDevelop().then(() => {
+        const version = getNewVersion(type.toLowerCase());
+        return createReleaseBranch(version);
+      }),
+    );
 }
 
 function init() {
