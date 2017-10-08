@@ -61,29 +61,34 @@ function add(callback) {
     });
 }
 
+/**
+ * Run the checklist, asking all the questions, and then throwing an error if
+ * some are declined. Also logs the declined questions.
+ *
+ * @return {Promise} Promise with success/failure
+ */
 export function run() {
-  const questions = getChecklist().checklist.map(
-    ({ title, description }, i) => {
-      if (!title) {
-        return null;
-      }
+  let questions = getChecklist().checklist;
+  const length = questions.length;
 
-      let message = `\n${title}`;
+  questions = questions.map(({ title, description }, i) => {
+    const count = i + 1;
+    // Show the count in the first line of the question
+    let message = `${count}/${length}\n${title}`;
 
-      if (description) {
-        message += `\n - ${description}`;
-      }
+    if (description) {
+      message += `\n - ${description}`;
+    }
 
-      message += '\n\n';
+    message += '\n\n';
 
-      return {
-        type: 'confirm',
-        name: `${i}`,
-        message,
-        title,
-      };
-    },
-  );
+    return {
+      type: 'confirm',
+      name: `${i}`,
+      message,
+      title,
+    };
+  });
 
   return inquirer.prompt(questions).then((answers) => {
     const failed = [];
