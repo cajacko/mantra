@@ -53,6 +53,17 @@
     },
     {
       "title": "Does the trello card have enough info on it if we need to come back?"
+    },
+    {
+      "title": "Do all tests accurately describe desired behaviour?",
+      "description": "No fuzzy tests, random snapshots just for coverage, testing additional real world scenarios etc."
+    },
+    {
+      "title": "Do all tests not contain false positives?",
+      "description": "Especially selenium tests which can often contain false positives"
+    },
+    {
+      "title": "Have all files been split as sensibly as possible?"
     }
   ]
 }
