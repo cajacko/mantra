@@ -1,8 +1,58 @@
 {
   "checklist": [
     {
-      "title": "",
-      "description": ""
+      "title": "Have new resouces been added to preload cache?",
+      "description": "Images, fonts, icons etc"
+    },
+    {
+      "title": "Have redundant cached resources been removed?",
+      "description": "Don't want to be preloading stuff we don't need to"
+    },
+    {
+      "title": "Do the help screenshots reflect the current app/changes?"
+    },
+    {
+      "title": "Have you been through the manual feature scenarios?"
+    },
+    {
+      "title": "Have you updated the changelog if necessary?"
+    },
+    {
+      "title": "Have the version numbers been updated if necessary?",
+      "description": "package.json, app.live.json, app.test.json, git tags, changelog"
+    },
+    {
+      "title": "Has the description been updated if neccesary?",
+      "description": "package.json, app.live.json, app.test.json, README, Github"
+    },
+    {
+      "title": "Have been through README and updated as necessary?"
+    },
+    {
+      "title": "Have hardcoded Mantra been updated if necessary?"
+    },
+    {
+      "title": "Has everything been split into microservices that can be?"
+    },
+    {
+      "title": "Do all the changes help people to enjoy life?",
+      "description": "Devlopers, customers, me. Fun copy, features are actually good etc"
+    },
+    {
+      "title": "Are all changes as DRY as possible?"
+    },
+    {
+      "title": "Have you tested changes for performance?",
+      "description": "No unnecessary rendering etc"
+    },
+    {
+      "title": "Have all new manual processes been added to this checklist?"
+    },
+    {
+      "title": "Are there enough comments?"
+    },
+    {
+      "title": "Does the trello card have enough info on it if we need to come back?"
     }
   ]
 }
