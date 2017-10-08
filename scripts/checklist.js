@@ -35,18 +35,6 @@ function removeFromChecklist(title) {
   setChecklist(checklist);
 }
 
-function reorder(callback) {
-  return inquirer
-    .prompt([
-      {
-        type: 'confirm',
-        name: 'reorder',
-        message: 'Reordering?',
-      },
-    ])
-    .then(() => callback());
-}
-
 function add(callback) {
   return inquirer
     .prompt([
@@ -149,7 +137,7 @@ function remove(callback) {
 }
 
 function init() {
-  const actions = ['Run', 'Add', 'Edit', 'Reorder'];
+  const actions = ['Run', 'Add'];
 
   if (getChecklist().checklist.length) {
     actions.push('Remove');
