@@ -18,7 +18,7 @@ function runChecklist(passThrough) {
 }
 
 function chooseBranch(type, askToDelete) {
-  const branches = getBranches();
+  const branches = getBranches(type);
 
   if (branches.length < 1) {
     throw new Error(`No ${type}s`);

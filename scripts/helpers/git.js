@@ -19,11 +19,11 @@ export function getBranches(type) {
     encoding: 'utf8',
   });
 
-  const features = [];
+  const branches = [];
 
   rawOutput.split('\n').forEach((branch) => {
     if (branch.includes(`${type}/`)) {
-      features.push(
+      branches.push(
         branch
           .replace('* ', '')
           .replace(`${type}/`, '')
@@ -32,7 +32,7 @@ export function getBranches(type) {
     }
   });
 
-  return features;
+  return branches;
 }
 
 export function finishRelease(release, shouldDelete) {
