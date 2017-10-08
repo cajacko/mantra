@@ -14,7 +14,7 @@ export function createFeatureBranch(name) {
   return execSync(command, { encoding: 'utf8' });
 }
 
-export function getFeatures() {
+export function getBranches(type) {
   const rawOutput = execSync('git branch', {
     encoding: 'utf8',
   });
@@ -22,17 +22,32 @@ export function getFeatures() {
   const features = [];
 
   rawOutput.split('\n').forEach((branch) => {
-    if (branch.includes('feature/')) {
+    if (branch.includes(`${type}/`)) {
       features.push(
         branch
           .replace('* ', '')
-          .replace('feature/', '')
+          .replace(`${type}/`, '')
           .trim(),
       );
     }
   });
 
   return features;
+}
+
+export function finishRelease(release, shouldDelete) {
+  return runCommand('git checkout master')
+    .then(() => runCommand(`git merge --no-ff release/${release}`))
+    .then(() => runCommand(`git tag -a ${release}`))
+    .then(() => runCommand('git checkout develop'))
+    .then(() => runCommand(`git merge --no-ff release/${release}`))
+    .then(() => {
+      if (shouldDelete) {
+        return runCommand(`git branch -d release/${release}`);
+      }
+
+      return true;
+    });
 }
 
 export function finishFeature(feature, shouldDelete) {
@@ -65,4 +80,16 @@ export function getBranchId() {
   }
 
   return null;
+}
+
+export function finishBranch(branch, type, shouldDelete) {
+  switch (type) {
+    case 'feature':
+      return finishFeature(branch, shouldDelete);
+    case 'release':
+      return finishRelease(branch, shouldDelete);
+
+    default:
+      throw new Error('Undefined type of branch');
+  }
 }
