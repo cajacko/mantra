@@ -62,28 +62,26 @@ function add(callback) {
 }
 
 export function run() {
-  const questions = getChecklist().checklist.map(
-    ({ title, description }, i) => {
-      if (!title) {
-        return null;
-      }
+  let questions = getChecklist().checklist;
+  const length = questions.length;
 
-      let message = `\n${title}`;
+  questions = questions.map(({ title, description }, i) => {
+    const count = i + 1;
+    let message = `${count}/${length}\n${title}`;
 
-      if (description) {
-        message += `\n - ${description}`;
-      }
+    if (description) {
+      message += `\n - ${description}`;
+    }
 
-      message += '\n\n';
+    message += '\n\n';
 
-      return {
-        type: 'confirm',
-        name: `${i}`,
-        message,
-        title,
-      };
-    },
-  );
+    return {
+      type: 'confirm',
+      name: `${i}`,
+      message,
+      title,
+    };
+  });
 
   return inquirer.prompt(questions).then((answers) => {
     const failed = [];
