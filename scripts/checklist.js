@@ -60,11 +60,6 @@ function add(callback) {
         name: 'description',
         message: 'Add additional information',
       },
-      {
-        type: 'confirm',
-        name: 'reorder',
-        message: 'Would you like to reorder the checklist items?',
-      },
     ])
     .then((answers) => {
       const item = { title: answers.title };
@@ -74,11 +69,6 @@ function add(callback) {
       }
 
       addToChecklist(item);
-
-      if (answers.reorder) {
-        return reorder(callback);
-      }
-
       return callback();
     });
 }
@@ -150,17 +140,27 @@ function remove(callback) {
 
       removeFromChecklist(item);
 
-      return remove(callback);
+      if (getChecklist().checklist.length) {
+        return remove(callback);
+      }
+
+      return callback();
     });
 }
 
 function init() {
+  const actions = ['Run', 'Add', 'Edit', 'Reorder'];
+
+  if (getChecklist().checklist.length) {
+    actions.push('Remove');
+  }
+
   return inquirer
     .prompt([
       {
         type: 'list',
         name: 'action',
-        choices: ['Run', 'Add', 'Remove', 'Edit', 'Reorder'],
+        choices: actions,
         message: 'What do you want to do?',
       },
     ])
