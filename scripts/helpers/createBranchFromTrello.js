@@ -1,10 +1,10 @@
 /* eslint no-console: 0 */
-import { execSync } from 'child_process';
 import {
   getTrelloIdBranchMap,
   setTrelloIdBranchMap,
 } from 'scripts/helpers/getSetTrelloIdBranchMap';
 import { getTrello } from 'scripts/helpers/trello';
+import { createFeatureBranch } from 'scripts/helpers/git';
 
 const listName = 'Doing';
 
@@ -50,12 +50,6 @@ function getBranchName(card) {
   return branchName;
 }
 
-function createBranch(name) {
-  const command = `git checkout -b feature/${name} develop`;
-  const output = execSync(command, { encoding: 'utf8' });
-  console.log(output);
-}
-
 function mapIdToBranchName(branchName, id) {
   let idBranchMap = getTrelloIdBranchMap();
 
@@ -68,14 +62,17 @@ function mapIdToBranchName(branchName, id) {
   setTrelloIdBranchMap(idBranchMap);
 }
 
-getTrello()
-  .then((json) => {
-    const list = getList(json.lists);
-    const card = getCard(json.cards, list);
-    const branchName = getBranchName(card);
-    createBranch(branchName);
-    mapIdToBranchName(branchName, card.shortLink);
-  })
-  .catch((e) => {
-    throw new Error(e);
-  });
+export default function () {
+  return getTrello()
+    .then((json) => {
+      const list = getList(json.lists);
+      const card = getCard(json.cards, list);
+      const branchName = getBranchName(card);
+      console.log(branchName);
+      createFeatureBranch(branchName);
+      mapIdToBranchName(branchName, card.shortLink);
+    })
+    .catch((e) => {
+      throw new Error(e);
+    });
+}

@@ -1,14 +1,13 @@
 import inquirer from 'inquirer';
 import { run } from 'scripts/helpers/checklist';
-import { finishFeature, getFeatures } from 'scripts/helpers/git';
-// import runCommand from 'scripts/helpers/runCommand';
-
-function runCommand(command) {
-  return new Promise((resolve) => {
-    console.log(command);
-    resolve();
-  });
-}
+import {
+  finishFeature,
+  getFeatures,
+  checkoutDevelop,
+  createReleaseBranch,
+} from 'scripts/helpers/git';
+import createFeatureBranch from 'scripts/helpers/createBranchFromTrello';
+import { getNewVersion } from 'scripts/helpers/version';
 
 function runChecklist(passThrough) {
   return new Promise((resolve, reject) => {
@@ -25,24 +24,39 @@ function chooseFeature() {
     throw new Error('No features');
   }
 
-  return (
-    inquirer
-      .prompt([
-        {
-          type: 'list',
-          name: 'feature',
-          choices: features,
-          message: 'Which feature do you want to finish?',
-        },
-        {
-          type: 'confirm',
-          name: 'shouldDelete',
-          message: 'Do you want to delete the branch afterwards?',
-        },
-      ])
-      // .then(runChecklist)
-      .then(({ feature, shouldDelete }) => finishFeature(feature, shouldDelete))
-  );
+  return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'feature',
+        choices: features,
+        message: 'Which feature do you want to finish?',
+      },
+      {
+        type: 'confirm',
+        name: 'shouldDelete',
+        message: 'Do you want to delete the branch afterwards?',
+      },
+    ])
+    .then(runChecklist)
+    .then(({ feature, shouldDelete }) => finishFeature(feature, shouldDelete));
+}
+
+function chooseReleaseType() {
+  return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'type',
+        choices: ['Patch', 'Minor', 'Major'],
+        message: 'Which feature do you want to finish?',
+      },
+    ])
+    .then(({ type }) => {
+      checkoutDevelop();
+      const version = getNewVersion(type);
+      return createReleaseBranch(version);
+    });
 }
 
 function init() {
@@ -66,6 +80,12 @@ function init() {
       switch (action) {
         case 'Finish Feature':
           return chooseFeature();
+
+        case 'New Feature':
+          return createFeatureBranch();
+
+        case 'New Release':
+          return chooseReleaseType();
 
         default:
           throw new Error('Unexpected action given');

@@ -1,6 +1,19 @@
 import { execSync } from 'child_process';
 import runCommand from 'scripts/helpers/runCommand';
 
+export function checkoutDevelop() {
+  return runCommand('git checkout develop');
+}
+
+export function createReleaseBranch(version) {
+  return runCommand(`git checkout -b release/${version} develop`);
+}
+
+export function createFeatureBranch(name) {
+  const command = `git checkout -b feature/${name} develop`;
+  return execSync(command, { encoding: 'utf8' });
+}
+
 export function getFeatures() {
   const rawOutput = execSync('git branch', {
     encoding: 'utf8',
