@@ -1,7 +1,7 @@
 import { execSync } from 'child_process';
 import runCommand from 'scripts/helpers/runCommand';
 
-function createFeatureBranch(name) {
+export function createFeatureBranch(name) {
   const command = `git checkout -b feature/${name} develop`;
   return execSync(command, { encoding: 'utf8' });
 }
