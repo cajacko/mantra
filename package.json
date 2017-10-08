@@ -32,7 +32,6 @@
     "build:ios": "exp build:ios",
     "build:status": "exp build:status",
     "login:expo": "exp login",
-    "newbranch": "babel-node scripts/createBranchFromTrello.js",
     "finishfeature": "npm run checklist && babel-node scripts/finishFeature.js",
     "precommit": "babel-node scripts/precommit.js",
     "commitmsg": "babel-node scripts/commitmsg.js",
