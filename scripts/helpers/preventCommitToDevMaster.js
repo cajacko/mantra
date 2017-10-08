@@ -9,7 +9,7 @@ switch (branchName) {
     `);
   case 'develop':
     throw new Error(`
-      Cannot commit directly onto develop branche.
+      Cannot commit directly onto develop branch.
     `);
   default:
     break;
