@@ -2,7 +2,7 @@ import { readFileSync, writeFileSync } from 'fs-extra';
 import { join } from 'path';
 import { getBranchId } from 'scripts/helpers/git';
 
-const messageFile = join(__dirname, '../.git/COMMIT_EDITMSG');
+const messageFile = join(__dirname, '../../.git/COMMIT_EDITMSG');
 
 function getTrelloUrl() {
   const id = getBranchId();
