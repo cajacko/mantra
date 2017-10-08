@@ -38,7 +38,7 @@ export function getBranches(type) {
 export function finishRelease(release, shouldDelete) {
   return runCommand('git checkout master')
     .then(() => runCommand(`git merge --no-ff release/${release}`))
-    .then(() => runCommand(`git tag -a ${release}`))
+    .then(() => runCommand(`git tag -a -m '' v${release}`))
     .then(() => runCommand('git checkout develop'))
     .then(() => runCommand(`git merge --no-ff release/${release}`))
     .then(() => {
