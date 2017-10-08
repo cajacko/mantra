@@ -2,9 +2,9 @@
 import {
   getTrelloIdBranchMap,
   setTrelloIdBranchMap,
-  createFeatureBranch,
 } from 'scripts/helpers/getSetTrelloIdBranchMap';
 import { getTrello } from 'scripts/helpers/trello';
+import { createFeatureBranch } from 'scripts/helpers/git';
 
 const listName = 'Doing';
 
