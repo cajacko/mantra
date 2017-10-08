@@ -61,12 +61,19 @@ function add(callback) {
     });
 }
 
+/**
+ * Run the checklist, asking all the questions, and then throwing an error if
+ * some are declined. Also logs the declined questions.
+ *
+ * @return {Promise} Promise with success/failure
+ */
 export function run() {
   let questions = getChecklist().checklist;
   const length = questions.length;
 
   questions = questions.map(({ title, description }, i) => {
     const count = i + 1;
+    // Show the count in the first line of the question
     let message = `${count}/${length}\n${title}`;
 
     if (description) {
