@@ -36,7 +36,8 @@
     "finishfeature": "npm run checklist && babel-node scripts/finishFeature.js",
     "precommit": "babel-node scripts/precommit.js",
     "commitmsg": "babel-node scripts/commitmsg.js",
-    "checklist": "babel-node scripts/checklist.js"
+    "checklist": "babel-node scripts/checklist.js",
+    "git": "babel-node scripts/checklist.js"
   },
   "jest": {
     "preset": "jest-expo"

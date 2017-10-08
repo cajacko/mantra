@@ -1,36 +1,12 @@
 /* eslint no-console: 0 */
-import { spawn } from 'child_process';
 import download from 'download-file';
+import runCommand from 'scripts/helpers/runCommand';
+
 require('dotenv').config('../.env');
 
 const directory = './tmp/';
 const filename = 'build.ipa';
 const buildpath = `${directory}${filename}`;
-
-function runCommand(command, dataCallback) {
-  return new Promise((resolve, reject) => {
-    const commands = command.split(' ');
-    const ls = spawn(commands.splice(0, 1)[0], commands);
-
-    ls.stdout.on('data', (data) => {
-      console.log(`${data}`);
-      if (dataCallback) dataCallback(`${data}`);
-    });
-
-    ls.stderr.on('data', (data) => {
-      console.log(`${data}`);
-      if (dataCallback) dataCallback(`${data}`);
-    });
-
-    ls.on('close', (code) => {
-      if (code) {
-        reject();
-      } else {
-        resolve(`Process exited with code ${code}`);
-      }
-    });
-  });
-}
 
 function build() {
   return new Promise((resolve, reject) => {
