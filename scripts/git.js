@@ -54,7 +54,9 @@ function chooseReleaseType() {
     ])
     .then(({ type }) => {
       checkoutDevelop();
-      const version = getNewVersion(type);
+      console.log(1);
+      const version = getNewVersion(type.toLowerCase());
+      console.log(version);
       return createReleaseBranch(version);
     });
 }
