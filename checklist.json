@@ -64,6 +64,9 @@
     },
     {
       "title": "Have all files been split as sensibly as possible?"
+    },
+    {
+      "title": "Are all error/debug messages informative and fun?"
     }
   ]
 }
