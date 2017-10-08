@@ -1,7 +1,13 @@
 import inquirer from 'inquirer';
 import { run } from 'scripts/helpers/checklist';
-import { finishFeature, getFeatures } from 'scripts/helpers/git';
+import {
+  finishFeature,
+  getFeatures,
+  checkoutDevelop,
+  createReleaseBranch,
+} from 'scripts/helpers/git';
 import createFeatureBranch from 'scripts/helpers/createBranchFromTrello';
+import { getNewVersion } from 'scripts/helpers/version';
 
 function runChecklist(passThrough) {
   return new Promise((resolve, reject) => {
@@ -36,6 +42,23 @@ function chooseFeature() {
     .then(({ feature, shouldDelete }) => finishFeature(feature, shouldDelete));
 }
 
+function chooseReleaseType() {
+  return inquirer
+    .prompt([
+      {
+        type: 'list',
+        name: 'type',
+        choices: ['Patch', 'Minor', 'Major'],
+        message: 'Which feature do you want to finish?',
+      },
+    ])
+    .then(({ type }) => {
+      checkoutDevelop();
+      const version = getNewVersion(type);
+      return createReleaseBranch(version);
+    });
+}
+
 function init() {
   const actions = [
     'New Feature',
@@ -60,6 +83,9 @@ function init() {
 
         case 'New Feature':
           return createFeatureBranch();
+
+        case 'New Release':
+          return chooseReleaseType();
 
         default:
           throw new Error('Unexpected action given');
