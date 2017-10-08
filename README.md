@@ -72,3 +72,10 @@ npm run publish:appstore:live
 
 #### Next steps
 There's only so much we can automate/have found out how to automate. When the build is successfully uploaded, you should receive an email from Apple about the build being ready. From here you can login to iTunes Connect and handle whether to release the build to TestFlight or release it.
+
+## Manual Checklist
+```
+npm run Checklist
+```
+
+This command runs a manual checklist of things to remember to do during feature development. Mainly to use when finishing a feature and just before making a pull request/merging to dev/master.

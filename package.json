@@ -7,6 +7,7 @@
     "download-file": "0.1.5",
     "fs-extra": "4.0.2",
     "husky": "0.14.3",
+    "inquirer": "3.3.0",
     "jest-expo": "~18.0.0",
     "node-fetch": "1.7.3",
     "react-native-scripts": "0.0.40",
@@ -33,7 +34,8 @@
     "login:expo": "exp login",
     "newbranch": "babel-node scripts/createBranchFromTrello.js",
     "precommit": "babel-node scripts/precommit.js",
-    "commitmsg": "babel-node scripts/commitmsg.js"
+    "commitmsg": "babel-node scripts/commitmsg.js",
+    "checklist": "babel-node scripts/checklist.js"
   },
   "jest": {
     "preset": "jest-expo"
