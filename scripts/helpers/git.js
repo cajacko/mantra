@@ -1,5 +1,5 @@
 import { execSync } from 'child_process';
-import runCommand from 'run-command-promise';
+import runCommand from 'scripts/helpers/runCommand';
 
 export function checkoutDevelop() {
   return runCommand('git checkout develop');
