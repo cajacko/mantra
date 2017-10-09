@@ -1,6 +1,6 @@
 /* eslint no-console: 0 */
 import download from 'download-file';
-import runCommand from 'scripts/helpers/runCommand';
+import runCommand from 'run-command-promise';
 
 require('dotenv').config('../.env');
 
