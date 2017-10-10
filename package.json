@@ -3,6 +3,7 @@
   "version": "0.4.0",
   "private": true,
   "devDependencies": {
+    "cj-checklist": "0.5.0",
     "dotenv": "4.0.0",
     "download-file": "0.1.5",
     "fs-extra": "4.0.2",
@@ -37,7 +38,7 @@
     "finishfeature": "npm run checklist && babel-node scripts/finishFeature.js",
     "precommit": "babel-node scripts/precommit.js",
     "commitmsg": "babel-node scripts/commitmsg.js",
-    "checklist": "babel-node scripts/checklist.js",
+    "checklist": "checklist",
     "git": "babel-node scripts/git.js"
   },
   "jest": {

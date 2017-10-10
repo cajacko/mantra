@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { run } from 'scripts/helpers/checklist';
+import checklist from 'cj-checklist';
 import {
   checkoutDevelop,
   createReleaseBranch,
@@ -11,7 +11,7 @@ import { getNewVersion } from 'scripts/helpers/version';
 
 function runChecklist(passThrough) {
   return new Promise((resolve, reject) => {
-    run()
+    checklist()
       .then(() => resolve(passThrough))
       .catch(reject);
   });
