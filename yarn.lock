@@ -1676,9 +1676,9 @@ circular-json@^0.3.1:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
 
-cj-checklist@0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/cj-checklist/-/cj-checklist-0.5.0.tgz#2282c8fb7b9b5ff3319516ca98ce57caf31daa7b"
+cj-checklist@0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/cj-checklist/-/cj-checklist-0.6.0.tgz#1a1fe13a341b0999351eb920575e08f9994c794d"
   dependencies:
     app-root-path "2.0.1"
     fs-extra "4.0.2"
@@ -6438,10 +6438,6 @@ run-async@^2.2.0:
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
   dependencies:
     is-promise "^2.1.0"
-
-run-command-promise@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/run-command-promise/-/run-command-promise-0.3.0.tgz#c4fb6ac39e93a0df8dbb509fcc17b222991050b9"
 
 rx-lite-aggregates@^4.0.8:
   version "4.0.8"
