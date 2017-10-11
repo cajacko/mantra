@@ -67,6 +67,12 @@
     },
     {
       "title": "Are all error/debug messages informative and fun?"
+    },
+    {
+      "title": "Does help/welcome screens need updating?"
+    },
+    {
+      "title": "Have related templates been updated if necessary?"
     }
   ]
 }
