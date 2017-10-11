@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - A count for the manual checklist, so you know how many items you have left
+- Added cj-checklist as a dependency
 
 ### Changed
 ### Deprecated

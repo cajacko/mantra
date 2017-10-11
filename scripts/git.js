@@ -1,5 +1,5 @@
 import inquirer from 'inquirer';
-import { run } from 'scripts/helpers/checklist';
+import { run } from 'cj-checklist';
 import {
   checkoutDevelop,
   createReleaseBranch,

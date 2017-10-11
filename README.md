@@ -2,6 +2,19 @@
 
 React Native app for recording, discovering and remembering awesome lessons in life.
 
+## Branching
+
+This project follows git-flow for branching and we've implemented a helper script to perform some commmon tasks.
+```
+npm run git
+```
+This starts an interactive prompt, asking you whether you want to start/finish features/releases and hot fixes. On top of running the git commands it also adds some validation and automatic naming.
+
+- The new feature action will create a new feature branch based off the trello card currently in the "doing" column. Helping to enforce and speed up naming.
+- The finish feature action will finish the feature after you have gone through the manual checklist of best practices. Using the cj-checklist module.
+- The new feature action creates a new feature automatically based on whether it is a patch/minor or major version
+- The finish feature action will finish the feature after running the manual checklist again.
+
 ## Publishing the app
 There are 2 main ways to publish. Publish to expo, which bundles the JS and serves it from Expo's servers, the next time someone opens the app, the new bundle will be downloaded and served without the app requiring an update from the App Store.
 
