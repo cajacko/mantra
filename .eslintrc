@@ -3,6 +3,16 @@
     "airbnb"
   ],
   "rules": {
+    "comma-dangle": [
+      2,
+      {
+        arrays: "always-multiline",
+        objects: "always-multiline",
+        imports: "always-multiline",
+        exports: "always-multiline",
+        functions: "ignore",
+      },
+    ],
     "import/prefer-default-export": "off",
     "react/prefer-stateless-function": "off",
     "valid-jsdoc": "error",

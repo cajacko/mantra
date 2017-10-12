@@ -3,7 +3,9 @@
   "version": "0.4.0",
   "private": true,
   "devDependencies": {
+    "chalk": "^2.1.0",
     "cj-checklist": "0.6.0",
+    "cucumber": "2.3.1",
     "dotenv": "4.0.0",
     "download-file": "0.1.5",
     "fs-extra": "4.0.2",
@@ -28,6 +30,7 @@
     "test:jestupdate": "jest -u",
     "test:jest": "jest --coverage",
     "test:lint": "eslint src",
+    "test:features": "cucumber-js",
     "publish:dev": "npm run deploy:dev && exp publish",
     "publish:live": "npm run git:master && npm run deploy:live && npm i && exp publish",
     "publish:appstore:dev": "npm run deploy:dev && babel-node scripts/expoBuild.js",
