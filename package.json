@@ -25,7 +25,8 @@
     "expo": "react-native-scripts start",
     "ios": "react-native-scripts ios",
     "git": "babel-node scripts/git.js",
-    "test": "npm run test:lint && npm run test:jest npm run test:checklist && npm run test:features",
+    "test": "npm run test:lint && npm run test:jest && npm run test:checklist && npm run test:features",
+    "test:checklist": "checklist",
     "test:watch": "jest --watch --coverage",
     "test:jestupdate": "jest -u",
     "test:jest": "jest --coverage",
@@ -42,8 +43,7 @@
     "build:status": "exp build:status",
     "login:expo": "exp login",
     "precommit": "babel-node scripts/precommit.js",
-    "commitmsg": "babel-node scripts/commitmsg.js",
-    "checklist": "checklist"
+    "commitmsg": "babel-node scripts/commitmsg.js"
   },
   "jest": {
     "preset": "jest-expo"
