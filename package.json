@@ -3,7 +3,7 @@
   "version": "0.4.0",
   "private": true,
   "devDependencies": {
-    "chalk": "^2.1.0",
+    "chalk": "2.1.0",
     "cj-checklist": "0.6.0",
     "cucumber": "2.3.1",
     "dotenv": "4.0.0",
@@ -11,6 +11,8 @@
     "fs-extra": "4.0.2",
     "husky": "0.14.3",
     "inquirer": "3.3.0",
+    "jest": "21.2.1",
+    "jest-expo": "21.0.2",
     "node-fetch": "1.7.3",
     "react-native-scripts": "0.0.40",
     "react-test-renderer": "16.0.0-alpha.12",
@@ -29,7 +31,7 @@
     "test:checklist": "checklist",
     "test:watch": "jest --watch --coverage",
     "test:jestupdate": "jest -u",
-    "test:jest": "jest --coverage",
+    "test:jest": "node_modules/.bin/jest --coverage",
     "test:lint": "eslint src",
     "test:features": "cucumber-js",
     "publish:dev": "npm run deploy:dev && exp publish",
@@ -46,10 +48,12 @@
     "commitmsg": "babel-node scripts/commitmsg.js"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "collectCoverage": true
   },
   "dependencies": {
     "babel-cli": "6.24.1",
+    "babel-core": "6.0.0",
     "babel-eslint": "7.2.2",
     "babel-jest": "21.2.0",
     "babel-plugin-module-resolver": "2.7.0",
@@ -63,15 +67,14 @@
     "eslint-config-airbnb": "14.1.0",
     "eslint-import-resolver-babel-module": "3.0.0",
     "eslint-plugin-flowtype": "2.31.0",
-    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-import": "2.7.0",
     "eslint-plugin-jest": "21.2.0",
     "eslint-plugin-jsx-a11y": "4.0.0",
     "eslint-plugin-react": "6.10.3",
     "expo": "21.0.0",
     "flow-check": "0.2.2",
-    "jest-expo": "21.0.0",
     "moment": "2.18.1",
-    "multi-commands": "^1.2.0",
+    "multi-commands": "1.2.0",
     "prop-types": "15.5.8",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
