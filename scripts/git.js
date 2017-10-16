@@ -17,6 +17,23 @@ function runChecklist(passThrough) {
   });
 }
 
+function checkHasRunTests() {
+  return inquirer
+    .prompt([
+      {
+        type: 'confirm',
+        name: 'tested',
+        default: false,
+        message: 'Have you ran and passed "npm test" or "yarn test"?',
+      },
+    ])
+    .then(({ tested }) => {
+      if (!tested) {
+        throw new Error('Have not tested. Run "npm test" or "yarn test"');
+      }
+    });
+}
+
 function chooseBranch(type, askToDelete) {
   const branches = getBranches(type);
 
@@ -41,12 +58,14 @@ function chooseBranch(type, askToDelete) {
     });
   }
 
-  return inquirer
-    .prompt(questions)
-    .then(runChecklist)
-    .then(({ branch, shouldDelete }) =>
-      finishBranch(branch, type, shouldDelete),
-    );
+  return checkHasRunTests().then(() =>
+    inquirer
+      .prompt(questions)
+      .then(runChecklist)
+      .then(({ branch, shouldDelete }) =>
+        finishBranch(branch, type, shouldDelete)
+      )
+  );
 }
 
 function chooseReleaseType() {
@@ -63,7 +82,7 @@ function chooseReleaseType() {
       checkoutDevelop().then(() => {
         const version = getNewVersion(type.toLowerCase());
         return createReleaseBranch(version);
-      }),
+      })
     );
 }
 
@@ -105,7 +124,7 @@ function init() {
     .catch(e =>
       setTimeout(() => {
         throw new Error(e || 'Undefined error');
-      }),
+      })
     );
 }
 
