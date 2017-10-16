@@ -1,6 +1,7 @@
 import React from 'react';
 import { Dimensions, View } from 'react-native';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/DisplayNav/DisplayNav.style';
 
