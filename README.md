@@ -2,11 +2,42 @@
 
 React Native app for recording, discovering and remembering awesome lessons in life.
 
+## Testing
+Run the test suite with:
+```
+yarn test
+```
+This will run eslint for linting, jest for unit tests and cucumber.js for functional and end to end testing. This command should be run just before finishing off and merging any branch.
+
+During development you can use:
+```
+yarn test:watch
+```
+To run jest in watch mode. When writing jest unit tests put all test files under a \_\_tests\_\_ directory.
+
+If using jest snapshots, make sure to always use shallow rendering and use getRenderOutput to only take snapshots of the actual markup. Everything else should be unit tested without snapshots. As snapshots are a very loose way of describing the codes functionality, so it should only be used to help test markup structure and styling. e.g.
+```
+import 'react-native';
+import React from 'react';
+import ShallowRenderer from 'react-test-renderer/shallow';
+import Component from '../Component.render';
+
+describe('Component.render', () => {
+  test('Renders correctly', () => {
+    const renderer = new ShallowRenderer();
+    renderer.render(<Component />);
+    const result = renderer.getRenderOutput();
+
+    expect(result).toMatchSnapshot();
+  });
+});
+```
+
 ## Branching
 
 This project follows git-flow for branching and we've implemented a helper script to perform some commmon tasks.
 ```
-npm run git
+yarn git
 ```
 This starts an interactive prompt, asking you whether you want to start/finish features/releases and hot fixes. On top of running the git commands it also adds some validation and automatic naming.
 
@@ -28,18 +59,18 @@ For either of the publishing commands you will need to have node installed and h
 You will also need to have an account with expo and be logged in. Which you can do with:
 
 ```
-npm run login:expo
+yarn login:expo
 ```
 
 ### Expo - Publishing src changes only
 #### Dev
 ```
-npm run publish:dev
+yarn publish:dev
 ```
 
 #### Live
 ```
-npm run publish:live
+yarn publish:live
 ```
 
 #### Seeing the changes
@@ -59,10 +90,10 @@ These are the steps to run manually if you need to:
 ```
 # This may ask whether you want expo to handle certificates
 # and push notifications. Say yes
-npm run build:ios
+yarn build:ios
 
 # Keep running this until the build url shows
-npm run build:status
+yarn build:status
 
 # Download the build to ./tmp/build.ipa
 
@@ -75,12 +106,12 @@ If you have problems running the build scripts, you many need to run the manual 
 
 #### Dev
 ```
-npm run publish:appstore:dev
+yarn publish:appstore:dev
 ```
 
 #### Live
 ```
-npm run publish:appstore:live
+yarn publish:appstore:live
 ```
 
 #### Next steps
@@ -88,7 +119,7 @@ There's only so much we can automate/have found out how to automate. When the bu
 
 ## Manual Checklist
 ```
-npm run Checklist
+yarn Checklist
 ```
 
 This command runs a manual checklist of things to remember to do during feature development. Mainly to use when finishing a feature and just before making a pull request/merging to dev/master.

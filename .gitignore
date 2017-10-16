@@ -7,3 +7,4 @@ ios/
 /coverage
 /tmp
 .env
+yarn-error.log

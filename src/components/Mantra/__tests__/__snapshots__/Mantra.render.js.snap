@@ -370,7 +370,9 @@ exports[`Mantra.render With a specific height 1`] = `
   <AnimatedComponent
     style={
       Object {
-        "height": 200,
+        "height": Object {
+          "animatedHeightObject": true,
+        },
         "overflow": "hidden",
       }
     }

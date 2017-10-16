@@ -38,7 +38,7 @@ describe('Mantra.render', () => {
   test('With a specific height', () => {
     const props = {
       title: 'Hello I am Mantra',
-      height: 200,
+      height: { animatedHeightObject: true },
       initial: false,
       rotation: { AnimatedMockRotation: true },
       onPress: () => {},

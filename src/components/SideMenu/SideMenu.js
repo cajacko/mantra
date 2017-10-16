@@ -1,4 +1,6 @@
+/* eslint-disable */
 // @flow
+// Copied from somewhere
 
 import React from 'react';
 import {
@@ -82,15 +84,15 @@ export default class SideMenu extends React.Component {
     const left: Animated.Value = new Animated.Value(
       props.isOpen
         ? props.openMenuOffset * initialMenuPositionMultiplier
-        : props.hiddenMenuOffset,
+        : props.hiddenMenuOffset
     );
 
     this.onLayoutChange = this.onLayoutChange.bind(this);
     this.onStartShouldSetResponderCapture = props.onStartShouldSetResponderCapture.bind(
-      this,
+      this
     );
     this.onMoveShouldSetPanResponder = this.handleMoveShouldSetPanResponder.bind(
-      this,
+      this
     );
     this.onPanResponderMove = this.handlePanResponderMove.bind(this);
     this.onPanResponderRelease = this.handlePanResponderEnd.bind(this);
@@ -110,9 +112,9 @@ export default class SideMenu extends React.Component {
       this.props.onSliding(
         Math.abs(
           (value - this.state.hiddenMenuOffset) /
-            (this.state.openMenuOffset - this.state.hiddenMenuOffset),
-        ),
-      ),
+            (this.state.openMenuOffset - this.state.hiddenMenuOffset)
+        )
+      )
     );
   }
 
