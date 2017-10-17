@@ -13,7 +13,7 @@ function build() {
     runCommand('npm run build:ios', (output) => {
       if (output.includes("What's your Apple ID")) {
         reject(
-          'No apple credentials, run "npm run build:ios" to enter credentials',
+          'No apple credentials, run "npm run build:ios" to enter credentials'
         );
       }
     })
@@ -75,8 +75,6 @@ function downloadBuild(url) {
       console.log(`Build downloaded at: ${buildpath}`);
       resolve(buildpath);
     });
-
-    resolve();
   });
 }
 
