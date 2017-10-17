@@ -3,3 +3,8 @@ node_modules/
 npm-debug.*
 env.json
 ios/
+/app.json
+/coverage
+/tmp
+.env
+yarn-error.log

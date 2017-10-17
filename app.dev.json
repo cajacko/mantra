@@ -1,11 +1,11 @@
 {
   "expo": {
-    "sdkVersion": "20.0.0",
-    "name": "mantra",
+    "sdkVersion": "21.0.0",
+    "name": "Mantra Dev",
     "description": "Mantra",
-    "slug": "mantra",
+    "slug": "mantradev",
     "privacy": "public",
-    "version": "0.3.9",
+    "version": "0.5.0",
     "orientation": "portrait",
     "primaryColor": "#cccccc",
     "icon": "./assets/icons/app.png",
@@ -17,12 +17,13 @@
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
-      "bundleIdentifier": "com.charliejackson.mantra",
+      "bundleIdentifier": "com.charliejackson.mantratest",
       "supportsTablet": true,
-      "isRemoteJSEnabled": false
+      "isRemoteJSEnabled": true,
+      "icon": "./assets/icons/app-store-image.png"
     },
     "android": {
-      "package": "com.charliejackson.mantra"
+      "package": "com.charliejackson.mantratest"
     }
   }
 }

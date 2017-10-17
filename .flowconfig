@@ -1,0 +1,23 @@
+[ignore]
+.*/node_modules/config-chain/**/*
+.*/node_modules/npm/**/*
+.*/node_modules/npmconf/**/*
+.*/node_modules/generator-flow/**/*
+.*/node_modules/stylelint/**/*
+.*/node_modules/fbjs/**/*
+.*/node_modules/flux/**/*
+.*/node_modules/expo/**/*
+.*/node_modules/metro-bundler/**/*
+.*/node_modules/react-native/**/*
+.*/node_modules/xdl/**/*
+.*/node_modules/sentry-expo/**/*
+.*/node_modules/reqwest/**/*
+
+[include]
+
+[libs]
+
+[options]
+module.system.node.resolve_dirname=node_modules
+module.system.node.resolve_dirname=src
+suppress_comment= \\(.\\|\n\\)*\\flow-ignore-next-line

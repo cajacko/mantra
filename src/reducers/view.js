@@ -4,8 +4,11 @@ const defaultState = { view: 'DisplayView', props: {} };
 
 export default (state = { view: null, props: {} }, { type, payload }) => {
   switch (type) {
+    case 'LOGIN':
+    case 'REGISTER':
+      return { view: 'SuggestedView', props: {} };
+
     case 'persist/REHYDRATE':
-    case 'LOGOUT':
       return defaultState;
 
     case 'SWITCH_VIEW': {
@@ -32,12 +35,30 @@ export default (state = { view: null, props: {} }, { type, payload }) => {
       return state;
     }
 
-    case 'SAVE_MANTRA':
+    case 'SAVE_MANTRA': {
+      // Do not redirect is we are saving a suggestion
+      if (payload.suggestionId) {
+        // If we are on the Display view and adding a suggested mantra, then
+        // we will want to see it in the list view. As this can only happen if
+        // this is your first mantra item you are adding.
+        //
+        // Also looks buggy going from suggestions straight into the Display
+        // View
+        if (state.view === 'DisplayView') {
+          return { view: 'LoopView', props: {} };
+        }
+
+        return state;
+      }
+
+      return { view: 'LoopView', props: {} };
+    }
+
+    case 'LOGOUT':
+      return { view: 'LoginRegisterView', props: {} };
+
     case 'DELETE_MANTRA':
       return { view: 'LoopView', props: {} };
-
-    case 'REGISTER':
-      return { view: 'ProfileView', props: {} };
 
     default:
       return state;

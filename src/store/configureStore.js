@@ -18,6 +18,7 @@ persistStore(store, {
     'syncLoading',
     'offlineItemsSyncing',
     'lastAction',
+    'suggestions',
   ],
 });
 

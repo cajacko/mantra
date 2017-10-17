@@ -10,6 +10,11 @@ import lastSetBadge from 'reducers/lastSetBadge';
 import lastSetNotifications from 'reducers/lastSetNotifications';
 import syncLoading from 'reducers/syncLoading';
 import offlineItemsSyncing from 'reducers/offlineItemsSyncing';
+import menuOpen from 'reducers/menuOpen';
+import firstTime from 'reducers/firstTime';
+import suggestions from 'reducers/suggestions';
+import discardedSuggestions from 'reducers/discardedSuggestions';
+import addedSuggestions from 'reducers/addedSuggestions';
 
 export default combineReducers({
   items,
@@ -23,4 +28,9 @@ export default combineReducers({
   lastSetNotifications,
   syncLoading,
   offlineItemsSyncing,
+  menuOpen,
+  firstTime,
+  suggestions,
+  discardedSuggestions,
+  addedSuggestions,
 });
