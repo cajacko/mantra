@@ -12,6 +12,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Fixed
 ### Security
 
+## [0.5.2] - 2017-10-2017
+### Fixed
+- Unintended resolve in the expoBuild.js script was breaking the build
+
 ## [0.5.1] - 2017-10-2017
 ### Added
 - Added exp as a local package, so it doesn't rely on it being globally installed

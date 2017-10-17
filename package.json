@@ -1,6 +1,6 @@
 {
   "name": "mantra",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "private": true,
   "devDependencies": {
     "chalk": "2.1.0",
