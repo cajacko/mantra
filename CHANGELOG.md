@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Added exp as a local package, so it doesn't rely on it being globally installed
+
 ### Changed
 ### Deprecated
 ### Removed
