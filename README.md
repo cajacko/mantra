@@ -33,6 +33,13 @@ describe('Component.render', () => {
 });
 ```
 
+## Suggestions
+At the moment suggestions are hardcoded in. There is a script:
+```
+yarn suggestions:get
+```
+Which pulls in all the marked suggestions from the Contentful example database and randomises the suggestions. To make this work you need to put in your contentful space ID and access token in ~/.env. You can see an example .env at ~/.env-sample.
+
 ## Branching
 
 This project follows git-flow for branching and we've implemented a helper script to perform some commmon tasks.
