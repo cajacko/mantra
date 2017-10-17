@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [0.5.0] - 2017-10-17
+### Added
 - A count for the manual checklist, so you know how many items you have left
 - Added cj-checklist as a dependency
 - Added manual functional tests via cucumber.js
