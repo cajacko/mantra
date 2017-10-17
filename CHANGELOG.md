@@ -6,15 +6,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added exp as a local package, so it doesn't rely on it being globally installed
-
 ### Changed
-- Added expo publish command before deploying to app store, so expo online is up to date
-
 ### Deprecated
 ### Removed
 ### Fixed
 ### Security
+
+## [0.5.1] - 2017-10-2017
+### Added
+- Added exp as a local package, so it doesn't rely on it being globally installed
+
+### Changed
+- Added expo publish command before deploying to app store, so expo online is up to date
 
 ## [0.5.0] - 2017-10-17
 ### Added
@@ -29,12 +32,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Git script will ask if you have run the tests when finishing feature/release
 - Removed permenant redux storage of suggestions, so it only ever shows the latest from the code
 
-### Deprecated
 ### Removed
 - Removed checklist check for having run feature tests. This is covered in npm/yarn test
 
 ### Fixed
 - Passed eslint errors on all files
 - Fixed broken jest setup
-
-### Security
