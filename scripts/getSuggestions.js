@@ -9,6 +9,19 @@ const client = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
+function shuffle(a) {
+  let j;
+  let x;
+  let i;
+
+  for (i = a.length - 1; i > 0; i--) {
+    j = Math.floor(Math.random() * (i + 1));
+    x = a[i];
+    a[i] = a[j];
+    a[j] = x;
+  }
+}
+
 const suggestions = [];
 
 client
@@ -29,6 +42,10 @@ client
 
       suggestions.push(mantra);
     });
+
+    shuffle(suggestions);
+
+    console.log(suggestions.length);
 
     return writeJson(
       join(__dirname, '../src/data/suggestions.json'),
