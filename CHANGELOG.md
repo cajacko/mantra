@@ -10,12 +10,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Added cj-checklist as a dependency
 - Added manual functional tests via cucumber.js
 - Added flow setup, but haven't fully implemented the scripts. It is there if you need it though.
+- Added a static JSON list of suggestions, taken from example database in Contentful
+- Added script to automatically pull in and randomise new suggestions from Contentful. Still hardcodes them though. No AJAX yet.
 
 ### Changed
 - Git script will ask if you have run the tests when finishing feature/release
+- Removed permenant redux storage of suggestions, so it only ever shows the latest from the code
 
 ### Deprecated
 ### Removed
+- Removed checklist check for having run feature tests. This is covered in npm/yarn test
+
 ### Fixed
 - Passed eslint errors on all files
 - Fixed broken jest setup
