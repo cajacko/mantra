@@ -61,7 +61,7 @@ The other way is to publish the app to the App Store. This is mainly to be used 
 There are also 2 versions of each way of publishing. A dev and a live version. Which targets different apps.
 
 ### Global setup
-For either of the publishing commands you will need to have node installed and have run an npm install.
+For either of the publishing commands you will need to have node installed and have run yarn to install all packages. You also have to have the packager running as an additional process. This is started automatically if you have done a "yarn start". Otherwise run "yarn expo" to start the packager.
 
 You will also need to have an account with expo and be logged in. Which you can do with:
 
