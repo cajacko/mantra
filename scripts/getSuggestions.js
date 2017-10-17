@@ -1,9 +1,12 @@
+// Get the suggested mantra from contentful and hardcode them in a JSON file
+
 import { createClient } from 'contentful';
 import { writeJson } from 'fs-extra';
 import { join } from 'path';
 
 require('dotenv').config('../.env');
 
+// Setup coontentful client so can start making requests
 const client = createClient({
   space: process.env.CONTENTFUL_SPACE,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -32,6 +35,7 @@ function shuffle(a) {
 const suggestions = [];
 
 client
+  // Get the suggestions
   .getEntries({
     content_type: 'mantra',
     'fields.deleted': false,
@@ -40,6 +44,7 @@ client
     limit: 100,
   })
   .then((response) => {
+    // Add the suggestion details to the array
     response.items.forEach((item) => {
       const mantra = {
         title: item.fields.title,
@@ -50,11 +55,13 @@ client
       suggestions.push(mantra);
     });
 
+    // Radomise the sugegstions
     shuffle(suggestions);
 
     // eslint-disable-next-line no-console
     console.log(suggestions.length);
 
+    // Hardcode the suggestions
     return writeJson(
       join(__dirname, '../src/data/suggestions.json'),
       suggestions
