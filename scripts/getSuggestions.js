@@ -9,15 +9,22 @@ const client = createClient({
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 });
 
+/**
+ * Randomise an array in place
+ * @param  {Array} a The array to randomise
+ * @return {Void}   No return value, edits array in place
+ */
 function shuffle(a) {
   let j;
   let x;
   let i;
 
-  for (i = a.length - 1; i > 0; i--) {
+  for (i = a.length - 1; i > 0; i -= 1) {
     j = Math.floor(Math.random() * (i + 1));
     x = a[i];
+    // eslint-disable-next-line no-param-reassign
     a[i] = a[j];
+    // eslint-disable-next-line no-param-reassign
     a[j] = x;
   }
 }
@@ -45,6 +52,7 @@ client
 
     shuffle(suggestions);
 
+    // eslint-disable-next-line no-console
     console.log(suggestions.length);
 
     return writeJson(
