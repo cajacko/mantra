@@ -46,6 +46,7 @@
     "deploy:live": "babel-node scripts/deploy.js type=live",
     "git:master": "git checkout master && git reset --hard && git clean -f -d",
     "build:ios": "exp build:ios",
+    "build:android": "exp build:android",
     "build:status": "exp build:status",
     "login:expo": "exp login",
     "precommit": "babel-node scripts/precommit.js",
