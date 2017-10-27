@@ -14,6 +14,8 @@ export default {
 
   text: {
     fontSize: TEXT_SIZES.MEDIUM,
+    paddingTop: verticalSpacing,
+    paddingBottom: verticalSpacing,
   },
 
   placeholderColor: TEXT_COLOURS.GREY,
