@@ -115,7 +115,7 @@ function init() {
           return chooseReleaseType();
 
         case 'Finish Release':
-          return chooseBranch('release', false);
+          return chooseBranch('release', true);
 
         default:
           throw new Error('Unexpected action given');
