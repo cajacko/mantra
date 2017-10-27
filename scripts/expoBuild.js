@@ -127,8 +127,7 @@ if (ios && !android) {
         throw new Error(err || 'Undefined application error');
       });
     });
-}
-if (!ios && !android) {
+} else if (!ios && !android) {
   throw new Error('No android or ios tag was specified in the build script');
 } else {
   throw new Error(
