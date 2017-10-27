@@ -70,6 +70,8 @@ yarn login:expo
 ```
 
 ### Expo - Publishing src changes only
+For changes that don't include expo updates. Running either of these commands will publish the respective version top both iOS and Android.
+
 #### Dev
 ```
 yarn publish:dev
@@ -86,7 +88,7 @@ When either of the dev or live publish commands have been run, you can then open
 #### How it works
 Each command switches the app.json for the desired environment then runs "exp publish" which bundles and uploads the js to the expo servers, which will then distribute that to peoples apps.
 
-### App Store - Publishing changes to expo SDK
+### iOS: App Store - Publishing changes to expo SDK
 #### Setup
 Additionally to the global setup you will need to install fastlane. Which handles uploading the build file to iTunes Connect for the App Store. You will also need an Apple Developer subscription and have setup an app and bits on iTunes connect.
 
@@ -121,19 +123,19 @@ yarn publish:appstore:dev
 yarn publish:appstore:live
 ```
 
-### Google Play - Publishing changes to expo SDK
+### Android: Google Play - Publishing changes to expo SDK
 #### Setup
 If you have not run either of these builds before it is worth doing the steps manually first, as expo will prompt you for some info, which as of yet I can't get it all to work in non-interactive mode based of .env variables :(
 These are the steps to run manually if you need to:
 ```
 # This may ask whether you want expo to handle certificates
 # and push notifications. Say yes
-yarn build:ios
+yarn build:android
 
 # Keep running this until the build url shows
 yarn build:status
 
-# Download the build to ./tmp/build.ipa
+# Download the build to ./tmp/build.apk
 ```
 
 If you have problems running the build scripts, you many need to run the manual steps again to update credentials.
@@ -147,6 +149,13 @@ yarn publish:googleplay:dev
 ```
 yarn publish:googleplay:live
 ```
+#### Testing APK on an Android device
+
+Connect your android device by USB and enable USB for file transfer.
+
+You may need to download: https://www.android.com/filetransfer/
+
+Drag the .apk file into your device. From the device find the file and tap on install. Easy as pie.
 
 #### Next steps
 There's only so much we can automate/have found out how to automate. When the build is successfully downloaded, you then need to upload it to Google Play and fill in all the required details.
