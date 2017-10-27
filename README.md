@@ -54,9 +54,9 @@ This starts an interactive prompt, asking you whether you want to start/finish f
 - The finish feature action will finish the feature after running the manual checklist again.
 
 ## Publishing the app
-There are 2 main ways to publish. Publish to expo, which bundles the JS and serves it from Expo's servers, the next time someone opens the app, the new bundle will be downloaded and served without the app requiring an update from the App Store.
+There are 2 main ways to publish. Publish to expo, which bundles the JS and serves it from Expo's servers, the next time someone opens the app, the new bundle will be downloaded and served without the app requiring an update from the App Store or Google Play.
 
-The other way is to publish the app to the App Store. This is mainly to be used when the version of the expo SDK has changed, which requires an App Store submission. This way takes much longer to build, and upload the bundle to the App Store. And then you have to get it approved in the App Store which could take a while. The benefit with this way is that the actually app is fully updated, so when a user downloads it from the App Store it has all the latest code and doesn't require an internet connection to pull the latest from expo. This is also the only way to have a change log in the App Store. Unless you put it in the app description. In an ideal world all updates would be done this official way but it just takes too damn long.
+The other way is to publish the app to the App Store or Google Play. This is mainly to be used when the version of the expo SDK has changed, which requires an App Store/Google Play submission. This way takes much longer to build, and upload the bundle to the App Store/Google Play. And then you have to get it approved in the App Store which could take a while. The benefit with this way is that the actually app is fully updated, so when a user downloads it from the App Store/Google Play it has all the latest code and doesn't require an internet connection to pull the latest from expo. This is also the only way to have a change log in the App Store/Google Play. Unless you put it in the app description. In an ideal world all updates would be done this official way but it just takes too damn long.
 
 There are also 2 versions of each way of publishing. A dev and a live version. Which targets different apps.
 
@@ -70,6 +70,8 @@ yarn login:expo
 ```
 
 ### Expo - Publishing src changes only
+For changes that don't include expo updates. Running either of these commands will publish the respective version top both iOS and Android.
+
 #### Dev
 ```
 yarn publish:dev
@@ -86,7 +88,7 @@ When either of the dev or live publish commands have been run, you can then open
 #### How it works
 Each command switches the app.json for the desired environment then runs "exp publish" which bundles and uploads the js to the expo servers, which will then distribute that to peoples apps.
 
-### App store - Publishing changes to expo SDK
+### iOS: App Store - Publishing changes to expo SDK
 #### Setup
 Additionally to the global setup you will need to install fastlane. Which handles uploading the build file to iTunes Connect for the App Store. You will also need an Apple Developer subscription and have setup an app and bits on iTunes connect.
 
@@ -121,8 +123,42 @@ yarn publish:appstore:dev
 yarn publish:appstore:live
 ```
 
+### Android: Google Play - Publishing changes to expo SDK
+#### Setup
+If you have not run either of these builds before it is worth doing the steps manually first, as expo will prompt you for some info, which as of yet I can't get it all to work in non-interactive mode based of .env variables :(
+These are the steps to run manually if you need to:
+```
+# This may ask whether you want expo to handle certificates
+# and push notifications. Say yes
+yarn build:android
+
+# Keep running this until the build url shows
+yarn build:status
+
+# Download the build to ./tmp/build.apk
+```
+
+If you have problems running the build scripts, you many need to run the manual steps again to update credentials.
+
+#### Dev
+```
+yarn publish:googleplay:dev
+```
+
+#### Live
+```
+yarn publish:googleplay:live
+```
+#### Testing APK on an Android device
+
+Connect your android device by USB and enable USB for file transfer.
+
+You may need to download: https://www.android.com/filetransfer/
+
+Drag the .apk file into your device. From the device find the file and tap on install. Easy as pie.
+
 #### Next steps
-There's only so much we can automate/have found out how to automate. When the build is successfully uploaded, you should receive an email from Apple about the build being ready. From here you can login to iTunes Connect and handle whether to release the build to TestFlight or release it.
+There's only so much we can automate/have found out how to automate. When the build is successfully downloaded, you then need to upload it to Google Play and fill in all the required details.
 
 ## Manual Checklist
 ```
