@@ -7,10 +7,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 ### Changed
+- Ask whether should delete release branch on finish
+
 ### Deprecated
 ### Removed
 ### Fixed
 - Android styling for the AddInput
+
 ### Security
 
 ## [0.5.2] - 2017-10-2017
