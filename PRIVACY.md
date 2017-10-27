@@ -6,8 +6,6 @@ This page is used to inform website visitors regarding my policies with the coll
 
 If you choose to use my Service, then you agree to the collection and use of information in relation with this policy. The Personal Information that I collect are used for providing and improving the Service. I will not use or share your information with anyone except as described in this Privacy Policy.
 
-The terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, which is accessible at Mantra, unless otherwise defined in this Privacy Policy.
-
 ## Information Collection and Use
 
 For a better experience while using our Service, I may require you to provide us with certain personally identifiable information, including but not limited to name, email address and pictures. The information that I request will be retained by us and used as described in this privacy policy.
