@@ -1,16 +1,29 @@
-/* eslint no-console: 0 */
+/* eslint no-console: 0 max-lines: 0 */
 import download from 'download-file';
 import runCommand from 'scripts/helpers/runCommand';
 
 require('dotenv').config('../.env');
 
+let ios = false;
+let android = false;
+
+process.argv.forEach((arg) => {
+  if (arg.includes('ios')) {
+    ios = true;
+  } else if (arg.includes('android')) {
+    android = true;
+  }
+});
+
 const directory = './tmp/';
-const filename = 'build.ipa';
+const filename = ios ? 'build.ipa' : 'build.apk';
 const buildpath = `${directory}${filename}`;
 
 function build() {
   return new Promise((resolve, reject) => {
-    runCommand('npm run build:ios', (output) => {
+    const command = ios ? 'yarn run build:ios' : 'yarn run build:android';
+
+    runCommand(command, (output) => {
       if (output.includes("What's your Apple ID")) {
         reject(
           'No apple credentials, run "npm run build:ios" to enter credentials'
@@ -24,7 +37,7 @@ function build() {
 
 function checkStatus() {
   return new Promise((resolve, reject) => {
-    runCommand('npm run build:status', (output) => {
+    runCommand('yarn run build:status', (output) => {
       const matches = output.match(/\bhttps?:\/\/\S+/gi);
       const buildUrl = matches && matches[0] ? matches[0] : null;
 
@@ -89,15 +102,36 @@ function uploadBuild(filepath) {
   });
 }
 
-build()
-  .then(waitForStatus)
-  .then(downloadBuild)
-  .then(uploadBuild)
-  .then(() => console.log('SUCCESS'))
-  .catch((err) => {
-    // Set timeout is needed as a trick to stop the promise, turning the
-    // exception into a reject()
-    setTimeout(() => {
-      throw new Error(err || 'Undefined application error');
+if (ios && !android) {
+  build()
+    .then(waitForStatus)
+    .then(downloadBuild)
+    .then(uploadBuild)
+    .then(() => console.log('SUCCESS'))
+    .catch((err) => {
+      // Set timeout is needed as a trick to stop the promise, turning the
+      // exception into a reject()
+      setTimeout(() => {
+        throw new Error(err || 'Undefined application error');
+      });
     });
-  });
+} else if (android && !ios) {
+  build()
+    .then(waitForStatus)
+    .then(downloadBuild)
+    .then(() => console.log('SUCCESS'))
+    .catch((err) => {
+      // Set timeout is needed as a trick to stop the promise, turning the
+      // exception into a reject()
+      setTimeout(() => {
+        throw new Error(err || 'Undefined application error');
+      });
+    });
+}
+if (!ios && !android) {
+  throw new Error('No android or ios tag was specified in the build script');
+} else {
+  throw new Error(
+    'Both android and ios tags were found, please check the build script'
+  );
+}
