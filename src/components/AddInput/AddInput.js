@@ -17,6 +17,9 @@ class AddInput extends Component {
     return (
       <View style={style.container}>
         <TextInput
+          autoGrow
+          numberOfLines={4}
+          autoCapitalize="sentences"
           style={style.text}
           onChange={this.onChange}
           value={this.props.value}
@@ -24,6 +27,7 @@ class AddInput extends Component {
           placeholderTextColor={style.placeholderColor}
           multiline
           autoFocus
+          underlineColorAndroid="transparent"
         />
       </View>
     );
