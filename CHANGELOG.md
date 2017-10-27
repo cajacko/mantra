@@ -6,7 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Build process for Android devices
+
 ### Changed
+- Build process now switches between ios and android
+
 ### Deprecated
 ### Removed
 ### Fixed
