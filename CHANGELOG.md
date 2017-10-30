@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Ability to cancel receiving network responses via acceptableRequests reducer
+- New fetcher helper, to be used for all network requests
+
 ### Changed
+- LOGOUT action is now a top level reducer that resets everything when called. To stop bugs being introduced later.
+
 ### Deprecated
 ### Removed
 ### Fixed
