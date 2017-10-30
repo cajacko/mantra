@@ -15,6 +15,7 @@ import firstTime from 'reducers/firstTime';
 import suggestions from 'reducers/suggestions';
 import discardedSuggestions from 'reducers/discardedSuggestions';
 import addedSuggestions from 'reducers/addedSuggestions';
+import acceptableRequests from 'reducers/acceptableRequests';
 
 const appReducer = combineReducers({
   items,
@@ -33,6 +34,7 @@ const appReducer = combineReducers({
   suggestions,
   discardedSuggestions,
   addedSuggestions,
+  acceptableRequests,
 });
 
 /**
