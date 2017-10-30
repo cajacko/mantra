@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+## [0.5.5] - 2017-10-30
+### Added
 - Ability to cancel receiving network responses via acceptableRequests reducer
 - New fetcher helper, to be used for all network requests
 
