@@ -1995,7 +1995,7 @@ contentful-sdk-core@^3.14.1:
     npmlog "^4.0.2"
     qs "^6.1.0"
 
-contentful@^4.6.2:
+contentful@4.6.2:
   version "4.6.2"
   resolved "https://registry.yarnpkg.com/contentful/-/contentful-4.6.2.tgz#b99f1d12e32d08d40bb68e41bfb53a488a4b88f0"
   dependencies:
@@ -2944,7 +2944,7 @@ exit-hook@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
 
-exp@^44.0.0:
+exp@44.0.0:
   version "44.0.0"
   resolved "https://registry.yarnpkg.com/exp/-/exp-44.0.0.tgz#4f6be55ab0ad36a3f73898a39f48df81f688bb73"
   dependencies:

@@ -19,6 +19,7 @@ persistStore(store, {
     'offlineItemsSyncing',
     'lastAction',
     'suggestions',
+    'acceptableRequests',
   ],
 });
 

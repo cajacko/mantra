@@ -10,6 +10,22 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Deprecated
 ### Removed
 ### Fixed
+
+## [0.5.5] - 2017-10-30
+### Added
+- Ability to cancel receiving network responses via acceptableRequests reducer
+- New fetcher helper, to be used for all network requests
+
+### Changed
+- LOGOUT action is now a top level reducer that resets everything when called. To stop bugs being introduced later.
+- Now use `yarn install` rather thatn `npm i` in `yarn publish:live`
+- Updated fuzzy package versions to exact for contentful and expo
+
+### Deprecated
+### Removed
+### Fixed
+- https://trello.com/c/tcTcnpsg - Logout/login bug where if you logged out/in as a different user, whilst your mantra were syncing. Then the new user would receive the other persons mantra.
+
 ### Security
 
 ## [0.5.4] - 2017-10-27
