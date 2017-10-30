@@ -16,7 +16,7 @@ import suggestions from 'reducers/suggestions';
 import discardedSuggestions from 'reducers/discardedSuggestions';
 import addedSuggestions from 'reducers/addedSuggestions';
 
-export default combineReducers({
+const appReducer = combineReducers({
   items,
   view,
   myjsonId,
@@ -34,3 +34,21 @@ export default combineReducers({
   discardedSuggestions,
   addedSuggestions,
 });
+
+/**
+ * Completely wipe the store when a user logs out. This top level reducer
+ * leaves no room for mistake
+ *
+ * @param  {Object} state  The existing state
+ * @param  {Object} action The dispatched action
+ * @return {Object}        The transformed state
+ */
+export default (state, action) => {
+  let newState = state ? Object.assign({}, state) : state;
+
+  if (action.type === 'LOGOUT') {
+    newState = undefined;
+  }
+
+  return appReducer(newState, action);
+};
