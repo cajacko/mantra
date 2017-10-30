@@ -7,6 +7,7 @@ import fetcher from 'helpers/fetcher';
  * Get data from the online JSON store, by a given ID
  *
  * @param  {string} myjsonId The myjsonID to get online
+ * @param  {string} requestId The unique request id to pass to the fetcher
  * @return {Promise}          A promise that resolves to the data or errors
  */
 function getServerData(myjsonId, requestId) {
@@ -34,6 +35,7 @@ function getServerData(myjsonId, requestId) {
  * Given some data save it online at the given myjsonId
  *
  * @param {string} myjsonId The myjsonId to save to
+ * @param  {string} requestId The unique request id to pass to the fetcher
  * @param {Object} data     The data to save
  * @return {Promise}        A promise that resolves with the all the data that's
  * saved for this user
