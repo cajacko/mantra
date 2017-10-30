@@ -3,7 +3,7 @@ const defaultState = [];
 export default (state = defaultState, { type, payload }) => {
   switch (type) {
     case 'SYNC_INIT':
-      return payload;
+      return payload.items;
 
     case 'SYNC_SUCCESS':
     case 'SYNC_ERROR':

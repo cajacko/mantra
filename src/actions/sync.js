@@ -1,16 +1,18 @@
 /* eslint max-lines: 0 */
 import mergeItems from 'helpers/mergeItems';
 import combineArrays from 'helpers/combineArrays';
+import fetcher from 'helpers/fetcher';
 
 /**
  * Get data from the online JSON store, by a given ID
  *
  * @param  {string} myjsonId The myjsonID to get online
+ * @param  {string} requestId The unique request id to pass to the fetcher
  * @return {Promise}          A promise that resolves to the data or errors
  */
-function getServerData(myjsonId) {
+function getServerData(myjsonId, requestId) {
   return new Promise((resolve, reject) => {
-    fetch(`https://api.myjson.com/bins/${myjsonId}`)
+    fetcher(`https://api.myjson.com/bins/${myjsonId}`, requestId)
       .then(response => response.json())
       .then((payload) => {
         if (!payload || !payload.items) {
@@ -33,13 +35,14 @@ function getServerData(myjsonId) {
  * Given some data save it online at the given myjsonId
  *
  * @param {string} myjsonId The myjsonId to save to
+ * @param  {string} requestId The unique request id to pass to the fetcher
  * @param {Object} data     The data to save
  * @return {Promise}        A promise that resolves with the all the data that's
  * saved for this user
  */
-function setServerData(myjsonId, data) {
+function setServerData(myjsonId, requestId, data) {
   return new Promise((resolve, reject) => {
-    fetch(`https://api.myjson.com/bins/${myjsonId}`, {
+    fetcher(`https://api.myjson.com/bins/${myjsonId}`, requestId, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
@@ -112,9 +115,12 @@ export default function (cancelOtherCalls) {
 
     activeSync = syncId;
 
-    dispatch({ type: 'SYNC_INIT', payload: offLinePostsSyncing(items) });
+    dispatch({
+      type: 'SYNC_INIT',
+      payload: { items: offLinePostsSyncing(items), id },
+    });
 
-    getServerData(myjsonId)
+    getServerData(myjsonId, id)
       .then((response) => {
         if (activeSync !== syncId) {
           return null;
@@ -126,15 +132,15 @@ export default function (cancelOtherCalls) {
           items: mergedItems,
           addedSuggestions: combineArrays(
             addedSuggestions,
-            response.addedSuggestions,
+            response.addedSuggestions
           ),
           discardedSuggestions: combineArrays(
             discardedSuggestions,
-            response.discardedSuggestions,
+            response.discardedSuggestions
           ),
         };
 
-        return setServerData(myjsonId, data);
+        return setServerData(myjsonId, id, data);
       })
       .then((data) => {
         if (activeSync === syncId) {
