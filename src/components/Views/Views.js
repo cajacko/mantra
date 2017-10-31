@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import LoopView from 'components/LoopView/LoopView';
+import LoopView from 'components/LoopView/LoopView.component';
 import AddView from 'containers/AddView/AddView';
 import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
@@ -51,7 +51,7 @@ const Views = ({ view, viewProps, firstTime }) => {
       // eslint-disable-next-line
       console.error(
         `View does not have a corresponding component/container: ${view}`,
-        view,
+        view
       );
       return null;
   }
