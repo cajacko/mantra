@@ -27,7 +27,7 @@ export function getBranches(type) {
         branch
           .replace('* ', '')
           .replace(`${type}/`, '')
-          .trim(),
+          .trim()
       );
     }
   });
@@ -35,15 +35,26 @@ export function getBranches(type) {
   return branches;
 }
 
-export function finishRelease(release, shouldDelete) {
+export function finishRelease(release, shouldDelete, shouldPush) {
+  const tagname = `v${release}`;
+
   return runCommand('git checkout master')
     .then(() => runCommand(`git merge --no-ff release/${release}`))
-    .then(() => runCommand(`git tag -a -m '' v${release}`))
+    .then(() => runCommand(`git tag -a -m '' ${tagname}`))
     .then(() => runCommand('git checkout develop'))
     .then(() => runCommand(`git merge --no-ff release/${release}`))
     .then(() => {
       if (shouldDelete) {
         return runCommand(`git branch -d release/${release}`);
+      }
+
+      return true;
+    })
+    .then(() => {
+      if (shouldPush) {
+        return runCommand('git push origin develop')
+          .then(() => runCommand('git push origin master'))
+          .then(() => runCommand(`git push origin ${tagname}`));
       }
 
       return true;
@@ -82,12 +93,12 @@ export function getBranchId() {
   return null;
 }
 
-export function finishBranch(branch, type, shouldDelete) {
+export function finishBranch(branch, type, shouldDelete, shouldPush) {
   switch (type) {
     case 'feature':
       return finishFeature(branch, shouldDelete);
     case 'release':
-      return finishRelease(branch, shouldDelete);
+      return finishRelease(branch, shouldDelete, shouldPush);
 
     default:
       throw new Error('Undefined type of branch');

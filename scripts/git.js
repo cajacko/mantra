@@ -58,12 +58,21 @@ function chooseBranch(type, askToDelete) {
     });
   }
 
+  if (type === 'release') {
+    questions.push({
+      type: 'confirm',
+      name: 'shouldPush',
+      message:
+        'Do you want to push the develop/master branches and release tag afterwards?',
+    });
+  }
+
   return checkHasRunTests().then(() =>
     inquirer
       .prompt(questions)
       .then(runChecklist)
-      .then(({ branch, shouldDelete }) =>
-        finishBranch(branch, type, shouldDelete)
+      .then(({ branch, shouldDelete, shouldPush }) =>
+        finishBranch(branch, type, shouldDelete, shouldPush)
       )
   );
 }
