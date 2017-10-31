@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+## [0.6.0] - 2017-10-31
+### Added
 - Application version number displays at the bottom of the side menu
 - Can now choose to auto push develop/master branches and release tag when finishing a release with the git script
 
