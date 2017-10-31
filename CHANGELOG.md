@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Added
 - Application version number displays at the bottom of the side menu
+- Can now choose to auto push develop/master branches and release tag when finishing a release with the git script
 
 ### Changed
 - Split Menu component to follow container/component/render/style pattern
