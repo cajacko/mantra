@@ -3,18 +3,31 @@ import PropTypes from 'prop-types';
 import MantraLoopRender from 'components/MantraLoop/MantraLoop.render';
 
 /**
- * Transform the items from the store into and array of ordered mantra ID's
+ * Transform the items from the store into and array of ordered mantra ID's,
+ * optionally filtered by title
  *
  * @param  {Object} items The items object from the store. Keyed object of
  * mantra
+ * @param  {?String} filterValue The string to filter the mantrs titles by
  * @return {array}       Array of strings, representing Mantra ID's
  */
-function returnMantraLoop(items) {
+function returnMantraLoop(items, filterValue) {
   const mantraLoop = [];
   const ids = Object.keys(items);
 
   ids.forEach((id) => {
-    mantraLoop.push(items[id]);
+    const item = items[id];
+
+    if (filterValue) {
+      const title = item.title.toLowerCase();
+      const test = filterValue.toLowerCase();
+
+      if (title.includes(test)) {
+        mantraLoop.push(item);
+      }
+    } else {
+      mantraLoop.push(item);
+    }
   });
 
   mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);
@@ -43,7 +56,7 @@ class MantraLoop extends Component {
     super(props);
 
     this.state = {
-      mantraLoop: returnMantraLoop(props.items),
+      mantraLoop: returnMantraLoop(props.items, props.filterValue),
       refreshing: false,
       initialItems: Object.keys(props.items),
     };
@@ -72,7 +85,7 @@ class MantraLoop extends Component {
     }
 
     this.setState({
-      mantraLoop: returnMantraLoop(nextProps.items),
+      mantraLoop: returnMantraLoop(nextProps.items, nextProps.filterValue),
       refreshing,
     });
   }
@@ -140,10 +153,12 @@ MantraLoop.propTypes = {
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,
   myjsonId: PropTypes.string,
+  filterValue: PropTypes.string,
 };
 
 MantraLoop.defaultProps = {
   myjsonId: null,
+  filterValue: null,
 };
 
 export default MantraLoop;

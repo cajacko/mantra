@@ -17,7 +17,7 @@ class LoopViewRender extends PureComponent {
             buttonAction={this.props.searchButton}
             onChange={this.props.searchChange}
           />
-          <MantraLoop />
+          <MantraLoop filterValue={this.props.searchValue} />
         </View>
       </EmptyView>
     );
