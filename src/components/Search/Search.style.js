@@ -9,13 +9,21 @@ const placeholderColor = TEXT_COLOURS.GREY;
 export default {
   container: {
     paddingLeft: horizontalSpacing,
-    paddingRight: horizontalSpacing,
     backgroundColor: GREY_LIGHTER,
     borderColor: GREY_LIGHT,
     borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+  },
+
+  button: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: horizontalSpacing,
+    paddingLeft: 20,
+    paddingTop: verticalSpacing,
+    paddingBottom: verticalSpacing,
   },
 
   input: {

@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, TouchableOpacity } from 'react-native';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Search/Search.style';
 
-const SearchRender = () => (
+const SearchRender = ({ value, buttonAction, icon }) => (
   <View style={style.container}>
     <TextInput
       autoCapitalize="sentences"
@@ -13,11 +13,9 @@ const SearchRender = () => (
       style={style.input}
       placeholderColor={style.placeholderColor}
     />
-    <Ionicons
-      name="ios-search"
-      size={style.iconSize}
-      color={style.iconColour}
-    />
+    <TouchableOpacity style={style.button} onPress={buttonAction}>
+      <Ionicons name={icon} size={style.iconSize} color={style.iconColour} />
+    </TouchableOpacity>
   </View>
 );
 
