@@ -38,4 +38,10 @@ export default {
 
   closeColour: WHITE,
   closeSize: 30,
+
+  version: {
+    padding: 10,
+    textAlign: 'center',
+    color: WHITE,
+  },
 };
