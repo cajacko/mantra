@@ -1,20 +1,14 @@
-/* eslint max-lines: 0 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import SideMenu from 'components/SideMenu/SideMenu';
-import { View, Text, StatusBar, TouchableOpacity, Alert } from 'react-native';
-// eslint-disable-next-line  import/no-extraneous-dependencies
-import { Ionicons } from '@expo/vector-icons';
-import style from 'components/Menu/Menu.style';
-import MenuItem from 'components/MenuItem/MenuItem.component';
-import email from 'helpers/email';
+import { Alert } from 'react-native';
+import MenuRender from 'components/Menu/Menu.render';
 
 /**
- * The menu component, comes out from the side and allows navigation for second
- * level nav items
+ * Define the logic for the menu component. Show the logout alert on logout.
+ *
  * @type {class}
  */
-class Menu extends Component {
+class Menu extends PureComponent {
   /**
    * Setup menu class, bind this to methods
    * @param  {object} props Passed React props
@@ -42,70 +36,21 @@ class Menu extends Component {
 
   /**
    * Render the menu
-   * @return {JSX} Return the markup
+   * @return {Component} Return the menu component
    */
   render() {
-    const menu = (
-      <View style={style.container}>
-        <StatusBar barStyle="dark-content" />
-        <View style={style.header}>
-          <Text style={style.title}>Menu</Text>
-          <TouchableOpacity
-            onPress={this.props.closeMenu}
-            style={style.closeWrapper}
-          >
-            <Ionicons
-              name="ios-close-outline"
-              size={style.closeSize}
-              color={style.closeColour}
-            />
-          </TouchableOpacity>
-        </View>
-        <View style={style.menuItems}>
-          <MenuItem
-            title={this.props.isLoggedIn ? 'Account' : 'Login/Register'}
-            icon="ios-contact-outline"
-            action={() =>
-              this.props.switchView(
-                this.props.isLoggedIn ? 'ProfileView' : 'LoginRegisterView',
-              )}
-          />
-          <MenuItem
-            title="Feedback"
-            icon="ios-chatboxes-outline"
-            action={() => email('feedback')}
-          />
-          <MenuItem
-            title="Contact"
-            icon="ios-mail-outline"
-            action={() => email('contact')}
-          />
-          <MenuItem
-            title="Help"
-            icon="ios-help-outline"
-            action={() => this.props.switchView('WelcomeView')}
-          />
-          {this.props.isLoggedIn && (
-            <MenuItem
-              title="Logout"
-              icon="ios-exit-outline"
-              action={this.logout}
-            />
-          )}
-        </View>
-      </View>
-    );
-
     return (
-      <SideMenu
-        menu={menu}
-        isOpen={this.props.open}
-        menuPosition="right"
-        autoClosing={false}
-        onChange={isOpen => this.props.onChange(isOpen, this.props.open)}
+      <MenuRender
+        open={this.props.open}
+        closeMenu={this.props.closeMenu}
+        onChange={this.props.onChange}
+        logout={this.logout}
+        switchView={this.props.switchView}
+        isLoggedIn={this.props.isLoggedIn}
+        version={this.props.version}
       >
         {this.props.children}
-      </SideMenu>
+      </MenuRender>
     );
   }
 }
@@ -118,6 +63,7 @@ Menu.propTypes = {
   logout: PropTypes.func.isRequired,
   switchView: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,
+  version: PropTypes.string.isRequired,
 };
 
 export default Menu;
