@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Deprecated
 ### Removed
 ### Fixed
+- Show close icon when there is search text, but the search input is blurred. Previosuly would show the search icon.
 
 ## [0.7.0] - 2017-11-01
 ### Added
