@@ -20,6 +20,7 @@ persistStore(store, {
     'lastAction',
     'suggestions',
     'acceptableRequests',
+    'version',
   ],
 });
 

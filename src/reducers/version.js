@@ -1,9 +1,3 @@
-export default (state = null, { type, payload }) => {
-  switch (type) {
-    case 'UPDATE_VERSION':
-      return payload.version;
+import { version } from 'root/package.json';
 
-    default:
-      return state;
-  }
-};
+export default () => version;
