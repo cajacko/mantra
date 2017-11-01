@@ -29,6 +29,7 @@ class SearchRender extends PureComponent {
           onChange={this.onChange}
           onBlur={() => this.props.focusChange(false)}
           onFocus={() => this.props.focusChange(true)}
+          returnKeyType="done"
         />
         <TouchableOpacity
           style={style.button}
