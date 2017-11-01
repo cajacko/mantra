@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+
+## [0.7.0] - 2017-11-01
+### Added
 - Search component to filter mantra based by title
 - Can clear the contents of the search input
 - Search icon focus's on the input
@@ -17,11 +24,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Split returnMantraLoop into helper function to improve readability
 - Split LoopView into LoopView.render and LoopView.component
 
-### Deprecated
 ### Removed
 - Migration scripts that would ensure data integrity when upgrading the app. These weren't implemented effectively and were removed so we could have a better version reducer. This will be reintroduced in a better way, next time a data structure change gets made.
-
-### Fixed
 
 ## [0.6.0] - 2017-10-31
 ### Added
@@ -30,10 +34,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Split Menu component to follow container/component/render/style pattern
-
-### Deprecated
-### Removed
-### Fixed
 
 ## [0.5.5] - 2017-10-30
 ### Added
@@ -45,8 +45,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Now use `yarn install` rather thatn `npm i` in `yarn publish:live`
 - Updated fuzzy package versions to exact for contentful and expo
 
-### Deprecated
-### Removed
 ### Fixed
 - https://trello.com/c/tcTcnpsg - Logout/login bug where if you logged out/in as a different user, whilst your mantra were syncing. Then the new user would receive the other persons mantra.
 
