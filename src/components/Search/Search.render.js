@@ -36,7 +36,11 @@ class SearchRender extends PureComponent {
         >
           <Ionicons
             name={this.props.iconIsSearch ? 'ios-search' : 'ios-close'}
-            size={style.iconSize}
+            size={
+              this.props.iconIsSearch
+                ? style.searchIconSize
+                : style.closeIconSize
+            }
             color={style.iconColour}
           />
         </TouchableOpacity>

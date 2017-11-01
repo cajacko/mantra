@@ -14,17 +14,13 @@ export default {
     borderBottomWidth: 1,
     borderTopWidth: 1,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    paddingRight: horizontalSpacing,
-    paddingLeft: 20,
-    paddingTop: verticalSpacing,
-    paddingBottom: verticalSpacing,
+    flex: 1,
+    maxWidth: 40,
   },
 
   input: {
@@ -36,6 +32,7 @@ export default {
 
   placeholderColor,
 
-  iconSize: 20,
+  searchIconSize: 24,
+  closeIconSize: 30,
   iconColour: placeholderColor,
 };
