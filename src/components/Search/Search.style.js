@@ -12,6 +12,7 @@ export default {
     backgroundColor: GREY_LIGHTER,
     borderColor: GREY_LIGHT,
     borderBottomWidth: 1,
+    borderTopWidth: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
