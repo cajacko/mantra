@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Removed
 ### Fixed
 
+## [0.7.1] - 2017-11-01
+### Fixed
+- Show close icon when there is search text, but the search input is blurred. Previously would show the search icon.
+
 ## [0.7.0] - 2017-11-01
 ### Added
 - Search component to filter mantra based by title

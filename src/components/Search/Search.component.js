@@ -19,7 +19,8 @@ class Search extends PureComponent {
     super(props);
 
     this.state = {
-      text: this.props.value || null,
+      text: this.props.value || '',
+      iconIsSearch: true,
       focus: false,
     };
 
@@ -30,14 +31,21 @@ class Search extends PureComponent {
   }
 
   /**
-   * Update the text in state when it changes, optional cll the passed onChange
-   * function if given
+   * Update the text in state when it changes, optional call the passed onChange
+   * function if given. Can also set the iconIsSearch prop if passed
    *
    * @param  {String} text New text from input
+   * @param  {?boolean} iconIsSearch Set the iconIsSearch param
    * @return {Void}      No return value
    */
-  onChange(text) {
-    this.setState({ text });
+  onChange(text, iconIsSearch) {
+    const state = { text };
+
+    if (iconIsSearch !== undefined) {
+      state.iconIsSearch = iconIsSearch;
+    }
+
+    this.setState(state);
 
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(text);
@@ -60,27 +68,33 @@ class Search extends PureComponent {
    * - If the input is not in focus then focus it
    * - Otherwise, if the search text is empty then blur the input
    * - Otherwise reset the input
+   *   - If the input is not in focus, then this will show the search icon,
+   *     otherwise it won't change
    *
    * @return {Void} No return value
    */
   buttonAction() {
-    if (this.state.focus === false) {
+    if (this.state.iconIsSearch) {
       this.input.focus();
     } else if (this.state.text === '') {
       this.input.blur();
     } else {
-      this.onChange('');
+      this.onChange('', this.state.focus === false ? true : undefined);
     }
   }
 
   /**
-   * When the focus changes on the textinput, update the state
+   * When the focus changes on the textinput, update the state and decide
+   * whether to show the search icon or not
    *
    * @param  {boolean} focus Is the input focussed
    * @return {Void}       No return value
    */
   focusChange(focus) {
-    this.setState({ focus });
+    this.setState({
+      focus,
+      iconIsSearch: focus === false && this.state.text === '',
+    });
   }
 
   /**
@@ -94,7 +108,7 @@ class Search extends PureComponent {
         value={this.state.text}
         buttonAction={this.buttonAction}
         onChange={this.onChange}
-        iconIsSearch={!this.state.focus}
+        iconIsSearch={this.state.iconIsSearch}
         setInput={this.setInput}
         focusChange={this.focusChange}
       />
