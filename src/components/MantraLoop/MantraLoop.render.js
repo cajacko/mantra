@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import { FlatList, Animated, Easing } from 'react-native';
+import React, { PureComponent } from 'react';
+import { FlatList, Animated, Easing, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Mantra from 'containers/Mantra/Mantra';
 import Item from 'containers/Item/Item';
+import style from 'components/MantraLoop/MantraLoop.style';
 
 /**
- * The markup, styling and animation for a Mantra items
+ * The markup, styling and animation for a Mantra items. Will show a message if
+ * no items are visible
  *
  * @type {Class}
  */
-class Mantraloop extends Component {
+class Mantraloop extends PureComponent {
   /**
    * Initialise the class, setting up rotation for all the sync icon on the
    * Mantra items, so that they all have the same rotation, rather than
@@ -55,6 +57,16 @@ class Mantraloop extends Component {
    * @return {component} JSX component to display
    */
   render() {
+    if (this.props.noItems) {
+      return (
+        <View style={style.noItems}>
+          <Text style={style.noItemsText}>
+            Could not find any mantra to show :s
+          </Text>
+        </View>
+      );
+    }
+
     const spin = this.state.rotation.interpolate({
       inputRange: [0, 1],
       outputRange: ['0deg', '360deg'],
@@ -91,12 +103,13 @@ Mantraloop.propTypes = {
   mantraLoop: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string,
-    }),
+    })
   ).isRequired,
   refreshing: PropTypes.bool.isRequired,
   onRefresh: PropTypes.func.isRequired,
   initialItems: PropTypes.arrayOf(PropTypes.string).isRequired,
   hasRefresh: PropTypes.bool.isRequired,
+  noItems: PropTypes.bool.isRequired,
 };
 
 export default Mantraloop;
