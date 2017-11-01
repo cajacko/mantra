@@ -7,14 +7,7 @@ class LoopView extends PureComponent {
 
     this.state = { searchValue: null };
 
-    this.searchButton = this.searchButton.bind(this);
     this.searchChange = this.searchChange.bind(this);
-  }
-
-  searchButton() {
-    if (this.state.searchValue) {
-      this.setState({ searchValue: null });
-    }
   }
 
   searchChange(searchValue) {
@@ -25,9 +18,7 @@ class LoopView extends PureComponent {
     return (
       <LoopViewRender
         searchValue={this.state.searchValue}
-        searchButton={this.searchButton}
         searchChange={this.searchChange}
-        searchIcon={this.state.searchValue ? 'ios-close' : 'ios-search'}
       />
     );
   }

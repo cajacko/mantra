@@ -19,6 +19,7 @@ class SearchRender extends PureComponent {
     return (
       <View style={style.container}>
         <TextInput
+          ref={this.props.setInput}
           autoCapitalize="sentences"
           placeholder="Search"
           underlineColorAndroid="transparent"
@@ -26,13 +27,15 @@ class SearchRender extends PureComponent {
           placeholderColor={style.placeholderColor}
           value={this.props.value}
           onChange={this.onChange}
+          onBlur={() => this.props.focusChange(false)}
+          onFocus={() => this.props.focusChange(true)}
         />
         <TouchableOpacity
           style={style.button}
           onPress={this.props.buttonAction}
         >
           <Ionicons
-            name={this.props.icon}
+            name={this.props.iconIsSearch ? 'ios-search' : 'ios-close'}
             size={style.iconSize}
             color={style.iconColour}
           />
@@ -46,7 +49,9 @@ SearchRender.propTypes = {
   value: PropTypes.string,
   buttonAction: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  icon: PropTypes.string.isRequired,
+  iconIsSearch: PropTypes.bool.isRequired,
+  setInput: PropTypes.func.isRequired,
+  focusChange: PropTypes.func.isRequired,
 };
 
 SearchRender.defaultProps = {
