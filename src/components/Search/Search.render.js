@@ -5,16 +5,38 @@ import PropTypes from 'prop-types';
 import { Ionicons } from '@expo/vector-icons';
 import style from 'components/Search/Search.style';
 
+/**
+ * Render the search component. Displays a search input and search/close icon
+ *
+ * @type {Class}
+ */
 class SearchRender extends PureComponent {
+  /**
+   * Initialise the component, bind the methods
+   *
+   * @param  {Object} props Props passed to the component
+   * @return {Void}       No return value
+   */
   constructor(props) {
     super(props);
     this.onChange = this.onChange.bind(this);
   }
 
+  /**
+   * When the text changes, pass the new text to parent
+   *
+   * @param  {Event} event onChange event passed by TextInput
+   * @return {Void}       No return value
+   */
   onChange(event) {
     this.props.onChange(event.nativeEvent.text);
   }
 
+  /**
+   * Render the component
+   *
+   * @return {Component} Component to render
+   */
   render() {
     return (
       <View style={style.container}>

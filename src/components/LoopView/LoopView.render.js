@@ -6,7 +6,17 @@ import style from 'components/LoopView/LoopView.style';
 import EmptyView from 'containers/EmptyView/EmptyView';
 import Search from 'components/Search/Search.component';
 
+/**
+ * Render the loop view. Displays a search bar and list of mantra
+ *
+ * @type {Class}
+ */
 class LoopViewRender extends PureComponent {
+  /**
+   * Render the component
+   *
+   * @return {component} React component to render
+   */
   render() {
     return (
       <EmptyView>

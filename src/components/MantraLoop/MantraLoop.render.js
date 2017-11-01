@@ -6,7 +6,8 @@ import Item from 'containers/Item/Item';
 import style from 'components/MantraLoop/MantraLoop.style';
 
 /**
- * The markup, styling and animation for a Mantra items
+ * The markup, styling and animation for a Mantra items. Will show a message if
+ * no items are visible
  *
  * @type {Class}
  */
