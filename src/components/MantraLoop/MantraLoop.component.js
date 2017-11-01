@@ -15,18 +15,29 @@ function returnMantraLoop(items, filterValue) {
   const mantraLoop = [];
   const ids = Object.keys(items);
 
+  let noItems = true;
+
   ids.forEach((id) => {
     const item = items[id];
+    let pushItem = false;
 
     if (filterValue) {
       const title = item.title.toLowerCase();
       const test = filterValue.toLowerCase();
 
       if (title.includes(test)) {
-        mantraLoop.push(item);
+        pushItem = item;
       }
     } else {
-      mantraLoop.push(item);
+      pushItem = item;
+    }
+
+    if (pushItem) {
+      mantraLoop.push(pushItem);
+
+      if (pushItem.deleted === false) {
+        noItems = false;
+      }
     }
   });
 
@@ -35,7 +46,7 @@ function returnMantraLoop(items, filterValue) {
   const idLoop = [];
   mantraLoop.forEach(({ id }) => idLoop.push({ key: id }));
 
-  return idLoop;
+  return { idLoop, noItems };
 }
 
 /**
@@ -55,8 +66,14 @@ class MantraLoop extends Component {
   constructor(props) {
     super(props);
 
+    const { idLoop, noItems } = returnMantraLoop(
+      props.items,
+      props.filterValue
+    );
+
     this.state = {
-      mantraLoop: returnMantraLoop(props.items, props.filterValue),
+      mantraLoop: idLoop,
+      noItems,
       refreshing: false,
       initialItems: Object.keys(props.items),
     };
@@ -84,8 +101,14 @@ class MantraLoop extends Component {
         break;
     }
 
+    const { idLoop, noItems } = returnMantraLoop(
+      nextProps.items,
+      nextProps.filterValue
+    );
+
     this.setState({
-      mantraLoop: returnMantraLoop(nextProps.items, nextProps.filterValue),
+      mantraLoop: idLoop,
+      noItems,
       refreshing,
     });
   }
@@ -141,6 +164,7 @@ class MantraLoop extends Component {
         onRefresh={this.onRefresh}
         initialItems={this.state.initialItems}
         hasRefresh={this.props.myjsonId !== null}
+        noItems={this.state.noItems}
       />
     );
   }
