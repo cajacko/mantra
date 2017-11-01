@@ -6,7 +6,6 @@ import cron from 'views/workers/notifications';
 import Cache from 'containers/Cache/Cache';
 import sync from 'views/workers/sync';
 import permissions from 'views/workers/permissions';
-import 'views/workers/update';
 
 cron();
 sync();

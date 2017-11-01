@@ -1,29 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MantraLoopRender from 'components/MantraLoop/MantraLoop.render';
-
-/**
- * Transform the items from the store into and array of ordered mantra ID's
- *
- * @param  {Object} items The items object from the store. Keyed object of
- * mantra
- * @return {array}       Array of strings, representing Mantra ID's
- */
-function returnMantraLoop(items) {
-  const mantraLoop = [];
-  const ids = Object.keys(items);
-
-  ids.forEach((id) => {
-    mantraLoop.push(items[id]);
-  });
-
-  mantraLoop.sort((a, b) => b.dateAdded - a.dateAdded);
-
-  const idLoop = [];
-  mantraLoop.forEach(({ id }) => idLoop.push({ key: id }));
-
-  return idLoop;
-}
+import returnMantraLoop from 'helpers/returnMantraLoop';
 
 /**
  * MantraLoop component, handle refreshes, sync errors and whether to update
@@ -42,8 +20,14 @@ class MantraLoop extends Component {
   constructor(props) {
     super(props);
 
+    const { idLoop, noItems } = returnMantraLoop(
+      props.items,
+      props.filterValue
+    );
+
     this.state = {
-      mantraLoop: returnMantraLoop(props.items),
+      mantraLoop: idLoop,
+      noItems,
       refreshing: false,
       initialItems: Object.keys(props.items),
     };
@@ -71,8 +55,14 @@ class MantraLoop extends Component {
         break;
     }
 
+    const { idLoop, noItems } = returnMantraLoop(
+      nextProps.items,
+      nextProps.filterValue
+    );
+
     this.setState({
-      mantraLoop: returnMantraLoop(nextProps.items),
+      mantraLoop: idLoop,
+      noItems,
       refreshing,
     });
   }
@@ -128,6 +118,7 @@ class MantraLoop extends Component {
         onRefresh={this.onRefresh}
         initialItems={this.state.initialItems}
         hasRefresh={this.props.myjsonId !== null}
+        noItems={this.state.noItems}
       />
     );
   }
@@ -140,10 +131,12 @@ MantraLoop.propTypes = {
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,
   myjsonId: PropTypes.string,
+  filterValue: PropTypes.string,
 };
 
 MantraLoop.defaultProps = {
   myjsonId: null,
+  filterValue: null,
 };
 
 export default MantraLoop;
