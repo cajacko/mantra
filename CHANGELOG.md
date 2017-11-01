@@ -6,9 +6,21 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
+- Search component to filter mantra based by title
+- Can clear the contents of the search input
+- Search icon focus's on the input
+- If no mantra items are visible, then show a message
+- Added search considerations to the manual checklist
+
 ### Changed
+- Current version is always returned by the version reducer
+- Split returnMantraLoop into helper function to improve readability
+- Split LoopView into LoopView.render and LoopView.component
+
 ### Deprecated
 ### Removed
+- Migration scripts that would ensure data integrity when upgrading the app. These weren't implemented effectively and were removed so we could have a better version reducer. This will be reintroduced in a better way, next time a data structure change gets made.
+
 ### Fixed
 
 ## [0.6.0] - 2017-10-31
