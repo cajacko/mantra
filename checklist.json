@@ -76,6 +76,10 @@
     },
     {
       "title": "Is env.json set to production?"
+    },
+    {
+      "title": "Have though about search considerations?",
+      "description": "Do new props need to be included in search?"
     }
   ]
 }
