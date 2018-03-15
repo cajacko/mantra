@@ -1,20 +1,24 @@
 import React from 'react';
-import { Container, List, ListItem, Text, Icon, Left, Body } from 'native-base';
+import { Container, Content, Form, Item, Input, Label } from 'native-base';
 import StatusPadding from 'components/UI/StatusPadding';
+import Header from 'components/Header';
 
 const AddView = () => (
   <Container>
     <StatusPadding />
-    <List button>
-      <ListItem icon onPress={() => {}} first last>
-        <Left>
-          <Icon name="link" />
-        </Left>
-        <Body>
-          <Text>Add Source</Text>
-        </Body>
-      </ListItem>
-    </List>
+    <Header leftIcon="arrow-back" title="Add Source" rightText="Save" />
+    <Content>
+      <Form>
+        <Item floatingLabel>
+          <Label>Source Title</Label>
+          <Input />
+        </Item>
+        <Item floatingLabel last>
+          <Label>Source Link</Label>
+          <Input />
+        </Item>
+      </Form>
+    </Content>
   </Container>
 );
 
