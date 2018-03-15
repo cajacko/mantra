@@ -1,9 +1,10 @@
 import React from 'react';
 import { Container, Content, Form, Item, Input, Label } from 'native-base';
+import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/Header';
 
-const AddView = () => (
+const AddSource = ({ title, link, onChange }) => (
   <Container>
     <StatusPadding />
     <Header leftIcon="arrow-back" title="Add Source" rightText="Save" />
@@ -11,15 +12,21 @@ const AddView = () => (
       <Form>
         <Item floatingLabel>
           <Label>Source Title</Label>
-          <Input />
+          <Input value={title} onChange={onChange('title')} />
         </Item>
         <Item floatingLabel last>
           <Label>Source Link</Label>
-          <Input />
+          <Input value={link} onChange={onChange('link')} />
         </Item>
       </Form>
     </Content>
   </Container>
 );
 
-export default AddView;
+AddSource.propTypes = {
+  title: PropTypes.string.isRequired,
+  link: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
+};
+
+export default AddSource;

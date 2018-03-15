@@ -1,1 +1,1 @@
-export { default } from 'components/AddSource/AddSource.render';
+export { default } from 'components/AddSource/AddSource.component';
