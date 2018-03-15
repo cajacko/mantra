@@ -24,6 +24,7 @@ class AddSourceComponent extends PureComponent {
         title={this.state.title}
         link={this.state.link}
         onChange={this.onChange}
+        goBack={this.props.goBack}
       />
     );
   }
@@ -32,6 +33,7 @@ class AddSourceComponent extends PureComponent {
 AddSourceComponent.propTypes = {
   title: PropTypes.string,
   link: PropTypes.string,
+  goBack: PropTypes.func.isRequired,
 };
 
 AddSourceComponent.defaultProps = {

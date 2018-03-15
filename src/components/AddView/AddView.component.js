@@ -54,10 +54,6 @@ class AddViewComponent extends Component {
     this.setShowAddSource = this.setShowAddSource.bind(this);
   }
 
-  setShowAddSource(shouldShowAddSource) {
-    return () => this.setState({ shouldShowAddSource });
-  }
-
   onChange(title) {
     let enableSave = true;
     const charactersLeft = characterCount - title.length;
@@ -67,6 +63,10 @@ class AddViewComponent extends Component {
     }
 
     this.setState({ title, enableSave, charactersLeft });
+  }
+
+  setShowAddSource(shouldShowAddSource) {
+    return () => this.setState({ shouldShowAddSource });
   }
 
   deleteMantra() {
@@ -87,7 +87,7 @@ class AddViewComponent extends Component {
     return (
       <AddView
         shouldShowAddSource={this.state.shouldShowAddSource}
-        showAddSource={this.setShowAddSource(true)}
+        setShowAddSource={this.setShowAddSource}
         showDelete={this.state.showDelete}
         saveMantra={this.saveMantra}
         title={this.state.title}

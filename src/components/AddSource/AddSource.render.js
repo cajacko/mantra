@@ -4,10 +4,15 @@ import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/Header';
 
-const AddSource = ({ title, link, onChange }) => (
+const AddSource = ({ title, link, onChange, goBack }) => (
   <Container>
     <StatusPadding />
-    <Header leftIcon="arrow-back" title="Add Source" rightText="Save" />
+    <Header
+      leftIcon="arrow-back"
+      title="Add Source"
+      rightText="Save"
+      leftButtonOnPress={goBack}
+    />
     <Content>
       <Form>
         <Item floatingLabel>
@@ -27,6 +32,7 @@ AddSource.propTypes = {
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  goBack: PropTypes.func.isRequired,
 };
 
 export default AddSource;

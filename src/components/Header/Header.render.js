@@ -11,11 +11,11 @@ import {
 } from 'native-base';
 import PropTypes from 'prop-types';
 
-const HeaderComponent = ({ leftIcon, title, rightText }) => (
+const HeaderComponent = ({ leftIcon, leftButtonOnPress, title, rightText }) => (
   <Header>
     {leftIcon && (
       <Left>
-        <Button transparent>
+        <Button transparent onPress={leftButtonOnPress}>
           <Icon name={leftIcon} />
         </Button>
       </Left>
@@ -39,12 +39,14 @@ HeaderComponent.propTypes = {
   leftIcon: PropTypes.string,
   title: PropTypes.string,
   rightText: PropTypes.string,
+  leftButtonOnPress: PropTypes.func,
 };
 
 HeaderComponent.defaultProps = {
   leftIcon: null,
   title: null,
   rightText: null,
+  leftButtonOnPress: null,
 };
 
 export default HeaderComponent;

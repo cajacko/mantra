@@ -18,10 +18,12 @@ const AddView = ({
   title,
   deleteMantra,
   showDelete,
-  showAddSource,
+  setShowAddSource,
   shouldShowAddSource,
 }) => {
-  if (shouldShowAddSource) return <AddSource />;
+  if (shouldShowAddSource) {
+    return <AddSource goBack={setShowAddSource(false)} />;
+  }
 
   let deleteElement;
 
@@ -41,7 +43,7 @@ const AddView = ({
       <AddInput onChange={onChange} value={title} />
       {deleteElement}
       <List button style={style.list}>
-        <ListItem icon onPress={showAddSource} first last>
+        <ListItem icon onPress={setShowAddSource(true)} first last>
           <Left>
             <Icon name="link" />
           </Left>
@@ -63,7 +65,7 @@ AddView.propTypes = {
   title: PropTypes.string.isRequired,
   deleteMantra: PropTypes.func.isRequired,
   showDelete: PropTypes.bool.isRequired,
-  showAddSource: PropTypes.func.isRequired,
+  setShowAddSource: PropTypes.func.isRequired,
   shouldShowAddSource: PropTypes.bool.isRequired,
 };
 
