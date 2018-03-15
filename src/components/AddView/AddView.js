@@ -48,20 +48,12 @@ const AddView = ({
       <AddInput onChange={onChange} value={title} />
       {deleteElement}
       <List button style={style.list}>
-        <ListItem icon onPress={() => {}} first>
+        <ListItem icon onPress={() => {}} first last>
           <Left>
             <Icon name="link" />
           </Left>
           <Body>
-            <Text>Description</Text>
-          </Body>
-        </ListItem>
-        <ListItem icon onPress={() => {}} last>
-          <Left>
-            <Icon type="FontAwesome" name="align-left" />
-          </Left>
-          <Body>
-            <Text>Description</Text>
+            <Text>Add Source</Text>
           </Body>
         </ListItem>
       </List>
