@@ -12,10 +12,15 @@ class AddSourceComponent extends PureComponent {
     };
 
     this.onChange = this.onChange.bind(this);
+    this.save = this.save.bind(this);
   }
 
   onChange(key) {
     return value => this.setState({ [key]: value });
+  }
+
+  save() {
+    this.props.save(this.state.title, this.state.link);
   }
 
   render() {
@@ -25,6 +30,7 @@ class AddSourceComponent extends PureComponent {
         link={this.state.link}
         onChange={this.onChange}
         goBack={this.props.goBack}
+        save={this.save}
       />
     );
   }
@@ -34,6 +40,7 @@ AddSourceComponent.propTypes = {
   title: PropTypes.string,
   link: PropTypes.string,
   goBack: PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
 };
 
 AddSourceComponent.defaultProps = {

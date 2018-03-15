@@ -20,9 +20,18 @@ const AddView = ({
   showDelete,
   setShowAddSource,
   shouldShowAddSource,
+  saveSource,
+  source,
 }) => {
   if (shouldShowAddSource) {
-    return <AddSource goBack={setShowAddSource(false)} />;
+    return (
+      <AddSource
+        goBack={setShowAddSource(false)}
+        save={saveSource}
+        title={source.title}
+        link={source.link}
+      />
+    );
   }
 
   let deleteElement;
@@ -67,6 +76,11 @@ AddView.propTypes = {
   showDelete: PropTypes.bool.isRequired,
   setShowAddSource: PropTypes.func.isRequired,
   shouldShowAddSource: PropTypes.bool.isRequired,
+  saveSource: PropTypes.func.isRequired,
+  source: PropTypes.shape({
+    title: PropTypes.string,
+    link: PropTypes.string,
+  }).isRequired,
 };
 
 export default AddView;
