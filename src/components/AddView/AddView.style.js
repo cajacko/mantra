@@ -24,4 +24,10 @@ export default {
     fontSize: TEXT_SIZES.MEDIUM,
     textAlign: 'center',
   },
+
+  list: {
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: GREY_LIGHT,
+  },
 };

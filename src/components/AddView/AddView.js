@@ -1,6 +1,19 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
+import {
+  Container,
+  Header,
+  Content,
+  List,
+  ListItem,
+  Text,
+  Icon,
+  Left,
+  Body,
+  Right,
+  Switch,
+} from 'native-base';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';
@@ -34,6 +47,24 @@ const AddView = ({
       <CharacterCount count={charactersLeft} />
       <AddInput onChange={onChange} value={title} />
       {deleteElement}
+      <List button style={style.list}>
+        <ListItem icon onPress={() => {}} first>
+          <Left>
+            <Icon name="link" />
+          </Left>
+          <Body>
+            <Text>Description</Text>
+          </Body>
+        </ListItem>
+        <ListItem icon onPress={() => {}} last>
+          <Left>
+            <Icon type="FontAwesome" name="align-left" />
+          </Left>
+          <Body>
+            <Text>Description</Text>
+          </Body>
+        </ListItem>
+      </List>
     </View>
   );
 };

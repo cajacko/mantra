@@ -40,7 +40,15 @@ class Cache extends Component {
       require('components/WelcomeView/add.jpg'),
     ]);
 
-    const fontAssets = cacheFonts([Ionicons.font]);
+    const fontAssets = cacheFonts([
+      Ionicons.font,
+      {
+        Roboto: require('native-base/Fonts/Roboto.ttf'),
+        Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+        Ionicons: require('@expo/vector-icons/fonts/Ionicons.ttf'),
+        FontAwesome: require('@expo/vector-icons/fonts/FontAwesome.ttf'),
+      },
+    ]);
 
     await Promise.all([...fontAssets, ...imageAssets]);
 
