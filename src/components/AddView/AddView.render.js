@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import { List, ListItem, Text, Icon, Left, Body } from 'native-base';
+import AddSource from 'components/AddSource';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';
@@ -18,7 +19,10 @@ const AddView = ({
   deleteMantra,
   showDelete,
   showAddSource,
+  shouldShowAddSource,
 }) => {
+  if (shouldShowAddSource) return <AddSource />;
+
   let deleteElement;
 
   if (showDelete) {
@@ -60,6 +64,7 @@ AddView.propTypes = {
   deleteMantra: PropTypes.func.isRequired,
   showDelete: PropTypes.bool.isRequired,
   showAddSource: PropTypes.func.isRequired,
+  shouldShowAddSource: PropTypes.bool.isRequired,
 };
 
 export default AddView;

@@ -44,12 +44,18 @@ class AddViewComponent extends Component {
       charactersLeft,
       id,
       showDelete,
+      shouldShowAddSource: false,
     };
 
     this.onChange = this.onChange.bind(this);
     this.saveMantra = this.saveMantra.bind(this);
     this.back = this.back.bind(this);
     this.deleteMantra = this.deleteMantra.bind(this);
+    this.setShowAddSource = this.setShowAddSource.bind(this);
+  }
+
+  setShowAddSource(shouldShowAddSource) {
+    return () => this.setState({ shouldShowAddSource });
   }
 
   onChange(title) {
@@ -80,6 +86,8 @@ class AddViewComponent extends Component {
   render() {
     return (
       <AddView
+        shouldShowAddSource={this.state.shouldShowAddSource}
+        showAddSource={this.setShowAddSource(true)}
         showDelete={this.state.showDelete}
         saveMantra={this.saveMantra}
         title={this.state.title}
