@@ -1,19 +1,7 @@
 import React from 'react';
 import { View, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
-import {
-  Container,
-  Header,
-  Content,
-  List,
-  ListItem,
-  Text,
-  Icon,
-  Left,
-  Body,
-  Right,
-  Switch,
-} from 'native-base';
+import { List, ListItem, Text, Icon, Left, Body } from 'native-base';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';
@@ -29,6 +17,7 @@ const AddView = ({
   title,
   deleteMantra,
   showDelete,
+  showAddSource,
 }) => {
   let deleteElement;
 
@@ -48,7 +37,7 @@ const AddView = ({
       <AddInput onChange={onChange} value={title} />
       {deleteElement}
       <List button style={style.list}>
-        <ListItem icon onPress={() => {}} first last>
+        <ListItem icon onPress={showAddSource} first last>
           <Left>
             <Icon name="link" />
           </Left>
@@ -70,6 +59,7 @@ AddView.propTypes = {
   title: PropTypes.string.isRequired,
   deleteMantra: PropTypes.func.isRequired,
   showDelete: PropTypes.bool.isRequired,
+  showAddSource: PropTypes.func.isRequired,
 };
 
 export default AddView;

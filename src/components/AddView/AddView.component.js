@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import AddView from 'components/AddView/AddView';
+import AddView from 'components/AddView/AddView.render';
 import saveMantra from 'actions/saveMantra';
 import switchView from 'actions/switchView';
 import deleteWithAlert from 'helpers/deleteWithAlert';
 
 const characterCount = 120;
 
-class AddViewContainer extends Component {
+class AddViewComponent extends Component {
   constructor(props) {
     super(props);
 
@@ -94,19 +93,15 @@ class AddViewContainer extends Component {
   }
 }
 
-AddViewContainer.propTypes = {
+AddViewComponent.propTypes = {
   dispatch: PropTypes.func.isRequired,
   id: PropTypes.string,
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
 };
 
-AddViewContainer.defaultProps = {
+AddViewComponent.defaultProps = {
   id: null,
 };
 
-function mapStateToProps({ items }) {
-  return { items };
-}
-
-export default connect(mapStateToProps)(AddViewContainer);
+export default AddViewComponent;
