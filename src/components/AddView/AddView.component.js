@@ -44,7 +44,7 @@ class AddViewComponent extends Component {
       charactersLeft,
       id,
       showDelete,
-      shouldShowAddSource: false,
+      shouldShowAddSource: true,
     };
 
     this.onChange = this.onChange.bind(this);

@@ -25,9 +25,9 @@ const Views = ({ view, viewProps, firstTime }) => {
     return <WelcomeView />;
   }
 
-  if (view === 'AddView') {
-    return <AddView id={viewProps.id} title={viewProps.title} />;
-  }
+  // if (view === 'AddView') {
+  return <AddView id={viewProps.id} title={viewProps.title} />;
+  // }
 
   let viewElement;
 
