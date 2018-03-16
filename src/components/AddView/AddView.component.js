@@ -14,24 +14,32 @@ class AddViewComponent extends Component {
     let id;
     let showDelete = false;
     let item;
+    let source = {};
 
-    if (this.props.id) {
-      item = this.props.items[this.props.id];
+    if (props.id) {
+      item = props.items[props.id];
 
       if (!item) {
         // eslint-disable-next-line
-        console.error('Could not find item with given id', this.props);
-        item = { id: this.props.id };
+        console.error('Could not find item with given id', props);
+        item = { id: props.id };
       }
 
       title = item.title;
       enableSave = true;
       charactersLeft = characterCount - title.length;
-    }
-
-    if (this.props.id) {
-      id = this.props.id;
+      id = props.id;
       showDelete = true;
+
+      if (item.source) {
+        source = props.sources[item.source];
+
+        if (!source) {
+          // eslint-disable-next-line
+          console.error('Could not find a source with the given id', props);
+          source = {};
+        }
+      }
     }
 
     this.state = {
@@ -42,7 +50,7 @@ class AddViewComponent extends Component {
       id,
       showDelete,
       shouldShowAddSource: false,
-      source: {},
+      source,
     };
 
     this.saveMantra = this.saveMantra.bind(this);
@@ -112,6 +120,8 @@ AddViewComponent.propTypes = {
   id: PropTypes.string,
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
+  // eslint-disable-next-line
+  sources: PropTypes.object.isRequired,
 };
 
 AddViewComponent.defaultProps = {
