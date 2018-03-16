@@ -2,43 +2,15 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddView from 'components/AddView/AddView.render';
 import getSource from 'components/AddView/helpers/getSource';
-
-const characterCount = 120;
+import getItem from 'components/AddView/helpers/getItem';
+import characterCount from 'constants/characterCount';
 
 class AddViewComponent extends Component {
   constructor(props) {
     super(props);
 
-    let title = '';
-    let enableSave = false;
-    let charactersLeft = characterCount;
-    let id;
-    let showDelete = false;
-    let item;
-
-    if (props.id) {
-      item = props.items[props.id];
-
-      if (!item) {
-        // eslint-disable-next-line
-        console.error('Could not find item with given id', props);
-        item = { id: props.id };
-      }
-
-      title = item.title;
-      enableSave = true;
-      charactersLeft = characterCount - title.length;
-      id = props.id;
-      showDelete = true;
-    }
-
     this.state = {
-      item,
-      title,
-      enableSave,
-      charactersLeft,
-      id,
-      showDelete,
+      ...getItem(props),
       shouldShowAddSource: false,
       source: getSource(props),
     };
