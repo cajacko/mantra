@@ -1,7 +1,7 @@
 import React from 'react';
-import { View, StatusBar } from 'react-native';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
-import { List, ListItem, Text, Icon, Left, Body } from 'native-base';
+import { Container, List, ListItem, Text, Icon, Left, Body } from 'native-base';
 import AddSource from 'components/AddSource';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
@@ -45,8 +45,7 @@ const AddView = ({
   }
 
   return (
-    <View style={style.container}>
-      <StatusBar barStyle="dark-content" />
+    <Container>
       <AddNav enableSave={enableSave} save={saveMantra} back={back} />
       <CharacterCount count={charactersLeft} />
       <AddInput onChange={onChange} value={title} />
@@ -57,11 +56,11 @@ const AddView = ({
             <Icon name="link" />
           </Left>
           <Body>
-            <Text>Add Source</Text>
+            <Text>{source.title || 'Add Source'}</Text>
           </Body>
         </ListItem>
       </List>
-    </View>
+    </Container>
   );
 };
 

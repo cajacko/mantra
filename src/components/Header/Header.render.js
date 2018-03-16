@@ -19,25 +19,23 @@ const HeaderComponent = ({
   rightButtonOnPress,
 }) => (
   <Header>
-    {leftIcon && (
-      <Left>
+    <Left>
+      {leftIcon && (
         <Button transparent onPress={leftButtonOnPress}>
           <Icon name={leftIcon} />
         </Button>
-      </Left>
-    )}
-    {title && (
-      <Body>
-        <Title>Add Source</Title>
-      </Body>
-    )}
-    {rightText && (
-      <Right>
+      )}
+    </Left>
+
+    <Body>{title && <Title>{title}</Title>}</Body>
+
+    <Right>
+      {rightText && (
         <Button transparent onPress={rightButtonOnPress}>
           <Text>Save</Text>
         </Button>
-      </Right>
-    )}
+      )}
+    </Right>
   </Header>
 );
 

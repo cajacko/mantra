@@ -4,9 +4,16 @@ import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/Header';
 
-const AddSource = ({ title, link, onChange, goBack, save }) => (
+const AddSource = ({
+  title,
+  link,
+  onChangeTitle,
+  onChangeLink,
+  goBack,
+  save,
+}) => (
   <Container>
-    <StatusPadding />
+    <StatusPadding androidOnly />
     <Header
       leftIcon="arrow-back"
       title="Add Source"
@@ -18,11 +25,11 @@ const AddSource = ({ title, link, onChange, goBack, save }) => (
       <Form>
         <Item floatingLabel>
           <Label>Source Title</Label>
-          <Input value={title} onChange={onChange('title')} />
+          <Input value={title} onChangeText={onChangeTitle} />
         </Item>
         <Item floatingLabel last>
           <Label>Source Link</Label>
-          <Input value={link} onChange={onChange('link')} />
+          <Input value={link} onChangeText={onChangeLink} />
         </Item>
       </Form>
     </Content>
@@ -32,7 +39,8 @@ const AddSource = ({ title, link, onChange, goBack, save }) => (
 AddSource.propTypes = {
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onChangeTitle: PropTypes.func.isRequired,
+  onChangeLink: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
 };
