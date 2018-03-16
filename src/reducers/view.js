@@ -36,18 +36,8 @@ export default (state = { view: null, props: {} }, { type, payload }) => {
     }
 
     case 'SAVE_MANTRA': {
-      // Do not redirect is we are saving a suggestion
-      if (payload.suggestionId) {
-        // If we are on the Display view and adding a suggested mantra, then
-        // we will want to see it in the list view. As this can only happen if
-        // this is your first mantra item you are adding.
-        //
-        // Also looks buggy going from suggestions straight into the Display
-        // View
-        if (state.view === 'DisplayView') {
-          return { view: 'LoopView', props: {} };
-        }
-
+      // Do not redirect if we are saving a suggestion
+      if (state.view === 'SuggestedView') {
         return state;
       }
 

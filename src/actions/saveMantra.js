@@ -9,28 +9,48 @@ import uuidv4 from 'uuid/v4';
  * @param  {?string} suggestionId The ID of a suggested mantra, if this is one
  * @return {object}              The action to dispatch
  */
-export default function ({ title, item, suggestionId }) {
+export default function ({ title, source, item, suggestionId }) {
   const now = moment().unix();
-  let payload = {};
+  const payload = {};
+  let mantra = {};
 
   if (item) {
-    payload = Object.assign({}, item);
+    mantra = Object.assign({}, item);
   }
 
   // Is this is a suggested mantra then add id
   if (suggestionId) {
-    payload.suggestionId = suggestionId;
+    mantra.suggestionId = suggestionId;
   }
 
-  payload.title = title;
-  payload.dateModified = now;
-  payload.deleted = false;
-  payload.online = false;
+  mantra.title = title;
+  mantra.dateModified = now;
+  mantra.deleted = false;
+  mantra.online = false;
 
   if (!item) {
-    payload.id = uuidv4();
-    payload.dateAdded = now;
+    mantra.id = uuidv4();
+    mantra.dateAdded = now;
   }
+
+  if (
+    source &&
+    source.link &&
+    source.title &&
+    source.link.length &&
+    source.title.length
+  ) {
+    const sourceData = {
+      id: uuidv4(),
+      link: source.link,
+      title: source.title,
+    };
+
+    mantra.source = sourceData.id;
+    payload.source = sourceData;
+  }
+
+  payload.mantra = mantra;
 
   return {
     type: 'SAVE_MANTRA',

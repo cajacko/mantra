@@ -10,7 +10,7 @@ export default (state = defaultState, { type, payload }) => {
     case 'SAVE_MANTRA': {
       const modifiedState = Object.assign({}, state);
 
-      modifiedState[payload.id] = payload;
+      modifiedState[payload.mantra.id] = payload.mantra;
 
       return modifiedState;
     }
