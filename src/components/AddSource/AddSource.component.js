@@ -53,6 +53,8 @@ class AddSourceComponent extends PureComponent {
       errorMessage = `${errorMessage}Link is not a valid URL`;
     }
 
+    if (!errorMessage) return true;
+
     this.setState(errorState);
 
     if (errorMessage) {

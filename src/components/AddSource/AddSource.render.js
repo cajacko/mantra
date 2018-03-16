@@ -45,7 +45,13 @@ const AddSource = ({
         </Item>
         <Item floatingLabel error={linkError}>
           <Label>Source Link</Label>
-          <Input value={link} onChangeText={onChange('link')} />
+          <Input
+            value={link}
+            onChangeText={onChange('link')}
+            autoCorrect={false}
+            keyboardType="url"
+            autoCapitalize="none"
+          />
         </Item>
       </Form>
 

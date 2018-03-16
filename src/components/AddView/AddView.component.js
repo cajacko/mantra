@@ -41,10 +41,11 @@ class AddViewComponent extends Component {
       charactersLeft,
       id,
       showDelete,
-      shouldShowAddSource: true,
+      shouldShowAddSource: false,
       source: {},
     };
 
+    this.saveMantra = this.saveMantra.bind(this);
     this.onChange = this.onChange.bind(this);
     this.deleteMantra = this.deleteMantra.bind(this);
     this.setShowAddSource = this.setShowAddSource.bind(this);
