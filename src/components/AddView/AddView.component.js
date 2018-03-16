@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddView from 'components/AddView/AddView.render';
-import saveMantra from 'actions/saveMantra';
-import switchView from 'actions/switchView';
-import deleteWithAlert from 'helpers/deleteWithAlert';
 
 const characterCount = 120;
 
@@ -49,8 +46,6 @@ class AddViewComponent extends Component {
     };
 
     this.onChange = this.onChange.bind(this);
-    this.saveMantra = this.saveMantra.bind(this);
-    this.back = this.back.bind(this);
     this.deleteMantra = this.deleteMantra.bind(this);
     this.setShowAddSource = this.setShowAddSource.bind(this);
     this.saveSource = this.saveSource.bind(this);
@@ -73,16 +68,16 @@ class AddViewComponent extends Component {
 
   deleteMantra() {
     if (this.props.id) {
-      deleteWithAlert(this.props.dispatch, this.props.id);
+      this.props.deleteMantra(this.props.id);
     }
   }
 
-  back() {
-    this.props.dispatch(switchView('LoopView'));
-  }
-
   saveMantra() {
-    this.props.dispatch(saveMantra(this.state.title, this.state.item));
+    this.props.saveMantra({
+      title: this.state.title,
+      source: this.state.source,
+      item: this.state.item,
+    });
   }
 
   saveSource(title, link) {
@@ -100,7 +95,7 @@ class AddViewComponent extends Component {
         onChange={this.onChange}
         charactersLeft={this.state.charactersLeft}
         enableSave={this.state.enableSave}
-        back={this.back}
+        back={this.props.back}
         deleteMantra={this.deleteMantra}
         saveSource={this.saveSource}
         source={this.state.source}
@@ -110,7 +105,9 @@ class AddViewComponent extends Component {
 }
 
 AddViewComponent.propTypes = {
-  dispatch: PropTypes.func.isRequired,
+  back: PropTypes.func.isRequired,
+  deleteMantra: PropTypes.func.isRequired,
+  saveMantra: PropTypes.func.isRequired,
   id: PropTypes.string,
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,

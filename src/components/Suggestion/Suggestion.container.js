@@ -14,7 +14,7 @@ import saveMantra from 'actions/saveMantra';
  * @return {object}          Object mapping actions to props for mantra
  */
 const mapDispatchToProps = (dispatch, { id, title }) => ({
-  add: () => dispatch(saveMantra(title, undefined, id)),
+  add: () => dispatch(saveMantra({ title, suggestionId: id })),
   discard: () => dispatch(discardSuggestion(id)),
 });
 

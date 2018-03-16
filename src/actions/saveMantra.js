@@ -9,7 +9,7 @@ import uuidv4 from 'uuid/v4';
  * @param  {?string} suggestionId The ID of a suggested mantra, if this is one
  * @return {object}              The action to dispatch
  */
-export default function (title, item, suggestionId) {
+export default function ({ title, item, suggestionId }) {
   const now = moment().unix();
   let payload = {};
 
