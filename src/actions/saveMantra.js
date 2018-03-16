@@ -44,6 +44,8 @@ export default function ({ title, source, item, suggestionId }) {
       id: uuidv4(),
       link: source.link,
       title: source.title,
+      dateAdded: now,
+      dateModified: now,
     };
 
     mantra.source = sourceData.id;

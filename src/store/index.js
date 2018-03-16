@@ -19,8 +19,8 @@ function loggerMiddleware() {
 
     next(action);
 
-    // const state = store.getState();
-    // console.log(JSON.stringify(state, null, 2));
+    const state = store.getState();
+    console.log(JSON.stringify(state.sources, null, 2));
   };
 }
 
