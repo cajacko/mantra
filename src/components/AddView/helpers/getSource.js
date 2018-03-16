@@ -1,12 +1,14 @@
-const getSource = (props) => {
+import getOrderedSources from 'helpers/getOrderedSources';
+
+const getSource = ({ ...props, id, items, sources }) => {
   let item;
   let source = {};
 
-  if (props.id) {
-    item = props.items[props.id];
+  if (id) {
+    item = items[id];
 
     if (item.source) {
-      source = props.sources[item.source];
+      source = sources[item.source];
 
       if (!source) {
         // eslint-disable-next-line
@@ -14,6 +16,12 @@ const getSource = (props) => {
         source = {};
       }
     }
+  }
+
+  if (!Object.keys(source).length) {
+    const lastSource = getOrderedSources(sources)[0];
+
+    if (lastSource) source = lastSource;
   }
 
   return source;

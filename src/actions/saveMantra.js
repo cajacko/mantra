@@ -47,6 +47,7 @@ export default function ({ title, source, item, suggestionId }) {
       dateAdded: now,
       dateModified: now,
       online: false,
+      deleted: false,
     };
 
     mantra.source = sourceData.id;
