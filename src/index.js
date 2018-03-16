@@ -1,5 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
+import { Root } from 'native-base';
 import Views from 'containers/Views/Views';
 import getStore from 'store/getStore';
 import cron from 'views/workers/notifications';
@@ -11,12 +12,14 @@ cron();
 sync();
 permissions();
 
-const Root = () => (
+const App = () => (
   <Cache>
     <Provider store={getStore()}>
-      <Views />
+      <Root>
+        <Views />
+      </Root>
     </Provider>
   </Cache>
 );
 
-export default Root;
+export default App;

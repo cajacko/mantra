@@ -1,31 +1,61 @@
 import React, { PureComponent } from 'react';
 import AddSource from 'components/AddSource/AddSource.render';
 import PropTypes from 'prop-types';
+import toast from 'helpers/toast';
 
 class AddSourceComponent extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.defaultErrorState = {
+      linkError: false,
+      titleError: false,
+      errorMessage: null,
+    };
+
     this.state = {
       title: props.title,
       link: props.link,
+      ...this.defaultErrorState,
     };
 
-    this.onChangeLink = this.onChangeLink.bind(this);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChange = this.onChange.bind(this);
     this.save = this.save.bind(this);
     this.clear = this.clear.bind(this);
   }
 
-  onChangeLink(link) {
-    this.setState({ link });
+  onChange(key) {
+    return value => this.setState({ [key]: value });
   }
 
-  onChangeTitle(title) {
-    this.setState({ title });
+  isValidForSave() {
+    const { link, title } = this.state;
+
+    const errorState = Object.assign({}, this.defaultErrorState);
+    let errorMessage = null;
+
+    if (title.length && !link.length) {
+      errorState.linkError = true;
+      errorMessage = 'Add a link for this title';
+    } else if (link.length && !title.length) {
+      errorState.titleError = true;
+      errorMessage = 'Add a title for this link';
+    } else {
+      return true;
+    }
+
+    this.setState(errorState);
+
+    if (errorMessage) {
+      toast(errorMessage);
+    }
+
+    return false;
   }
 
   save() {
+    if (!this.isValidForSave()) return;
+
     this.props.save(this.state.title, this.state.link);
   }
 
@@ -36,10 +66,12 @@ class AddSourceComponent extends PureComponent {
   render() {
     return (
       <AddSource
+        errorMessage={this.state.errorMessage}
+        linkError={this.state.linkError}
+        titleError={this.state.titleError}
         title={this.state.title}
         link={this.state.link}
-        onChangeLink={this.onChangeLink}
-        onChangeTitle={this.onChangeTitle}
+        onChange={this.onChange}
         goBack={this.props.goBack}
         save={this.save}
         clear={this.clear}

@@ -21,11 +21,12 @@ import style from 'components/AddSource/AddSource.style';
 const AddSource = ({
   title,
   link,
-  onChangeTitle,
-  onChangeLink,
+  onChange,
   goBack,
   save,
   clear,
+  titleError,
+  linkError,
 }) => (
   <Container>
     <StatusPadding androidOnly />
@@ -38,13 +39,13 @@ const AddSource = ({
     />
     <Content>
       <Form>
-        <Item floatingLabel>
+        <Item floatingLabel error={titleError}>
           <Label>Source Title</Label>
-          <Input value={title} onChangeText={onChangeTitle} />
+          <Input value={title} onChangeText={onChange('title')} />
         </Item>
-        <Item floatingLabel>
+        <Item floatingLabel error={linkError}>
           <Label>Source Link</Label>
-          <Input value={link} onChangeText={onChangeLink} />
+          <Input value={link} onChangeText={onChange('link')} />
         </Item>
       </Form>
 
@@ -65,11 +66,12 @@ const AddSource = ({
 AddSource.propTypes = {
   title: PropTypes.string.isRequired,
   link: PropTypes.string.isRequired,
-  onChangeTitle: PropTypes.func.isRequired,
-  onChangeLink: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
   clear: PropTypes.func.isRequired,
+  titleError: PropTypes.bool.isRequired,
+  linkError: PropTypes.bool.isRequired,
 };
 
 export default AddSource;
