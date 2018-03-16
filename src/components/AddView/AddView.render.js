@@ -1,12 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Container, List, ListItem, Text, Icon, Left, Body } from 'native-base';
 import AddSource from 'components/AddSource';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';
-import Button from 'components/Button/Button';
 import style from 'components/AddView/AddView.style';
 
 const AddView = ({
@@ -34,24 +32,14 @@ const AddView = ({
     );
   }
 
-  let deleteElement;
-
-  if (showDelete) {
-    deleteElement = (
-      <View style={style.delete}>
-        <Button onPress={deleteMantra} text="Delete" theme="dull" />
-      </View>
-    );
-  }
-
   return (
     <Container>
       <AddNav enableSave={enableSave} save={saveMantra} back={back} />
       <CharacterCount count={charactersLeft} />
       <AddInput onChange={onChange} value={title} />
-      {deleteElement}
+
       <List button style={style.list}>
-        <ListItem icon onPress={setShowAddSource(true)} first last>
+        <ListItem icon onPress={setShowAddSource(true)} first>
           <Left>
             <Icon name="link" />
           </Left>
@@ -59,6 +47,16 @@ const AddView = ({
             <Text>{source.title || 'Add Source'}</Text>
           </Body>
         </ListItem>
+        {showDelete && (
+          <ListItem icon onPress={deleteMantra} last>
+            <Left>
+              <Icon name="trash" />
+            </Left>
+            <Body>
+              <Text>Delete</Text>
+            </Body>
+          </ListItem>
+        )}
       </List>
     </Container>
   );
