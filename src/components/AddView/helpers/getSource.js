@@ -1,6 +1,4 @@
-import getOrderedSources from 'helpers/getOrderedSources';
-
-const getSource = ({ ...props, id, items, sources }) => {
+const getSource = ({ ...props, id, items, sources }, orderedSources) => {
   let item;
   let source = {};
 
@@ -19,7 +17,7 @@ const getSource = ({ ...props, id, items, sources }) => {
   }
 
   if (!Object.keys(source).length) {
-    const lastSource = getOrderedSources(sources)[0];
+    const lastSource = orderedSources[0];
 
     if (lastSource) source = lastSource;
   }

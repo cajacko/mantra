@@ -23,6 +23,7 @@ class AddSourceComponent extends PureComponent {
     this.onChange = this.onChange.bind(this);
     this.save = this.save.bind(this);
     this.clear = this.clear.bind(this);
+    this.addSuggestion = this.addSuggestion.bind(this);
   }
 
   onChange(key) {
@@ -74,6 +75,12 @@ class AddSourceComponent extends PureComponent {
     this.setState({ link: '', title: '' });
   }
 
+  addSuggestion(id, title, link) {
+    return () => {
+      console.log(id, title, link);
+    };
+  }
+
   render() {
     return (
       <AddSource
@@ -86,6 +93,8 @@ class AddSourceComponent extends PureComponent {
         goBack={this.props.goBack}
         save={this.save}
         clear={this.clear}
+        suggestions={this.props.orderedSources}
+        addSuggestion={this.addSuggestion}
       />
     );
   }
@@ -96,6 +105,13 @@ AddSourceComponent.propTypes = {
   link: PropTypes.string,
   goBack: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
+  orderedSources: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 AddSourceComponent.defaultProps = {

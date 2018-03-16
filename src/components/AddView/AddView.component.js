@@ -4,15 +4,19 @@ import AddView from 'components/AddView/AddView.render';
 import getSource from 'components/AddView/helpers/getSource';
 import getItem from 'components/AddView/helpers/getItem';
 import characterCount from 'constants/characterCount';
+import getOrderedSources from 'helpers/getOrderedSources';
 
 class AddViewComponent extends Component {
   constructor(props) {
     super(props);
 
+    const orderedSources = getOrderedSources(props.sources);
+
     this.state = {
       ...getItem(props),
       shouldShowAddSource: false,
-      source: getSource(props),
+      source: getSource(props, orderedSources),
+      orderedSources,
     };
 
     this.saveMantra = this.saveMantra.bind(this);
@@ -20,6 +24,10 @@ class AddViewComponent extends Component {
     this.deleteMantra = this.deleteMantra.bind(this);
     this.setShowAddSource = this.setShowAddSource.bind(this);
     this.saveSource = this.saveSource.bind(this);
+  }
+
+  componentWillReceiveProps(props) {
+    this.setState({ orderedSources: getOrderedSources(props.sources) });
   }
 
   onChange(title) {
@@ -70,6 +78,7 @@ class AddViewComponent extends Component {
         deleteMantra={this.deleteMantra}
         saveSource={this.saveSource}
         source={this.state.source}
+        orderedSources={this.state.orderedSources}
       />
     );
   }

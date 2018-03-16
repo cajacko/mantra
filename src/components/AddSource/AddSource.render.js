@@ -17,6 +17,7 @@ import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/Header';
 import style from 'components/AddSource/AddSource.style';
+import SourceSuggestions from 'components/SourceSuggestions';
 
 const AddSource = ({
   title,
@@ -27,6 +28,8 @@ const AddSource = ({
   clear,
   titleError,
   linkError,
+  suggestions,
+  addSuggestion,
 }) => (
   <Container>
     <StatusPadding androidOnly />
@@ -64,6 +67,13 @@ const AddSource = ({
             <Text>Clear</Text>
           </Body>
         </ListItem>
+        <ListItem itemDivider>
+          <Text>Suggestions</Text>
+        </ListItem>
+        <SourceSuggestions
+          suggestions={suggestions}
+          addSuggestion={addSuggestion}
+        />
       </List>
     </Content>
   </Container>
@@ -78,6 +88,14 @@ AddSource.propTypes = {
   clear: PropTypes.func.isRequired,
   titleError: PropTypes.bool.isRequired,
   linkError: PropTypes.bool.isRequired,
+  suggestions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  addSuggestion: PropTypes.func.isRequired,
 };
 
 export default AddSource;

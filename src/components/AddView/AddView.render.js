@@ -21,6 +21,7 @@ const AddView = ({
   shouldShowAddSource,
   saveSource,
   source,
+  orderedSources,
 }) => {
   if (shouldShowAddSource) {
     return (
@@ -29,6 +30,7 @@ const AddView = ({
         save={saveSource}
         title={source.title}
         link={source.link}
+        orderedSources={orderedSources}
       />
     );
   }
@@ -80,6 +82,13 @@ AddView.propTypes = {
     title: PropTypes.string,
     link: PropTypes.string,
   }).isRequired,
+  orderedSources: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      link: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default AddView;

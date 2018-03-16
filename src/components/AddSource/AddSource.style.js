@@ -1,5 +1,7 @@
 import { GREY_LIGHT } from 'constants/colours';
 
+const suggestionHeight = 56;
+
 export default {
   meta: {
     marginTop: 40,
@@ -7,4 +9,22 @@ export default {
     // borderBottomWidth: 1,
     borderColor: GREY_LIGHT,
   },
+
+  suggestion: {
+    height: suggestionHeight,
+  },
+
+  suggestionTitle: {
+    marginBottom: 5,
+  },
+
+  suggestionLink: {
+    fontSize: 12,
+  },
+
+  suggestionIconContainer: {
+    height: suggestionHeight,
+  },
+
+  suggestionIcon: {},
 };
