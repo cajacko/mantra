@@ -26,7 +26,7 @@ class AddSourceComponent extends PureComponent {
   }
 
   onChange(key) {
-    return value => this.setState({ [key]: value });
+    return value => this.setState({ [key]: value, ...this.defaultErrorState });
   }
 
   isValidForSave() {
