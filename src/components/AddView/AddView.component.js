@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import AddView from 'components/AddView/AddView.render';
+import getSource from 'components/AddView/helpers/getSource';
 
 const characterCount = 120;
 
@@ -14,7 +15,6 @@ class AddViewComponent extends Component {
     let id;
     let showDelete = false;
     let item;
-    let source = {};
 
     if (props.id) {
       item = props.items[props.id];
@@ -30,16 +30,6 @@ class AddViewComponent extends Component {
       charactersLeft = characterCount - title.length;
       id = props.id;
       showDelete = true;
-
-      if (item.source) {
-        source = props.sources[item.source];
-
-        if (!source) {
-          // eslint-disable-next-line
-          console.error('Could not find a source with the given id', props);
-          source = {};
-        }
-      }
     }
 
     this.state = {
@@ -50,7 +40,7 @@ class AddViewComponent extends Component {
       id,
       showDelete,
       shouldShowAddSource: false,
-      source,
+      source: getSource(props),
     };
 
     this.saveMantra = this.saveMantra.bind(this);
