@@ -41,10 +41,10 @@ export default function ({ title, source, item, suggestionId }) {
     source.title.length
   ) {
     const sourceData = {
-      id: uuidv4(),
+      id: source.id || uuidv4(),
       link: source.link,
       title: source.title,
-      dateAdded: now,
+      dateAdded: source.dateAdded || now,
       dateModified: now,
       online: false,
       deleted: false,

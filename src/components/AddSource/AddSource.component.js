@@ -15,6 +15,7 @@ class AddSourceComponent extends PureComponent {
     };
 
     this.state = {
+      id: props.id,
       title: props.title,
       link: props.link,
       ...this.defaultErrorState,
@@ -68,11 +69,11 @@ class AddSourceComponent extends PureComponent {
   save() {
     if (!this.isValidForSave()) return;
 
-    this.props.save(this.state.title, this.state.link);
+    this.props.save(this.state.title, this.state.link, this.state.id);
   }
 
   clear() {
-    this.setState({ link: '', title: '' });
+    this.setState({ link: '', title: '', id: null });
   }
 
   addSuggestion(id, title, link) {
@@ -99,6 +100,7 @@ class AddSourceComponent extends PureComponent {
 }
 
 AddSourceComponent.propTypes = {
+  id: PropTypes.string,
   title: PropTypes.string,
   link: PropTypes.string,
   goBack: PropTypes.func.isRequired,
@@ -113,6 +115,7 @@ AddSourceComponent.propTypes = {
 };
 
 AddSourceComponent.defaultProps = {
+  id: null,
   title: '',
   link: '',
 };

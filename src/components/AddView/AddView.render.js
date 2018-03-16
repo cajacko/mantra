@@ -31,6 +31,7 @@ const AddView = ({
         title={source.title}
         link={source.link}
         orderedSources={orderedSources}
+        id={source.id}
       />
     );
   }

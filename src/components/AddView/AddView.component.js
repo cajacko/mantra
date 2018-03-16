@@ -59,8 +59,11 @@ class AddViewComponent extends Component {
     });
   }
 
-  saveSource(title, link) {
-    this.setState({ source: { title, link }, shouldShowAddSource: false });
+  saveSource(title, link, id) {
+    this.setState({
+      source: id ? this.props.sources[id] : { title, link },
+      shouldShowAddSource: false,
+    });
   }
 
   render() {
