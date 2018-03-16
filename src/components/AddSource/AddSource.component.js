@@ -14,6 +14,7 @@ class AddSourceComponent extends PureComponent {
     this.onChangeLink = this.onChangeLink.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.save = this.save.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   onChangeLink(link) {
@@ -28,6 +29,10 @@ class AddSourceComponent extends PureComponent {
     this.props.save(this.state.title, this.state.link);
   }
 
+  clear() {
+    this.setState({ link: '', title: '' });
+  }
+
   render() {
     return (
       <AddSource
@@ -37,6 +42,7 @@ class AddSourceComponent extends PureComponent {
         onChangeTitle={this.onChangeTitle}
         goBack={this.props.goBack}
         save={this.save}
+        clear={this.clear}
       />
     );
   }

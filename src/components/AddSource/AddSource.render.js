@@ -25,6 +25,7 @@ const AddSource = ({
   onChangeLink,
   goBack,
   save,
+  clear,
 }) => (
   <Container>
     <StatusPadding androidOnly />
@@ -48,7 +49,7 @@ const AddSource = ({
       </Form>
 
       <List button style={style.meta}>
-        <ListItem icon onPress={() => {}} first last>
+        <ListItem icon onPress={clear} first last>
           <Left>
             <Icon name="close" />
           </Left>
@@ -68,6 +69,7 @@ AddSource.propTypes = {
   onChangeLink: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
+  clear: PropTypes.func.isRequired,
 };
 
 export default AddSource;
