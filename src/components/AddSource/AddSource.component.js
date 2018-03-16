@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import AddSource from 'components/AddSource/AddSource.render';
 import PropTypes from 'prop-types';
 import toast from 'helpers/toast';
+import isUrl from 'is-url';
 
 class AddSourceComponent extends PureComponent {
   constructor(props) {
@@ -34,14 +35,22 @@ class AddSourceComponent extends PureComponent {
     const errorState = Object.assign({}, this.defaultErrorState);
     let errorMessage = null;
 
+    if (!title.length && !link.length) {
+      return true;
+    }
+
     if (title.length && !link.length) {
       errorState.linkError = true;
       errorMessage = 'Add a link for this title';
     } else if (link.length && !title.length) {
       errorState.titleError = true;
       errorMessage = 'Add a title for this link';
-    } else {
-      return true;
+    }
+
+    if (link.length && !isUrl(link)) {
+      errorState.linkError = true;
+      errorMessage = errorMessage ? `${errorMessage}. ` : '';
+      errorMessage = `${errorMessage}Link is not a valid URL`;
     }
 
     this.setState(errorState);

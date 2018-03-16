@@ -79,6 +79,7 @@
     "eslint-plugin-react": "6.10.3",
     "expo": "21.0.0",
     "flow-check": "0.2.2",
+    "is-url": "^1.2.2",
     "moment": "2.18.1",
     "multi-commands": "1.2.0",
     "native-base": "^2.3.10",
