@@ -1,8 +1,22 @@
 import React from 'react';
-import { Container, Content, Form, Item, Input, Label } from 'native-base';
+import {
+  Container,
+  Content,
+  Form,
+  Item,
+  Input,
+  Label,
+  List,
+  ListItem,
+  Left,
+  Icon,
+  Body,
+  Text,
+} from 'native-base';
 import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/Header';
+import style from 'components/AddSource/AddSource.style';
 
 const AddSource = ({
   title,
@@ -27,11 +41,22 @@ const AddSource = ({
           <Label>Source Title</Label>
           <Input value={title} onChangeText={onChangeTitle} />
         </Item>
-        <Item floatingLabel last>
+        <Item floatingLabel>
           <Label>Source Link</Label>
           <Input value={link} onChangeText={onChangeLink} />
         </Item>
       </Form>
+
+      <List button style={style.meta}>
+        <ListItem icon onPress={() => {}} first last>
+          <Left>
+            <Icon name="close" />
+          </Left>
+          <Body>
+            <Text>Clear</Text>
+          </Body>
+        </ListItem>
+      </List>
     </Content>
   </Container>
 );
