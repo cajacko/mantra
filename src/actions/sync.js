@@ -111,6 +111,7 @@ export default function (cancelOtherCalls) {
       myjsonId,
       addedSuggestions,
       discardedSuggestions,
+      sources,
     } = getState();
 
     activeSync = syncId;
@@ -127,9 +128,11 @@ export default function (cancelOtherCalls) {
         }
 
         const mergedItems = mergeItems(items, response.items, true);
+        const mergedSources = mergeItems(sources, response.sources, true);
 
         const data = {
           items: mergedItems,
+          sources: mergedSources,
           addedSuggestions: combineArrays(
             addedSuggestions,
             response.addedSuggestions
