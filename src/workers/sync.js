@@ -39,5 +39,5 @@ export default function () {
     if (hydrated && myjsonIdExists) {
       syncIfCan();
     }
-  }, 10000);
+  }, 30000);
 }
