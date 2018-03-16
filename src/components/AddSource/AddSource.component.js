@@ -56,7 +56,7 @@ class AddSourceComponent extends PureComponent {
     this.setState(errorState);
 
     if (errorMessage) {
-      toast(errorMessage);
+      toast(errorMessage, 'warning');
     }
 
     return false;
