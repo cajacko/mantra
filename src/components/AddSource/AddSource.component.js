@@ -76,9 +76,7 @@ class AddSourceComponent extends PureComponent {
   }
 
   addSuggestion(id, title, link) {
-    return () => {
-      console.log(id, title, link);
-    };
+    return () => this.props.save(title, link, id);
   }
 
   render() {
