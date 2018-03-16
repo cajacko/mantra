@@ -14,6 +14,8 @@ let store;
  */
 function loggerMiddleware() {
   return next => (action) => {
+    if (typeof action === 'function') return next(action);
+
     // eslint-disable-next-line no-console
     console.log(`REDUX ACTION: ${action.type}`);
 
