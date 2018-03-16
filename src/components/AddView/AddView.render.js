@@ -6,6 +6,7 @@ import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';
 import style from 'components/AddView/AddView.style';
+import StatusPadding from 'components/UI/StatusPadding';
 
 const AddView = ({
   saveMantra,
@@ -34,6 +35,7 @@ const AddView = ({
 
   return (
     <Container>
+      <StatusPadding androidOnly />
       <AddNav enableSave={enableSave} save={saveMantra} back={back} />
       <CharacterCount count={charactersLeft} />
       <AddInput onChange={onChange} value={title} />
