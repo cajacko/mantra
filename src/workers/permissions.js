@@ -1,7 +1,5 @@
 import { setPermissionsIfChanged } from 'actions/permissions';
-import getStore from 'store/getStore';
-
-const store = getStore();
+import store from 'store';
 
 let hydrated = false;
 let myjsonIdExists = false;

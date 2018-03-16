@@ -1,7 +1,5 @@
 import sync from 'actions/sync';
-import getStore from 'store/getStore';
-
-const store = getStore();
+import store from 'store';
 
 let hydrated = false;
 let myjsonIdExists = false;

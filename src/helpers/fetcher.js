@@ -1,6 +1,4 @@
-import getStore from 'store/getStore';
-
-const store = getStore();
+import store from 'store';
 
 /**
  * Fetch data from the server, must specify an id to check against before
