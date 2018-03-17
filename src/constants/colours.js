@@ -1,4 +1,4 @@
-export const BLACK = 'black';
+export const BLACK = '#000000';
 export const YELLOW = '#FFEB3B';
 export const YELLOW_HIGHLIGHT = '#fde400';
 export const GREY = '#828282';
@@ -8,5 +8,6 @@ export const GREY_DARKER = '#484848';
 export const GREY_DARKEST = '#292929';
 export const GREY_LIGHTER = '#fafafa';
 export const RED_LIGHT = '#ffecec';
-export const WHITE = 'white';
+export const WHITE = '#ffffff';
 export const BLUE = '#3596c6';
+export const RED = '#bf1e00';

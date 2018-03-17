@@ -46,7 +46,7 @@ const AddView = ({
       <List button style={style.list}>
         <ListItem icon onPress={setShowAddSource(true)} first>
           <Left>
-            <Icon name="link" />
+            <Icon name="link" style={style.sourceIcon} />
           </Left>
           <Body>
             <Text>{source.title || 'Add Source'}</Text>
@@ -55,7 +55,7 @@ const AddView = ({
         {showDelete && (
           <ListItem icon onPress={deleteMantra} last>
             <Left>
-              <Icon name="trash" />
+              <Icon name="trash" style={style.deleteIcon} />
             </Left>
             <Body>
               <Text>Delete</Text>
