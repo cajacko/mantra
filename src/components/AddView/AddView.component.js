@@ -5,6 +5,7 @@ import getSource from 'components/AddView/helpers/getSource';
 import getItem from 'components/AddView/helpers/getItem';
 import characterCount from 'constants/characterCount';
 import getOrderedSources from 'helpers/getOrderedSources';
+import saveSource from 'components/AddView/helpers/saveSource';
 
 class AddViewComponent extends Component {
   constructor(props) {
@@ -60,10 +61,15 @@ class AddViewComponent extends Component {
   }
 
   saveSource(title, link, id) {
-    this.setState({
-      source: id ? this.props.sources[id] : { title, link },
-      shouldShowAddSource: false,
-    });
+    saveSource(
+      (state) => {
+        this.setState(state);
+      },
+      this.props.sources,
+      title,
+      link,
+      id
+    );
   }
 
   render() {
