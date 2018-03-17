@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { ListItem, Right, Icon, Body, Text } from 'native-base';
 import PropTypes from 'prop-types';
 import style from 'components/AddSource/AddSource.style';
+import trimLink from 'components/SourceSuggestions/helpers/trimLink';
 
 const SourceSuggestions = ({ suggestions, addSuggestion }) => (
   <View>
@@ -20,7 +21,7 @@ const SourceSuggestions = ({ suggestions, addSuggestion }) => (
               {title}
             </Text>
             <Text style={style.suggestionLink} numberOfLines={1}>
-              {link}
+              {trimLink(link)}
             </Text>
           </Body>
           <Right style={style.suggestionIconContainer}>
