@@ -81,6 +81,10 @@ class AddSourceComponent extends PureComponent {
   }
 
   render() {
+    const areInputsSame =
+      this.props.title === this.state.title &&
+      this.props.link === this.state.link;
+
     return (
       <AddSource
         errorMessage={this.state.errorMessage}
@@ -94,6 +98,7 @@ class AddSourceComponent extends PureComponent {
         clear={this.clear}
         suggestions={this.props.orderedSources}
         addSuggestion={this.addSuggestion}
+        areInputsSame={areInputsSame}
       />
     );
   }

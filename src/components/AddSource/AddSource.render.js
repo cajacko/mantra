@@ -30,12 +30,14 @@ const AddSource = ({
   linkError,
   suggestions,
   addSuggestion,
+  areInputsSame,
 }) => (
   <Container>
     <StatusPadding androidOnly />
     <Header
       leftIcon="arrow-back"
       title="Add Source"
+      rightTextColor={areInputsSame ? style.saveSameColor : undefined}
       rightText="Save"
       leftButtonOnPress={goBack}
       rightButtonOnPress={save}
@@ -96,6 +98,7 @@ AddSource.propTypes = {
     })
   ).isRequired,
   addSuggestion: PropTypes.func.isRequired,
+  areInputsSame: PropTypes.bool.isRequired,
 };
 
 export default AddSource;

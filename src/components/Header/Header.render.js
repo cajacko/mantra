@@ -17,6 +17,7 @@ const HeaderComponent = ({
   title,
   rightText,
   rightButtonOnPress,
+  rightTextColor,
 }) => (
   <Header>
     <Left>
@@ -32,7 +33,9 @@ const HeaderComponent = ({
     <Right>
       {rightText && (
         <Button transparent onPress={rightButtonOnPress}>
-          <Text>Save</Text>
+          <Text style={rightTextColor ? { color: rightTextColor } : {}}>
+            Save
+          </Text>
         </Button>
       )}
     </Right>
@@ -45,6 +48,7 @@ HeaderComponent.propTypes = {
   rightText: PropTypes.string,
   leftButtonOnPress: PropTypes.func,
   rightButtonOnPress: PropTypes.func,
+  rightTextColor: PropTypes.string,
 };
 
 HeaderComponent.defaultProps = {
@@ -53,6 +57,7 @@ HeaderComponent.defaultProps = {
   rightText: null,
   leftButtonOnPress: null,
   rightButtonOnPress: null,
+  rightTextColor: null,
 };
 
 export default HeaderComponent;

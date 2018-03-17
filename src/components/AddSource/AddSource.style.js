@@ -1,4 +1,4 @@
-import { GREY_LIGHT } from 'constants/colours';
+import { GREY_LIGHT, GREY } from 'constants/colours';
 
 const suggestionHeight = 56;
 
@@ -27,4 +27,6 @@ export default {
   },
 
   suggestionIcon: {},
+
+  saveSameColor: GREY,
 };
