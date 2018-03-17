@@ -14,9 +14,7 @@ const getSource = ({ ...props, id, items, sources }, orderedSources) => {
         source = {};
       }
     }
-  }
-
-  if (!Object.keys(source).length) {
+  } else {
     const lastSource = orderedSources[0];
 
     if (lastSource) source = lastSource;
