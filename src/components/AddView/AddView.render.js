@@ -49,7 +49,7 @@ const AddView = ({
             <Icon name="link" style={style.sourceIcon} />
           </Left>
           <Body>
-            <Text>{source.title || 'Add Source'}</Text>
+            <Text numberOfLines={1}>{source.title || 'Add Source'}</Text>
           </Body>
         </ListItem>
         {showDelete && (
