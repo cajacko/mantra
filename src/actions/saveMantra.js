@@ -52,6 +52,9 @@ export default function ({ title, source, item, suggestionId }) {
 
     mantra.source = sourceData.id;
     payload.source = sourceData;
+  } else {
+    mantra.source = null;
+    payload.source = null;
   }
 
   payload.mantra = mantra;
