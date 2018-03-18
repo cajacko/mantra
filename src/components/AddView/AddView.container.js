@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import AddView from 'components/AddView/AddView.component';
-import saveMantra from 'actions/saveMantra';
+import { saveMantra } from 'store/mantra/actions';
 import switchView from 'actions/switchView';
 import deleteWithAlert from 'helpers/deleteWithAlert';
 

@@ -9,7 +9,7 @@ import uuidv4 from 'uuid/v4';
  * @param  {?string} suggestionId The ID of a suggested mantra, if this is one
  * @return {object}              The action to dispatch
  */
-export default function ({ title, source, item, suggestionId }) {
+export function saveMantra({ title, source, item, suggestionId }) {
   const now = moment().unix();
   const payload = {};
   let mantra = {};
@@ -62,5 +62,15 @@ export default function ({ title, source, item, suggestionId }) {
   return {
     type: 'SAVE_MANTRA',
     payload,
+  };
+}
+
+export function deleteMantra(id) {
+  return {
+    type: 'DELETE_MANTRA',
+    payload: {
+      id,
+      dateModified: moment().unix(),
+    },
   };
 }

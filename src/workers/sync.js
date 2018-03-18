@@ -1,4 +1,4 @@
-import sync from 'actions/sync';
+import sync from 'store/sync/actions';
 import store from 'store';
 
 let hydrated = false;

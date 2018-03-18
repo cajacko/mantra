@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import Mantra from 'components/Mantra/Mantra.render';
 import discardSuggestion from 'actions/discardSuggestion';
-import saveMantra from 'actions/saveMantra';
+import { saveMantra } from 'store/mantra/actions';
 
 /**
  * Map dispatch actions to props for component
