@@ -4,11 +4,11 @@ import SideMenu from 'components/SideMenu/SideMenu';
 import { View, StatusBar, TouchableOpacity } from 'react-native';
 // eslint-disable-next-line  import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
-import { List, Text, Drawer } from 'native-base';
+import { Container, List, Text, Drawer } from 'native-base';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
 import email from 'helpers/email';
-
+import StatusPadding from 'components/UI/StatusPadding';
 /**
  * The menu component, comes out from the side and allows navigation for second
  * level nav items
@@ -39,21 +39,8 @@ class MenuRender extends PureComponent {
    */
   render() {
     const menu = (
-      <View style={style.container}>
-        <StatusBar barStyle="dark-content" />
-        <View style={style.header}>
-          <Text style={style.title}>Menu</Text>
-          <TouchableOpacity
-            onPress={this.props.closeMenu}
-            style={style.closeWrapper}
-          >
-            <Ionicons
-              name="ios-close-outline"
-              size={style.closeSize}
-              color={style.closeColour}
-            />
-          </TouchableOpacity>
-        </View>
+      <Container style={style.container}>
+        <StatusPadding />
         <List style={style.menuItems}>
           <MenuItem
             title="Settings"
@@ -94,7 +81,7 @@ class MenuRender extends PureComponent {
         </List>
 
         <Text style={style.version}>Version: {this.props.version}</Text>
-      </View>
+      </Container>
     );
 
     return (

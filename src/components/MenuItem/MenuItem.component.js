@@ -1,15 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Left, Icon, ListItem, Text, Body } from 'native-base';
-import { WHITE } from 'constants/colours';
 
 const MenuItem = ({ action, title, icon }) => (
   <ListItem icon onPress={action}>
     <Left>
-      <Icon name={icon} style={{ color: WHITE }} />
+      <Icon name={icon} />
     </Left>
     <Body>
-      <Text style={{ color: WHITE }}>{title}</Text>
+      <Text>{title}</Text>
     </Body>
   </ListItem>
 );
