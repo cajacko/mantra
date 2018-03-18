@@ -1,7 +1,5 @@
-import sync from 'actions/sync';
-import getStore from 'store/getStore';
-
-const store = getStore();
+import sync from 'store/sync/actions';
+import store from 'store';
 
 let hydrated = false;
 let myjsonIdExists = false;
@@ -41,5 +39,5 @@ export default function () {
     if (hydrated && myjsonIdExists) {
       syncIfCan();
     }
-  }, 10000);
+  }, 30000);
 }

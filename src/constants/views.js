@@ -7,4 +7,5 @@ export default [
   'WelcomeView',
   'LoginRegisterView',
   'SuggestedView',
+  'SettingsView',
 ];

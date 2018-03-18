@@ -57,6 +57,7 @@
     "collectCoverage": true
   },
   "dependencies": {
+    "@expo/vector-icons": "^6.3.1",
     "babel-cli": "6.24.1",
     "babel-eslint": "7.2.2",
     "babel-jest": "21.2.0",
@@ -78,18 +79,20 @@
     "eslint-plugin-react": "6.10.3",
     "expo": "21.0.0",
     "flow-check": "0.2.2",
+    "is-url": "^1.2.2",
     "moment": "2.18.1",
     "multi-commands": "1.2.0",
+    "native-base": "^2.3.10",
     "prop-types": "15.5.8",
     "react": "16.0.0-alpha.12",
     "react-native": "https://github.com/expo/react-native/archive/sdk-21.0.2.tar.gz",
     "react-native-swiper": "1.5.12",
     "react-redux": "5.0.4",
     "redux": "3.6.0",
-    "redux-logger": "3.0.1",
     "redux-persist": "4.8.2",
     "redux-thunk": "2.2.0",
     "sentry-expo": "1.6.0",
+    "styled-components": "^3.2.3",
     "uuid": "3.1.0"
   }
 }

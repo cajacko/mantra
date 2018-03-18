@@ -20,7 +20,7 @@ exports[`Mantra.render Initial and no height still shows 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,
@@ -86,7 +86,7 @@ exports[`Mantra.render No onPress renders View instead of TouchOpacity 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,
@@ -153,7 +153,7 @@ exports[`Mantra.render Renders correctly with default params 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,
@@ -215,7 +215,7 @@ exports[`Mantra.render Show default sync icon 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,
@@ -295,7 +295,7 @@ exports[`Mantra.render Show sync icon syncing 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,
@@ -385,7 +385,7 @@ exports[`Mantra.render With a specific height 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "backgroundColor": "white",
+            "backgroundColor": "#ffffff",
             "borderBottomWidth": 1,
             "borderColor": "#e2e2e2",
             "flex": 1,

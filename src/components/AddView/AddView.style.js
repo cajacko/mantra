@@ -1,27 +1,17 @@
-import statusBarHeight from 'helpers/statusBarHeight';
-import { TEXT_SIZES } from 'constants/text';
-import { GREY_LIGHT } from 'constants/colours';
+import { GREY_LIGHT, BLUE, RED } from 'constants/colours';
 
 export default {
-  container: {
-    flex: 1,
-    paddingTop: statusBarHeight(),
+  list: {
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderColor: GREY_LIGHT,
   },
 
-  delete: {
-    marginTop: 50,
-    alignItems: 'center',
-    flex: 1,
+  deleteIcon: {
+    color: RED,
   },
 
-  deleteButton: {
-    padding: 10,
-    backgroundColor: GREY_LIGHT,
-    width: 200,
-  },
-
-  deleteText: {
-    fontSize: TEXT_SIZES.MEDIUM,
-    textAlign: 'center',
+  sourceIcon: {
+    color: BLUE,
   },
 };

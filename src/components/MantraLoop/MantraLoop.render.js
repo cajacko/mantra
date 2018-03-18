@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { FlatList, Animated, Easing, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
-import Mantra from 'containers/Mantra/Mantra';
+import Mantra from 'components/Mantra';
 import Item from 'containers/Item/Item';
 import style from 'components/MantraLoop/MantraLoop.style';
 

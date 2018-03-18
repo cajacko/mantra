@@ -3,7 +3,7 @@
 import { connect } from 'react-redux';
 import Mantra from 'components/Mantra/Mantra.render';
 import discardSuggestion from 'actions/discardSuggestion';
-import saveMantra from 'actions/saveMantra';
+import { saveMantra } from 'store/mantra/actions';
 
 /**
  * Map dispatch actions to props for component
@@ -14,7 +14,7 @@ import saveMantra from 'actions/saveMantra';
  * @return {object}          Object mapping actions to props for mantra
  */
 const mapDispatchToProps = (dispatch, { id, title }) => ({
-  add: () => dispatch(saveMantra(title, undefined, id)),
+  add: () => dispatch(saveMantra({ title, suggestionId: id })),
   discard: () => dispatch(discardSuggestion(id)),
 });
 

@@ -43,7 +43,6 @@ class Menu extends PureComponent {
       <MenuRender
         open={this.props.open}
         closeMenu={this.props.closeMenu}
-        onChange={this.props.onChange}
         logout={this.logout}
         switchView={this.props.switchView}
         isLoggedIn={this.props.isLoggedIn}
@@ -59,7 +58,6 @@ Menu.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
   open: PropTypes.bool.isRequired,
   closeMenu: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   switchView: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,

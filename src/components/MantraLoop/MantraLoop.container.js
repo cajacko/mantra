@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 import MantraLoop from 'components/MantraLoop/MantraLoop.component';
-import sync from 'actions/sync';
+import sync from 'store/sync/actions';
 
 /**
  * Pass props from store to component
@@ -13,7 +13,7 @@ import sync from 'actions/sync';
  */
 const mapStateToProps = (
   { suggestions, items, myjsonId, lastAction },
-  { isSuggestions },
+  { isSuggestions }
 ) => ({
   items: isSuggestions ? suggestions : items,
   myjsonId,

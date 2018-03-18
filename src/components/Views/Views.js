@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoopView from 'components/LoopView/LoopView.component';
-import AddView from 'containers/AddView/AddView';
+import AddView from 'components/AddView';
 import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
 import WelcomeView from 'components/WelcomeView/WelcomeView.container';
 import SuggestionsView from 'components/SuggestionsView/SuggestionsView.container';
+import SettingsView from 'components/scenes/Settings';
 
 /**
  * Switch between the different Views
@@ -32,6 +33,9 @@ const Views = ({ view, viewProps, firstTime }) => {
   let viewElement;
 
   switch (view) {
+    case 'SettingsView':
+      viewElement = <SettingsView />;
+      break;
     case 'SuggestedView':
       viewElement = <SuggestionsView />;
       break;

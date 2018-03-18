@@ -1,10 +1,8 @@
 import moment from 'moment';
 import { Notifications } from 'expo';
-import getStore from 'store/getStore';
+import store from 'store';
 import { setLastSetNotifications } from 'actions/notifications';
 import shuffle from 'helpers/shuffle';
-
-const store = getStore();
 
 let cronInterval;
 
@@ -27,7 +25,7 @@ function getShuffledItems() {
 function setNotification(mantra, date) {
   Notifications.scheduleLocalNotificationAsync(
     { title: 'Mantra', data: mantra.id, body: mantra.title },
-    { time: date.toDate() },
+    { time: date.toDate() }
   );
 }
 
@@ -44,7 +42,9 @@ function setNotifications(notifications) {
   const now = moment();
 
   for (let i = 0; i < 30; i += 1) {
-    date = moment().add(i, 'days').minute(0);
+    date = moment()
+      .add(i, 'days')
+      .minute(0);
 
     const notificationsArr = Object.keys(notifications);
 
@@ -52,7 +52,10 @@ function setNotifications(notifications) {
       const notification = notificationsArr[j];
 
       if (notifications[notification]) {
-        date = moment().add(i, 'days').hour(notification).minute(0);
+        date = moment()
+          .add(i, 'days')
+          .hour(notification)
+          .minute(0);
         if (date.utc() > now.utc()) {
           notificationTimes.push(date);
         }
@@ -94,8 +97,9 @@ export default function () {
 
     if (permissions === 'granted' && notifications) {
       if (!hasSetNotificationsToday(now)) {
-        Notifications.cancelAllScheduledNotificationsAsync()
-          .then(() => setNotifications(notifications));
+        Notifications.cancelAllScheduledNotificationsAsync().then(() =>
+          setNotifications(notifications)
+        );
 
         store.dispatch(setLastSetNotifications(now.unix()));
       }
