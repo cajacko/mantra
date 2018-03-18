@@ -95,6 +95,7 @@ class AddViewComponent extends Component {
 
 AddViewComponent.propTypes = {
   back: PropTypes.func.isRequired,
+  prefillSource: PropTypes.bool.isRequired,
   deleteMantra: PropTypes.func.isRequired,
   saveMantra: PropTypes.func.isRequired,
   id: PropTypes.string,

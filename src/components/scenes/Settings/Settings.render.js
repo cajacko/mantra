@@ -7,6 +7,7 @@ import {
   Text,
   Body,
 } from 'native-base';
+import PropTypes from 'prop-types';
 
 const SceneSettings = ({ prefillSource, changeSetting }) => (
   <Container>
@@ -25,5 +26,10 @@ const SceneSettings = ({ prefillSource, changeSetting }) => (
     </Content>
   </Container>
 );
+
+SceneSettings.propTypes = {
+  prefillSource: PropTypes.bool.isRequired,
+  changeSetting: PropTypes.func.isRequired,
+};
 
 export default SceneSettings;

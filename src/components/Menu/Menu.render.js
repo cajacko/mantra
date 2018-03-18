@@ -1,14 +1,12 @@
+/* eslint no-underscore-dangle: 0 */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import SideMenu from 'components/SideMenu/SideMenu';
-import { View, StatusBar, TouchableOpacity } from 'react-native';
-// eslint-disable-next-line  import/no-extraneous-dependencies
-import { Ionicons } from '@expo/vector-icons';
 import { Container, List, Text, Drawer } from 'native-base';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
 import email from 'helpers/email';
 import StatusPadding from 'components/UI/StatusPadding';
+
 /**
  * The menu component, comes out from the side and allows navigation for second
  * level nav items

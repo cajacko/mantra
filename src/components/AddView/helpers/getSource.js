@@ -1,4 +1,4 @@
-const getSource = ({ ...props, id, items, sources }, orderedSources, prefillSource) => {
+const getSource = ({ id, items, sources }, orderedSources, prefillSource) => {
   let item;
   let source = {};
 
@@ -10,7 +10,7 @@ const getSource = ({ ...props, id, items, sources }, orderedSources, prefillSour
 
       if (!source) {
         // eslint-disable-next-line
-        console.error('Could not find a source with the given id', props);
+        console.error('Could not find a source with the given id');
         source = {};
       }
     }

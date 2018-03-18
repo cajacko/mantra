@@ -2,7 +2,7 @@
 
 import { connect } from 'react-redux';
 import Menu from 'components/Menu/Menu.component';
-import { closeMenu, openMenu } from 'actions/menu';
+import { closeMenu } from 'actions/menu';
 import logout from 'actions/logout';
 import switchView from 'actions/switchView';
 
