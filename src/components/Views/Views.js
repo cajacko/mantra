@@ -8,6 +8,7 @@ import NavView from 'containers/NavView/NavView';
 import DisplayView from 'containers/DisplayView/DisplayView';
 import WelcomeView from 'components/WelcomeView/WelcomeView.container';
 import SuggestionsView from 'components/SuggestionsView/SuggestionsView.container';
+import SettingsView from 'components/scenes/Settings';
 
 /**
  * Switch between the different Views
@@ -32,6 +33,9 @@ const Views = ({ view, viewProps, firstTime }) => {
   let viewElement;
 
   switch (view) {
+    case 'SettingsView':
+      viewElement = <SettingsView />;
+      break;
     case 'SuggestedView':
       viewElement = <SuggestionsView />;
       break;

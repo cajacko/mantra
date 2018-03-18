@@ -17,6 +17,7 @@ import discardedSuggestions from 'reducers/discardedSuggestions';
 import addedSuggestions from 'reducers/addedSuggestions';
 import acceptableRequests from 'reducers/acceptableRequests';
 import sources from 'store/sources/reducer';
+import settings from 'store/settings/reducer';
 
 const appReducer = combineReducers({
   items,
@@ -37,6 +38,7 @@ const appReducer = combineReducers({
   addedSuggestions,
   acceptableRequests,
   sources,
+  settings,
 });
 
 /**

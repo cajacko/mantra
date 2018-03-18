@@ -4,7 +4,11 @@ import saveMantra from 'actions/saveMantra';
 import switchView from 'actions/switchView';
 import deleteWithAlert from 'helpers/deleteWithAlert';
 
-const mapStateToProps = ({ items, sources }) => ({ items, sources });
+const mapStateToProps = ({ items, sources, settings: { prefillSource } }) => ({
+  items,
+  sources,
+  prefillSource,
+});
 
 const mapDispatchToProps = dispatch => ({
   saveMantra: data => dispatch(saveMantra(data)),

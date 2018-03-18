@@ -16,7 +16,7 @@ class AddViewComponent extends Component {
     this.state = {
       ...getItem(props),
       shouldShowAddSource: false,
-      source: getSource(props, orderedSources),
+      source: getSource(props, orderedSources, props.prefillSource),
       orderedSources,
     };
 

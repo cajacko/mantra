@@ -1,4 +1,4 @@
-const getSource = ({ ...props, id, items, sources }, orderedSources) => {
+const getSource = ({ ...props, id, items, sources }, orderedSources, prefillSource) => {
   let item;
   let source = {};
 
@@ -14,7 +14,7 @@ const getSource = ({ ...props, id, items, sources }, orderedSources) => {
         source = {};
       }
     }
-  } else {
+  } else if (prefillSource) {
     const lastSource = orderedSources[0];
 
     if (lastSource) source = lastSource;

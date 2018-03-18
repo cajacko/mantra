@@ -45,7 +45,7 @@ class MenuRender extends PureComponent {
           <MenuItem
             title="Settings"
             icon="settings"
-            action={() => email('feedback')}
+            action={() => this.props.switchView('SettingsView')}
           />
           <MenuItem
             title={this.props.isLoggedIn ? 'Account' : 'Login/Register'}
