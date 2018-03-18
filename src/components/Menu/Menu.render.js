@@ -1,9 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import SideMenu from 'components/SideMenu/SideMenu';
-import { View, Text, StatusBar, TouchableOpacity } from 'react-native';
+import { View, StatusBar, TouchableOpacity } from 'react-native';
 // eslint-disable-next-line  import/no-extraneous-dependencies
 import { Ionicons } from '@expo/vector-icons';
+import { List, Text, Drawer } from 'native-base';
 import style from 'components/Menu/Menu.style';
 import MenuItem from 'components/MenuItem/MenuItem.component';
 import email from 'helpers/email';
@@ -14,6 +15,24 @@ import email from 'helpers/email';
  * @type {class}
  */
 class MenuRender extends PureComponent {
+  constructor(props) {
+    super(props);
+
+    this.drawer = null;
+  }
+
+  componentDidMount() {
+    if (this.props.open) this.drawer._root.open();
+  }
+
+  componentWillReceiveProps({ open }) {
+    if (open && !this.props.open) {
+      this.drawer._root.open();
+    } else if (!open && this.props.open) {
+      this.drawer._root.close();
+    }
+  }
+
   /**
    * Render the menu
    * @return {JSX} Return the markup
@@ -35,14 +54,20 @@ class MenuRender extends PureComponent {
             />
           </TouchableOpacity>
         </View>
-        <View style={style.menuItems}>
+        <List style={style.menuItems}>
+          <MenuItem
+            title="Settings"
+            icon="settings"
+            action={() => email('feedback')}
+          />
           <MenuItem
             title={this.props.isLoggedIn ? 'Account' : 'Login/Register'}
             icon="ios-contact-outline"
             action={() =>
               this.props.switchView(
                 this.props.isLoggedIn ? 'ProfileView' : 'LoginRegisterView'
-              )}
+              )
+            }
           />
           <MenuItem
             title="Feedback"
@@ -66,22 +91,22 @@ class MenuRender extends PureComponent {
               action={this.props.logout}
             />
           )}
-        </View>
+        </List>
 
         <Text style={style.version}>Version: {this.props.version}</Text>
       </View>
     );
 
     return (
-      <SideMenu
-        menu={menu}
-        isOpen={this.props.open}
-        menuPosition="right"
-        autoClosing={false}
-        onChange={isOpen => this.props.onChange(isOpen, this.props.open)}
+      <Drawer
+        ref={(ref) => {
+          this.drawer = ref;
+        }}
+        content={menu}
+        onClose={this.props.closeMenu}
       >
         {this.props.children}
-      </SideMenu>
+      </Drawer>
     );
   }
 }
@@ -90,7 +115,6 @@ MenuRender.propTypes = {
   children: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
   open: PropTypes.bool.isRequired,
   closeMenu: PropTypes.func.isRequired,
-  onChange: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
   switchView: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired,

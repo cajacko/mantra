@@ -20,7 +20,6 @@ export default {
 
   title: {
     color: WHITE,
-    fontSize: TEXT_SIZES.MEDIUM,
   },
 
   menuItems: {
