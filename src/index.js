@@ -4,7 +4,7 @@ import { Root } from 'native-base';
 import Views from 'containers/Views/Views';
 import store from 'store';
 import cron from 'views/workers/notifications';
-import Cache from 'containers/Cache/Cache';
+import Cache from 'components/Cache';
 import sync from 'views/workers/sync';
 import permissions from 'views/workers/permissions';
 
