@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import items from 'reducers/items';
-import view from 'reducers/view';
+import items from 'store/mantra/reducer';
+import view from 'store/view/reducer';
 import myjsonId from 'reducers/myjsonId';
 import lastAction from 'reducers/lastAction';
 import version from 'reducers/version';
@@ -14,7 +14,7 @@ import menuOpen from 'reducers/menuOpen';
 import firstTime from 'reducers/firstTime';
 import suggestions from 'reducers/suggestions';
 import discardedSuggestions from 'reducers/discardedSuggestions';
-import addedSuggestions from 'reducers/addedSuggestions';
+import addedSuggestions from 'store/addedSuggestions/reducer';
 import acceptableRequests from 'reducers/acceptableRequests';
 import sources from 'store/sources/reducer';
 import settings from 'store/settings/reducer';
