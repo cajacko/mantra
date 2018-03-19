@@ -12,12 +12,13 @@ import sync from 'store/sync/actions';
  * @return {Object}          Additional object props to pass to the component
  */
 const mapStateToProps = (
-  { suggestions, items, myjsonId, lastAction },
+  { suggestions, items, myjsonId, lastAction, sources },
   { isSuggestions }
 ) => ({
   items: isSuggestions ? suggestions : items,
   myjsonId,
   lastAction,
+  sources,
 });
 
 /**

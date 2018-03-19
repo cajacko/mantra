@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import MantraLoopRender from 'components/MantraLoop/MantraLoop.render';
-import returnMantraLoop from 'helpers/returnMantraLoop';
+import searchMantra from 'helpers/searchMantra';
 
 /**
  * MantraLoop component, handle refreshes, sync errors and whether to update
@@ -20,8 +20,9 @@ class MantraLoop extends Component {
   constructor(props) {
     super(props);
 
-    const { idLoop, noItems } = returnMantraLoop(
+    const { idLoop, noItems } = searchMantra(
       props.items,
+      props.sources,
       props.filterValue
     );
 
@@ -55,8 +56,9 @@ class MantraLoop extends Component {
         break;
     }
 
-    const { idLoop, noItems } = returnMantraLoop(
+    const { idLoop, noItems } = searchMantra(
       nextProps.items,
+      nextProps.sources,
       nextProps.filterValue
     );
 
