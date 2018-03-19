@@ -129,6 +129,8 @@ class MantraLoop extends Component {
 MantraLoop.propTypes = {
   // eslint-disable-next-line
   items: PropTypes.object.isRequired,
+  // eslint-disable-next-line
+  sources: PropTypes.object.isRequired,
   sync: PropTypes.func.isRequired,
   // eslint-disable-next-line
   lastAction: PropTypes.string.isRequired,

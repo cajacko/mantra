@@ -38,6 +38,7 @@ const shouldIncludeMantra = (item, sources, filterValue) => {
  *
  * @param  {Object} items The items object from the store. Keyed object of
  * mantra
+ * @param {Object} sources The sources object from the store, keyed by source id
  * @param  {?String} filterValue The string to filter the mantrs titles by
  * @return {Object}       Returns an array of strings, representing Mantra ID's
  * (idLoop). And a flag indicating if any visible items are being shown
