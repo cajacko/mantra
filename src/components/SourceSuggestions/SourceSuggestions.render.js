@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { ListItem, Right, Icon, Body, Text } from 'native-base';
 import PropTypes from 'prop-types';
-import style from 'components/AddSource/AddSource.style';
+import style from 'components/SourceSuggestions/SourceSuggestions.style';
 import trimLink from 'components/SourceSuggestions/helpers/trimLink';
 
 const SourceSuggestions = ({ suggestions, addSuggestion }) => (
@@ -14,18 +14,20 @@ const SourceSuggestions = ({ suggestions, addSuggestion }) => (
           icon
           last
           onPress={addSuggestion(id, title, link)}
-          style={style.suggestion}
+          style={link && style.suggestion}
         >
-          <Body style={style.suggestionBody}>
-            <Text style={style.suggestionTitle} numberOfLines={1}>
+          <Body>
+            <Text style={link && style.suggestionTitle} numberOfLines={1}>
               {title}
             </Text>
-            <Text style={style.suggestionLink} numberOfLines={1}>
-              {trimLink(link)}
-            </Text>
+            {link && (
+              <Text style={style.suggestionLink} numberOfLines={1}>
+                {trimLink(link)}
+              </Text>
+            )}
           </Body>
-          <Right style={style.suggestionIconContainer}>
-            <Icon name="add" style={style.suggestionIcon} />
+          <Right style={link && style.suggestionIconContainer}>
+            <Icon name="add" />
           </Right>
         </ListItem>
       ))
@@ -42,7 +44,7 @@ SourceSuggestions.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
   addSuggestion: PropTypes.func.isRequired,

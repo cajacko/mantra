@@ -91,7 +91,7 @@ class AddSource extends PureComponent {
 
 AddSource.propTypes = {
   title: PropTypes.string.isRequired,
-  link: PropTypes.string.isRequired,
+  link: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   goBack: PropTypes.func.isRequired,
   save: PropTypes.func.isRequired,
@@ -102,11 +102,15 @@ AddSource.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
   addSuggestion: PropTypes.func.isRequired,
   areInputsSame: PropTypes.bool.isRequired,
+};
+
+AddSource.defaultProps = {
+  link: null,
 };
 
 export default AddSource;

@@ -1,6 +1,8 @@
 const links = {};
 
 const trimLink = (link) => {
+  if (!link) return link;
+
   const cachedLink = links[link];
 
   if (cachedLink) return cachedLink;

@@ -5,19 +5,18 @@ const isValidForSave = ({ link, title }, setState, defaultErrorState) => {
   const errorState = Object.assign({}, defaultErrorState);
   let errorMessage = null;
 
-  if (!title.length && !link.length) {
-    return true;
-  }
+  const hasTitle = !!title && !!title.length;
+  const hasLink = !!link && !!link.length;
 
-  if (title.length && !link.length) {
-    errorState.linkError = true;
-    errorMessage = 'Add a link for this title';
-  } else if (link.length && !title.length) {
+  if (!hasTitle && !hasLink) return true;
+  if (hasTitle && !hasLink) return true;
+
+  if (hasLink && !hasTitle) {
     errorState.titleError = true;
     errorMessage = 'Add a title for this link';
   }
 
-  if (link.length && !isUrl(link)) {
+  if (hasLink && !isUrl(link)) {
     errorState.linkError = true;
     errorMessage = errorMessage ? `${errorMessage}. ` : '';
     errorMessage = `${errorMessage}Link is not a valid URL`;

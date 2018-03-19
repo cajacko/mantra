@@ -33,16 +33,10 @@ export function saveMantra({ title, source, item, suggestionId }) {
     mantra.dateAdded = now;
   }
 
-  if (
-    source &&
-    source.link &&
-    source.title &&
-    source.link.length &&
-    source.title.length
-  ) {
+  if (source && source.title && source.title.length) {
     const sourceData = {
       id: source.id || uuidv4(),
-      link: source.link,
+      link: source.link && source.link.length ? source.link : null,
       title: source.title,
       dateAdded: source.dateAdded || now,
       dateModified: now,

@@ -88,7 +88,7 @@ AddSourceComponent.propTypes = {
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      link: PropTypes.string.isRequired,
+      link: PropTypes.string,
     })
   ).isRequired,
 };
@@ -96,7 +96,7 @@ AddSourceComponent.propTypes = {
 AddSourceComponent.defaultProps = {
   id: null,
   title: '',
-  link: '',
+  link: null,
 };
 
 export default AddSourceComponent;
