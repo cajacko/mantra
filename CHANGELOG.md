@@ -19,6 +19,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Fixed
 
+## [0.8.0] - 2017-03-19
+
+### Added
+
+* Can add a source to a mantra item, which includes a mandatory title and optional link
+
 ## [0.7.1] - 2017-11-01
 
 ### Fixed
