@@ -16,6 +16,9 @@ const sourcesReducer = (state = {}, { type, payload }) => {
       return state;
     }
 
+    case 'LOGIN':
+      return mergeItems(state, payload.data.sources);
+
     case 'SYNC_SUCCESS':
       return mergeItems(state, payload.sources);
 
