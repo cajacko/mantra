@@ -16,7 +16,7 @@ import {
 import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/UI/Header';
-import style from 'components/AddSource/AddSource.style';
+import style from 'components/scenes/Add/Source/Source.style';
 import SourceSuggestions from 'components/SourceSuggestions';
 
 class AddSource extends PureComponent {

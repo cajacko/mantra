@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, List, ListItem, Text, Icon, Left, Body } from 'native-base';
-import AddSource from 'components/AddSource';
+import AddSource from 'components/scenes/Add/Source';
 import AddNav from 'components/AddNav/AddNav';
 import CharacterCount from 'components/CharacterCount/CharacterCount';
 import AddInput from 'components/AddInput/AddInput';

@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import AddSource from 'components/AddSource/AddSource.render';
+import SceneAddSource from 'components/scenes/Add/Source/Source.render';
 import PropTypes from 'prop-types';
-import isValidForSave from 'components/AddSource/helpers/isValidForSave';
+import isValidForSave from 'components/scenes/Add/Source/helpers/isValidForSave';
 
-class AddSourceComponent extends PureComponent {
+class SceneAddSourceComponent extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -60,7 +60,7 @@ class AddSourceComponent extends PureComponent {
       this.props.link === this.state.link;
 
     return (
-      <AddSource
+      <SceneAddSource
         errorMessage={this.state.errorMessage}
         linkError={this.state.linkError}
         titleError={this.state.titleError}
@@ -78,7 +78,7 @@ class AddSourceComponent extends PureComponent {
   }
 }
 
-AddSourceComponent.propTypes = {
+SceneAddSourceComponent.propTypes = {
   id: PropTypes.string,
   title: PropTypes.string,
   link: PropTypes.string,
@@ -93,10 +93,10 @@ AddSourceComponent.propTypes = {
   ).isRequired,
 };
 
-AddSourceComponent.defaultProps = {
+SceneAddSourceComponent.defaultProps = {
   id: null,
   title: '',
   link: null,
 };
 
-export default AddSourceComponent;
+export default SceneAddSourceComponent;
