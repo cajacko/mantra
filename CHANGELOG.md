@@ -10,8 +10,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 * Can add a source to a mantra item, which includes a mandatory title and optional link
+* Added a settings page with a prefill source option
 
 ### Changed
+
+* Started shifting components into new file structure
 
 ### Deprecated
 
