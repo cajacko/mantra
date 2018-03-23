@@ -6,7 +6,7 @@ import style from 'components/SourceSuggestions/SourceSuggestions.style';
 import trimLink from 'components/SourceSuggestions/helpers/trimLink';
 
 const SourceSuggestions = ({ suggestions, addSuggestion }) => (
-  <View>
+  <View style={style.container}>
     {suggestions.length ? (
       suggestions.map(({ id, title, link }, i) => (
         <ListItem

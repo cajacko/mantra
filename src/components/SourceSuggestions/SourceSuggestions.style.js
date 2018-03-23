@@ -16,4 +16,8 @@ export default {
   suggestionIconContainer: {
     height: suggestionHeight,
   },
+
+  container: {
+    marginBottom: 50,
+  },
 };
