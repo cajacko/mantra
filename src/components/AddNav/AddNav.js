@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Header from 'components/Header';
+import Header from 'components/UI/Header';
 
 const CharacterCount = ({ enableSave, save, back }) => (
   <Header
@@ -10,7 +10,7 @@ const CharacterCount = ({ enableSave, save, back }) => (
     leftButtonOnPress={back}
     rightButtonOnPress={save}
   />
-  );
+);
 
 CharacterCount.propTypes = {
   enableSave: PropTypes.bool.isRequired,

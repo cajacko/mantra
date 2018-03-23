@@ -16,7 +16,7 @@ import {
 } from 'native-base';
 import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
-import Header from 'components/Header';
+import Header from 'components/UI/Header';
 import style from 'components/AddSource/AddSource.style';
 import SourceSuggestions from 'components/SourceSuggestions';
 import inputLabelProps from 'components/AddSource/helpers/inputLabelProps';
@@ -40,9 +40,7 @@ class AddSource extends PureComponent {
         <Header
           leftIcon="arrow-back"
           title="Add Source"
-          rightTextColor={
-            this.props.areInputsSame ? style.saveSameColor : undefined
-          }
+          rightTextFaded={this.props.areInputsSame}
           rightText="Save"
           leftButtonOnPress={this.props.goBack}
           rightButtonOnPress={this.props.save}

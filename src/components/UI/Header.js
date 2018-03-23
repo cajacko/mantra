@@ -17,7 +17,7 @@ const HeaderComponent = ({
   title,
   rightText,
   rightButtonOnPress,
-  rightTextColor,
+  rightTextFaded,
 }) => (
   <Header>
     <Left>
@@ -33,9 +33,7 @@ const HeaderComponent = ({
     <Right>
       {rightText && (
         <Button transparent onPress={rightButtonOnPress}>
-          <Text style={rightTextColor ? { color: rightTextColor } : {}}>
-            Save
-          </Text>
+          <Text style={rightTextFaded ? { opacity: 0.5 } : {}}>Save</Text>
         </Button>
       )}
     </Right>
@@ -48,7 +46,7 @@ HeaderComponent.propTypes = {
   rightText: PropTypes.string,
   leftButtonOnPress: PropTypes.func,
   rightButtonOnPress: PropTypes.func,
-  rightTextColor: PropTypes.string,
+  rightTextFaded: PropTypes.bool,
 };
 
 HeaderComponent.defaultProps = {
@@ -57,7 +55,7 @@ HeaderComponent.defaultProps = {
   rightText: null,
   leftButtonOnPress: null,
   rightButtonOnPress: null,
-  rightTextColor: null,
+  rightTextFaded: false,
 };
 
 export default HeaderComponent;
