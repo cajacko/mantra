@@ -8,4 +8,9 @@ export default {
   },
 
   saveSameColor: GREY,
+
+  clear: {
+    marginTop: 20,
+    marginLeft: 16,
+  },
 };

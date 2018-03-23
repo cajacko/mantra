@@ -9,11 +9,11 @@ import {
   Label,
   List,
   ListItem,
-  Left,
   Icon,
-  Body,
   Text,
+  Button,
 } from 'native-base';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/UI/Header';
@@ -25,7 +25,7 @@ class AddSource extends PureComponent {
   constructor(props) {
     super(props);
 
-    const autoFocus = !props.title || props.title === '';
+    const autoFocus = !props.title || !props.title.length;
 
     this.state = {
       autoFocus,
@@ -35,6 +35,10 @@ class AddSource extends PureComponent {
   }
 
   render() {
+    const noSource =
+      (!this.props.title || !this.props.title.length) &&
+      (!this.props.link || !this.props.link.length);
+
     return (
       <Container>
         <StatusPadding androidOnly />
@@ -67,17 +71,21 @@ class AddSource extends PureComponent {
                 autoCapitalize="none"
               />
             </Item>
+
+            <Button
+              small
+              iconLeft
+              light
+              onPress={this.props.clear}
+              disabled={noSource}
+              style={style.clear}
+            >
+              <Icon name="close" />
+              <Text>Clear</Text>
+            </Button>
           </Form>
 
           <List button style={style.meta}>
-            <ListItem icon onPress={this.props.clear} first last>
-              <Left>
-                <Icon name="close" />
-              </Left>
-              <Body>
-                <Text>Clear</Text>
-              </Body>
-            </ListItem>
             <ListItem itemDivider>
               <Text>Suggestions</Text>
             </ListItem>
