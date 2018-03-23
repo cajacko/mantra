@@ -8,15 +8,17 @@ import {
   Body,
 } from 'native-base';
 import PropTypes from 'prop-types';
+import Header from 'components/UI/Header';
 
 const SceneSettings = ({ prefillSource, changeSetting }) => (
   <Container>
+    <Header title="Settings" />
     <Content>
-      <ListItem>
-        <CheckBox
-          checked={prefillSource}
-          onPress={() => changeSetting('prefillSource')(!prefillSource)}
-        />
+      <ListItem
+        button
+        onPress={() => changeSetting('prefillSource')(!prefillSource)}
+      >
+        <CheckBox checked={prefillSource} />
         <Body>
           <Text>
             Prefill the source of a new mantra entry with the last used source

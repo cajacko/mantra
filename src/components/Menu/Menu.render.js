@@ -3,7 +3,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Container, List, Text, Drawer } from 'native-base';
 import style from 'components/Menu/Menu.style';
-import MenuItem from 'components/MenuItem/MenuItem.component';
+import MenuItem from 'components/MenuItem';
 import email from 'helpers/email';
 import StatusPadding from 'components/UI/StatusPadding';
 
