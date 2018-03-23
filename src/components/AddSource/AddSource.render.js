@@ -13,31 +13,19 @@ import {
   Text,
   Button,
 } from 'native-base';
-import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/UI/Header';
 import style from 'components/AddSource/AddSource.style';
 import SourceSuggestions from 'components/SourceSuggestions';
-import inputLabelProps from 'components/AddSource/helpers/inputLabelProps';
 
 class AddSource extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    const autoFocus = !props.title || !props.title.length;
-
-    this.state = {
-      autoFocus,
-      titleProps: inputLabelProps(props.title, autoFocus),
-      linkProps: inputLabelProps(props.link),
-    };
-  }
-
   render() {
     const noSource =
       (!this.props.title || !this.props.title.length) &&
       (!this.props.link || !this.props.link.length);
+
+    const autoFocus = !this.props.title || !this.props.title.length;
 
     return (
       <Container>
@@ -52,16 +40,16 @@ class AddSource extends PureComponent {
         />
         <Content>
           <Form>
-            <Item {...this.state.titleProps} error={this.props.titleError}>
+            <Item stackedLabel error={this.props.titleError}>
               <Label>Source Title</Label>
               <Input
                 value={this.props.title}
                 onChangeText={this.props.onChange('title')}
-                autoFocus={this.state.autoFocus}
+                autoFocus={autoFocus}
                 autoCapitalize="words"
               />
             </Item>
-            <Item {...this.state.linkProps} error={this.props.linkError}>
+            <Item stackedLabel error={this.props.linkError}>
               <Label>Source Link</Label>
               <Input
                 value={this.props.link}
