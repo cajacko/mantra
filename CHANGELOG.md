@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 
 * Started shifting components into new file structure
+* Swapped the side menu to use the one from native-base
 
 ### Deprecated
 
