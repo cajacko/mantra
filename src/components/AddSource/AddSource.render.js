@@ -32,6 +32,8 @@ class AddSource extends PureComponent {
   }
 
   render() {
+    const autoFocus = !this.props.title || this.props.title === '';
+
     return (
       <Container>
         <StatusPadding androidOnly />
@@ -52,6 +54,7 @@ class AddSource extends PureComponent {
               <Input
                 value={this.props.title}
                 onChangeText={this.props.onChange('title')}
+                autoFocus={autoFocus}
               />
             </Item>
             <Item {...this.state.linkProps} error={this.props.linkError}>
