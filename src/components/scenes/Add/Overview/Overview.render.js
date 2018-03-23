@@ -2,13 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Container, List, ListItem, Text, Icon, Left, Body } from 'native-base';
 import AddSource from 'components/scenes/Add/Source';
-import AddNav from 'components/AddNav/AddNav';
-import CharacterCount from 'components/CharacterCount/CharacterCount';
-import AddInput from 'components/AddInput/AddInput';
+import AddNav from 'components/Add/Nav';
+import AddCharacterCount from 'components/Add/CharacterCount';
+import AddTitle from 'components/Add/Title';
 import style from 'components/scenes/Add/Overview/Overview.style';
 import StatusPadding from 'components/UI/StatusPadding';
 
-const AddView = ({
+const Overview = ({
   saveMantra,
   back,
   enableSave,
@@ -40,8 +40,8 @@ const AddView = ({
     <Container>
       <StatusPadding androidOnly />
       <AddNav enableSave={enableSave} save={saveMantra} back={back} />
-      <CharacterCount count={charactersLeft} />
-      <AddInput onChange={onChange} value={title} />
+      <AddCharacterCount count={charactersLeft} />
+      <AddTitle onChange={onChange} value={title} />
 
       <List button style={style.list}>
         <ListItem icon onPress={setShowAddSource(true)} first>
@@ -67,7 +67,7 @@ const AddView = ({
   );
 };
 
-AddView.propTypes = {
+Overview.propTypes = {
   saveMantra: PropTypes.func.isRequired,
   back: PropTypes.func.isRequired,
   enableSave: PropTypes.bool.isRequired,
@@ -92,4 +92,4 @@ AddView.propTypes = {
   ).isRequired,
 };
 
-export default AddView;
+export default Overview;

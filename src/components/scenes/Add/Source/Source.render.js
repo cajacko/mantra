@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import StatusPadding from 'components/UI/StatusPadding';
 import Header from 'components/UI/Header';
 import style from 'components/scenes/Add/Source/Source.style';
-import SourceSuggestions from 'components/SourceSuggestions';
+import AddSourceSuggestions from 'components/Add/SourceSuggestions';
 
 class AddSource extends PureComponent {
   render() {
@@ -77,7 +77,7 @@ class AddSource extends PureComponent {
             <ListItem itemDivider>
               <Text>Suggestions</Text>
             </ListItem>
-            <SourceSuggestions
+            <AddSourceSuggestions
               suggestions={this.props.suggestions}
               addSuggestion={this.props.addSuggestion}
             />

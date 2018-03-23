@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import style from 'components/CharacterCount/CharacterCount.style';
+import style from 'components/Add/CharacterCount/CharacterCount.style';
 
 const CharacterCount = ({ count }) => {
   const containerStyle = [style.container];

@@ -2,8 +2,8 @@ import React from 'react';
 import { View } from 'react-native';
 import { ListItem, Right, Icon, Body, Text } from 'native-base';
 import PropTypes from 'prop-types';
-import style from 'components/SourceSuggestions/SourceSuggestions.style';
-import trimLink from 'components/SourceSuggestions/helpers/trimLink';
+import style from 'components/Add/SourceSuggestions/SourceSuggestions.style';
+import trimLink from 'components/Add/SourceSuggestions/helpers/trimLink';
 
 const SourceSuggestions = ({ suggestions, addSuggestion }) => (
   <View style={style.container}>
