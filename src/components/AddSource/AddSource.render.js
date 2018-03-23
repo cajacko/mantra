@@ -55,6 +55,7 @@ class AddSource extends PureComponent {
                 value={this.props.title}
                 onChangeText={this.props.onChange('title')}
                 autoFocus={autoFocus}
+                autoCapitalize="words"
               />
             </Item>
             <Item {...this.state.linkProps} error={this.props.linkError}>
