@@ -8,9 +8,11 @@ import {
   Body,
 } from 'native-base';
 import PropTypes from 'prop-types';
+import Header from 'components/UI/Header';
 
 const SceneSettings = ({ prefillSource, changeSetting }) => (
   <Container>
+    <Header title="Settings" />
     <Content>
       <ListItem>
         <CheckBox
