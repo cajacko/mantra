@@ -1,5 +1,11 @@
-const inputLabelProps = (value) => {
-  const float = !value || value === '';
+const inputLabelProps = (value, autoFocus) => {
+  let float;
+
+  if (autoFocus) {
+    float = false;
+  } else {
+    float = !value || value === '';
+  }
 
   return {
     stackedLabel: !float,
