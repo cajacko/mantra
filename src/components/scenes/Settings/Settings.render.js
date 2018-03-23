@@ -14,11 +14,11 @@ const SceneSettings = ({ prefillSource, changeSetting }) => (
   <Container>
     <Header title="Settings" />
     <Content>
-      <ListItem>
-        <CheckBox
-          checked={prefillSource}
-          onPress={() => changeSetting('prefillSource')(!prefillSource)}
-        />
+      <ListItem
+        button
+        onPress={() => changeSetting('prefillSource')(!prefillSource)}
+      >
+        <CheckBox checked={prefillSource} />
         <Body>
           <Text>
             Prefill the source of a new mantra entry with the last used source
