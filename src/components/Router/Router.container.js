@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Views from 'components/Views/Views';
+import Router from 'components/Router/Router.render';
 
 /**
  * Pass props form the store to the views components
@@ -9,11 +9,11 @@ import Views from 'components/Views/Views';
  * @param {boolean} firstTime Is this the users first time opening the app
  * @return {jsx}             The jsx markup to render
  */
-const ViewsContainer = ({ view, firstTime }) => (
-  <Views view={view.view} viewProps={view.props} firstTime={firstTime} />
+const RouterContainer = ({ view, firstTime }) => (
+  <Router view={view.view} viewProps={view.props} firstTime={firstTime} />
 );
 
-ViewsContainer.propTypes = {
+RouterContainer.propTypes = {
   view: PropTypes.shape({
     view: PropTypes.string,
     props: PropTypes.object,
@@ -21,7 +21,7 @@ ViewsContainer.propTypes = {
   firstTime: PropTypes.bool.isRequired,
 };
 
-ViewsContainer.defaultProps = {
+RouterContainer.defaultProps = {
   myjsonId: null,
 };
 
@@ -35,4 +35,4 @@ function mapStateToProps({ view, firstTime }) {
   return { view, firstTime };
 }
 
-export default connect(mapStateToProps)(ViewsContainer);
+export default connect(mapStateToProps)(RouterContainer);

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoopView from 'components/LoopView/LoopView.component';
-import AddView from 'components/AddView';
+import SceneAddOverview from 'components/scenes/Add/Overview';
 import Login from 'containers/Login/Login';
 import ProfileView from 'containers/ProfileView/ProfileView';
 import NavView from 'containers/NavView/NavView';
@@ -11,13 +11,13 @@ import SuggestionsView from 'components/SuggestionsView/SuggestionsView.containe
 import SettingsView from 'components/scenes/Settings';
 
 /**
- * Switch between the different Views
+ * Switch between the different scenes
  * @param {string} view      The current view to display
  * @param {?object} viewProps An object of properties to pass to the viewProps
  * @param {boolean} firstTime Is this the first time the user has opened the app
  * @return {jsx}             The jsx markup to render
  */
-const Views = ({ view, viewProps, firstTime }) => {
+const Entry = ({ view, viewProps, firstTime }) => {
   if (!view) {
     return null;
   }
@@ -27,7 +27,7 @@ const Views = ({ view, viewProps, firstTime }) => {
   }
 
   if (view === 'AddView') {
-    return <AddView id={viewProps.id} title={viewProps.title} />;
+    return <SceneAddOverview id={viewProps.id} title={viewProps.title} />;
   }
 
   let viewElement;
@@ -63,16 +63,16 @@ const Views = ({ view, viewProps, firstTime }) => {
   return <NavView>{viewElement}</NavView>;
 };
 
-Views.propTypes = {
+Entry.propTypes = {
   view: PropTypes.string,
   // eslint-disable-next-line
   viewProps: PropTypes.object.isRequired,
   firstTime: PropTypes.bool.isRequired,
 };
 
-Views.defaultProps = {
+Entry.defaultProps = {
   myjsonId: null,
   view: null,
 };
 
-export default Views;
+export default Entry;
