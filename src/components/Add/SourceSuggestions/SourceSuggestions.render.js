@@ -16,7 +16,7 @@ const SourceSuggestions = ({ suggestions, addSuggestion }) => (
           onPress={addSuggestion(id, title, link)}
           style={link && style.suggestion}
         >
-          <Body>
+          <Body style={link && style.suggestion}>
             <Text style={link && style.suggestionTitle} numberOfLines={1}>
               {title}
             </Text>

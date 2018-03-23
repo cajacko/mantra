@@ -1,4 +1,4 @@
-const suggestionHeight = 56;
+const suggestionHeight = 58;
 
 export default {
   suggestion: {
@@ -6,7 +6,7 @@ export default {
   },
 
   suggestionTitle: {
-    marginBottom: 5,
+    paddingBottom: 5,
   },
 
   suggestionLink: {
