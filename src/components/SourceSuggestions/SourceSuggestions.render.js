@@ -8,11 +8,11 @@ import trimLink from 'components/SourceSuggestions/helpers/trimLink';
 const SourceSuggestions = ({ suggestions, addSuggestion }) => (
   <View>
     {suggestions.length ? (
-      suggestions.map(({ id, title, link }) => (
+      suggestions.map(({ id, title, link }, i) => (
         <ListItem
           key={id}
           icon
-          last
+          last={i === suggestions.length - 1}
           onPress={addSuggestion(id, title, link)}
           style={link && style.suggestion}
         >
